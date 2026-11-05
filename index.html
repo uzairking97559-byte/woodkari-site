@@ -33,6 +33,14 @@ h2{font-size:30px;color:var(--walnut);margin:0 0 20px}
 .prod p{margin:0 0 10px}
 .prod ul{margin:0 0 12px;padding-left:20px;font:16px/1.6 Arial,sans-serif}
 .tag{font:600 14px Arial,sans-serif;color:var(--wood);text-transform:uppercase;letter-spacing:.8px}
+.designs{display:grid;grid-template-columns:1fr;gap:22px}
+@media(min-width:760px){.designs{grid-template-columns:1fr 1fr}}
+.design{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:16px}
+.design .pic{overflow:hidden;border-radius:4px;aspect-ratio:1/1;border:1px solid var(--line);margin-bottom:12px}
+.design .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.design h3{font-size:22px;margin:0 0 6px;color:var(--walnut)}
+.design p{margin:0 0 12px;font:16px/1.5 Arial,sans-serif}
+.note{font:15px/1.5 Arial,sans-serif;color:#5a4a3a;margin:0 0 20px;max-width:40em}
 .order{background:var(--walnut);color:var(--paper);padding:40px 0;margin-top:20px}
 .order h2{color:var(--paper)}
 .order p{max-width:38em;margin:0 0 16px}
@@ -95,6 +103,17 @@ footer a{color:var(--walnut)}
 <a class="btn main" href="#order">Ask for the price sheet</a>
 </div>
 </article>
+</div></section>
+
+<section class="products" id="designs"><div class="wrap">
+<h2>More tray designs</h2>
+<p class="note">Design visuals of trays for made-to-order batches. Material, size and finish are agreed with you at the sample stage. Photos of finished samples on request.</p>
+<div class="designs">
+<article class="design"><div class="pic"><img src="img/tray-gold-resin.jpg" width="1155" height="1200" alt="Black marbled resin tray with gold flakes and two gold-tone leaf handles" loading="lazy"></div><span class="tag">Tray</span><h3>Gold-flake Resin Tray</h3><p>Black marbled resin with gold flakes and gold-tone metal leaf handles.</p><a class="btn main" href="#order">Ask for details</a></article>
+<article class="design"><div class="pic"><img src="img/tray-bw-floral-set.jpg" width="1200" height="1200" alt="Round and rectangular trays with a black and white floral inlay-style pattern" loading="lazy"></div><span class="tag">Tray</span><h3>Black &amp; White Floral Tray Set</h3><p>A round and a rectangular tray with a black-and-white floral inlay-style pattern.</p><a class="btn main" href="#order">Ask for details</a></article>
+<article class="design"><div class="pic"><img src="img/tray-red-chevron.jpg" width="1200" height="1097" alt="White-framed rectangular tray with a red and white chevron pattern" loading="lazy"></div><span class="tag">Tray</span><h3>Red Chevron Tray</h3><p>White-framed rectangular tray with a red-and-white chevron pattern.</p><a class="btn main" href="#order">Ask for details</a></article>
+<article class="design"><div class="pic"><img src="img/tray-navy-floral.jpg" width="1200" height="1200" alt="Ivory rectangular tray with navy floral pattern and cut-out side handles" loading="lazy"></div><span class="tag">Tray</span><h3>Navy &amp; Ivory Floral Tray</h3><p>Ivory tray with a navy floral inlay-style pattern and cut-out side handles.</p><a class="btn main" href="#order">Ask for details</a></article>
+</div>
 </div></section>
 
 <section class="order" id="order"><div class="wrap">

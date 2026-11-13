@@ -26,7 +26,7 @@ PRODUCTS = [
          facts=[("Size", "11.5 × 7 inches, 3 inches high (29 × 18 × 7.6 cm)"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
                 ("Goes with", "The Room Tray: same 11.5 inch side, same polish"),
-                ("Can be changed", "Size and polish. On bulk orders, a name or logo by laser")],
+                ("Can be changed", "Size and polish. A name or logo by laser on 50 pieces or more")],
          imgs=[("fluted-front", "Fluted box tray on a wooden table, seen from the front", "Styled picture"),
                ("fluted-use", "Fluted box tray on the floor by a door, holding car keys and a wallet", "Styled picture"),
                ("fluted-top", "Fluted box tray seen from above on a white sheet", "Styled picture"),
@@ -39,7 +39,7 @@ PRODUCTS = [
          uses="Kettle and cups in a guest room, or watch, phone and keys on a bedside table.",
          facts=[("Size", "Tray 15 × 11.5 inches (38 × 29 cm). Caddy 10 inches long"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
-                ("Can be changed", "Size, polish, a hotel name or logo engraved by laser")],
+                ("Can be changed", "Size and polish. A hotel name or logo by laser on 50 pieces or more")],
          imgs=[("room-front", "Room tray on a wooden table with two cups of tea", "Styled picture"),
                ("room-use", "Room tray on a bedside table with a kettle, keys and a phone", "Styled picture"),
                ("room-top", "Room tray seen from above on a white sheet", "Styled picture"),
@@ -56,11 +56,11 @@ PRODUCTS = [
          imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Design picture, made to order"),
                ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Design picture, made to order"),
                ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Design picture, made to order")]),
-    dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=2199, mto=True,
-         short="16 × 8 in, cut-out handles",
+    dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=1999, mto=True,
+         short="14 × 8 in, cut-out handles",
          lede="An ivory tray with a navy floral pattern filled in resin, and a handle cut into each side.",
          uses="Tea for two, or a tray for the dressing table.",
-         facts=[("Size", "16 × 8 inches (41 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
+         facts=[("Size", "14 × 8 inches (36 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh")],
          imgs=[("navy-front", "Ivory tray with a navy floral pattern on a wooden table", "Design picture, made to order"),
                ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture, made to order"),
@@ -100,7 +100,7 @@ def ico(d):
     return f'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{d}</svg>'
 
 VALS = [(ico('<path d="M7 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V4.500a1.500 1.500 0 0 1 3 0V10m0 0V6a1.500 1.500 0 0 1 3 0v8c0 4-2.500 7-6 7-2.500 0-4-1.200-5.500-3.500L3.200 14a1.500 1.500 0 0 1 2.500-1.600L7 14"/>'), "Made in Sambhal since 2008"),
-        (ico('<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m13.500 6.500 4 4"/>'), "Your name or logo on bulk orders"),
+        (ico('<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m13.500 6.500 4 4"/>'), "Your name or logo, from 50 pieces"),
         (ico('<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/>'), "Pay after we confirm"),
         (ico('<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.800"/><circle cx="17.500" cy="18" r="1.800"/>'), "Bulk orders from 25 pieces")]
 VALS = [(a.replace(".500", ".5").replace(".200", ".2").replace(".800", ".8"), b) for a, b in VALS]
@@ -371,7 +371,7 @@ def header(cur):
 def footer():
     return f"""<footer class="ft"><div class="wrap">
 <div><h3>Woodkari Exports</h3><p>A workshop in Sambhal, Uttar Pradesh, making since 2008. Wooden trays, boxes and resin pieces, in bulk and made to order.</p></div>
-<div><h3>Shop</h3><a href="./#shop">All pieces</a><a href="bulk.html">Bulk and hotel orders</a><a href="woodkari-catalogue-2026.pdf">Catalogue (PDF)</a></div>
+<div><h3>Shop</h3><a href="./#shop">All pieces</a><a href="bulk.html">Bulk and hotel orders</a></div>
 <div><h3>Talk to us</h3><a href="{wa('Hello Woodkari, I have a question.')}">WhatsApp</a><a href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Styled picture" or "Design picture" show the look of the piece; wood grain and resin differ a little on every piece. Plain photos are of our own pieces.</p>
 </div></footer>
@@ -432,7 +432,7 @@ def page_home():
 
 <section class="sec"><div class="wrap">
 <h2>Made on order</h2>
-<p class="sub">Designs our karigars make when you ask. Tell us the piece and how many, and we send the price.</p>
+<p class="sub">Designs our karigars make when you ask. Small pieces such as coasters and tissue boxes are made in bulk only. Tell us the piece and how many, and we send the price.</p>
 <div class="dz">{dz}</div>
 </div></section>
 
@@ -447,8 +447,8 @@ def page_home():
 
 <section class="band"><div class="scallop" style="--c:var(--paper)"></div><div class="wrap">
 <h2>Need 25 pieces or more?</h2>
-<p>Hotels, gifting companies, shops and importers get a separate price sheet. We can engrave your name or logo by laser and change the size and polish.</p>
-<div class="row"><a class="btn ind" href="bulk.html">Bulk and hotel orders</a><a class="btn line" href="woodkari-catalogue-2026.pdf">Catalogue (PDF)</a></div>
+<p>Hotels, gifting companies, shops and importers get a separate price sheet. We change the size and polish, and on 50 pieces or more of one design we engrave your name or logo by laser.</p>
+<div class="row"><a class="btn ind" href="bulk.html">Bulk and hotel orders</a></div>
 </div></section>
 
 <section class="sec"><div class="wrap">
@@ -528,14 +528,14 @@ def page_bulk():
 <section class="sec" style="padding-top:28px"><div class="wrap">
 <h1 style="font-size:clamp(32px,8vw,52px);max-width:13em">Bulk orders, from 25 pieces.</h1>
 <p class="sub" style="font-size:18px">Bulk is most of our work, and has been since 2008. For hotels, gifting companies, shops and importers. Tell us the piece and the number, and we send the price sheet.</p>
-<div class="row"><a class="btn go" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20price%20sheet">Email us</a><a class="btn line" href="woodkari-catalogue-2026.pdf">Catalogue (PDF)</a></div>
+<div class="row"><a class="btn go" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20price%20sheet">Email us</a></div>
 <img class="bh" src="img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744">
 </div></section>
 
 <section class="sec"><div class="wrap">
 <h2>What we make in bulk</h2>
 <div class="grid four">
-<a class="p" href="room-tray.html"><div class="ph"><img src="img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"></div><h3>Room trays for hotels</h3><p class="sh">With your hotel name engraved</p></a>
+<a class="p" href="room-tray.html"><div class="ph"><img src="img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"></div><h3>Room trays for hotels</h3><p class="sh">Your hotel name engraved, from 50 pieces</p></a>
 <a class="p" href="fluted-box-tray.html"><div class="ph"><img src="img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
 <a class="p" href="navy-ivory-floral-tray.html"><div class="ph"><img src="img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"></div><h3>Resin trays</h3><p class="sh">Your colours and pattern</p></a>
 <a class="p" href="{e(wa("Hello Woodkari, I want the bulk price of engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="mto">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser</p></a>
@@ -546,10 +546,10 @@ def page_bulk():
 <h2>Terms</h2>
 <ul class="facts" style="margin-top:18px;max-width:640px">
 <li><b>Minimum</b><span>25 pieces of one design</span></li>
-<li><b>Making time</b><span>About 15 to 20 days for 100 pieces</span></li>
+<li><b>Making time</b><span>About 10 to 15 days for 100 pieces</span></li>
 <li><b>Payment</b><span>50% advance, the rest before dispatch</span></li>
 <li><b>Delivery</b><span>Courier or transport at the buyer's cost, quoted before dispatch</span></li>
-<li><b>Custom work</b><span>Size, polish, colour, name or logo by laser</span></li>
+<li><b>Custom work</b><span>Size, polish and colour. Name or logo by laser from 50 pieces of one design</span></li>
 </ul>
 </div></section>
 </main>

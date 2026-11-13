@@ -21,12 +21,12 @@ EMAIL = "sales@woodkariexports.com"
 PRODUCTS = [
     dict(slug="fluted-box-tray", name="Fluted Box Tray", cat="wood", price=1299,
          short="11.5 × 7 in, scalloped rim",
-         lede="An open box tray in acacia wood. The sides are cut into upright flutes and the rim is scalloped, then the whole piece is polished to a warm walnut tone.",
+         lede="An open box tray in solid wood. The sides are cut into upright flutes and the rim is scalloped, then the whole piece is polished to a warm walnut tone.",
          uses="Keys and wallet by the door, a dressing table, a desk, or a gift hamper.",
-         facts=[("Size", "11.5 × 7 inches, 3 inches high (29 × 18 × 7.6 cm)"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish, by hand"),
+         facts=[("Size", "11.5 × 7 inches, 3 inches high (29 × 18 × 7.6 cm)"), ("Wood", "Solid wood"), ("Finish", "Walnut-tone polish"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
                 ("Goes with", "The Room Tray: same 11.5 inch side, same polish"),
-                ("Can be changed", "Size, polish, a name engraved by laser")],
+                ("Can be changed", "Size and polish. On bulk orders, a name or logo by laser")],
          imgs=[("fluted-front", "Fluted box tray on a wooden table, seen from the front", "Styled picture"),
                ("fluted-use", "Fluted box tray on the floor by a door, holding car keys and a wallet", "Styled picture"),
                ("fluted-top", "Fluted box tray seen from above on a white sheet", "Styled picture"),
@@ -35,9 +35,9 @@ PRODUCTS = [
                ("fluted-real3", "Fluted box tray, plain photo from above", "Our piece, plain photo")]),
     dict(slug="room-tray", name="Room Tray", cat="wood", price=1799,
          short="15 × 11.5 in, with a four-box caddy",
-         lede="A solid acacia board with one large round dip, two small ones and two long slots, and a four-box caddy that stands beside it. Hotels use it as the tea tray in a guest room.",
+         lede="A solid wooden board with one large round dip, two small ones and two long slots, and a four-box caddy that stands beside it. Hotels use it as the tea tray in a guest room.",
          uses="Kettle and cups in a guest room, or watch, phone and keys on a bedside table.",
-         facts=[("Size", "Tray 15 × 11.5 inches (38 × 29 cm). Caddy 10 inches long"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish, by hand"),
+         facts=[("Size", "Tray 15 × 11.5 inches (38 × 29 cm). Caddy 10 inches long"), ("Wood", "Solid wood"), ("Finish", "Walnut-tone polish"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
                 ("Can be changed", "Size, polish, a hotel name or logo engraved by laser")],
          imgs=[("room-front", "Room tray on a wooden table with two cups of tea", "Styled picture"),
@@ -58,18 +58,18 @@ PRODUCTS = [
                ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=2199, mto=True,
          short="16 × 8 in, cut-out handles",
-         lede="An ivory tray with a navy floral pattern under clear resin, and a handle cut into each side.",
+         lede="An ivory tray with a navy floral pattern filled in resin, and a handle cut into each side.",
          uses="Tea for two, or a tray for the dressing table.",
-         facts=[("Size", "16 × 8 inches (41 × 20 cm), rim 2 inches high"), ("Top", "Pattern under clear resin"), ("Core", "MDF wood board"),
+         facts=[("Size", "16 × 8 inches (41 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh")],
          imgs=[("navy-front", "Ivory tray with a navy floral pattern on a wooden table", "Design picture, made to order"),
                ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture, made to order"),
                ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="red-chevron-tray", name="Red Chevron Tray", cat="resin", price=2799, mto=True,
          short="16 × 10 in, red and white zigzag",
-         lede="A white-framed rectangular tray with a red and white chevron pattern under clear resin.",
+         lede="A white-framed rectangular tray with a red and white chevron pattern filled in resin.",
          uses="Breakfast in bed, or a bright tray for the kitchen counter.",
-         facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern under clear resin"), ("Core", "MDF wood board"),
+         facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
                 ("Can be changed", "Colour of the pattern")],
          imgs=[("chevron-front", "White-framed tray with a red and white chevron pattern on a wooden table", "Design picture, made to order"),
@@ -77,9 +77,9 @@ PRODUCTS = [
                ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="black-white-floral-tray-set", name="Black & White Floral Tray Set", cat="resin", price=6999, unit="set of 2", mto=True,
          short="One round, one rectangular",
-         lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, sealed under resin.",
+         lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, filled in resin.",
          uses="A pair for the dining table or the living room.",
-         facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round 16 inches (41 cm)"), ("Top", "Pattern under clear resin"),
+         facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round 16 inches (41 cm)"), ("Top", "Pattern filled in resin"),
                 ("Core", "MDF wood board"), ("Made in", "Our workshop in Sambhal, Uttar Pradesh")],
          imgs=[("bw-front", "Round and rectangular black and white floral trays on a wooden table", "Design picture, made to order"),
                ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Design picture, made to order"),
@@ -394,12 +394,12 @@ def page_home():
     tiles = "".join(f'<a class="tile" href="{h}"><img src="img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span>{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
     dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want to know the price of: " + n))}"><img src="img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><b>{e(n)}</b><i>Ask the price</i></a>' for k, n in DESIGNS)
     return head("Woodkari: wooden trays and boxes, made by hand in Sambhal",
-                "Acacia wood trays, boxes and resin trays from a workshop in Sambhal, Uttar Pradesh, making since 2008. Bulk orders and single pieces, on WhatsApp.",
+                "Wooden trays, boxes and resin trays from a workshop in Sambhal, Uttar Pradesh, making since 2008. Bulk orders and single pieces, on WhatsApp.",
                 "", "fluted-front.jpg") + f"""<body>
 {header('home')}
 <main id="main">
 <section class="hero">
-<picture><source media="(min-width:900px)" srcset="img/fluted-front.webp"><img src="img/hero-p.webp" alt="A fluted acacia box tray with a scalloped rim on a wooden table" width="900" height="900" fetchpriority="high"></picture>
+<picture><source media="(min-width:900px)" srcset="img/fluted-front.webp"><img src="img/hero-p.webp" alt="A fluted wooden box tray with a scalloped rim on a wooden table" width="900" height="900" fetchpriority="high"></picture>
 <div class="hero-txt"><div class="wrap">
 <p class="deva">वुड + कारीगरी = Woodkari</p>
 <h1>Wooden trays and boxes, made by hand in Sambhal.</h1>
@@ -424,9 +424,9 @@ def page_home():
 </div></section>
 
 <section class="close">
-<img src="img/detail-flutes.webp" alt="Close view of the fluted side and scalloped rim of the acacia box tray" width="1200" height="900" loading="lazy">
+<img src="img/detail-flutes.webp" alt="Close view of the fluted side and scalloped rim of the wooden box tray" width="1200" height="900" loading="lazy">
 <div><h2>Look closely.</h2>
-<p>Each flute on the box is cut on the router, then every edge is sanded by hand until it is smooth. The polish goes on by hand in coats, so the grain of the acacia shows through. No two pieces come out the same.</p>
+<p>Each flute on the box is cut on the router, then every edge is sanded by hand until it is smooth. The polish goes on by hand in coats, so the grain of the wood shows through. No two pieces come out the same.</p>
 <div class="row"><a class="btn line" href="fluted-box-tray.html">See the Fluted Box Tray</a></div></div>
 </section>
 
@@ -454,13 +454,12 @@ def page_home():
 <section class="sec"><div class="wrap">
 <h2>The workshop</h2>
 <div class="shop2">
-<p class="sub" style="margin:0;color:var(--ink)">Sambhal has made wooden and horn pieces for generations. Ours is a workshop there with four karigars, at work since 2008. Most of what we make goes out as bulk orders. The wood is cut on a router, shaped and sanded by hand, and polished by hand. Resin is poured one tray at a time.</p>
+<p class="sub" style="margin:0;color:var(--ink)">Sambhal has made wooden and horn pieces for generations. Ours is a workshop there with four karigars, at work since 2008. Most of what we make goes out as bulk orders. The wood is cut on a router, shaped and sanded by hand, and polished by hand.</p>
 <ul class="facts">
 <li><b>Since</b><span>2008</span></li>
 <li><b>Where</b><span>Sambhal, Uttar Pradesh</span></li>
 <li><b>Who</b><span>Four karigars</span></li>
 <li><b>Work we do</b><span>Router cutting, laser engraving, resin, hand polish</span></li>
-<li><b>Wood</b><span>Acacia and mango</span></li>
 </ul>
 </div>
 </div></section>
@@ -529,14 +528,14 @@ def page_bulk():
 <h1 style="font-size:clamp(32px,8vw,52px);max-width:13em">Bulk orders, from 25 pieces.</h1>
 <p class="sub" style="font-size:18px">Bulk is most of our work, and has been since 2008. For hotels, gifting companies, shops and importers. Tell us the piece and the number, and we send the price sheet.</p>
 <div class="row"><a class="btn go" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20price%20sheet">Email us</a><a class="btn line" href="woodkari-catalogue-2026.pdf">Catalogue (PDF)</a></div>
-<img class="bh" src="img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744">
+<img class="bh" src="img/bulk-hero.webp" alt="Wooden room tray with two cups of tea on a wooden table" width="1200" height="744">
 </div></section>
 
 <section class="sec"><div class="wrap">
 <h2>What we make in bulk</h2>
 <div class="grid four">
 <a class="p" href="room-tray.html"><div class="ph"><img src="img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"></div><h3>Room trays for hotels</h3><p class="sh">With your hotel name engraved</p></a>
-<a class="p" href="fluted-box-tray.html"><div class="ph"><img src="img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
+<a class="p" href="fluted-box-tray.html"><div class="ph"><img src="img/fluted-front-600.webp" alt="Fluted wooden box tray on a wooden table" width="600" height="600" loading="lazy"></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
 <a class="p" href="navy-ivory-floral-tray.html"><div class="ph"><img src="img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"></div><h3>Resin trays</h3><p class="sh">Your colours and pattern</p></a>
 <a class="p" href="{e(wa("Hello Woodkari, I want the bulk price of engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="img/d-engraved-600.webp" alt="Acacia serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="mto">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser</p></a>
 </div>
@@ -550,7 +549,6 @@ def page_bulk():
 <li><b>Payment</b><span>50% advance, the rest before dispatch</span></li>
 <li><b>Delivery</b><span>Courier or transport at the buyer's cost, quoted before dispatch</span></li>
 <li><b>Custom work</b><span>Size, polish, colour, name or logo by laser</span></li>
-<li><b>Wood</b><span>Acacia and mango, kiln-dried</span></li>
 </ul>
 </div></section>
 </main>

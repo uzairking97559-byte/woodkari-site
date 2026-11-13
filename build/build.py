@@ -134,7 +134,7 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 .hd{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
 .hd .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
 .mark{font-family:"Rozha One",Georgia,serif;font-size:27px;color:var(--ink);text-decoration:none;letter-spacing:.3px;line-height:1}
-.mark small{display:block;font:500 10.5px Mukta,sans-serif;letter-spacing:3.2px;color:var(--wood);margin-top:3px}
+.mark small{display:block;font:500 11px Mukta,sans-serif;letter-spacing:3.2px;color:var(--wood);margin-top:3px}
 .nav{display:flex;gap:4px}
 .nav a{font-weight:500;font-size:15.5px;color:var(--ink);text-decoration:none;padding:12px 10px;border-radius:var(--r)}
 .nav a:hover{color:var(--indigo)}
@@ -221,12 +221,13 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 
 /* product grid */
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 12px;margin-top:16px}
-@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:34px 22px}}
+.more .grid .p:nth-child(3){display:none}@media(min-width:760px){.more .grid .p:nth-child(3){display:block}}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:34px 22px}.grid.four{grid-template-columns:repeat(4,1fr)}}
 .p{text-decoration:none;color:var(--ink);display:block}
 .p .ph{position:relative;aspect-ratio:1/1;border-radius:var(--r);overflow:hidden;background:#efe6d6}
 .p .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
 .p:hover .ph img{transform:scale(1.035)}
-.p .mto{position:absolute;left:8px;top:8px;background:rgba(251,247,240,.94);color:var(--ink);font-size:12.5px;font-weight:500;padding:3px 8px;border-radius:3px}
+.p .mto{position:absolute;left:8px;top:8px;background:rgba(251,247,240,.94);color:var(--ink);font-size:13.5px;font-weight:500;padding:3px 8px;border-radius:3px}
 .p h3{font:500 17px/1.25 Mukta,sans-serif;margin:10px 0 2px}
 .p .sh{color:var(--soft);font-size:14.5px;line-height:1.3;margin:0}
 .p .pr{font-weight:700;font-size:17px;margin:4px 0 0;font-variant-numeric:tabular-nums}
@@ -258,7 +259,7 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 
 /* product page */
 .crumb{font-size:15px;color:var(--soft);padding:14px 0 10px}
-.crumb a{color:var(--soft)}
+.crumb a{color:var(--soft);display:inline-block;padding:10px 0}
 .pd{display:grid;gap:20px}
 @media(min-width:900px){.pd{grid-template-columns:1.1fr 1fr;gap:48px;align-items:start}.buy{position:sticky;top:84px}}
 .gal{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px;scrollbar-width:none}
@@ -266,7 +267,7 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 .gal figure{flex:0 0 88%;scroll-snap-align:center;margin:0;position:relative}
 .gal figure:only-child{flex-basis:100%}
 .gal img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:#fff}
-.gal figcaption{position:absolute;left:8px;bottom:8px;background:rgba(251,247,240,.94);font-size:12.5px;padding:3px 8px;border-radius:3px}
+.gal figcaption{position:absolute;left:8px;bottom:8px;background:rgba(251,247,240,.94);font-size:13.5px;padding:3px 8px;border-radius:3px}
 @media(min-width:900px){.gal{display:grid;grid-template-columns:1fr 1fr;margin:0;padding:0;overflow:visible}.gal figure:first-child,.gal figure:only-child{grid-column:1/-1}}
 .buy h1{font-size:clamp(30px,7.4vw,42px)}
 .buy .pr{font-size:25px;font-weight:700;margin:10px 0 0;font-variant-numeric:tabular-nums}
@@ -275,12 +276,15 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 .buy .lede{margin:16px 0 0}
 .buy .uses{margin:10px 0 0;color:var(--soft)}
 .buy .facts{margin-top:20px}
-.buy .bulk{display:block;margin-top:14px;font-weight:500}
+.buy .bulk{display:block;margin-top:6px;padding:12px 0;font-weight:500}
 .stick{position:fixed;left:0;right:0;bottom:0;z-index:6;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px}
 .stick b{font-size:19px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .stick .btn{flex:1;min-height:48px}
 @media(min-width:900px){.stick{display:none}}
 @media(max-width:899px){body.has-stick{padding-bottom:78px}.buy .btn.go.wide{display:none}}
+
+.more{margin-top:44px}.more h2{font-size:clamp(25px,6vw,34px)}
+.bh{width:100%;aspect-ratio:1200/744;object-fit:cover;border-radius:var(--r);margin-top:22px}
 
 /* footer */
 .ft{margin-top:56px;background:#f1e9dc}
@@ -288,7 +292,7 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 @media(min-width:760px){.ft .wrap{grid-template-columns:1.3fr 1fr 1fr}}
 .ft h3{font:700 15px Mukta,sans-serif;letter-spacing:.4px;margin:0 0 6px}
 .ft p,.ft a{font-size:16px;color:var(--ink);margin:0}
-.ft a{display:block;padding:5px 0}
+.ft a{display:block;padding:11px 0}
 .ft .fine{grid-column:1/-1;border-top:1px solid var(--line);padding-top:14px;font-size:14px;color:var(--soft)}
 .pv{background:#fff3c4;color:#4a3b00;text-align:center;font-size:14px;padding:6px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
@@ -324,6 +328,7 @@ def head(title, desc, path, image):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;700&family=Rozha+One&display=swap" rel="stylesheet">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="site.css">
 </head>
 """
@@ -335,7 +340,7 @@ def header(cur):
         return f'<a href="{href}"{c}>{label}</a>'
     pv = '<div class="pv">Preview. Not the live site yet.</div>' if PREVIEW else ""
     return f"""<a class="skip" href="#main">Skip to content</a>
-{pv}<div class="top">Made by hand in Sambhal, Uttar Pradesh</div>
+{pv}<div class="top">Order on WhatsApp. Pay by UPI after we confirm.</div>
 <header class="hd"><div class="wrap">
 <a class="mark" href="./" aria-label="Woodkari home">Woodkari<small>SAMBHAL</small></a>
 <nav class="nav" aria-label="Main">{a('./#shop','Shop','shop')}{a('bulk.html','Bulk orders','bulk')}</nav>
@@ -366,15 +371,15 @@ def page_home():
     chips = "".join(f'<button class="chip" type="button" data-cat="{k}" aria-pressed="{"true" if k=="all" else "false"}">{e(v)}</button>' for k, v in CATS)
     cards = "\n".join(card(p) for p in PRODUCTS)
     vals = "".join(f"<div>{i}<span>{e(t)}</span></div>" for i, t in VALS)
-    tiles = "".join(f'<a class="tile" href="{h}"><img src="img/{k}.webp" alt="{e(alt)}" width="720" height="960" loading="lazy"><span>{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
-    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want to know the price of: " + n))}"><img src="img/{k}.webp" alt="{e(n)}, design picture" width="700" height="700" loading="lazy"><b>{e(n)}</b><i>Ask the price</i></a>' for k, n in DESIGNS)
+    tiles = "".join(f'<a class="tile" href="{h}"><img src="img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span>{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
+    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want to know the price of: " + n))}"><img src="img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><b>{e(n)}</b><i>Ask the price</i></a>' for k, n in DESIGNS)
     return head("Woodkari: wooden trays and boxes, made by hand in Sambhal",
                 "Acacia wood trays, boxes and resin trays from a small workshop in Sambhal, Uttar Pradesh. Order on WhatsApp, pay by UPI.",
                 "", "fluted-life.jpg") + f"""<body>
 {header('home')}
 <main id="main">
 <section class="hero">
-<picture><source media="(min-width:900px)" srcset="img/fluted-life.webp"><img src="img/hero-p.webp" alt="A fluted acacia box tray on an entryway table, holding keys and sunglasses" width="960" height="1200" fetchpriority="high"></picture>
+<picture><source media="(min-width:900px)" srcset="img/fluted-life.webp"><img src="img/hero-p.webp" alt="A fluted acacia box tray on an entryway table, holding keys and sunglasses" width="800" height="1000" fetchpriority="high"></picture>
 <div class="hero-txt"><div class="wrap">
 <p class="deva">वुड + कारीगरी = Woodkari</p>
 <h1>Wooden trays and boxes, made by hand in Sambhal.</h1>
@@ -459,6 +464,8 @@ def page_product(p):
                      "offers": {"@type": "Offer", "priceCurrency": "INR", "price": p["price"],
                                 "availability": "https://schema.org/MadeToOrder" if p.get("mto") else "https://schema.org/InStock"}})
     mto = '<p class="note">Made to order. We tell you the making time on WhatsApp.</p>' if p.get("mto") else ""
+    more = "\n".join(card(q) for q in [x for x in PRODUCTS if x["slug"] != p["slug"]][:3])
+    more = more.replace('<h3>', '<h3 style="font-size:16.5px">')
     ogimg = p["imgs"][0][0] + (".jpg" if p["imgs"][0][0] in ("fluted-life", "room-life") else ".webp")
     return head(f"{p['name']} | Woodkari, Sambhal", p["lede"], p["slug"] + ".html", ogimg) + f"""<body class="has-stick">
 {header('shop')}
@@ -478,6 +485,9 @@ def page_product(p):
 <a class="bulk" href="bulk.html">Need 25 or more? See bulk orders</a>
 </div>
 </div>
+<section class="more"><h2>More pieces</h2><div class="grid">
+{more}
+</div></section>
 </div></main>
 <div class="stick"><b>{rupee(p['price'])}</b><a class="btn go" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>
 {footer()}
@@ -497,14 +507,16 @@ def page_bulk():
 <h1 style="font-size:clamp(32px,8vw,52px);max-width:13em">Bulk orders, from 25 pieces.</h1>
 <p class="sub" style="font-size:18px">For hotels, gifting companies, shops and importers. Tell us the piece and the number, and we send the price sheet.</p>
 <div class="row"><a class="btn go" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20price%20sheet">Email us</a><a class="btn line" href="woodkari-catalogue-2026.pdf">Catalogue (PDF)</a></div>
+<img class="bh" src="img/bulk-hero.webp" alt="Acacia room tray with a kettle and two cups on a hotel desk" width="1200" height="744">
 </div></section>
 
 <section class="sec"><div class="wrap">
 <h2>What we make in bulk</h2>
-<div class="grid">
+<div class="grid four">
 <a class="p" href="room-tray.html"><div class="ph"><img src="img/room-life-600.webp" alt="Room tray on a hotel desk with a kettle and cups" width="600" height="600" loading="lazy"></div><h3>Room trays for hotels</h3><p class="sh">With your hotel name engraved</p></a>
 <a class="p" href="fluted-box-tray.html"><div class="ph"><img src="img/fluted-studio-600.webp" alt="Fluted acacia box tray" width="600" height="600" loading="lazy"></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
 <a class="p" href="navy-ivory-floral-tray.html"><div class="ph"><img src="img/navy-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"></div><h3>Resin trays</h3><p class="sh">Your colours and pattern</p></a>
+<a class="p" href="{e(wa("Hello Woodkari, I want the bulk price of engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="img/d-engraved-600.webp" alt="Acacia serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="mto">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser</p></a>
 </div>
 </div></section>
 

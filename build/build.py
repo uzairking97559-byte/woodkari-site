@@ -15,7 +15,7 @@ BASE = SITE + ("" if OUT == "." else "/" + OUT)
 
 # WhatsApp number in international form without "+", e.g. "9198XXXXXXXX".
 # Empty = the button opens WhatsApp and lets the buyer pick the chat (preview only).
-WHATSAPP = ""
+WHATSAPP = "919119793282"
 EMAIL = "sales@woodkariexports.com"
 
 PRODUCTS = [

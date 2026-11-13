@@ -20,11 +20,12 @@ EMAIL = "sales@woodkariexports.com"
 
 PRODUCTS = [
     dict(slug="fluted-box-tray", name="Fluted Box Tray", cat="wood", price=1299,
-         short="Acacia wood, scalloped rim",
+         short="11.5 × 7 in, scalloped rim",
          lede="An open box tray in acacia wood. The sides are cut into upright flutes and the rim is scalloped, then the whole piece is polished to a warm walnut tone.",
          uses="Keys and wallet by the door, a dressing table, a desk, or a gift hamper.",
-         facts=[("Wood", "Acacia"), ("Finish", "Walnut-tone polish, by hand"),
+         facts=[("Size", "11.5 × 7 inches, 3 inches high (29 × 18 × 7.6 cm)"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish, by hand"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
+                ("Goes with", "The Room Tray: same 11.5 inch side, same polish"),
                 ("Can be changed", "Size, polish, a name engraved by laser")],
          imgs=[("fluted-front", "Fluted box tray on a wooden table, seen from the front", "Styled picture"),
                ("fluted-use", "Fluted box tray on the floor by a door, holding car keys and a wallet", "Styled picture"),

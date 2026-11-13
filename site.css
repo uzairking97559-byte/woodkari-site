@@ -13,7 +13,8 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 .top{background:var(--indigo);color:#f4ecdc;font-size:14px;text-align:center;padding:7px 12px;letter-spacing:.2px}
 .hd{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
 .hd .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.mark{font-family:"Rozha One",Georgia,serif;font-size:27px;color:var(--ink);text-decoration:none;letter-spacing:.3px;line-height:1}
+.mark{display:flex;align-items:center;gap:10px;font-family:"Rozha One",Georgia,serif;font-size:27px;color:var(--ink);text-decoration:none;letter-spacing:.3px;line-height:1}
+.mark img{border-radius:9px;flex:none}
 .mark small{display:block;font:500 11px Mukta,sans-serif;letter-spacing:3.2px;color:var(--wood);margin-top:3px}
 .nav{display:flex;gap:4px}
 .nav a{font-weight:500;font-size:15.5px;color:var(--ink);text-decoration:none;padding:12px 10px;border-radius:var(--r)}

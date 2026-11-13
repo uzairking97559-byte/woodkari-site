@@ -143,7 +143,8 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 .top{background:var(--indigo);color:#f4ecdc;font-size:14px;text-align:center;padding:7px 12px;letter-spacing:.2px}
 .hd{position:sticky;top:0;z-index:5;background:var(--paper);border-bottom:1px solid var(--line)}
 .hd .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-.mark{font-family:"Rozha One",Georgia,serif;font-size:27px;color:var(--ink);text-decoration:none;letter-spacing:.3px;line-height:1}
+.mark{display:flex;align-items:center;gap:10px;font-family:"Rozha One",Georgia,serif;font-size:27px;color:var(--ink);text-decoration:none;letter-spacing:.3px;line-height:1}
+.mark img{border-radius:9px;flex:none}
 .mark small{display:block;font:500 11px Mukta,sans-serif;letter-spacing:3.2px;color:var(--wood);margin-top:3px}
 .nav{display:flex;gap:4px}
 .nav a{font-weight:500;font-size:15.5px;color:var(--ink);text-decoration:none;padding:12px 10px;border-radius:var(--r)}
@@ -337,12 +338,13 @@ def head(title, desc, path, image):
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:image" content="{BASE}/img/{image}">
-<meta name="theme-color" content="#1f3a6e">
+<meta name="theme-color" content="#8b4a2b">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;700&family=Rozha+One&display=swap" rel="stylesheet">
 <meta property="og:site_name" content="Woodkari">
 <link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/svg+xml" href="icon.svg">
 <link rel="icon" type="image/png" sizes="96x96" href="icon-96.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -359,7 +361,7 @@ def header(cur):
     return f"""<a class="skip" href="#main">Skip to content</a>
 {pv}<div class="top">Order on WhatsApp. Pay by UPI after we confirm.</div>
 <header class="hd"><div class="wrap">
-<a class="mark" href="./" aria-label="Woodkari home">Woodkari<small>SAMBHAL</small></a>
+<a class="mark" href="./" aria-label="Woodkari home"><img src="icon-96.png" width="40" height="40" alt=""><span>Woodkari<small>SAMBHAL</small></span></a>
 <nav class="nav" aria-label="Main">{a('./#shop','Shop','shop')}{a('bulk.html','Bulk orders','bulk')}</nav>
 </div></header>
 """

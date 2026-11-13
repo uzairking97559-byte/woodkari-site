@@ -92,8 +92,8 @@ TILES = [("t-door", "By the door", "Fluted Box Tray", "fluted-box-tray.html", "F
          ("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays with tea and snacks"),
          ("t-gift", "To gift", "Pieces under ₹1,500", "./?f=u1500#shop", "Black and gold resin tray with bowls of dry fruit")]
 
-DESIGNS = [("d-coaster", "Resin coaster set"), ("d-tissue", "Resin tissue box"), ("d-roundbox", "Round box with resin lid"),
-           ("d-board", "Serving board"), ("d-cutlery", "Cutlery and napkin stand"), ("d-trivet", "Resin trivets")]
+DESIGNS = [("d2-coaster", "Resin coaster set"), ("d2-tissue", "Resin tissue box"), ("d2-roundbox", "Round box with resin lid"),
+           ("d2-board", "Serving board"), ("d2-cutlery", "Cutlery and napkin stand"), ("d2-trivet", "Resin trivets")]
 
 def ico(d):
     return f'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{d}</svg>'
@@ -391,7 +391,7 @@ def page_home():
     cards = "\n".join(card(p) for p in PRODUCTS)
     vals = "".join(f"<div>{i}<span>{e(t)}</span></div>" for i, t in VALS)
     tiles = "".join(f'<a class="tile" href="{h}"><img src="img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span>{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
-    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want to know the price of: " + n))}"><img src="img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><b>{e(n)}</b><i>Ask the price</i></a>' for k, n in DESIGNS)
+    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want to know the price of: " + n))}"><img src="img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><b>{e(n)}</b><i>Ask the price</i></a>' for k, n in DESIGNS)
     return head("Woodkari: wooden trays and boxes, made by hand in Sambhal",
                 "Acacia wood trays, boxes and resin trays from a small workshop in Sambhal, Uttar Pradesh. Order on WhatsApp, pay by UPI.",
                 "", "fluted-front.jpg") + f"""<body>

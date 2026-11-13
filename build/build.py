@@ -314,6 +314,14 @@ var f=new URLSearchParams(location.search).get('f');if(f)wkFilter(f);
 """
 
 
+ORG_LD = json.dumps([
+    {"@context": "https://schema.org", "@type": "WebSite", "name": "Woodkari", "alternateName": "Woodkari Exports", "url": SITE + "/"},
+    {"@context": "https://schema.org", "@type": "Organization", "name": "Woodkari Exports", "alternateName": "Woodkari",
+     "url": SITE + "/", "logo": SITE + "/icon-512.png", "email": EMAIL,
+     "address": {"@type": "PostalAddress", "addressLocality": "Sambhal", "addressRegion": "Uttar Pradesh", "addressCountry": "IN"},
+     "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "telephone": "+" + WHATSAPP, "availableLanguage": ["en", "hi"]}}])
+
+
 def head(title, desc, path, image):
     robots = '<meta name="robots" content="noindex">' if PREVIEW else ""
     return f"""<!doctype html>
@@ -333,7 +341,11 @@ def head(title, desc, path, image):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;700&family=Rozha+One&display=swap" rel="stylesheet">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:site_name" content="Woodkari">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" type="image/png" sizes="96x96" href="icon-96.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="site.css">
 </head>
 """
@@ -451,6 +463,7 @@ def page_home():
 </main>
 {footer()}
 <a class="fab" href="{e(wa('Hello Woodkari, I have a question.'))}" aria-label="Chat on WhatsApp">{WA_ICON}</a>
+<script type="application/ld+json">{ORG_LD}</script>
 <script>{JS}</script>
 </body></html>
 """
@@ -550,6 +563,11 @@ def main():
     w("bulk.html", page_bulk())
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
+    if not PREVIEW:
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["bulk.html"]
+        w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+          + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
+        w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
     print("built", OUT, len(PRODUCTS) + 2, "pages")
 
 

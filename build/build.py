@@ -50,7 +50,7 @@ PRODUCTS = [
          short="Black resin, gold flakes, leaf handles",
          lede="Black marbled resin with gold flakes poured over a wooden core, with two gold-tone metal leaf handles.",
          uses="A serving tray for guests, or a centre piece on a coffee table.",
-         facts=[("Top", "Resin, poured by hand"), ("Core", "MDF wood board"),
+         facts=[("Size", "12 × 9 inches (30 × 23 cm)"), ("Top", "Resin, poured by hand"), ("Core", "MDF wood board"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
                 ("Made to order", "Each pour comes out a little different")],
          imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Design picture, made to order"),

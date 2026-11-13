@@ -99,8 +99,8 @@ DESIGNS = [("d2-coaster", "Resin coaster set"), ("d2-tissue", "Resin tissue box"
 def ico(d):
     return f'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{d}</svg>'
 
-VALS = [(ico('<path d="M7 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V4.500a1.500 1.500 0 0 1 3 0V10m0 0V6a1.500 1.500 0 0 1 3 0v8c0 4-2.500 7-6 7-2.500 0-4-1.200-5.500-3.500L3.200 14a1.500 1.500 0 0 1 2.500-1.600L7 14"/>'), "Made by hand in Sambhal"),
-        (ico('<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m13.500 6.500 4 4"/>'), "Your name engraved"),
+VALS = [(ico('<path d="M7 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V4.500a1.500 1.500 0 0 1 3 0V10m0 0V6a1.500 1.500 0 0 1 3 0v8c0 4-2.500 7-6 7-2.500 0-4-1.200-5.500-3.500L3.200 14a1.500 1.500 0 0 1 2.500-1.600L7 14"/>'), "Made in Sambhal since 2008"),
+        (ico('<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m13.500 6.500 4 4"/>'), "Your name or logo on bulk orders"),
         (ico('<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/>'), "Pay after we confirm"),
         (ico('<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.800"/><circle cx="17.500" cy="18" r="1.800"/>'), "Bulk orders from 25 pieces")]
 VALS = [(a.replace(".500", ".5").replace(".200", ".2").replace(".800", ".8"), b) for a, b in VALS]
@@ -370,7 +370,7 @@ def header(cur):
 
 def footer():
     return f"""<footer class="ft"><div class="wrap">
-<div><h3>Woodkari Exports</h3><p>A small workshop in Sambhal, Uttar Pradesh. Wooden trays, boxes and resin pieces, made to order.</p></div>
+<div><h3>Woodkari Exports</h3><p>A workshop in Sambhal, Uttar Pradesh, making since 2008. Wooden trays, boxes and resin pieces, in bulk and made to order.</p></div>
 <div><h3>Shop</h3><a href="./#shop">All pieces</a><a href="bulk.html">Bulk and hotel orders</a><a href="woodkari-catalogue-2026.pdf">Catalogue (PDF)</a></div>
 <div><h3>Talk to us</h3><a href="{wa('Hello Woodkari, I have a question.')}">WhatsApp</a><a href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Styled picture" or "Design picture" show the look of the piece; wood grain and resin differ a little on every piece. Plain photos are of our own pieces.</p>
@@ -394,7 +394,7 @@ def page_home():
     tiles = "".join(f'<a class="tile" href="{h}"><img src="img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span>{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
     dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want to know the price of: " + n))}"><img src="img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><b>{e(n)}</b><i>Ask the price</i></a>' for k, n in DESIGNS)
     return head("Woodkari: wooden trays and boxes, made by hand in Sambhal",
-                "Acacia wood trays, boxes and resin trays from a small workshop in Sambhal, Uttar Pradesh. Order on WhatsApp, pay by UPI.",
+                "Acacia wood trays, boxes and resin trays from a workshop in Sambhal, Uttar Pradesh, making since 2008. Bulk orders and single pieces, on WhatsApp.",
                 "", "fluted-front.jpg") + f"""<body>
 {header('home')}
 <main id="main">
@@ -403,8 +403,8 @@ def page_home():
 <div class="hero-txt"><div class="wrap">
 <p class="deva">वुड + कारीगरी = Woodkari</p>
 <h1>Wooden trays and boxes, made by hand in Sambhal.</h1>
-<p>Acacia wood, cut and polished in our own workshop. Order on WhatsApp and pay by UPI.</p>
-<div class="row"><a class="btn ind" href="#shop">See the pieces</a><a class="btn line" href="bulk.html">Bulk orders</a></div>
+<p>Our workshop has made these since 2008. Most of our orders are bulk: hotels, gifting firms and exporters. Single pieces too, on WhatsApp.</p>
+<div class="row"><a class="btn ind" href="bulk.html">Bulk orders</a><a class="btn line" href="#shop">See the pieces</a></div>
 </div></div>
 </section>
 <div class="vals">{vals}</div>
@@ -454,8 +454,9 @@ def page_home():
 <section class="sec"><div class="wrap">
 <h2>The workshop</h2>
 <div class="shop2">
-<p class="sub" style="margin:0;color:var(--ink)">Sambhal has made wooden and horn pieces for generations. Ours is a small workshop there with four karigars. The wood is cut on a router, shaped and sanded by hand, and polished by hand. Resin is poured one tray at a time.</p>
+<p class="sub" style="margin:0;color:var(--ink)">Sambhal has made wooden and horn pieces for generations. Ours is a workshop there with four karigars, at work since 2008. Most of what we make goes out as bulk orders. The wood is cut on a router, shaped and sanded by hand, and polished by hand. Resin is poured one tray at a time.</p>
 <ul class="facts">
+<li><b>Since</b><span>2008</span></li>
 <li><b>Where</b><span>Sambhal, Uttar Pradesh</span></li>
 <li><b>Who</b><span>Four karigars</span></li>
 <li><b>Work we do</b><span>Router cutting, laser engraving, resin, hand polish</span></li>
@@ -526,7 +527,7 @@ def page_bulk():
 <main id="main">
 <section class="sec" style="padding-top:28px"><div class="wrap">
 <h1 style="font-size:clamp(32px,8vw,52px);max-width:13em">Bulk orders, from 25 pieces.</h1>
-<p class="sub" style="font-size:18px">For hotels, gifting companies, shops and importers. Tell us the piece and the number, and we send the price sheet.</p>
+<p class="sub" style="font-size:18px">Bulk is most of our work, and has been since 2008. For hotels, gifting companies, shops and importers. Tell us the piece and the number, and we send the price sheet.</p>
 <div class="row"><a class="btn go" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20price%20sheet">Email us</a><a class="btn line" href="woodkari-catalogue-2026.pdf">Catalogue (PDF)</a></div>
 <img class="bh" src="img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744">
 </div></section>

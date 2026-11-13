@@ -75,7 +75,24 @@ PRODUCTS = [
          imgs=[("bw", "Round and rectangular black and white floral trays on a marble table", "Design picture, made to order")]),
 ]
 
-CATS = [("all", "Everything"), ("wood", "Solid wood"), ("resin", "Resin trays")]
+CATS = [("all", "Everything"), ("wood", "Solid wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
+
+TILES = [("t-door", "By the door", "Fluted Box Tray", "fluted-box-tray.html", "Fluted box tray holding keys on an entryway table"),
+         ("t-room", "For the guest room", "Room Tray", "room-tray.html", "Room tray with a kettle and cups on a desk"),
+         ("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays on a marble table"),
+         ("t-gift", "To gift", "Pieces under ₹1,500", "./?f=u1500#shop", "Fluted box tray on a coffee table with a candle")]
+
+DESIGNS = [("d-coaster", "Resin coaster set"), ("d-tissue", "Resin tissue box"), ("d-roundbox", "Round box with resin lid"),
+           ("d-board", "Serving board"), ("d-cutlery", "Cutlery and napkin stand"), ("d-trivet", "Resin trivets")]
+
+def ico(d):
+    return f'<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{d}</svg>'
+
+VALS = [(ico('<path d="M7 11V5.500a1.500 1.500 0 0 1 3 0V10m0 0V4.500a1.500 1.500 0 0 1 3 0V10m0 0V6a1.500 1.500 0 0 1 3 0v8c0 4-2.500 7-6 7-2.500 0-4-1.200-5.500-3.500L3.200 14a1.500 1.500 0 0 1 2.500-1.600L7 14"/>'), "Made by hand in Sambhal"),
+        (ico('<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m13.500 6.500 4 4"/>'), "Your name engraved"),
+        (ico('<rect x="3" y="6" width="18" height="12" rx="2"/><path d="M3 10h18M7 15h4"/>'), "Pay after we confirm"),
+        (ico('<path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="18" r="1.800"/><circle cx="17.500" cy="18" r="1.800"/>'), "Bulk orders from 25 pieces")]
+VALS = [(a.replace(".500", ".5").replace(".200", ".2").replace(".800", ".8"), b) for a, b in VALS]
 
 
 def e(s):
@@ -127,19 +144,62 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 .scallop{height:11px;background:radial-gradient(circle at 11px 0,transparent 10.5px,var(--c,var(--indigo)) 11px) repeat-x;background-size:22px 11px}
 .scallop.up{transform:scaleY(-1)}
 
-/* hero */
+/* hero: on a phone the words sit on the photo, as in a shop window */
 .hero{position:relative}
-.hero picture img{width:100%;height:min(118vw,560px);object-fit:cover}
-.hero-txt{padding:26px 0 8px}
-.hero h1{font-size:clamp(34px,8.6vw,60px);max-width:13em}
-.hero p{margin:12px 0 0;color:var(--soft);font-size:18px;max-width:30em}
-.deva{font-size:15px;color:var(--wood);font-weight:500;margin:0 0 10px;letter-spacing:.2px}
+.hero picture img{width:100%;height:min(132vw,640px);object-fit:cover}
+.hero-txt{position:absolute;left:0;right:0;bottom:0;padding:90px 0 24px;background:linear-gradient(to top,rgba(24,12,6,.88) 0,rgba(24,12,6,.62) 48%,rgba(24,12,6,0) 100%)}
+.hero h1{font-size:clamp(34px,9vw,60px);max-width:12em;color:#fff}
+.hero p{margin:10px 0 0;color:#f1e6d6;font-size:17.5px;max-width:28em}
+.deva{font-size:15px;color:#e9c9a4;font-weight:500;margin:0 0 8px;letter-spacing:.2px}
+.hero .btn.ind{background:#fff;color:var(--ink)}.hero .btn.ind:hover{background:#f1e9dc}
+.hero .btn.line{color:#fff;box-shadow:inset 0 0 0 1.5px #fff}.hero .btn.line:hover{background:rgba(255,255,255,.12)}
 @media(min-width:900px){
  .hero{display:grid;grid-template-columns:1.05fr 1fr;align-items:center;max-width:1120px;margin:28px auto 0;padding:0 16px;gap:44px}
- .hero picture img{height:520px;border-radius:var(--r)}
- .hero-txt{padding:0}
+ .hero picture img{height:540px;border-radius:var(--r)}
+ .hero-txt{position:static;padding:0;background:none}
  .hero-txt .wrap{padding:0}
+ .hero h1{color:var(--ink)}.hero p{color:var(--soft)}.deva{color:var(--wood)}
+ .hero .btn.ind{background:var(--indigo);color:#fff}.hero .btn.ind:hover{background:var(--indigo-d)}
+ .hero .btn.line{color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}.hero .btn.line:hover{background:#f1e9dc}
 }
+
+/* promises */
+.vals{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--line);background:var(--card)}
+.vals div{display:flex;align-items:center;gap:10px;padding:14px 16px;font-size:15px;line-height:1.25;font-weight:500;border-top:1px solid var(--line)}
+.vals div:nth-child(odd){border-right:1px solid var(--line)}
+.vals svg{flex:none;color:var(--wood)}
+@media(min-width:900px){.vals{grid-template-columns:repeat(4,1fr);max-width:1120px;margin:34px auto 0;border:1px solid var(--line);border-radius:var(--r)}.vals div{border-top:0;border-right:1px solid var(--line);justify-content:center}.vals div:last-child{border-right:0}}
+
+/* tall picture tiles */
+.tiles{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;margin:18px -16px 0;padding:0 16px 4px;scrollbar-width:none}
+.tiles::-webkit-scrollbar{display:none}
+.tile{flex:0 0 68%;scroll-snap-align:start;position:relative;border-radius:var(--r);overflow:hidden;text-decoration:none;color:#fff;aspect-ratio:3/4;background:#3a251a}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.tile:hover img{transform:scale(1.04)}
+.tile span{position:absolute;left:0;right:0;bottom:0;padding:60px 14px 14px;background:linear-gradient(to top,rgba(24,12,6,.82),rgba(24,12,6,0));font:400 23px/1.1 "Rozha One",serif}
+.tile small{display:block;font:500 14.5px Mukta,sans-serif;margin-top:5px;text-decoration:underline;text-underline-offset:3px}
+@media(min-width:760px){.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:22px 0 0;padding:0;overflow:visible}.tile{flex:none}}
+
+/* a close look */
+.close{display:grid;gap:0;margin-top:48px;background:#f1e9dc}
+.close img{width:100%;aspect-ratio:4/3;object-fit:cover;background:#fff}
+.close div{padding:26px 16px 32px}
+.close h2{font-size:clamp(27px,6.4vw,38px)}
+.close p{margin:10px 0 0;max-width:30em}
+@media(min-width:900px){.close{grid-template-columns:1.15fr 1fr;align-items:center}.close div{padding:40px 48px}}
+
+/* designs made on order */
+.dz{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:18px -16px 0;padding:0 16px 4px;scrollbar-width:none}
+.dz::-webkit-scrollbar{display:none}
+.dz a{flex:0 0 46%;scroll-snap-align:start;text-decoration:none;color:var(--ink)}
+.dz img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:#fff}
+.dz b{display:block;font-weight:500;margin-top:8px;line-height:1.25}
+.dz i{font-style:normal;font-size:14.5px;color:var(--indigo);text-decoration:underline;text-underline-offset:3px}
+@media(min-width:760px){.dz{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin:22px 0 0;padding:0;overflow:visible}.dz a{flex:none}}
+
+/* floating WhatsApp */
+.fab{position:fixed;right:14px;bottom:calc(14px + env(safe-area-inset-bottom));z-index:6;width:56px;height:56px;border-radius:50%;background:var(--go);color:#fff;display:grid;place-items:center;box-shadow:0 6px 18px rgba(20,40,30,.28)}
+.fab:hover{background:var(--go-d)}.fab svg{width:27px;height:27px}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:50px;padding:12px 22px;border-radius:var(--r);font:700 17px Mukta,sans-serif;text-decoration:none;border:0;cursor:pointer;transition:background .18s,transform .18s}
@@ -235,10 +295,13 @@ h1,h2,h3{font-family:"Rozha One",Georgia,serif;font-weight:400;line-height:1.12;
 """
 
 JS = r"""
-document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){
-  document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x===c)});
-  var k=c.dataset.cat;document.querySelectorAll('.p').forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
-});});
+function wkFilter(k){
+  document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.cat===k)});
+  document.querySelectorAll('.p[data-cat]').forEach(function(p){
+    p.hidden=!(k==='all'||p.dataset.cat===k||(k==='u1500'&&+p.dataset.price<1500));});
+}
+document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){wkFilter(c.dataset.cat)})});
+var f=new URLSearchParams(location.search).get('f');if(f)wkFilter(f);
 """
 
 
@@ -294,7 +357,7 @@ def card(p):
     k, alt, _ = p["imgs"][0]
     unit = f' <span>/ {e(p["unit"])}</span>' if p.get("unit") else ""
     mto = '<span class="mto">Made to order</span>' if p.get("mto") else ""
-    return f"""<a class="p" data-cat="{p['cat']}" href="{p['slug']}.html">
+    return f"""<a class="p" data-cat="{p['cat']}" data-price="{p['price']}" href="{p['slug']}.html">
 <div class="ph"><img src="img/{k}-600.webp" alt="{e(alt)}" width="600" height="600" loading="lazy">{mto}</div>
 <h3>{e(p['name'])}</h3><p class="sh">{e(p['short'])}</p><p class="pr">{rupee(p['price'])}{unit}</p></a>"""
 
@@ -302,6 +365,9 @@ def card(p):
 def page_home():
     chips = "".join(f'<button class="chip" type="button" data-cat="{k}" aria-pressed="{"true" if k=="all" else "false"}">{e(v)}</button>' for k, v in CATS)
     cards = "\n".join(card(p) for p in PRODUCTS)
+    vals = "".join(f"<div>{i}<span>{e(t)}</span></div>" for i, t in VALS)
+    tiles = "".join(f'<a class="tile" href="{h}"><img src="img/{k}.webp" alt="{e(alt)}" width="720" height="960" loading="lazy"><span>{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
+    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want to know the price of: " + n))}"><img src="img/{k}.webp" alt="{e(n)}, design picture" width="700" height="700" loading="lazy"><b>{e(n)}</b><i>Ask the price</i></a>' for k, n in DESIGNS)
     return head("Woodkari: wooden trays and boxes, made by hand in Sambhal",
                 "Acacia wood trays, boxes and resin trays from a small workshop in Sambhal, Uttar Pradesh. Order on WhatsApp, pay by UPI.",
                 "", "fluted-life.jpg") + f"""<body>
@@ -316,6 +382,12 @@ def page_home():
 <div class="row"><a class="btn ind" href="#shop">See the pieces</a><a class="btn line" href="bulk.html">Bulk orders</a></div>
 </div></div>
 </section>
+<div class="vals">{vals}</div>
+
+<section class="sec"><div class="wrap">
+<h2>Where it goes</h2>
+<div class="tiles">{tiles}</div>
+</div></section>
 
 <section class="sec" id="shop"><div class="wrap">
 <h2>The pieces</h2>
@@ -324,6 +396,19 @@ def page_home():
 <div class="grid">
 {cards}
 </div>
+</div></section>
+
+<section class="close">
+<img src="img/detail-flutes.webp" alt="Close view of the fluted side and scalloped rim of the acacia box tray" width="1200" height="900" loading="lazy">
+<div><h2>Look closely.</h2>
+<p>Each flute on the box is cut on the router, then every edge is sanded by hand until it is smooth. The polish goes on by hand in coats, so the grain of the acacia shows through. No two pieces come out the same.</p>
+<div class="row"><a class="btn line" href="fluted-box-tray.html">See the Fluted Box Tray</a></div></div>
+</section>
+
+<section class="sec"><div class="wrap">
+<h2>Made on order</h2>
+<p class="sub">Designs our karigars make when you ask. Tell us the piece and how many, and we send the price.</p>
+<div class="dz">{dz}</div>
 </div></section>
 
 <section class="sec"><div class="wrap">
@@ -355,6 +440,7 @@ def page_home():
 </div></section>
 </main>
 {footer()}
+<a class="fab" href="{e(wa('Hello Woodkari, I have a question.'))}" aria-label="Chat on WhatsApp">{WA_ICON}</a>
 <script>{JS}</script>
 </body></html>
 """

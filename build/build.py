@@ -537,7 +537,7 @@ def page_bulk():
 <a class="p" href="room-tray.html"><div class="ph"><img src="img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"></div><h3>Room trays for hotels</h3><p class="sh">With your hotel name engraved</p></a>
 <a class="p" href="fluted-box-tray.html"><div class="ph"><img src="img/fluted-front-600.webp" alt="Fluted wooden box tray on a wooden table" width="600" height="600" loading="lazy"></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
 <a class="p" href="navy-ivory-floral-tray.html"><div class="ph"><img src="img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"></div><h3>Resin trays</h3><p class="sh">Your colours and pattern</p></a>
-<a class="p" href="{e(wa("Hello Woodkari, I want the bulk price of engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="img/d-engraved-600.webp" alt="Acacia serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="mto">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser</p></a>
+<a class="p" href="{e(wa("Hello Woodkari, I want the bulk price of engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="mto">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser</p></a>
 </div>
 </div></section>
 

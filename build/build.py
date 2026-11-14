@@ -146,6 +146,18 @@ def mto_msg(code, n):
     return f"Hello Woodkari, I am asking about design {code}: {n}\nQuantity: "
 
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+
+def mto_page(code):
+    return f"design-{code.lower()}.html"
+
+
+def mto_pics(f):
+    """main picture first, then the extra angles that have been checked and converted (img/m-<f>-a.webp, -b.webp)"""
+    return [f"m-{f}"] + [f"m-{f}-{x}" for x in "ab" if os.path.exists(os.path.join(ROOT, "img", f"m-{f}-{x}.webp"))]
+
+
 LATER = 'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src'  # hero pictures 2-4: a 1px blank until site.js loads them
 PP = '<button class="pp" type="button" aria-label="Pause pictures" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg><svg class="i-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>'
 
@@ -853,7 +865,7 @@ def search_data():
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Design picture · made on order, in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
     for gid, code, f, n in mto_items():
-        items.append({"n": n, "s": f"Design {code} · Design picture · made on order, price on WhatsApp", "u": f"designs.html#{code}", "i": f"{UP}img/m-{f}-600.webp"})
+        items.append({"n": n, "s": f"Design {code} · Design picture · made on order, price on WhatsApp", "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
     items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
     return json.dumps(items).replace("</", "<\\/")
 
@@ -1074,12 +1086,58 @@ def page_product(p):
 """
 
 
+def page_design(gid, pre, title, line, items, i):
+    f, n = items[i - 1]
+    code = f"{pre}-{i}"
+    msg = mto_msg(code, n)
+    pics = mto_pics(f)
+    figs = "".join(
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture, made to order</figcaption></figure>'
+        for j, k in enumerate(pics))
+    facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
+                    [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", "On WhatsApp")])
+    others = [(j, x) for j, x in enumerate(items, 1) if j != i][:3]
+    more = "\n".join(
+        f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>'
+        f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
+        for j, (ff, nn) in others)
+    lede = f"Design {code}. {line}"
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
+                     "image": f"{SITE}/img/m-{f}.webp", "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"},
+                     "offers": {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}})
+    return head(f"{n} ({code}) | Woodkari, Sambhal", f"{lede} Made on order. Price on WhatsApp.", mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
+{header('mto')}
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(title)}</a> / {code}</p>
+<div class="pd">
+<div class="galw" style="--n:{len(pics)}"><div class="gal{" odd" if len(pics) % 2 else ""}">{figs}</div><div class="galp" aria-hidden="true"><i></i></div></div>
+<div class="buy">
+<h1>{e(n)}</h1>
+<p class="pr bo">Price on WhatsApp</p>
+<p class="note">Made to order. We reply with the price on WhatsApp.</p>
+<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Ask the price on WhatsApp</a></div>
+<p class="lede">{e(lede)}</p>
+<ul class="facts">{facts}</ul>
+<a class="lnk more-l" href="designs.html">All {MTO_N} designs{ARROW}</a>
+</div>
+</div>
+<section class="sec"><div class="hdr rv"><div><h2>More {e(title.lower())}</h2></div></div><div class="grid more3">
+{more}
+</div></section>
+</div></main>
+<div class="stick"><b>Price on WhatsApp</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a></div>
+{footer()}
+<script type="application/ld+json">{ld}</script>
+</body></html>
+"""
+
+
 def page_designs():
     chips = "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO)
     groups = []
     for gid, pre, title, line, items in MTO:
         cards = "".join(
-            f'<a class="p rv" id="{pre}-{i}" href="{e(wa(mto_msg(f"{pre}-{i}", n)))}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>'
+            f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>'
             f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
             for i, (f, n) in enumerate(items, 1))
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
@@ -1090,7 +1148,7 @@ def page_designs():
 <main id="main">
 <section><div class="wrap mh">
 <h1>Made on order.</h1>
-<p>{MTO_N} more designs. Every picture here is a design picture, made to show the piece. Send us the design number on WhatsApp and we reply with the price.</p>
+<p>{MTO_N} more designs. Every picture here is a design picture, made to show the piece. Open a design, then ask on WhatsApp and we reply with the price.</p>
 <nav class="chips" aria-label="Kinds of pieces">{chips}</nav>
 </div></section>
 {chr(10).join(groups)}
@@ -1175,14 +1233,17 @@ def main():
     w("index.html", page_home())
     w("bulk.html", page_bulk())
     w("designs.html", page_designs())
+    for gid, pre, title, line, items in MTO:
+        for i in range(1, len(items) + 1):
+            w(mto_page(f"{pre}-{i}"), page_design(gid, pre, title, line, items, i))
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html", "bulk.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
-    print("built", OUT, len(PRODUCTS) + 3, "pages")
+    print("built", OUT, len(PRODUCTS) + 3 + MTO_N, "pages")
 
 
 main()

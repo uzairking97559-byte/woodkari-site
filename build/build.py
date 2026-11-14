@@ -111,7 +111,7 @@ MTO = [
         ("wooden-meena-tray-9", "Tray, Warli village scene")]),
     ("bath", "BS", "Resin bathroom sets", "Soap dispenser, tumbler, tray and more, in resin.", [
         ("resin-bathroom-set-1", "Bathroom set, ivory marble look"), ("resin-bathroom-set-2", "Bathroom set, green malachite look"),
-        ("resin-bathroom-set-3", "Bathroom set, rose marble look"), ("resin-bathroom-set-4", "Bathroom set, amber tortoiseshell look"),
+        ("resin-bathroom-set-3", "Bathroom set, rose quartz look"), ("resin-bathroom-set-4", "Bathroom set, amber tortoiseshell look"),
         ("resin-bathroom-set-5", "Bathroom set, jade green"), ("resin-bathroom-set-6", "Bathroom set, cream onyx look"),
         ("resin-bathroom-set-7", "Bathroom set, coral marble look")]),
     ("bowls", "RB", "Resin bowls and platters", "Bowls, platters and salad servers in resin.", [
@@ -120,18 +120,18 @@ MTO = [
         ("resin-tableware-5", "Bowls and vase, teal"), ("resin-tableware-6", "Bowls, platter and servers, blue marble")]),
     ("boards", "WB", "Wooden boards", "Chopping and serving boards, engraved by laser or with a resin pour.", [
         ("wooden-chopping-board-1", "Board, engraved sprig"), ("wooden-chopping-board-2", "Dark board, engraved flowers"),
-        ("wooden-chopping-board-3", "Board with white resin pour and spoons"), ("wooden-chopping-board-4", "Board, engraved lotus"),
+        ("wooden-chopping-board-3", "Board with white resin pour and two spatulas"), ("wooden-chopping-board-4", "Board, engraved lotus"),
         ("wooden-chopping-board-5", "Board, engraved leaf branch"), ("wooden-chopping-board-6", "Slim board, engraved herb"),
         ("wooden-chopping-board-7", "Board with pink resin pour")]),
     ("candles", "CS", "Candle stands", "Wooden tealight holders and candle stands.", [
-        ("wooden-candle-stand-1", "Hexagon tealight holder"), ("wooden-candle-stand-2", "Tapered tealight holders"),
+        ("wooden-candle-stand-1", "Hexagon tealight blocks, set of 7"), ("wooden-candle-stand-2", "Tapered tealight holders"),
         ("wooden-candle-stand-3", "Ridged pillar candle stands"), ("wooden-candle-stand-4", "Tall taper candle stands"),
         ("wooden-candle-stand-5", "Faceted candle blocks"), ("wooden-candle-stand-6", "Turned candle stands"),
         ("wooden-candle-stand-7", "Square tealight blocks")]),
     ("chests", "IC", "Inlay chests", "Chests of drawers and bedside chests with an inlay design.", [
         ("bone-inlay-chest-1", "Chest of drawers, blue floral inlay design"), ("bone-inlay-chest-2", "Chest of drawers, green floral inlay design"),
         ("bone-inlay-chest-3", "Bedside chest, blue floral inlay design"), ("bone-inlay-chest-4", "Bedside chest, blue and white inlay design"),
-        ("bone-inlay-chest-5", "Chest of drawers, white geometric inlay design")]),
+        ("bone-inlay-chest-5", "Chest of drawers, grey and white geometric inlay design")]),
 ]
 MTO_N = sum(len(g[4]) for g in MTO)
 
@@ -674,6 +674,7 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .chips a:active{border-color:var(--green);color:var(--green)}
 @media(hover:hover) and (pointer:fine){.chips a:hover{border-color:var(--green);color:var(--green)}}
 @media(min-width:900px){.mh{padding-top:56px}.chips{flex-wrap:wrap;margin:28px 0 0;padding:0}}
+.mto-l{margin:30px 0 0}
 .mto{scroll-margin-top:110px}.mto .p{scroll-margin-top:130px}
 .mto .p:target .ph{outline:2px solid var(--green);outline-offset:3px}
 """
@@ -988,8 +989,9 @@ def page_home():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div><a class="lnk" href="designs.html">{MTO_N} more designs{ARROW}</a></div>
+<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div></div>
 <div class="dz">{dz}</div>
+<p class="mto-l rv"><a class="lnk" href="designs.html">See {MTO_N} more designs, made on order, price on WhatsApp{ARROW}</a></p>
 </div></section>
 
 <section class="band stone" id="workshop"><div class="wrap split">
@@ -1082,13 +1084,13 @@ def page_designs():
             for i, (f, n) in enumerate(items, 1))
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
     return head("Made on order: painted trays, resin sets, boards, candle stands | Woodkari, Sambhal",
-                f"{MTO_N} designs made on order in Sambhal: painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests. Price on WhatsApp.",
+                f"{MTO_N} designs made on order: painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests. Price on WhatsApp.",
                 "designs.html", "m-og.jpg") + f"""<body>
 {header('mto')}
 <main id="main">
 <section><div class="wrap mh">
 <h1>Made on order.</h1>
-<p>{MTO_N} more designs. Every picture here is a design picture, made to show the piece. Send us the design number on WhatsApp and we tell you the price, the size and the minimum.</p>
+<p>{MTO_N} more designs. Every picture here is a design picture, made to show the piece. Send us the design number on WhatsApp and we reply with the price.</p>
 <nav class="chips" aria-label="Kinds of pieces">{chips}</nav>
 </div></section>
 {chr(10).join(groups)}

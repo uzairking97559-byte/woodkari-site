@@ -21,7 +21,7 @@ EMAIL = "sales@woodkariexports.com"
 # imgs: (file key, alt, caption). card: (studio key, in-use key) for the shop grid.
 PRODUCTS = [
     dict(slug="fluted-box-tray", name="Fluted Box Tray", cat="wood", price=1299,
-         short="Acacia · 11.5 × 7 × 3 in", card=("fluted-studio", "fluted-life"),
+         short="Acacia · 11.5 × 7 × 3 in", card=("fluted-life2", "fluted-studio"),
          lede="An open box tray in acacia wood. The sides are cut into upright flutes and the rim is scalloped, then the piece is finished by hand to a warm walnut tone.",
          uses="Keys and wallet by the door, a dressing table, a desk, or a gift hamper.",
          facts=[("Size", "11.5 × 7 inches, 3 inches high (29 × 18 × 7.6 cm)"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish, finished by hand"),
@@ -36,7 +36,7 @@ PRODUCTS = [
                ("fluted-real2", "Fluted box tray, plain photo from the side", "Our piece, plain photo"),
                ("fluted-real3", "Fluted box tray, plain photo from above", "Our piece, plain photo")]),
     dict(slug="room-tray", name="Room Tray", cat="wood", price=1799,
-         short="Acacia · 15 × 11.5 in, with caddy", card=("room-studio", "room-life"),
+         short="Acacia · 15 × 11.5 in, with caddy", card=("room-front", "room-studio"),
          lede="A solid acacia board with one large round dip, two small ones and two long slots, and a four-box caddy that stands beside it. Made as the tea tray of a hotel guest room.",
          uses="Kettle and cups in a guest room, or watch, phone and keys on a bedside table.",
          facts=[("Size", "Tray 15 × 11.5 inches (38 × 29 cm). Caddy 10 inches long"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish, finished by hand"),
@@ -50,7 +50,7 @@ PRODUCTS = [
                ("room-real2", "Room tray, plain photo from the side", "Our piece, plain photo"),
                ("room-real3", "Room tray, plain photo of the caddy", "Our piece, plain photo")]),
     dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=1999, mto=True,
-         short="Resin · 14 × 8 in, cut-out handles", card=("navy-top", "navy-use"),
+         short="Resin · 14 × 8 in, cut-out handles", card=("navy-front", "navy-top"),
          lede="An ivory tray with a navy floral pattern filled in resin, and a handle cut into each side.",
          uses="Tea for two, or a tray for the dressing table.",
          facts=[("Size", "14 × 8 inches (36 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
@@ -59,7 +59,7 @@ PRODUCTS = [
                ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture, made to order"),
                ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="red-chevron-tray", name="Red Chevron Tray", cat="resin", price=2799, mto=True,
-         short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-top", "chevron-use"),
+         short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-front", "chevron-top"),
          lede="A white-framed rectangular tray with a red and white chevron pattern filled in resin.",
          uses="Breakfast in bed, or a bright tray for the kitchen counter.",
          facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
@@ -68,7 +68,7 @@ PRODUCTS = [
                ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Design picture, made to order"),
                ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="black-white-floral-tray-set", name="Black & White Floral Tray Set", cat="resin", price=6999, unit="set of 2", mto=True,
-         short="Resin · one round, one rectangular", card=("bw-top", "bw-use"),
+         short="Resin · one round, one rectangular", card=("bw-front", "bw-top"),
          lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, filled in resin.",
          uses="A pair for the dining table or the living room.",
          facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round tray: size on request"), ("Top", "Pattern filled in resin"),
@@ -77,8 +77,8 @@ PRODUCTS = [
                ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Design picture, made to order"),
                ("bw-top", "Black and white floral trays side by side, seen from above", "Design picture, made to order")]),
     dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
-         short="Poured resin · gold flakes, leaf handles", card=("gold-top", "gold-use"),
-         lede="Black marbled resin with gold flakes poured over a wooden core, with two gold-tone metal leaf handles. Made for bulk orders only.",
+         short="Poured resin · gold flakes, leaf handles", card=("gold-front", "gold-top"),
+         lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone metal leaf handles. Made for bulk orders only.",
          uses="Serving trays for a hotel, a wedding or a company gift.",
          facts=[("Top", "Poured resin with gold flakes"), ("Core", "MDF wood board"), ("Handles", "Gold-tone metal leaves"),
                 ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only. Price on WhatsApp")],
@@ -192,7 +192,11 @@ html{scrollbar-color:#c9bfb2 transparent;scrollbar-width:thin}
 /* hero */
 .hero{position:relative;background:var(--stone)}
 @media(max-width:899px){.hero .txt{background:var(--stone)}}
-.hero picture{display:block;overflow:hidden}
+.hero picture{display:block;overflow:hidden;position:relative}
+.hero .tag,.split .tag,.bh .tag,.tile .tag{position:absolute;z-index:2;background:#fff;color:var(--ink);font:600 12px/1 var(--sans);padding:5px 8px;border-radius:2px}
+.hero .tag{right:12px;top:12px}
+.fig{position:relative}.fig .tag{left:10px;top:10px}
+.tile .tag{left:10px;top:10px}
 .hero img{width:100%;aspect-ratio:1/1;object-fit:cover;animation:settle 1.4s var(--ease) both}
 @keyframes settle{from{transform:scale(1.045)}to{transform:none}}
 .hero .txt{padding:26px 0 34px;background:var(--bg)}
@@ -221,14 +225,14 @@ html{scrollbar-color:#c9bfb2 transparent;scrollbar-width:thin}
 .tile{flex:0 0 72%;scroll-snap-align:start;position:relative;overflow:hidden;border-radius:var(--r);text-decoration:none;color:#fff;aspect-ratio:3/4;background:#3a2a20}
 .tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
 .tile:hover img{transform:scale(1.04)}
-.tile span{position:absolute;inset:auto 0 0 0;padding:72px 18px 18px;background:linear-gradient(to top,rgba(18,12,8,.78),rgba(18,12,8,0));font:400 26px/1.1 var(--serif)}
+.tile .cap{position:absolute;inset:auto 0 0 0;padding:72px 18px 18px;background:linear-gradient(to top,rgba(18,12,8,.78),rgba(18,12,8,0));font:400 26px/1.1 var(--serif)}
 .tile small{display:block;font:500 15px/1.3 var(--sans);margin-top:6px;color:#efe8de}
 @media(min-width:760px){.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:0;padding:0;overflow:visible}.tile{flex:none}}
 
 /* shop */
 .chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 24px;padding:0 16px}
 .chips::-webkit-scrollbar{display:none}
-.chip{flex:none;min-height:42px;padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:#fff;font:500 15px var(--sans);color:var(--ink);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}
+.chip{flex:none;min-height:42px;padding:8px 18px;border-radius:var(--r);border:1px solid var(--line);background:#fff;font:500 15px var(--sans);color:var(--ink);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}
 .chip:hover{border-color:var(--ink)}
 .chip[aria-pressed=true]{background:var(--dk);border-color:var(--dk);color:#fff}
 @media(min-width:760px){.chips{margin:0 0 28px;padding:0}}
@@ -295,7 +299,7 @@ html{scrollbar-color:#c9bfb2 transparent;scrollbar-width:thin}
 .gal figure{flex:0 0 88%;scroll-snap-align:center;margin:0;position:relative}
 .gal img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:#f7f5f1}
 .gal figcaption{position:absolute;left:10px;bottom:10px;background:#fff;font-size:12.5px;font-weight:500;padding:4px 8px;border-radius:2px}
-@media(min-width:960px){.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0;padding:0;overflow:visible}.gal figure:first-child{grid-column:1/-1}}
+@media(min-width:960px){.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0;padding:0;overflow:visible}.gal.odd figure:first-child{grid-column:1/-1}}
 .buy h1{font-size:clamp(32px,4.4vw,48px)}
 .buy .pr{font-size:24px;font-weight:600;margin:14px 0 0;font-variant-numeric:tabular-nums lining-nums}
 .buy .pr span{font-size:15px;font-weight:400;color:var(--soft)}
@@ -318,10 +322,11 @@ html{scrollbar-color:#c9bfb2 transparent;scrollbar-width:thin}
 .bh h1{font-size:clamp(36px,5vw,60px)}
 .bh p{color:var(--soft);font-size:18px;margin:14px 0 0;max-width:30em}
 .grid.four{grid-template-columns:1fr 1fr}
+@media(max-width:759px){.grid.more3 .p:nth-child(3){display:none}}
 @media(min-width:760px){.grid.four{grid-template-columns:repeat(4,1fr)}}
 
 /* close + footer */
-.end{text-align:center;padding:88px 0 8px}
+.end{text-align:center;padding:112px 0 8px}
 .end h2{font-size:clamp(30px,4.2vw,46px)}
 .end p{color:var(--soft);margin:12px auto 0;max-width:30em}
 .end .row{justify-content:center}
@@ -417,7 +422,7 @@ def footer():
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
 <div><h3>Shop</h3><a href="./#shop">All pieces</a><a href="bulk.html">Bulk and hotel orders</a><a href="./#engraving">Name and logo engraving</a></div>
 <div><h3>Talk to us</h3><a href="{e(wa('Hello Woodkari, I have a question.'))}">WhatsApp +91 91197 93282</a><a href="mailto:{EMAIL}">{EMAIL}</a></div>
-<p class="fine">Pictures marked "Styled picture" or "Design picture" show the look of a piece; wood grain and resin differ a little on every piece. Pictures marked "plain photo" are of our own pieces.</p>
+<p class="fine">Pictures marked "Styled picture" or "Design picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div></footer>
 """
 
@@ -432,7 +437,7 @@ def price_html(p, cls="pr"):
 def card(p):
     a, b = p["card"]
     alt = p["imgs"][0][1]
-    tag = '<span class="tag">Made to order</span>' if p.get("mto") else ""
+    tag = '<span class="tag">' + ("Design picture" if p.get("mto") else "Styled picture") + '</span>'
     return f"""<a class="p" data-cat="{p['cat']}" data-price="{p['price'] or 0}" href="{p['slug']}.html">
 <div class="ph">{tag}<img src="{UP}img/{a}-600.webp" alt="{e(alt)}" width="600" height="600" loading="lazy"><img class="u" src="{UP}img/{b}-600.webp" alt="" width="600" height="600" loading="lazy"></div>
 <h3>{e(p['name'])}</h3><p class="sh">{e(p['short'])}</p>{price_html(p)}</a>"""
@@ -441,7 +446,7 @@ def card(p):
 def page_home():
     chips = "".join(f'<button class="chip" type="button" data-cat="{k}" aria-pressed="{"true" if k=="all" else "false"}">{e(v)}</button>' for k, v in CATS)
     cards = "\n".join(card(p) for p in PRODUCTS)
-    tiles = "".join(f'<a class="tile" href="{h}"><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span>{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
+    tiles = "".join(f'<a class="tile" href="{h}"><span class="tag">Styled picture</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
     dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want the bulk price of: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask the bulk price</i></a>' for k, n in DESIGNS)
     bulk_msg = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
     return head("Woodkari: wooden trays and boxes from Sambhal, in bulk and single pieces",
@@ -450,7 +455,7 @@ def page_home():
 {header('home')}
 <main id="main">
 <section class="hero">
-<picture><source media="(min-width:900px)" srcset="{UP}img/hero-w.webp"><img src="{UP}img/fluted-life.webp" alt="A fluted acacia box tray with keys, coins and sunglasses on a hall table" width="1200" height="1200" fetchpriority="high"></picture>
+<span class="tag">Styled picture</span><picture><source media="(min-width:900px)" srcset="{UP}img/hero-w.webp"><img src="{UP}img/fluted-life.webp" alt="A fluted acacia box tray with keys, coins and sunglasses on a hall table" width="1200" height="1200" fetchpriority="high"></picture>
 <div class="txt"><div class="wrap">
 <h1>Wooden trays and boxes, made in Sambhal.</h1>
 <p>From our workshop in Sambhal, making since 2008. Most of our orders are bulk, from 25 pieces of a design. Single pieces too.</p>
@@ -472,7 +477,7 @@ def page_home():
 </div></section>
 
 <section class="dark" id="bulk"><div class="wrap split">
-<img src="{UP}img/room-life.webp" alt="Acacia room tray with a kettle and two cups on a bedside table" width="1200" height="1200" loading="lazy">
+<div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/room-life.webp" alt="Acacia room tray with a kettle and two cups on a bedside table" width="1200" height="1200" loading="lazy"></div>
 <div>
 <h2>Bulk orders, from 25 pieces.</h2>
 <p class="lead">Bulk is most of our work. Hotels, gifting companies, shops and importers can order any piece from 25 of a design, and the acacia pieces in any size.</p>
@@ -486,11 +491,10 @@ def page_home():
 </div></section>
 
 <section class="sec" id="engraving"><div class="wrap split rev">
-<img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy">
+<div class="fig"><span class="tag">Design picture</span><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"></div>
 <div>
 <h2>Your name or logo, by laser.</h2>
 <p class="lead">On 50 pieces or more of one design, we engrave a hotel name, a company logo or a couple's names: room trays for a hotel, boxes and boards for staff gifts or a wedding.</p>
-<p class="lead" style="font-size:14.5px;margin-top:8px">The picture is a design picture.</p>
 <div class="row"><a class="btn wa" href="{e(wa('Hello Woodkari, I want my name or logo engraved.' + chr(10) + 'Piece:' + chr(10) + 'Quantity: '))}">{WA_ICON}Ask about engraving</a></div>
 </div>
 </div></section>
@@ -501,23 +505,22 @@ def page_home():
 </div></section>
 
 <section class="stone" id="workshop"><div class="wrap split">
-<img src="{UP}img/detail-flutes.webp" alt="Close view of the fluted side and scalloped rim of the acacia box tray" width="1200" height="900" loading="lazy" style="aspect-ratio:4/3">
 <div>
 <h2>The workshop</h2>
 <p class="lead">Woodkari is a workshop in Sambhal, Uttar Pradesh, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish every piece by hand. Our resin trays are made with other makers in Sambhal.</p>
-<ul class="facts" style="margin-top:24px">
+</div>
+<ul class="facts">
 <li><b>Since</b><span>2008</span></li>
 <li><b>Where</b><span>Sambhal, Uttar Pradesh</span></li>
 <li><b>Karigars</b><span>Four</span></li>
 <li><b>Work</b><span>CNC router, laser engraving, resin, hand finishing</span></li>
 <li><b>Wood</b><span>Acacia</span></li>
 </ul>
-</div>
 </div></section>
 
-<section class="sec"><div class="wrap">
-<div class="hdr"><div><h2>Buying one piece</h2></div></div>
-<ol class="steps" style="max-width:760px">
+<section class="sec"><div class="wrap split">
+<div><h2>Buying one piece</h2><p class="lead">Every piece with a price can be ordered on its own, on WhatsApp.</p></div>
+<ol class="steps" style="margin-top:0">
 <li><b>Message us on WhatsApp</b><span>Tap "Order on WhatsApp" on any piece and tell us your city and PIN code.</span></li>
 <li><b>We confirm</b><span>We tell you the delivery charge and the day it will be sent.</span></li>
 <li><b>We pack and send it</b><span>Once you agree, the piece goes out to you.</span></li>
@@ -569,7 +572,7 @@ def page_product(p):
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="./#shop">All pieces</a> / {e(p['name'])}</p>
 <div class="pd">
-<div class="gal">{figs}</div>
+<div class="gal{" odd" if len(p["imgs"])%2 else ""}">{figs}</div>
 <div class="buy">
 <h1>{e(p['name'])}</h1>
 {price_html(p)}
@@ -581,7 +584,7 @@ def page_product(p):
 {bulk_l}
 </div>
 </div>
-<section class="sec"><div class="hdr"><div><h2>More pieces</h2></div></div><div class="grid">
+<section class="sec"><div class="hdr"><div><h2>More pieces</h2></div></div><div class="grid more3">
 {more}
 </div></section>
 </div></main>
@@ -605,14 +608,14 @@ def page_bulk():
 <p>Bulk is most of our work. We have made these pieces in Sambhal since 2008. For hotels, gifting companies, shops and importers: tell us the piece and the number, and we send the price on WhatsApp.</p>
 <div class="row"><a class="btn wa" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20order">{MAIL}Email us</a></div>
 </div>
-<img src="{UP}img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744">
+<div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744"></div>
 </div></section>
 
 <section class="sec"><div class="wrap">
 <div class="hdr"><div><h2>What we make in bulk</h2></div></div>
 <div class="grid four">
-<a class="p" href="room-tray.html"><div class="ph"><img src="{UP}img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"></div><h3>Room trays for hotels</h3><p class="sh">A hotel name by laser, from 50 pieces</p></a>
-<a class="p" href="fluted-box-tray.html"><div class="ph"><img src="{UP}img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
+<a class="p" href="room-tray.html"><div class="ph"><img src="{UP}img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Room trays for hotels</h3><p class="sh">A hotel name by laser, from 50 pieces</p></a>
+<a class="p" href="fluted-box-tray.html"><div class="ph"><img src="{UP}img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
 <a class="p" href="navy-ivory-floral-tray.html"><div class="ph"><img src="{UP}img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Resin trays</h3><p class="sh">Made to order in Sambhal</p></a>
 <a class="p" href="{e(wa("Hello Woodkari, I want the bulk price of engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser, from 50</p></a>
 </div>

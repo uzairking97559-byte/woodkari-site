@@ -4,10 +4,13 @@
   function $$(s,r){return Array.prototype.slice.call((r||d).querySelectorAll(s))}
 
   /* header: shadow + tabs tuck away on the way down */
-  var hd=$('.hd'),ly=0;
-  if(hd)addEventListener('scroll',function(){var y=scrollY;
-    if(y>ly+6&&y>220)hd.classList.add('min');else if(y<ly-6||y<=220)hd.classList.remove('min');
-    hd.classList.toggle('sc',y>8);ly=y},{passive:true});
+  var hd=$('.hd'),ly=scrollY,run=0;
+  if(hd)addEventListener('scroll',function(){var y=scrollY,dy=y-ly;ly=y;
+    run=(dy>0)===(run>0)?run+dy:dy; /* distance covered in the current direction */
+    if(y<=220||run<-24)hd.classList.remove('min');else if(run>48)hd.classList.add('min');
+    hd.classList.toggle('sc',y>8)},{passive:true});
+
+  d.addEventListener('touchstart',function(){},{passive:true}); /* lets :active work on iOS */
 
   /* menu and search */
   function dlg(btn,id,onopen){var b=$(btn),g=d.getElementById(id);if(!b||!g||!g.showModal)return;
@@ -25,11 +28,21 @@
   dlg('.search','srch',function(){render('');if(inp){inp.value='';inp.focus()}});
   if(inp){inp.addEventListener('input',function(){render(inp.value)});inp.addEventListener('keydown',function(ev){if(ev.key==='Escape'){ev.preventDefault();d.getElementById('srch').close()}})}
 
+  /* page transition: only the tapped card's picture travels to the product page (and back) */
+  $$('.p').forEach(function(a){a.addEventListener('click',function(){
+    $$('[style*="view-transition-name"]').forEach(function(x){x.style.viewTransitionName=''});
+    var im=$('.ph img',a);if(im)im.style.viewTransitionName='pic'})});
+
   /* shop filter from the category tabs */
   var cards=$$('.p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin trays'};
   function filter(k){if(!names[k])k='all';
     $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
     cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
+    /* re-deal: cards already on show slide to their new place, returning ones settle in (unseen ones keep their scroll reveal) */
+    if(!rm&&shop&&shop.animate)cards.forEach(function(p){if(p.hidden||!p.classList.contains('in'))return;var i=was.indexOf(p),r=p.getBoundingClientRect();
+      if(i<0)p.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'});
+      else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
     var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
   if(shop){
     $$('.tabs a[data-cat], #viewall, .drawer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();filter(a.dataset.cat||'all');
@@ -41,10 +54,10 @@
   $$('main h2').forEach(function(h){if(!h.closest('.rv'))return;var s=d.createElement('span');while(h.firstChild)s.appendChild(h.firstChild);h.appendChild(s);h.classList.add('mk')});
   var rv=$$('.rv,.wipe,.mega');
   if(rm||!('IntersectionObserver' in window)){rv.forEach(function(x){x.classList.add('in')})}
-  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target,w=0,pa=t.parentNode;
-      if(t.classList.contains('p')||t.classList.contains('tile')||pa.classList.contains('dz')||pa.classList.contains('real')){
-        w=(Array.prototype.indexOf.call(pa.children,t)%Math.max(1,Math.round(pa.clientWidth/(t.offsetWidth||1))))*90}
-      setTimeout(function(){t.classList.add('in')},w);io.unobserve(t)})},{rootMargin:'0px 0px -7% 0px'});
+  else{var gap=[0,70,120,150],io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target,row=[t],pa=t.parentNode;
+      /* cards on one visual row, and a whole side-scrolling strip, come in together, left to right; nothing is still hidden when it is swiped into view */
+      if(pa.matches('.grid,.tiles,.dz,.real')){var top=t.offsetTop;row=$$('.rv',pa).filter(function(x){return !x.dataset.rv&&x.offsetTop===top})}
+      row.forEach(function(x,i){x.dataset.rv=1;io.unobserve(x);setTimeout(function(){x.classList.add('in')},gap[Math.min(i,3)])})})},{rootMargin:'0px 0px -7% 0px'});
     rv.forEach(function(x){io.observe(x)});}
 
   /* the workshop paragraph lights up word by word as it is scrolled into the reading zone */
@@ -68,15 +81,21 @@
 
   /* hero pictures */
   var sl=$$('.slide'),dt=$$('.dot'),hero=$('.hero');
-  if(sl.length&&hero){var cur=0,show=$('.show'),pb=$('.pp'),st={user:false,hov:false,foc:false,out:false},x0=null,y0=0,sw=false;
+  if(sl.length&&hero){var cur=0,z=1,show=$('.show'),pb=$('.pp'),st={user:false,hov:false,foc:false,out:false},x0=null,y0=0,sw=false;
     /* later pictures are fetched one ahead, not all at first paint */
     function load(i){var im=$('img',sl[(i+sl.length)%sl.length]);if(im&&im.dataset.src){im.src=im.dataset.src;im.removeAttribute('data-src')}}
-    function go(n){sl[cur].classList.remove('on');dt[cur].removeAttribute('aria-current');cur=(n+sl.length)%sl.length;load(cur);
-      sl[cur].classList.add('on');dt[cur].setAttribute('aria-current','true');setTimeout(function(){load(cur+1)},2500)}
+    /* the new picture fades in ON TOP; the old one stays solid underneath until it is covered (no dip to the dark ground) */
+    function tidy(){sl.forEach(function(s,i){if(i!==cur)s.classList.remove('on')})}
+    function go(n){n=(n+sl.length)%sl.length;if(n===cur)return;dt[cur].removeAttribute('aria-current');cur=n;load(n);
+      var s=sl[n],was=s.classList.contains('on');s.style.zIndex=++z;s.classList.add('on');dt[n].setAttribute('aria-current','true');
+      if(rm||(was&&getComputedStyle(s).opacity==='1'))tidy();setTimeout(function(){load(cur+1)},2500)}
+    sl.forEach(function(s){s.addEventListener('transitionend',function(ev){if(ev.target===s&&s===sl[cur])tidy()})});
     function sync(){hero.classList.toggle('paused',st.user||st.hov||st.foc||st.out||d.hidden);
       if(pb){pb.setAttribute('aria-pressed',String(st.user));pb.setAttribute('aria-label',st.user?'Play pictures':'Pause pictures')}}
     /* the dot's fill animation is the only clock: when it ends, the next picture comes. Pausing the animation pauses everything */
-    hero.addEventListener('animationend',function(ev){if(ev.animationName==='fill')go(cur+1)});
+    hero.addEventListener('animationend',function(ev){if(ev.animationName!=='fill')return;var c=cur,im=$('img',sl[(c+1)%sl.length]);load(c+1);
+      function nx(){if(cur===c)go(c+1)} /* on a slow connection, wait for the next picture instead of fading to an empty frame */
+      if(im&&im.decode)im.decode().then(nx,nx);else nx()});
     dt.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i)})});
     if(pb)pb.addEventListener('click',function(){st.user=!st.user;sync()});
     if(matchMedia('(hover:hover)').matches){show.addEventListener('mouseenter',function(){st.hov=true;sync()});show.addEventListener('mouseleave',function(){st.hov=false;sync()})}

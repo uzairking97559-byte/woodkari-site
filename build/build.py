@@ -21,7 +21,7 @@ EMAIL = "sales@woodkariexports.com"
 # imgs: (file key, alt, caption). card: (studio key, in-use key) for the shop grid.
 PRODUCTS = [
     dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=1999, mto=True,
-         short="Resin · 14 × 8 in, cut-out handles", card=("navy-front", "navy-top"),
+         short="Resin · 14 × 8 in, cut-out handles", card=("navy-top", "navy-front"),
          lede="An ivory tray with a navy floral pattern filled in resin, and a handle cut into each side.",
          uses="Tea for two, or a tray for the dressing table.",
          facts=[("Size", "14 × 8 inches (36 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
@@ -30,7 +30,7 @@ PRODUCTS = [
                ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture, made to order"),
                ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="black-white-floral-tray-set", name="Black & White Floral Tray Set", cat="resin", price=6999, unit="set of 2", mto=True,
-         short="Resin · one round, one rectangular", card=("bw-front", "bw-top"),
+         short="Resin · one round, one rectangular", card=("bw-top", "bw-front"),
          lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, filled in resin.",
          uses="A pair for the dining table or the living room.",
          facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round tray: size on request"), ("Top", "Pattern filled in resin"),
@@ -39,7 +39,7 @@ PRODUCTS = [
                ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Design picture, made to order"),
                ("bw-top", "Black and white floral trays side by side, seen from above", "Design picture, made to order")]),
     dict(slug="red-chevron-tray", name="Red Chevron Tray", cat="resin", price=2799, mto=True,
-         short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-front", "chevron-top"),
+         short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-top", "chevron-front"),
          lede="A white-framed rectangular tray with a red and white chevron pattern filled in resin.",
          uses="Breakfast in bed, or a bright tray for the kitchen counter.",
          facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
@@ -48,7 +48,7 @@ PRODUCTS = [
                ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Design picture, made to order"),
                ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
-         short="Poured resin · gold flakes, leaf handles", card=("gold-front", "gold-top"),
+         short="Poured resin · gold flakes, leaf handles", card=("gold-top", "gold-front"),
          lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone leaf handles. Made for bulk orders only, from 25 pieces.",
          uses="Serving trays for a hotel, a wedding or a company gift.",
          facts=[("Top", "Poured resin with gold flakes"), ("Core", "MDF wood board"), ("Handles", "Gold-tone leaves"),
@@ -57,7 +57,7 @@ PRODUCTS = [
                ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Design picture, made to order"),
                ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="fluted-box-tray", name="Fluted Box Tray", cat="wood", price=1299,
-         short="Acacia · 11.5 × 7 × 3 in", card=("fluted-life2", "fluted-studio"),
+         short="Acacia · 11.5 × 7 × 3 in", card=("fluted-real1", None),
          lede="An open box tray in acacia wood. The sides are cut into upright flutes and the rim is scalloped, then the piece is finished by hand to a warm walnut tone.",
          uses="Keys and wallet by the door, a dressing table, a desk, or a gift hamper.",
          facts=[("Size", "11.5 × 7 inches, 3 inches high (29 × 18 × 7.6 cm)"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish, finished by hand"),
@@ -65,26 +65,26 @@ PRODUCTS = [
                 ("Goes with", "The Room Tray: same 11.5 inch side"),
                 ("Other sizes", "Any size, on order"),
                 ("Name or logo", "By laser, on 50 pieces or more of one design")],
-         imgs=[("fluted-front", "Fluted box tray on a wooden table, seen from the front", "Styled picture"),
-               ("fluted-use", "Fluted box tray on the floor by a door, holding car keys and a wallet", "Styled picture"),
-               ("fluted-top", "Fluted box tray seen from above on a white sheet", "Styled picture"),
-               ("fluted-real1", "Fluted box tray, plain photo from the front", "Our piece, plain photo"),
+         imgs=[("fluted-real1", "Fluted box tray, plain photo from the front", "Our piece, plain photo"),
                ("fluted-real2", "Fluted box tray, plain photo from the side", "Our piece, plain photo"),
-               ("fluted-real3", "Fluted box tray, plain photo from above", "Our piece, plain photo")]),
+               ("fluted-real3", "Fluted box tray, plain photo from above", "Our piece, plain photo"),
+               ("fluted-front", "Fluted box tray on a wooden table, seen from the front", "Styled picture"),
+               ("fluted-use", "Fluted box tray on the floor by a door, holding car keys and a wallet", "Styled picture"),
+               ("fluted-top", "Fluted box tray seen from above on a white sheet", "Styled picture")]),
     dict(slug="room-tray", name="Room Tray", cat="wood", price=1799,
-         short="Acacia · 15 × 11.5 in, with caddy", card=("room-front", "room-studio"),
+         short="Acacia · 15 × 11.5 in, with caddy", card=("room-real1", None),
          lede="A solid acacia board with one large round dip, two small ones and two long slots, and a four-box caddy that stands beside it. Made as the tea tray of a hotel guest room.",
          uses="Kettle and cups in a guest room, or watch, phone and keys on a bedside table.",
          facts=[("Size", "Tray 15 × 11.5 inches (38 × 29 cm). Caddy 10 inches long"), ("Wood", "Acacia"), ("Finish", "Walnut-tone polish, finished by hand"),
                 ("Made in", "Our workshop in Sambhal, Uttar Pradesh"),
                 ("Other sizes", "Any size, on order"),
                 ("Name or logo", "A hotel name or logo by laser, on 50 pieces or more")],
-         imgs=[("room-front", "Room tray on a wooden table with two cups of tea", "Styled picture"),
-               ("room-use", "Room tray on a bedside table with a kettle, keys and a phone", "Styled picture"),
-               ("room-top", "Room tray seen from above on a white sheet", "Styled picture"),
-               ("room-real1", "Room tray, plain photo from the front", "Our piece, plain photo"),
+         imgs=[("room-real1", "Room tray, plain photo from the front", "Our piece, plain photo"),
                ("room-real2", "Room tray, plain photo from the side", "Our piece, plain photo"),
-               ("room-real3", "Room tray, plain photo, front view", "Our piece, plain photo")])
+               ("room-real3", "Room tray, plain photo, front view", "Our piece, plain photo"),
+               ("room-front", "Room tray on a wooden table with two cups of tea", "Styled picture"),
+               ("room-use", "Room tray on a bedside table with a kettle, keys and a phone", "Styled picture"),
+               ("room-top", "Room tray seen from above on a white sheet", "Styled picture")])
 ]
 
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
@@ -97,8 +97,8 @@ TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-flor
 SLIDES = [("navy-use", "navy-ivory-floral-tray"), ("bw-use", "black-white-floral-tray-set"),
           ("gold-use", "gold-flake-resin-tray"), ("chevron-use", "red-chevron-tray")]
 
-DESIGNS = [("d2-coaster", "Resin coaster set"), ("d2-tissue", "Resin tissue box"), ("d2-roundbox", "Round box with resin lid"),
-           ("d2-board", "Serving board"), ("d2-cutlery", "Cutlery and napkin stand"), ("d2-trivet", "Resin trivets")]
+DESIGNS = [("d-coaster", "Resin coaster set"), ("d-tissue", "Resin tissue box"), ("d-roundbox", "Round box with resin lid"),
+           ("d-board", "Serving board"), ("d-cutlery", "Cutlery and napkin stand"), ("d-trivet", "Resin trivets")]
 
 
 LATER = 'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src'  # hero pictures 2-4: a 1px blank until site.js loads them
@@ -142,9 +142,12 @@ CSS = r"""
 :root{--bg:#fff;--stone:#f2efe9;--stone-2:#e8e4da;--ink:#17201b;--soft:#56605a;--line:#e2dfd6;--green:#1d4a3a;--green-d:#143629;--green-l:#2b6450;--mist:#eaf0ec;--gold:#d6b877;--brass:#8a6a2c;--r:3px;
  --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;--sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--ease:cubic-bezier(.16,1,.3,1)}
 @view-transition{navigation:auto}
+::view-transition-group(pic){animation-duration:.45s;animation-timing-function:cubic-bezier(.77,0,.175,1)}
+::view-transition-group(hd){animation-duration:.3s}
+.js .p.now .ph::after{display:none}.js .p.now *{transition:none!important}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:128px;scrollbar-color:#b9c4bc transparent;scrollbar-width:thin;interpolate-size:allow-keywords}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:128px;scrollbar-color:#b9c4bc transparent;scrollbar-width:thin;scrollbar-gutter:stable;interpolate-size:allow-keywords}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);overflow-x:hidden;-webkit-tap-highlight-color:transparent;text-rendering:optimizeLegibility;caret-color:var(--green)}
 ::selection{background:var(--green);color:#fff}
 img{max-width:100%;height:auto;display:block}
@@ -160,13 +163,13 @@ button{font:inherit;color:inherit}
 .pv{background:#fff3c4;color:#4a3b00;text-align:center;font-size:14px;padding:6px}
 
 /* header */
-.hd{position:sticky;top:0;z-index:20;background:#fff;transition:box-shadow .3s}
-.hd.sc{box-shadow:0 1px 0 var(--line),0 10px 30px -22px rgba(20,54,41,.5)}
-.hd-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:62px}
+.hd{position:sticky;top:0;z-index:20;pointer-events:none;view-transition-name:hd}
+.hd::before{content:"";position:absolute;inset:0 0 auto;height:62px;z-index:1;background:#fff;pointer-events:auto;transition:box-shadow .3s}
+.hd.min::before{box-shadow:0 1px 0 var(--line),0 10px 30px -22px rgba(20,54,41,.5)}
+.hd-top{position:relative;z-index:2;pointer-events:auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:62px}
 .hd-l{display:flex;align-items:center;gap:6px}
 .hd-r{display:flex;align-items:center;justify-content:flex-end;gap:6px}
 .ib{display:inline-grid;place-items:center;width:44px;height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;border-radius:50%;transition:background-color .2s,color .2s}
-.ib:hover{background:var(--mist);color:var(--green)}
 .hd-l .ib{margin-left:-10px}.hd-r .ib{margin-right:-10px}
 .logo{display:block;text-align:center;text-decoration:none;color:var(--ink);line-height:1}
 .logo b{display:block;font:400 31px/1 var(--serif);letter-spacing:-.01em}
@@ -174,69 +177,62 @@ button{font:inherit;color:inherit}
 .hd-note{display:none;font-size:14px;color:var(--soft)}
 .hd-wa{display:none}
 @media(min-width:900px){
- .hd-top{height:76px}
+ .hd-top,.hd::before{height:76px}
  .logo b{font-size:36px}
  .hd-note{display:block}
  .hd-l .menu{display:none}
  .hd-wa{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 18px;border-radius:999px;background:var(--green);color:#fff;font:600 14.5px/1 var(--sans);text-decoration:none;margin-left:8px;transition:background-color .2s}
- .hd-wa:hover{background:var(--green-d)}
  .hd-r .ib{margin-right:0}
 }
-.tabs{display:grid;grid-template-rows:1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line);transition:grid-template-rows .4s var(--ease)}
-.tabs>div{overflow:hidden;min-height:0}
-.hd.min .tabs{grid-template-rows:0fr;border-bottom-color:transparent}
+.tabs{position:relative;background:#fff;pointer-events:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);transition:transform .3s var(--ease),visibility 0s,box-shadow .3s}
+.hd.sc .tabs{box-shadow:0 10px 30px -22px rgba(20,54,41,.5)}
+.hd.min .tabs{transform:translateY(-101%);visibility:hidden;transition:transform .2s var(--ease),visibility 0s .2s}
 .tabs nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 8px}
 .tabs nav::-webkit-scrollbar{display:none}
 .tabs a{position:relative;flex:none;padding:13px 12px;color:var(--ink);text-decoration:none;font-size:15.5px;font-weight:500;white-space:nowrap;transition:color .2s}
 .tabs a::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
-.tabs a:hover{color:var(--green)}
 .tabs a[aria-current]{color:var(--green);font-weight:600}
-.tabs a[aria-current]::after,.tabs a:hover::after{transform:scaleX(1)}
+.tabs a[aria-current]::after{transform:scaleX(1)}
 @media(min-width:900px){.tabs nav{justify-content:center;gap:22px}.tabs a{padding:14px 12px}}
 
 /* dialogs: drawer menu + search */
 dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
-.drawer{position:fixed;inset:0 auto 0 0;margin:0;width:min(88vw,400px);height:100dvh;background:#fff;transform:translateX(-102%);transition:transform .5s var(--ease),overlay .5s allow-discrete,display .5s allow-discrete}
-.drawer[open]{transform:none}
+body:has(dialog[open]){overflow:hidden}
+.drawer{position:fixed;inset:0 auto 0 0;margin:0;width:min(88vw,400px);height:100dvh;background:#fff;transform:translateX(-102%);transition:transform .25s var(--ease),overlay .25s allow-discrete,display .25s allow-discrete}
+.drawer[open]{transform:none;transition-duration:.45s}
 @starting-style{.drawer[open]{transform:translateX(-102%)}}
-.drawer::backdrop,.srch::backdrop{background:rgba(12,30,22,0);transition:background-color .5s,overlay .5s allow-discrete,display .5s allow-discrete}
-.drawer[open]::backdrop,.srch[open]::backdrop{background:rgba(12,30,22,.5)}
-@starting-style{.drawer[open]::backdrop,.srch[open]::backdrop{background:rgba(12,30,22,0)}}
-.dr-in{display:flex;flex-direction:column;height:100%;padding:10px 22px 26px;overflow-y:auto}
+.drawer::backdrop,.srch::backdrop{background:rgba(12,30,22,.5);opacity:0;transition:opacity .25s,overlay .25s allow-discrete,display .25s allow-discrete}
+.drawer[open]::backdrop,.srch[open]::backdrop{opacity:1;transition-duration:.45s}
+@starting-style{.drawer[open]::backdrop,.srch[open]::backdrop{opacity:0}}
+.dr-in{display:flex;flex-direction:column;height:100%;padding:10px 22px calc(26px + env(safe-area-inset-bottom));overflow-y:auto;overscroll-behavior:contain}
 .dr-hd{display:flex;align-items:center;justify-content:space-between;height:56px;margin-bottom:6px}
 .dr-hd b{font:400 26px/1 var(--serif)}
 .dr-in .ib{margin-right:-10px}
-.dr-nav a{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font:400 27px/1.1 var(--serif);opacity:0;transform:translateX(-14px)}
-.drawer[open] .dr-nav a{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease),color .2s}
-.drawer[open] .dr-nav a:nth-child(1){transition-delay:.08s}.drawer[open] .dr-nav a:nth-child(2){transition-delay:.13s}.drawer[open] .dr-nav a:nth-child(3){transition-delay:.18s}.drawer[open] .dr-nav a:nth-child(4){transition-delay:.23s}.drawer[open] .dr-nav a:nth-child(5){transition-delay:.28s}.drawer[open] .dr-nav a:nth-child(6){transition-delay:.33s}.drawer[open] .dr-nav a:nth-child(7){transition-delay:.38s}
-.dr-nav a:hover{color:var(--green)}
-.dr-nav a:hover .ar{transform:translateX(4px)}
+.dr-nav a{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font:400 27px/1.1 var(--serif);transition:color .2s}
 .dr-ft{margin-top:auto;padding-top:26px}
 .dr-ft p{margin:14px 0 0;font-size:14.5px;color:var(--soft);text-align:center}
-.srch{position:fixed;inset:0 0 auto 0;margin:0;width:100%;max-height:100dvh;background:#fff;transform:translateY(-102%);transition:transform .5s var(--ease),overlay .5s allow-discrete,display .5s allow-discrete}
-.srch[open]{transform:none}
+.srch{position:fixed;inset:0 0 auto 0;margin:0;width:100%;max-height:100dvh;background:#fff;transform:translateY(-102%);transition:transform .25s var(--ease),overlay .25s allow-discrete,display .25s allow-discrete}
+.srch[open]{transform:none;transition-duration:.4s}
 @starting-style{.srch[open]{transform:translateY(-102%)}}
 .sr-in{max-width:760px;margin:0 auto;padding:14px 18px 26px}
 .sr-bar{display:flex;align-items:center;gap:8px;border-bottom:1.5px solid var(--ink)}
 .sr-bar input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 26px/1.2 var(--serif);padding:14px 0;color:var(--ink)}
 .sr-bar input::placeholder{color:#7b857f}
 .sr-bar input::-webkit-search-cancel-button{display:none}
-.sr-list{margin:10px 0 0;padding:0;list-style:none;max-height:min(62dvh,520px);overflow-y:auto}
+.sr-list{margin:10px 0 0;padding:0;list-style:none;max-height:min(62dvh,520px);overflow-y:auto;overscroll-behavior:contain}
 .sr-list a{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
 .sr-list img{width:56px;height:56px;object-fit:cover;border-radius:var(--r);background:var(--stone)}
 .sr-list b{display:block;font-weight:500;line-height:1.3}
 .sr-list small{color:var(--soft);font-size:14px}
-.sr-list a:hover b{color:var(--green)}
 .sr-none{padding:18px 0 4px;color:var(--soft)}
 
 /* buttons */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 26px;border-radius:var(--r);font:600 16px/1.2 var(--sans);letter-spacing:.005em;text-decoration:none;border:0;cursor:pointer;transition:background-color .25s,color .25s,box-shadow .25s}
 .btn .ar{transition:transform .4s var(--ease)}
-.btn:hover .ar,.lnk:hover .ar{transform:translateX(5px)}
-.btn.pri{background:var(--green);color:#fff}.btn.pri:hover{background:var(--green-d)}
-.btn.line{background:transparent;color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}.btn.line:hover{background:var(--green);color:#fff}
-.btn.inv{background:#fff;color:var(--green)}.btn.inv:hover{background:var(--gold);color:var(--green-d)}
-.btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75)}.btn.ghost:hover{background:#fff;color:var(--green)}
+.btn.pri{background:var(--green);color:#fff}
+.btn.line{background:transparent;color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}
+.btn.inv{background:#fff;color:var(--green)}
+.btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75)}
 .btn.wide{width:100%}
 .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
 .lnk{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:16px;color:var(--green);text-decoration:none;padding:6px 0;background:linear-gradient(currentColor,currentColor) left bottom/100% 1px no-repeat}
@@ -246,10 +242,12 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 /* hero */
 .hero{position:relative;background:var(--green);color:#fff;overflow:hidden}
 .show{position:relative;aspect-ratio:4/5;max-height:84svh;width:100%;overflow:hidden;background:#27352d}
-.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.2s var(--ease),visibility 0s 1.2s;color:#fff;text-decoration:none}
-.slide.on{opacity:1;visibility:visible;transition:opacity 1.2s var(--ease),visibility 0s}
-.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.09);transition:transform 7.5s linear}
-.slide.on img{transform:scale(1)}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;color:#fff;text-decoration:none}
+.slide.on{opacity:1;visibility:visible;transition:opacity 1s ease}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide.on img{animation:kb 7s linear both}
+.paused .slide.on img{animation-play-state:paused}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
 .slide .tag{left:auto;right:10px;top:10px;bottom:auto}
 .slide .nm{position:absolute;left:10px;top:10px;background:rgba(20,54,41,.88);padding:7px 10px;border-radius:2px;font:500 13px/1.2 var(--sans);display:flex;gap:10px}
 .slide .nm span{color:var(--gold)}
@@ -258,24 +256,25 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 .hero h1{color:#fff;font-size:clamp(40px,12.2vw,56px);line-height:.98;white-space:nowrap}
 .hero h1 .ln{display:inline-block;overflow:hidden;padding-bottom:.08em;vertical-align:top}
 .hero h1 .ln+.ln{margin-left:.22em}
-.hero h1 .ln>span{display:inline-block;transform:translateY(105%);animation:up 1.1s var(--ease) .15s forwards}
-.hero h1 .ln:nth-child(2)>span{animation-delay:.27s}
+.hero h1 .ln>span{display:inline-block;transform:translateY(105%);animation:up .9s var(--ease) .1s forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.18s}
 @keyframes up{to{transform:none}}
 .hero p{margin:8px 0 0;color:#eef3ef;font-size:17.5px;max-width:27em}
 .hero p .more{display:none}
 .hero .row{margin-top:18px}
 .hero .btn.inv{display:none}
-.fade{opacity:0;animation:fade 1s var(--ease) .55s forwards}
-.fade.d2{animation-delay:.7s}.fade.d3{animation-delay:.85s}
-@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.fade{opacity:0;animation:fade .7s var(--ease) .3s forwards}
+.fade.d2{animation-delay:.38s}.fade.d3{animation:fadeo .6s ease .45s forwards}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes fadeo{to{opacity:1}}
 .dots{display:flex;gap:6px;margin-top:20px}
 .dot{flex:1;height:26px;padding:0;border:0;background:none;cursor:pointer;position:relative;text-align:left;font:500 12.5px/1 var(--sans);color:#c9d6cd}
 .dot::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;background:rgba(255,255,255,.34)}
-.dot::after{content:"";position:absolute;left:0;top:11px;height:2px;width:0;background:#fff}
+.dot::after{content:"";position:absolute;left:0;right:0;top:11px;height:2px;background:#fff;transform:scaleX(0);transform-origin:left}
 .dot span{display:none}
 .dot[aria-current=true]::after{animation:fill 5.5s linear forwards}
 .paused .dot[aria-current=true]::after{animation-play-state:paused}
-@keyframes fill{to{width:100%}}
+@keyframes fill{to{transform:scaleX(1)}}
 @media(min-width:900px){
  .hero{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);min-height:min(calc(100svh - 126px),780px)}
  .show{order:2;aspect-ratio:auto;max-height:none;height:100%;min-height:560px}
@@ -298,7 +297,6 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 /* ribbon */
 .ribbon{background:var(--stone);color:var(--green);overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line)}
 .ribbon .track{display:inline-flex;padding:14px 0;animation:slide 40s linear infinite}
-.ribbon:hover .track{animation-play-state:paused}
 .ribbon span{font:400 21px/1 var(--serif);padding:0 24px;display:inline-flex;align-items:center;gap:24px}
 .ribbon span::after{content:"";width:6px;height:6px;transform:rotate(45deg);background:var(--brass)}
 @keyframes slide{to{transform:translateX(-50%)}}
@@ -330,8 +328,8 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 .p .ph{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--stone);border-radius:var(--r)}
 .p .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
 .p .ph .u{opacity:0}
-.p:hover .ph img,.p:focus-visible .ph img{transform:scale(1.04)}
-.p:hover .ph .u,.p:focus-visible .ph .u{opacity:1}
+.p:focus-visible .ph img{transform:scale(1.04)}
+.p:focus-visible .ph .u{opacity:1}
 @media(hover:none){.p .ph .u{display:none}}
 .p h3{font:500 16.5px/1.3 var(--sans);letter-spacing:0;margin:13px 0 1px}
 .p .sh{color:var(--soft);font-size:14px;line-height:1.35;margin:0}
@@ -346,8 +344,8 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 .split .lead{margin:14px 0 0;max-width:32em;color:var(--soft)}
 .fig{position:relative;overflow:hidden;border-radius:var(--r)}
 .fig img{width:100%;aspect-ratio:1/1;object-fit:cover}
-.js .fig.wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease)}
-.js .fig.wipe img{transform:scale(1.12);transition:transform 1.6s var(--ease)}
+.js .fig.wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.1s var(--ease)}
+.js .fig.wipe img{transform:scale(1.08);transition:transform 1.1s var(--ease)}
 .js .fig.wipe.in{clip-path:inset(0)}
 .js .fig.wipe.in img{transform:none}
 .steps{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line);counter-reset:s}
@@ -364,14 +362,12 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 .tiles::-webkit-scrollbar,.dz::-webkit-scrollbar{display:none}
 .tile{flex:0 0 72%;scroll-snap-align:start;position:relative;overflow:hidden;border-radius:var(--r);text-decoration:none;color:#fff;aspect-ratio:3/4;background:#27352d}
 .tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
-.tile:hover img{transform:scale(1.05)}
 .tile .tag{left:auto;right:8px;top:8px;bottom:auto}
 .tile .cap{position:absolute;inset:auto 0 0 0;padding:80px 18px 18px;background:linear-gradient(to top,rgba(10,26,19,.82),rgba(10,26,19,0));font:400 30px/1.05 var(--serif)}
 .tile small{display:block;font:500 14.5px/1.3 var(--sans);margin-top:7px;color:#e6ede8}
 .dz a{flex:0 0 44%;scroll-snap-align:start;text-decoration:none;color:var(--ink)}
 .dz .ph{position:relative;overflow:hidden;border-radius:var(--r);background:var(--stone)}
 .dz img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1.2s var(--ease)}
-.dz a:hover img{transform:scale(1.05)}
 .dz b{display:block;font-weight:500;margin-top:11px;line-height:1.3;font-size:15.5px}
 .dz i{font-style:normal;font-size:14.5px;color:var(--green)}
 @media(min-width:760px){.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin:0;padding:0;overflow:visible}.tile{flex:none}
@@ -382,23 +378,30 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 .faq details{border-bottom:1px solid var(--line)}
 .faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 0;cursor:pointer;list-style:none;font:400 25px/1.15 var(--serif);transition:color .2s}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary:hover{color:var(--green)}
-.faq .pl{flex:none;transition:transform .5s var(--ease)}
+.faq .pl{flex:none;transition:transform .3s var(--ease)}
 .faq details[open] .pl{transform:rotate(135deg)}
 .faq details p{margin:0;padding:0 44px 22px 0;color:var(--soft);max-width:44em}
-.faq details::details-content{block-size:0;overflow:hidden;transition:block-size .5s var(--ease),content-visibility .5s allow-discrete}
+.faq details::details-content{block-size:0;overflow:hidden;transition:block-size .3s var(--ease),content-visibility .3s allow-discrete}
 .faq details[open]::details-content{block-size:auto}
 
 /* product page */
 .crumb{font-size:14.5px;color:var(--soft);padding:16px 0 12px}
 .crumb a{color:var(--soft);text-decoration:none;display:inline-block;padding:8px 0}
-.crumb a:hover{color:var(--green)}
 .pd{display:grid;gap:24px}
 @media(min-width:960px){.pd{grid-template-columns:1.2fr 1fr;gap:72px;align-items:start}.buy{position:sticky;top:150px}}
 .gal{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px;scrollbar-width:none}
 .gal::-webkit-scrollbar{display:none}
 .gal figure{flex:0 0 88%;scroll-snap-align:center;margin:0;position:relative}
 .gal img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:var(--stone)}
+.galw{min-width:0}
+.galp{display:none}
+@supports (animation-timeline:scroll()){@media(max-width:959px){
+ .galw{timeline-scope:--gal}
+ .gal{scroll-timeline:--gal x}
+ .galp{display:block;height:2px;margin-top:12px;background:var(--line)}
+ .galp i{display:block;height:100%;background:var(--green);transform-origin:left;animation:galp linear both;animation-timeline:--gal}
+}}
+@keyframes galp{from{transform:scaleX(calc(1/var(--n)))}to{transform:scaleX(1)}}
 .gal figcaption{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.94);font:600 11.5px/1 var(--sans);padding:5px 7px;border-radius:2px}
 @media(min-width:960px){.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0;padding:0;overflow:visible}.gal.odd figure:first-child{grid-column:1/-1}}
 .buy .pr{font-size:25px;font-weight:600;margin:14px 0 0;color:var(--green);font-variant-numeric:tabular-nums lining-nums}
@@ -410,10 +413,15 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 .buy .facts{margin-top:24px}
 .buy .more-l{margin-top:20px}
 .stick{position:fixed;left:0;right:0;bottom:0;z-index:15;background:#fff;border-top:1px solid var(--line);padding:10px 18px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:14px}
+.stick{view-transition-name:stick}
+::view-transition-new(stick):only-child{animation:rise .45s var(--ease) both}
+::view-transition-old(stick):only-child{animation:sink .2s ease both}
+@keyframes rise{from{transform:translateY(100%)}}
+@keyframes sink{to{transform:translateY(100%)}}
 .stick b{font-size:18px;font-weight:600;color:var(--green);white-space:nowrap;font-variant-numeric:tabular-nums}
 .stick .btn{flex:1;min-height:48px;padding:10px 14px}
 @media(min-width:960px){.stick{display:none}}
-@media(max-width:959px){body.has-stick{padding-bottom:80px}.buy .btn.pri.wide{display:none}body.has-stick .fab{display:none}}
+@media(max-width:959px){body.has-stick{padding-bottom:calc(70px + env(safe-area-inset-bottom))}.buy .btn.pri.wide{display:none}body.has-stick .fab{display:none}}
 
 /* bulk page hero */
 .bh{display:grid;gap:28px;padding-top:28px}
@@ -436,14 +444,34 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
 .ft h3{font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
 .ft p{margin:0;font-size:15.5px;max-width:28em}
 .ft a.l{display:block;color:#fff;text-decoration:none;padding:9px 0;font-size:15.5px}
-.ft a.l:hover{color:var(--gold)}
 .ft .fine{grid-column:1/-1;max-width:none;border-top:1px solid rgba(255,255,255,.16);padding-top:20px;font-size:13.5px;color:#a9bbb0}
 .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:14;width:56px;height:56px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px -6px rgba(12,40,28,.5);transition:transform .4s var(--ease),background-color .2s}
-.fab:hover{background:var(--green-d);transform:scale(1.06)}
 .fab .i{width:27px;height:27px}
 
+/* hover: only where a real pointer can hover (on a phone a tap leaves :hover stuck) */
+@media(hover:hover) and (pointer:fine){
+ .ib:hover{background:var(--mist);color:var(--green)}
+ .hd-wa:hover{background:var(--green-d)}
+ .tabs a:hover,.dr-nav a:hover,.faq summary:hover,.crumb a:hover,.sr-list a:hover b{color:var(--green)}
+ .tabs a:hover::after{transform:scaleX(1)}
+ .dr-nav a:hover .ar{transform:translateX(4px)}
+ .btn:hover .ar,.lnk:hover .ar{transform:translateX(5px)}
+ .btn.pri:hover{background:var(--green-d)}
+ .btn.line:hover{background:var(--green);color:#fff}
+ .btn.inv:hover{background:var(--gold);color:var(--green-d)}
+ .btn.ghost:hover{background:#fff;color:var(--green)}
+ .ribbon:hover .track{animation-play-state:paused}
+ .p:hover .ph img{transform:scale(1.04)}
+ .p:hover .ph .u{opacity:1}
+ .tile:hover img,.dz a:hover img{transform:scale(1.05)}
+ .ft a.l:hover{color:var(--gold)}
+ .fab:hover{background:var(--green-d);transform:scale(1.06)}
+}
+
 /* scroll reveal: visible unless JS is running */
-.js .rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.js .rv:has(h2.mk)>:not(h2):not(:has(h2)),.js .rv:has(h2.mk)>div>p{opacity:0;transition:opacity .6s ease .15s}
+.js .rv.in:has(h2.mk)>*,.js .rv.in:has(h2.mk)>div>p{opacity:1}
 .js .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){
  *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
@@ -506,16 +534,18 @@ h1,h2{letter-spacing:-.022em}
 
 /* [6] reveals: headings rise out of a slot (same verb as the hero line); cards lift a curtain, then the words follow */
 .js h2.mk{overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em}
-.js h2.mk>span{display:block;transform:translateY(112%);transition:transform 1.15s var(--ease) .06s}
+.js h2.mk>span{display:block;transform:translateY(112%);transition:transform .9s var(--ease)}
 .js .in h2.mk>span{transform:none}
 .js .p.rv{opacity:1;transform:none}
-.js .p.rv .ph::after{content:"";position:absolute;inset:0;z-index:1;background:var(--stone-2);transform-origin:50% 100%;transition:transform 1.1s var(--ease)}
+.js .p.rv .ph::after{content:"";position:absolute;inset:0;z-index:1;background:var(--stone-2);transform-origin:50% 100%;transition:transform .9s var(--ease)}
+.js .p.rv .ph img{transition:opacity .7s var(--ease),transform .9s var(--ease)}
+.js .rv:has(h2.mk){opacity:1;transform:none}
 .js .p.rv.in .ph::after{transform:scaleY(0)}
 .js .p.rv .ph img{transform:scale(1.12)}
 .js .p.rv.in .ph img{transform:none}
-.js .p.rv.in:hover .ph img,.js .p.rv.in:focus-visible .ph img{transform:scale(1.04)}
-.js .p.rv h3,.js .p.rv .sh,.js .p.rv .pr{opacity:0;transform:translateY(12px);transition:opacity .8s var(--ease) .38s,transform .8s var(--ease) .38s}
-.js .p.rv .pr{transition-delay:.48s}
+.js .p.rv.in:focus-visible .ph img{transform:scale(1.04)}
+@media(hover:hover) and (pointer:fine){.js .p.rv.in:hover .ph img{transform:scale(1.04)}}
+.js .p.rv h3,.js .p.rv .sh,.js .p.rv .pr{opacity:0;transition:opacity .4s ease .1s}
 .js .p.rv.in h3,.js .p.rv.in .sh,.js .p.rv.in .pr{opacity:1;transform:none}
 
 /* [7] the workshop paragraph is the page's quiet centrepiece: large serif, lit word by word by the scroll (site.js) */
@@ -561,9 +591,32 @@ h1,h2{letter-spacing:-.022em}
  .js h2.mk>span{transform:none}.js .mega span{transform:translateY(.05em)}
  .js .p.rv .ph::after{display:none}
  .js .p.rv .ph img,.js .p.rv h3,.js .p.rv .sh,.js .p.rv .pr{opacity:1;transform:none}
- .dot[aria-current=true]::after{width:100%}                          /* current picture stays marked when the fill animation is off */
+ .dot[aria-current=true]::after{transform:none}                        /* current picture stays marked when the fill animation is off */
  .pp{display:none}
 }
+
+/* press: 160 ms, on everything tappable (after the review block, so these win) */
+a,button,summary{touch-action:manipulation}
+button,.btn,.fab{-webkit-user-select:none;user-select:none}
+.btn{transition:background-color .25s,color .25s,box-shadow .25s,transform .16s var(--ease)}
+.p .ph,.dz .ph{transition:transform .16s var(--ease)}
+.ib{transition:background-color .2s,color .2s,transform .16s var(--ease)}
+.fab:active{transition-duration:.16s}
+.tile:active img{transform:none}
+.tile:active,.js .tile.in:active{transform:scale(.98)}
+.dr-nav a:active,.sr-list a:active,.faq summary:active,.lnk:active,.ft a.l:active,.crumb a:active,.dot:active,.pp:active{opacity:.6}
+/* [11] Taste Skill review, 15 Nov: one backdrop for the catalogue, one heading scale, no grain */
+.p .ph img:first-child,.dz img,.gal img,.sr-list img{mix-blend-mode:multiply}
+.gal figure{border-radius:var(--r);overflow:hidden;background:var(--stone)}
+.gal img{background:none}
+.hdr h2,.split h2,.end h2,.bh h1,.buy h1{font-size:clamp(40px,5.6vw,76px);line-height:.98}
+.band.green,.ft,.hero{background-image:none}
+.hd-wa{border-radius:var(--r)}
+.tag,.gal figcaption{font-size:12.5px}
+.real{margin-top:0;gap:12px;align-self:center}
+@media(min-width:900px){.real{gap:20px;margin-top:0}}
+.real img{aspect-ratio:1/1}
+@media(prefers-reduced-motion:reduce){.js .p.rv .ph .u{opacity:0}.js .p.rv:hover .ph .u,.js .p.rv:focus-visible .ph .u{opacity:1}}
 """
 
 JS = r"""
@@ -573,10 +626,13 @@ JS = r"""
   function $$(s,r){return Array.prototype.slice.call((r||d).querySelectorAll(s))}
 
   /* header: shadow + tabs tuck away on the way down */
-  var hd=$('.hd'),ly=0;
-  if(hd)addEventListener('scroll',function(){var y=scrollY;
-    if(y>ly+6&&y>220)hd.classList.add('min');else if(y<ly-6||y<=220)hd.classList.remove('min');
-    hd.classList.toggle('sc',y>8);ly=y},{passive:true});
+  var hd=$('.hd'),ly=scrollY,run=0;
+  if(hd)addEventListener('scroll',function(){var y=scrollY,dy=y-ly;ly=y;
+    run=(dy>0)===(run>0)?run+dy:dy; /* distance covered in the current direction */
+    if(y<=220||run<-24)hd.classList.remove('min');else if(run>48)hd.classList.add('min');
+    hd.classList.toggle('sc',y>8)},{passive:true});
+
+  d.addEventListener('touchstart',function(){},{passive:true}); /* lets :active work on iOS */
 
   /* menu and search */
   function dlg(btn,id,onopen){var b=$(btn),g=d.getElementById(id);if(!b||!g||!g.showModal)return;
@@ -594,11 +650,21 @@ JS = r"""
   dlg('.search','srch',function(){render('');if(inp){inp.value='';inp.focus()}});
   if(inp){inp.addEventListener('input',function(){render(inp.value)});inp.addEventListener('keydown',function(ev){if(ev.key==='Escape'){ev.preventDefault();d.getElementById('srch').close()}})}
 
+  /* page transition: only the tapped card's picture travels to the product page (and back) */
+  $$('.p').forEach(function(a){a.addEventListener('click',function(){
+    $$('[style*="view-transition-name"]').forEach(function(x){x.style.viewTransitionName=''});
+    var im=$('.ph img',a);if(im)im.style.viewTransitionName='pic'})});
+
   /* shop filter from the category tabs */
   var cards=$$('.p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin trays'};
   function filter(k){if(!names[k])k='all';
     $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
     cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
+    /* re-deal: cards already on show slide to their new place, returning ones settle in (unseen ones keep their scroll reveal) */
+    if(!rm&&shop&&shop.animate)cards.forEach(function(p){if(p.hidden||!p.classList.contains('in'))return;var i=was.indexOf(p),r=p.getBoundingClientRect();
+      if(i<0)p.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'});
+      else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
     var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
   if(shop){
     $$('.tabs a[data-cat], #viewall, .drawer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();filter(a.dataset.cat||'all');
@@ -610,10 +676,10 @@ JS = r"""
   $$('main h2').forEach(function(h){if(!h.closest('.rv'))return;var s=d.createElement('span');while(h.firstChild)s.appendChild(h.firstChild);h.appendChild(s);h.classList.add('mk')});
   var rv=$$('.rv,.wipe,.mega');
   if(rm||!('IntersectionObserver' in window)){rv.forEach(function(x){x.classList.add('in')})}
-  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target,w=0,pa=t.parentNode;
-      if(t.classList.contains('p')||t.classList.contains('tile')||pa.classList.contains('dz')||pa.classList.contains('real')){
-        w=(Array.prototype.indexOf.call(pa.children,t)%Math.max(1,Math.round(pa.clientWidth/(t.offsetWidth||1))))*90}
-      setTimeout(function(){t.classList.add('in')},w);io.unobserve(t)})},{rootMargin:'0px 0px -7% 0px'});
+  else{var gap=[0,70,120,150],io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target,row=[t],pa=t.parentNode;
+      /* cards on one visual row, and a whole side-scrolling strip, come in together, left to right; nothing is still hidden when it is swiped into view */
+      if(pa.matches('.grid,.tiles,.dz,.real')){var top=t.offsetTop;row=$$('.rv',pa).filter(function(x){return !x.dataset.rv&&x.offsetTop===top})}
+      row.forEach(function(x,i){x.dataset.rv=1;io.unobserve(x);setTimeout(function(){x.classList.add('in')},gap[Math.min(i,3)])})})},{rootMargin:'0px 0px -7% 0px'});
     rv.forEach(function(x){io.observe(x)});}
 
   /* the workshop paragraph lights up word by word as it is scrolled into the reading zone */
@@ -637,15 +703,21 @@ JS = r"""
 
   /* hero pictures */
   var sl=$$('.slide'),dt=$$('.dot'),hero=$('.hero');
-  if(sl.length&&hero){var cur=0,show=$('.show'),pb=$('.pp'),st={user:false,hov:false,foc:false,out:false},x0=null,y0=0,sw=false;
+  if(sl.length&&hero){var cur=0,z=1,show=$('.show'),pb=$('.pp'),st={user:false,hov:false,foc:false,out:false},x0=null,y0=0,sw=false;
     /* later pictures are fetched one ahead, not all at first paint */
     function load(i){var im=$('img',sl[(i+sl.length)%sl.length]);if(im&&im.dataset.src){im.src=im.dataset.src;im.removeAttribute('data-src')}}
-    function go(n){sl[cur].classList.remove('on');dt[cur].removeAttribute('aria-current');cur=(n+sl.length)%sl.length;load(cur);
-      sl[cur].classList.add('on');dt[cur].setAttribute('aria-current','true');setTimeout(function(){load(cur+1)},2500)}
+    /* the new picture fades in ON TOP; the old one stays solid underneath until it is covered (no dip to the dark ground) */
+    function tidy(){sl.forEach(function(s,i){if(i!==cur)s.classList.remove('on')})}
+    function go(n){n=(n+sl.length)%sl.length;if(n===cur)return;dt[cur].removeAttribute('aria-current');cur=n;load(n);
+      var s=sl[n],was=s.classList.contains('on');s.style.zIndex=++z;s.classList.add('on');dt[n].setAttribute('aria-current','true');
+      if(rm||(was&&getComputedStyle(s).opacity==='1'))tidy();setTimeout(function(){load(cur+1)},2500)}
+    sl.forEach(function(s){s.addEventListener('transitionend',function(ev){if(ev.target===s&&s===sl[cur])tidy()})});
     function sync(){hero.classList.toggle('paused',st.user||st.hov||st.foc||st.out||d.hidden);
       if(pb){pb.setAttribute('aria-pressed',String(st.user));pb.setAttribute('aria-label',st.user?'Play pictures':'Pause pictures')}}
     /* the dot's fill animation is the only clock: when it ends, the next picture comes. Pausing the animation pauses everything */
-    hero.addEventListener('animationend',function(ev){if(ev.animationName==='fill')go(cur+1)});
+    hero.addEventListener('animationend',function(ev){if(ev.animationName!=='fill')return;var c=cur,im=$('img',sl[(c+1)%sl.length]);load(c+1);
+      function nx(){if(cur===c)go(c+1)} /* on a slow connection, wait for the next picture instead of fading to an empty frame */
+      if(im&&im.decode)im.decode().then(nx,nx);else nx()});
     dt.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i)})});
     if(pb)pb.addEventListener('click',function(){st.user=!st.user;sync()});
     if(matchMedia('(hover:hover)').matches){show.addEventListener('mouseenter',function(){st.hov=true;sync()});show.addEventListener('mouseleave',function(){st.hov=false;sync()})}
@@ -689,7 +761,7 @@ def head(title, desc, path, image):
 <html lang="en-IN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 {robots}
@@ -707,7 +779,7 @@ def head(title, desc, path, image):
 <link rel="icon" type="image/png" sizes="96x96" href="{UP}icon-96.png">
 <link rel="apple-touch-icon" href="{UP}apple-touch-icon.png">
 <link rel="stylesheet" href="site.css">
-<script>document.documentElement.className+=" js"</script>
+<script>document.documentElement.className+=" js";addEventListener("pagereveal",function(e){{var n=window.navigation&&navigation.activation;if(!e.viewTransition||!n||!n.from||document.querySelector('[style*="view-transition-name"]'))return;var im=document.querySelector('.p[href="'+n.from.url.split("/").pop().split(/[?#]/)[0]+'"] .ph img');if(im){{im.style.viewTransitionName="pic";im.closest(".p").classList.add("in","now")}}}})</script>
 <script src="site.js" defer></script>
 </head>
 """
@@ -716,7 +788,7 @@ def head(title, desc, path, image):
 def search_data():
     items = []
     for p in PRODUCTS:
-        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"])) + (" · Design picture" if p.get("mto") else " · Styled picture")
+        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"])) + " · " + ("Design picture" if p.get("mto") else "Plain photo of our piece")
         items.append({"n": p["name"], "s": sub, "u": p["slug"] + ".html", "i": f"{UP}img/{p['card'][0]}-600.webp"})
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Design picture · made on order, in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
@@ -777,10 +849,11 @@ def price_html(p, cls="pr"):
 
 def card(p):
     a, b = p["card"]
-    alt = p["imgs"][0][1]
-    lab = "Design picture" if p.get("mto") else "Styled picture"
+    alt, cap = next((x[1], x[2]) for x in p["imgs"] if x[0] == a)
+    lab = cap.split(",")[0] if cap.startswith("Design") else cap
+    hov = f'<img class="u" src="{UP}img/{b}-600.webp" alt="" width="600" height="600" loading="lazy">' if b else ""
     return f"""<a class="p rv" data-cat="{p['cat']}" href="{p['slug']}.html">
-<div class="ph"><img src="{UP}img/{a}-600.webp" alt="{e(alt)}" width="600" height="600" loading="lazy" style="view-transition-name:p-{p['slug']}"><img class="u" src="{UP}img/{b}-600.webp" alt="" width="600" height="600" loading="lazy"><span class="tag">{lab}</span></div>
+<div class="ph"><img src="{UP}img/{a}-600.webp" alt="{e(alt)}" width="600" height="600" loading="lazy">{hov}<span class="tag">{lab}</span></div>
 <h3>{e(p['name'])}</h3><p class="sh">{e(p['short'])}</p>{price_html(p)}</a>"""
 
 
@@ -799,9 +872,9 @@ def page_home():
     dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in Sambhal since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
-    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
+    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
     real = "".join(f'<figure class="rv"><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>'
-                   for k, alt, cap in (byslug["room-tray"]["imgs"][3], byslug["fluted-box-tray"]["imgs"][3]))
+                   for k, alt, cap in (byslug["room-tray"]["imgs"][1], byslug["fluted-box-tray"]["imgs"][1]))
     return head("Woodkari: wooden and resin trays and boxes, made in Sambhal",
                 "Acacia wood and resin trays and boxes from Sambhal, Uttar Pradesh, making since 2008. Bulk orders from 25 pieces, a name or logo by laser from 50, and single pieces on WhatsApp.",
                 "", "fluted-front.jpg") + f"""<body>
@@ -863,15 +936,8 @@ def page_home():
 <h2>The workshop</h2>
 <p class="lead">Woodkari is a workshop in Sambhal, Uttar Pradesh, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish our wooden pieces by hand. Our resin trays are made with other makers in Sambhal.</p>
 </div>
-<ul class="facts rv">
-<li><b>Since</b><span>2008</span></li>
-<li><b>Where</b><span>Sambhal, Uttar Pradesh</span></li>
-<li><b>Karigars</b><span>Four</span></li>
-<li><b>Work</b><span>CNC router, laser engraving, resin, hand finishing</span></li>
-<li><b>Wood</b><span>Acacia</span></li>
-</ul>
-</div>
-<div class="wrap real">{real}</div></section>
+<div class="real">{real}</div>
+</div></section>
 
 <section class="sec" id="questions"><div class="wrap split" style="align-items:start">
 <div class="rv"><h2>Questions buyers ask</h2><p class="lead">Not here? Ask us on WhatsApp.</p></div>
@@ -900,7 +966,7 @@ def page_product(p):
         btn = "Order on WhatsApp"
         stick_l = rupee(p["price"])
     figs = "".join(
-        f'<figure><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:p-" + p["slug"] + chr(34)) if i == 0 else " loading=lazy"}><figcaption>{e(cap)}</figcaption></figure>'
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if k == p["card"][0] else ""}{"" if i == 0 else " loading=lazy"}><figcaption>{e(cap)}</figcaption></figure>'
         for i, (k, alt, cap) in enumerate(p["imgs"]))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in p["facts"])
     offer = {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}
@@ -915,14 +981,14 @@ def page_product(p):
     if p.get("mto"):
         notes += '<p class="note">Made to order. We tell you the making time on WhatsApp.</p>'
     more = "\n".join(card(q) for q in [x for x in PRODUCTS if x["slug"] != p["slug"]][:3])
-    ogimg = p["imgs"][0][0] + (".jpg" if p["imgs"][0][0] in ("fluted-front", "room-front") else ".webp")
+    ogimg = {"fluted-box-tray": "fluted-front.jpg", "room-tray": "room-front.jpg"}.get(p["slug"], p["imgs"][0][0] + ".webp")
     bulk_l = "" if p.get("bulk_only") else '<a class="lnk more-l" href="bulk.html">Need 25 or more? Bulk orders' + ARROW + '</a>'
     return head(f"{p['name']} | Woodkari, Sambhal", p["lede"], p["slug"] + ".html", ogimg) + f"""<body class="has-stick">
 {header(p['cat'])}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="./#shop">All pieces</a> / {e(p['name'])}</p>
 <div class="pd">
-<div class="gal{" odd" if len(p["imgs"]) % 2 else ""}">{figs}</div>
+<div class="galw" style="--n:{len(p["imgs"])}"><div class="gal{" odd" if len(p["imgs"]) % 2 else ""}">{figs}</div><div class="galp" aria-hidden="true"><i></i></div></div>
 <div class="buy">
 <h1>{e(p['name'])}</h1>
 {price_html(p)}

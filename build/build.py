@@ -101,6 +101,10 @@ DESIGNS = [("d2-coaster", "Resin coaster set"), ("d2-tissue", "Resin tissue box"
            ("d2-board", "Serving board"), ("d2-cutlery", "Cutlery and napkin stand"), ("d2-trivet", "Resin trivets")]
 
 
+LATER = 'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src'  # hero pictures 2-4: a 1px blank until site.js loads them
+PP = '<button class="pp" type="button" aria-label="Pause pictures" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg><svg class="i-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>'
+
+
 def e(s):
     return html.escape(str(s), quote=True)
 
@@ -447,6 +451,119 @@ dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
  .js .rv{opacity:1;transform:none}.js .fig.wipe{clip-path:none}.js .fig.wipe img{transform:none}
  @view-transition{navigation:none}
 }
+/* ===== review fixes, 14 Nov: paste at the END of the CSS string in build/build.py (order matters) ===== */
+
+/* [1] phone hero: whole picture stays clear, headline sits on the picture's lower edge and melts into the green */
+@media(max-width:899px){
+ .show{aspect-ratio:1/1;max-height:62svh}
+ .hero-txt{position:relative;margin-top:-150px;padding:74px 18px 14px;
+  background:linear-gradient(to bottom,rgba(29,74,58,0) 0,rgba(29,74,58,.3) 34px,rgba(29,74,58,.62) 68px,rgba(29,74,58,.86) 104px,rgba(29,74,58,.96) 130px,var(--green) 152px)}
+ .hero h1{font-size:clamp(46px,14.4vw,64px);line-height:.92;text-shadow:0 2px 22px rgba(10,26,19,.45)}
+ .hero p{margin-top:10px;color:#dbe6de}
+ .hero .row{flex-wrap:nowrap;gap:8px;margin-top:16px;max-width:440px}
+ .hero .row .btn{flex:1 1 auto;padding:12px 12px;font-size:15.5px;white-space:nowrap;gap:8px}
+ .hero .btn.pri{display:none}.hero .btn.inv{display:inline-flex}
+ .dots{margin-top:6px;align-items:center}
+ .dot{height:44px}.dot::before,.dot::after{top:21px}
+}
+
+/* [2] small real bugs */
+@media(min-width:900px){a.fab{display:none}                        /* was meant to be hidden; the later .fab rule won the cascade */
+ .hero{min-height:min(calc(100svh - 131px),780px)}}                /* header is 131px tall, not 126: the hero ran 5px past the fold */
+.tiles,.dz,.gal{scroll-padding-inline:18px}                         /* mandatory snap was eating the left gutter on phones */
+.hero :focus-visible,.band.green :focus-visible,.ft :focus-visible{outline-color:#fff}   /* green ring on green was invisible */
+.slide:focus-visible{outline-color:#fff;outline-offset:-5px}
+.tag,.gal figcaption{font-size:12px}
+.crumb a{padding:12px 0}.lnk{min-height:44px}.ft a.l{padding:10px 0}
+@media(min-width:900px){.hd-wa{min-height:44px}.dot{height:44px}}
+.fab{box-shadow:0 0 0 1.5px rgba(255,255,255,.5),0 10px 26px -6px rgba(12,40,28,.5);transition:transform .45s var(--ease),opacity .3s,background-color .2s}
+.fab.off{transform:scale(.6);opacity:0;pointer-events:none}
+
+/* [3] hero pictures: pause button (the dots' fill animation is the clock) */
+.pp{flex:none;display:grid;place-items:center;width:44px;height:44px;margin:0 -12px 0 0;padding:0;border:0;border-radius:50%;background:none;color:#fff;cursor:pointer}
+.pp svg{grid-area:1/1}
+.pp[aria-pressed=false] .i-play,.pp[aria-pressed=true] .i-pause{display:none}
+@media(min-width:900px){.dots{position:relative}.pp{position:absolute;left:100%;top:-10px;margin:0 0 0 2px}.pp:hover{background:rgba(255,255,255,.12)}}
+.slide .nm{opacity:0;transition:opacity .25s}                      /* name chips no longer print over each other mid-fade */
+.slide.on .nm{opacity:1;transition:opacity .5s .7s}
+
+/* [4] press feedback (tap highlight is switched off site-wide, so every tap needs an answer) */
+.btn{transition:background-color .25s,color .25s,box-shadow .25s,transform .25s var(--ease)}
+.btn:active{transform:scale(.97)}
+.p .ph,.dz .ph{transition:transform .3s var(--ease)}
+.p:active .ph,.dz a:active .ph{transform:scale(.98)}
+.tile:active img{transform:scale(1.02)}
+.ib:active,.fab:active{transform:scale(.92)}
+.tabs a:active{color:var(--green)}
+
+/* [5] display type: three clear sizes instead of one */
+h1,h2{letter-spacing:-.022em}
+.hdr h2{font-size:clamp(42px,6.4vw,88px);line-height:.96}.hdr p{margin-top:16px}
+.end h2{font-size:clamp(46px,8vw,112px);line-height:.94}
+@media(min-width:900px){.hero h1{font-size:clamp(76px,9.4vw,140px);line-height:.9;letter-spacing:-.03em}}
+.hero h1 .ln{padding-top:.08em;margin-top:-.08em}
+@media(min-width:900px) and (max-height:800px){.hero h1{font-size:clamp(64px,7.4vw,104px)}.hero-txt{padding-top:36px;padding-bottom:32px}.hero p{margin-top:14px}.dots{margin-top:28px}}
+
+/* [6] reveals: headings rise out of a slot (same verb as the hero line); cards lift a curtain, then the words follow */
+.js h2.mk{overflow:hidden;padding-bottom:.16em;margin-bottom:-.16em}
+.js h2.mk>span{display:block;transform:translateY(112%);transition:transform 1.15s var(--ease) .06s}
+.js .in h2.mk>span{transform:none}
+.js .p.rv{opacity:1;transform:none}
+.js .p.rv .ph::after{content:"";position:absolute;inset:0;z-index:1;background:var(--stone-2);transform-origin:50% 100%;transition:transform 1.1s var(--ease)}
+.js .p.rv.in .ph::after{transform:scaleY(0)}
+.js .p.rv .ph img{transform:scale(1.12)}
+.js .p.rv.in .ph img{transform:none}
+.js .p.rv.in:hover .ph img,.js .p.rv.in:focus-visible .ph img{transform:scale(1.04)}
+.js .p.rv h3,.js .p.rv .sh,.js .p.rv .pr{opacity:0;transform:translateY(12px);transition:opacity .8s var(--ease) .38s,transform .8s var(--ease) .38s}
+.js .p.rv .pr{transition-delay:.48s}
+.js .p.rv.in h3,.js .p.rv.in .sh,.js .p.rv.in .pr{opacity:1;transform:none}
+
+/* [7] the workshop paragraph is the page's quiet centrepiece: large serif, lit word by word by the scroll (site.js) */
+#workshop .lead{position:relative;max-width:21em;margin-top:18px;font:400 clamp(25px,3vw,40px)/1.2 var(--serif);letter-spacing:-.012em;color:var(--ink)}
+#workshop .lead span{transition:opacity .25s linear}
+.real{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:44px}
+@media(min-width:900px){.real{gap:72px;margin-top:72px}}
+.real figure{margin:0}
+.real img{width:100%;aspect-ratio:4/3;object-fit:contain;mix-blend-mode:multiply}   /* white studio ground disappears into the stone band */
+.real figcaption{margin-top:8px;text-align:center;font:600 12px/1.2 var(--sans);letter-spacing:.02em;color:var(--soft)}
+
+/* [8] footer signature: the name, edge to edge, tone on tone */
+.ft{overflow:hidden}
+.mega{display:block;overflow:hidden;margin:0;text-align:center;white-space:nowrap;pointer-events:none;user-select:none;
+ font:400 min(30.5vw,470px)/.82 var(--serif);letter-spacing:-.03em;color:#1e4d3c}
+.mega span{display:block;transform:translateY(.05em)}
+.js .mega span{transform:translateY(80%);transition:transform 1.5s var(--ease)}
+.js .mega.in span{transform:translateY(.05em)}
+@media(max-width:899px){.ft .wrap{padding-bottom:28px}}
+
+/* [9] surfaces: paper grain on the green fields, soft ends on the ribbon, drifting picture in the split blocks */
+:root{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='.3 0 0 0 .35 .3 0 0 0 .35 .3 0 0 0 .35 0 0 0 0 1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+@supports (background-blend-mode:soft-light){
+ .band.green,.ft{background-image:var(--grain);background-size:220px;background-blend-mode:soft-light}
+ @media(min-width:900px){.hero{background-image:var(--grain);background-size:220px;background-blend-mode:soft-light}}
+}
+.ribbon{-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.fig{overflow:clip}
+@supports (animation-timeline:view()){
+ .split .fig img{animation:drift linear both;animation-timeline:view();animation-range:entry 0% exit 100%}
+ @keyframes drift{from{transform:scale(1.14) translateY(-5%)}to{transform:scale(1.14) translateY(5%)}}
+}
+
+/* [10] buttons: colour wipes up from the bottom edge (mouse only) */
+.btn{position:relative;overflow:hidden;isolation:isolate}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--fill,var(--green-d));transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn.line{--fill:var(--green)}.btn.inv{--fill:var(--gold)}.btn.ghost{--fill:#fff}
+.btn.pri:hover{background:var(--green)}.btn.line:hover,.btn.ghost:hover{background:transparent}.btn.inv:hover{background:#fff}
+@media(hover:hover){.btn:hover::after{transform:none}}
+@media(hover:none){.btn.line:hover{color:var(--green)}.btn.ghost:hover{color:#fff}.btn.inv:hover{color:var(--green)}}
+
+@media(prefers-reduced-motion:reduce){
+ .js h2.mk>span{transform:none}.js .mega span{transform:translateY(.05em)}
+ .js .p.rv .ph::after{display:none}
+ .js .p.rv .ph img,.js .p.rv h3,.js .p.rv .sh,.js .p.rv .pr{opacity:1;transform:none}
+ .dot[aria-current=true]::after{width:100%}                          /* current picture stays marked when the fill animation is off */
+ .pp{display:none}
+}
 """
 
 JS = r"""
@@ -482,32 +599,67 @@ JS = r"""
   function filter(k){if(!names[k])k='all';
     $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
     cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
-    var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)t.textContent=names[k];if(va)va.hidden=(k==='all');}
+    var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
   if(shop){
     $$('.tabs a[data-cat], #viewall, .drawer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();filter(a.dataset.cat||'all');
       shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
     var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
   }
 
-  /* reveal on scroll */
-  var rv=$$('.rv,.wipe');
+  /* reveal on scroll: headings rise out of a slot, cards stagger by the real number of columns */
+  $$('main h2').forEach(function(h){if(!h.closest('.rv'))return;var s=d.createElement('span');while(h.firstChild)s.appendChild(h.firstChild);h.appendChild(s);h.classList.add('mk')});
+  var rv=$$('.rv,.wipe,.mega');
   if(rm||!('IntersectionObserver' in window)){rv.forEach(function(x){x.classList.add('in')})}
-  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target,w=0;
-      if(t.classList.contains('p')||t.classList.contains('tile')||t.parentNode.classList.contains('dz')){w=(Array.prototype.indexOf.call(t.parentNode.children,t)%3)*110}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target,w=0,pa=t.parentNode;
+      if(t.classList.contains('p')||t.classList.contains('tile')||pa.classList.contains('dz')||pa.classList.contains('real')){
+        w=(Array.prototype.indexOf.call(pa.children,t)%Math.max(1,Math.round(pa.clientWidth/(t.offsetWidth||1))))*90}
       setTimeout(function(){t.classList.add('in')},w);io.unobserve(t)})},{rootMargin:'0px 0px -7% 0px'});
     rv.forEach(function(x){io.observe(x)});}
 
+  /* the workshop paragraph lights up word by word as it is scrolled into the reading zone */
+  var wl=$('#workshop .lead');
+  if(wl&&!rm){var ws=wl.textContent.trim().split(/\s+/),offs=[],tk=false;wl.textContent='';
+    ws.forEach(function(w,i){var s=d.createElement('span');s.textContent=w;wl.appendChild(s);if(i<ws.length-1)wl.appendChild(d.createTextNode(' '))});
+    var sp=$$('span',wl);
+    function measure(){var w=wl.offsetWidth||1;offs=sp.map(function(s){return s.offsetTop+s.offsetLeft/w*s.offsetHeight})}
+    function lit(){tk=false;var r=wl.getBoundingClientRect(),vh=innerHeight;if(r.top>vh||r.bottom<0)return;
+      var a=vh*.92,b=vh*.62;sp.forEach(function(s,i){var t=(a-(r.top+offs[i]))/(a-b);s.style.opacity=(.22+.78*(t<0?0:t>1?1:t)).toFixed(2)})}
+    measure();lit();
+    addEventListener('scroll',function(){if(!tk){tk=true;requestAnimationFrame(lit)}},{passive:true});
+    addEventListener('resize',function(){measure();lit()});
+    if(d.fonts&&d.fonts.ready)d.fonts.ready.then(function(){measure();lit()});}
+
+  /* the floating WhatsApp button steps aside where a WhatsApp button is already on screen */
+  var fab=$('.fab');
+  if(fab&&'IntersectionObserver' in window){var near=[],fo=new IntersectionObserver(function(es){es.forEach(function(en){var i=near.indexOf(en.target);
+      if(en.isIntersecting&&i<0)near.push(en.target);else if(!en.isIntersecting&&i>=0)near.splice(i,1)});fab.classList.toggle('off',near.length>0)});
+    $$('.end,.ft').forEach(function(x){fo.observe(x)});}
+
   /* hero pictures */
   var sl=$$('.slide'),dt=$$('.dot'),hero=$('.hero');
-  if(sl.length&&hero){var cur=0,tm=null;
-    function go(n){sl[cur].classList.remove('on');dt[cur].removeAttribute('aria-current');cur=(n+sl.length)%sl.length;
-      sl[cur].classList.add('on');dt[cur].setAttribute('aria-current','true');}
-    function play(){if(rm)return;clearInterval(tm);tm=setInterval(function(){go(cur+1)},5500);hero.classList.remove('paused')}
-    function stop(){clearInterval(tm);hero.classList.add('paused')}
-    dt.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i);play()})});
-    var show=$('.show');show.addEventListener('mouseenter',stop);show.addEventListener('mouseleave',play);
-    d.addEventListener('visibilitychange',function(){d.hidden?stop():play()});
-    if(rm)hero.classList.add('paused');play();}
+  if(sl.length&&hero){var cur=0,show=$('.show'),pb=$('.pp'),st={user:false,hov:false,foc:false,out:false},x0=null,y0=0,sw=false;
+    /* later pictures are fetched one ahead, not all at first paint */
+    function load(i){var im=$('img',sl[(i+sl.length)%sl.length]);if(im&&im.dataset.src){im.src=im.dataset.src;im.removeAttribute('data-src')}}
+    function go(n){sl[cur].classList.remove('on');dt[cur].removeAttribute('aria-current');cur=(n+sl.length)%sl.length;load(cur);
+      sl[cur].classList.add('on');dt[cur].setAttribute('aria-current','true');setTimeout(function(){load(cur+1)},2500)}
+    function sync(){hero.classList.toggle('paused',st.user||st.hov||st.foc||st.out||d.hidden);
+      if(pb){pb.setAttribute('aria-pressed',String(st.user));pb.setAttribute('aria-label',st.user?'Play pictures':'Pause pictures')}}
+    /* the dot's fill animation is the only clock: when it ends, the next picture comes. Pausing the animation pauses everything */
+    hero.addEventListener('animationend',function(ev){if(ev.animationName==='fill')go(cur+1)});
+    dt.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i)})});
+    if(pb)pb.addEventListener('click',function(){st.user=!st.user;sync()});
+    if(matchMedia('(hover:hover)').matches){show.addEventListener('mouseenter',function(){st.hov=true;sync()});show.addEventListener('mouseleave',function(){st.hov=false;sync()})}
+    hero.addEventListener('focusin',function(ev){st.foc=ev.target!==pb&&ev.target.matches(':focus-visible');sync()});
+    hero.addEventListener('focusout',function(){st.foc=false;sync()});
+    d.addEventListener('visibilitychange',sync);
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){st.out=!es[0].isIntersecting;sync()}).observe(hero);
+    /* swipe on phones */
+    show.addEventListener('touchstart',function(ev){x0=ev.touches[0].clientX;y0=ev.touches[0].clientY},{passive:true});
+    show.addEventListener('touchend',function(ev){if(x0===null)return;var t=ev.changedTouches[0],dx=t.clientX-x0,dy=t.clientY-y0;x0=null;
+      if(Math.abs(dx)>44&&Math.abs(dx)>Math.abs(dy)*1.5){sw=true;go(cur+(dx<0?1:-1));setTimeout(function(){sw=false},400)}},{passive:true});
+    show.addEventListener('click',function(ev){if(sw){ev.preventDefault();sw=false}},true);
+    addEventListener('load',function(){setTimeout(function(){load(1)},1200)});
+    sync();}
 })();
 """
 
@@ -610,7 +762,8 @@ def footer():
 <div><h3>Shop</h3><a class="l" href="./#shop">All pieces</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
 <div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Styled picture" or "Design picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
-</div></footer>
+</div>
+<div class="mega" aria-hidden="true"><span>Woodkari</span></div></footer>
 <a class="fab" href="{e(wa(HELLO))}" aria-label="Chat on WhatsApp">{WA_ICON}</a>
 """
 
@@ -641,12 +794,14 @@ def page_home():
     tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
     slides = "".join(
-        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img src="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " loading=lazy"}><span class="tag">Design picture</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Design picture</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
         for i, (k, sl) in enumerate(SLIDES))
     dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in Sambhal since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
     dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
+    real = "".join(f'<figure class="rv"><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>'
+                   for k, alt, cap in (byslug["room-tray"]["imgs"][3], byslug["fluted-box-tray"]["imgs"][3]))
     return head("Woodkari: wooden and resin trays and boxes, made in Sambhal",
                 "Acacia wood and resin trays and boxes from Sambhal, Uttar Pradesh, making since 2008. Bulk orders from 25 pieces, a name or logo by laser from 50, and single pieces on WhatsApp.",
                 "", "fluted-front.jpg") + f"""<body>
@@ -658,7 +813,7 @@ def page_home():
 <h1><span class="ln"><span>Made in</span></span><span class="ln"><span>Sambhal.</span></span></h1>
 <p class="fade">Wooden trays and resin pieces.<span class="more"> Making since 2008. Most of our orders are bulk: trays and boxes from 25 of one design. Single pieces too, on WhatsApp.</span></p>
 <div class="row fade d2"><a class="btn pri" href="#shop">Explore the collection{ARROW}</a><a class="btn inv" href="#shop">Explore the collection{ARROW}</a><a class="btn ghost" href="bulk.html">Bulk orders</a></div>
-<div class="dots fade d3" role="group" aria-label="Pictures">{dots}</div>
+<div class="dots fade d3" role="group" aria-label="Pictures">{dots}{PP}</div>
 </div>
 </section>
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
@@ -715,7 +870,8 @@ def page_home():
 <li><b>Work</b><span>CNC router, laser engraving, resin, hand finishing</span></li>
 <li><b>Wood</b><span>Acacia</span></li>
 </ul>
-</div></section>
+</div>
+<div class="wrap real">{real}</div></section>
 
 <section class="sec" id="questions"><div class="wrap split" style="align-items:start">
 <div class="rv"><h2>Questions buyers ask</h2><p class="lead">Not here? Ask us on WhatsApp.</p></div>

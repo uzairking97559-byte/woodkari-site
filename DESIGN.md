@@ -1,271 +1,325 @@
 ---
 name: Woodkari Exports
-description: Wooden and resin trays and boxes from a Sambhal workshop, shown plainly and ordered on WhatsApp.
+description: Wooden and resin trays and boxes from Sambhal, shown on white and forest green and ordered on WhatsApp.
 colors:
-  royal-navy: "#15214a"
-  zari-gold: "#c9a25a"
-  antique-bronze: "#7d5a1c"
-  antique-bronze-deep: "#5f4413"
-  whatsapp-green: "#0f7a4c"
-  whatsapp-green-deep: "#0b613c"
-  night-ink: "#181a24"
-  slate-soft: "#545766"
-  paper-white: "#ffffff"
-  warm-stone: "#f6f1e7"
-  sand-hairline: "#e5dfd3"
-  photo-field: "#f7f5f1"
-  navy-cream-text: "#efe6d2"
+  forest-green: "#1d4a3a"
+  forest-deep: "#143629"
+  soft-gold: "#d6b877"
+  brass: "#8a6a2c"
+  paper: "#ffffff"
+  stone: "#f2efe9"
+  stone-deep: "#e8e4da"
+  mist: "#eaf0ec"
+  hairline: "#e2dfd6"
+  ink: "#17201b"
+  moss-soft: "#56605a"
+  on-green-muted: "#cfdcd3"
 typography:
   display:
-    fontFamily: "Young Serif, Georgia, Times New Roman, serif"
-    fontSize: "clamp(38px, 9.6vw, 74px)"
+    fontFamily: "Instrument Serif, Iowan Old Style, Georgia, serif"
+    fontSize: "clamp(76px, 9.4vw, 140px)"
     fontWeight: 400
-    lineHeight: 1.1
-    letterSpacing: "-0.015em"
+    lineHeight: 0.9
+    letterSpacing: "-0.03em"
   headline:
-    fontFamily: "Young Serif, Georgia, Times New Roman, serif"
-    fontSize: "clamp(30px, 4.2vw, 46px)"
+    fontFamily: "Instrument Serif, Iowan Old Style, Georgia, serif"
+    fontSize: "clamp(40px, 5.6vw, 76px)"
     fontWeight: 400
-    lineHeight: 1.1
-    letterSpacing: "-0.01em"
-  title-serif:
-    fontFamily: "Young Serif, Georgia, Times New Roman, serif"
-    fontSize: "26px"
-    fontWeight: 400
-    lineHeight: 1.1
+    lineHeight: 0.98
+    letterSpacing: "-0.022em"
   title:
-    fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "17px"
-    fontWeight: 600
-    lineHeight: 1.3
+    fontFamily: "Instrument Serif, Iowan Old Style, Georgia, serif"
+    fontSize: "25px"
+    fontWeight: 400
+    lineHeight: 1.15
+  wordmark:
+    fontFamily: "Instrument Serif, Iowan Old Style, Georgia, serif"
+    fontSize: "36px"
+    fontWeight: 400
+    lineHeight: 1
+    letterSpacing: "-0.01em"
   body:
     fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "17px"
     fontWeight: 400
     lineHeight: 1.6
-  body-small:
+  product-name:
     fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "14.5px"
-    fontWeight: 400
-    lineHeight: 1.35
+    fontSize: "18px"
+    fontWeight: 500
+    lineHeight: 1.3
+  price:
+    fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "18px"
+    fontWeight: 600
+    fontFeature: "tnum, lnum"
+  button:
+    fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
+    fontSize: "16px"
+    fontWeight: 600
+    lineHeight: 1.2
+    letterSpacing: "0.005em"
   label:
     fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
     fontSize: "12.5px"
     fontWeight: 600
     lineHeight: 1
     letterSpacing: "0.02em"
-  price:
-    fontFamily: "Hanken Grotesk, system-ui, -apple-system, Segoe UI, sans-serif"
-    fontSize: "16.5px"
-    fontWeight: 600
-    fontFeature: "tnum, lnum"
-  logo:
-    fontFamily: "Rozha One, Georgia, serif"
-    fontSize: "26px"
-    fontWeight: 400
-    lineHeight: 1
-    letterSpacing: "0.01em"
 rounded:
   tag: "2px"
-  base: "4px"
-  logo-tile: "8px"
+  sm: "3px"
+  round: "50%"
 spacing:
-  gutter-mobile: "16px"
-  gutter-desktop: "32px"
-  container: "1240px"
-  section: "72px"
-  section-tight: "56px"
-  band-gap: "80px"
-  close: "112px"
+  gutter: "18px"
+  gutter-wide: "36px"
+  section: "64px"
+  section-wide: "96px"
+  close: "88px"
+  close-wide: "128px"
+  container: "1280px"
 components:
-  button-whatsapp:
-    backgroundColor: "{colors.whatsapp-green}"
-    textColor: "{colors.paper-white}"
-    typography: "{typography.title}"
-    rounded: "{rounded.base}"
-    padding: "12px 24px"
+  button-primary:
+    backgroundColor: "{colors.forest-green}"
+    textColor: "{colors.paper}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
+    padding: "12px 26px"
     height: "52px"
-  button-whatsapp-hover:
-    backgroundColor: "{colors.whatsapp-green-deep}"
+  button-primary-hover:
+    backgroundColor: "{colors.forest-deep}"
+    textColor: "{colors.paper}"
   button-line:
-    backgroundColor: "transparent"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.base}"
-    padding: "12px 24px"
+    textColor: "{colors.forest-green}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
+    padding: "12px 26px"
     height: "52px"
   button-line-hover:
-    backgroundColor: "{colors.night-ink}"
-    textColor: "{colors.paper-white}"
-  chip:
-    backgroundColor: "{colors.paper-white}"
-    textColor: "{colors.night-ink}"
-    rounded: "{rounded.base}"
+    backgroundColor: "{colors.forest-green}"
+    textColor: "{colors.paper}"
+  button-inverse:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.forest-green}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
+    padding: "12px 26px"
+    height: "52px"
+  button-inverse-hover:
+    backgroundColor: "{colors.soft-gold}"
+    textColor: "{colors.forest-deep}"
+  button-ghost:
+    textColor: "{colors.paper}"
+    typography: "{typography.button}"
+    rounded: "{rounded.sm}"
+    padding: "12px 26px"
+    height: "52px"
+  button-ghost-hover:
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.forest-green}"
+  header-whatsapp:
+    backgroundColor: "{colors.forest-green}"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.sm}"
     padding: "8px 18px"
-    height: "42px"
-  chip-selected:
-    backgroundColor: "{colors.royal-navy}"
-    textColor: "{colors.paper-white}"
+    height: "44px"
+  icon-button:
+    textColor: "{colors.ink}"
+    rounded: "{rounded.round}"
+    size: "44px"
+  icon-button-hover:
+    backgroundColor: "{colors.mist}"
+    textColor: "{colors.forest-green}"
+  whatsapp-fab:
+    backgroundColor: "{colors.forest-green}"
+    textColor: "{colors.paper}"
+    rounded: "{rounded.round}"
+    size: "56px"
   picture-tag:
-    backgroundColor: "{colors.paper-white}"
-    textColor: "{colors.night-ink}"
+    backgroundColor: "{colors.paper}"
+    textColor: "{colors.ink}"
     typography: "{typography.label}"
     rounded: "{rounded.tag}"
-    padding: "4px 8px"
+    padding: "5px 7px"
   product-photo:
-    backgroundColor: "{colors.photo-field}"
-    rounded: "{rounded.base}"
-  fact-bar:
-    backgroundColor: "{colors.royal-navy}"
-    textColor: "{colors.navy-cream-text}"
-    padding: "8px 12px"
+    backgroundColor: "{colors.stone}"
+    rounded: "{rounded.sm}"
+  price-tag:
+    textColor: "{colors.forest-green}"
+    typography: "{typography.price}"
+  band-green:
+    backgroundColor: "{colors.forest-green}"
+    textColor: "{colors.on-green-muted}"
+    padding: "96px 0"
+  band-stone:
+    backgroundColor: "{colors.stone}"
+    textColor: "{colors.ink}"
+    padding: "96px 0"
+  footer:
+    backgroundColor: "{colors.forest-deep}"
+    textColor: "{colors.on-green-muted}"
 ---
 
 # Design System: Woodkari Exports
 
 ## Overview
 
-**Creative North Star: "The Sambhal Showroom"**
+**Creative North Star: "The Green Showroom"**
 
-A calm, well-lit showroom for a real workshop: white walls, square photos of each piece, and a royal-navy shopfront with a thread of gold. The pieces lead; type and colour step back so the tray, its size and its price are read first. It sits in the category standard of Indian home-decor shops at the level of Nicobar and Ellementry, played straight, with the bulk offer never more than one tap away.
+A large Indian decor shop's catalogue, made by a small workshop. The page is mostly white paper with greige stone bands; forest green is the one brand field, laid down in whole panels (the desktop hero panel, the bulk band, the footer) and in the small things a buyer acts on (buttons, prices, links, the focus ring). A light, high-contrast serif carries the voice at large sizes; a plain grotesk carries every size, price, fact and button. Pictures lead: every section is built around a square photo or a full-bleed slideshow, and every picture that is not a plain photo of a real piece wears a small white label saying so.
 
-Density is generous on a phone first: one idea per section, 72px between sections, hairline rules instead of boxes, photography square and edge-to-edge in its frame. Royal navy carries the brand moments (the fact bar, the fact ribbon, the bulk band, the footer) and zari gold is its ornament, used only on navy. Everything clickable to buy is WhatsApp green. Motion is slow and soft: the hero crossfades between four photos, a single ribbon of shop facts drifts across the screen, sections rise into place once.
+Density is calm and catalogue-like: two product columns on a phone, three on a desktop, generous section spacing (64px phone, 96px desktop), hairline rules instead of boxes. Motion is slow and physical, on a single long-tail ease: headings rise out of a slot, card pictures are uncovered by a stone curtain, the hero crossfades with a slow zoom-out, and a tapped product picture travels into its product page.
 
-The build refuses the craft-fair page: no cream-on-cream with a giant serif, no icon-card grids, no testimonial props. Every picture that is not a real photo says so on its face.
+The owner rejected two earlier looks, navy with gold and walnut brown ("blue achha nahi lag raha", "AI jaisi lag rahi hai"); this green world replaced both. A paper-grain texture on the green fields was tried and removed in the 15 Nov review.
 
 **Key Characteristics:**
-- White ground, warm stone bands, royal navy brand bands with a 3px gold top rule.
-- Young Serif for headings, Hanken Grotesk for everything a buyer reads to decide, Rozha One for the wordmark only.
-- Square product photos on one pale field, 4px corners, no card chrome.
-- WhatsApp green is the only buying colour.
-- Slow ease-out motion; all of it stops under reduced motion.
+- White paper ground, greige stone bands, forest green as the single brand field.
+- Gold appears only on green; on white or stone the metal is brass.
+- Instrument Serif at display sizes only, always regular weight; Hanken Grotesk for everything a buyer reads to decide.
+- 3px corners, hairline rules, flat surfaces; circles only for icon buttons and the WhatsApp button.
+- Square photos on a stone ground, every non-real picture labelled.
+- One ease (`cubic-bezier(.16,1,.3,1)`), press feedback on every tap, hover effects for mouse pointers only.
 
 ## Colors
 
-A white-and-stone shop floor framed by royal navy and threaded with gold, with one green reserved for the order button.
+A white-and-stone catalogue with one deep forest green and two metals used sparingly.
 
 ### Primary
-- **Royal Navy** (#15214a): the brand surface. The top fact bar, the moving fact ribbon, the "how a bulk order works" band, the footer, the selected filter chip and the progress fill of the hero dots. Text on it is Navy Cream (#efe6d2) or white.
+- **Forest Green** (forest-green): the brand field. Desktop hero panel and the phone hero's text block, the bulk band, primary and header WhatsApp buttons, the floating WhatsApp button, every price, links, the active tab underline, the focus ring, text selection and the browser `theme-color`.
+- **Forest Deep** (forest-deep): the footer ground and the hover state of primary buttons (wipes up from the bottom edge).
 
 ### Secondary
-- **Zari Gold** (#c9a25a): ornament on navy only. The dots between bar facts, the diamonds in the ribbon, the 3px top rule of navy bands and the footer, step numbers inside the navy band, footer column labels and the footer's SAMBHAL line.
-- **Antique Bronze** (#7d5a1c, deep #5f4413): the text accent on light grounds. Links, nav hover and current page, focus rings, text selection, step numbers on white and stone, the SAMBHAL line under the header logo, and the "bulk only" price.
-
-### Tertiary
-- **WhatsApp Green** (#0f7a4c, hover #0b613c): every WhatsApp action and nothing else, white label on it (5.4:1).
+- **Soft Gold** (soft-gold): the warm accent on green only. Step numerals in the green band, the active slideshow progress bar on desktop, the price inside the slide name chip, footer column headings, footer link hover, and the inverse button's hover fill.
+- **Brass** (brass): the metal on light grounds. Step numerals on white and stone, and the small rotated-square marks between ribbon phrases.
 
 ### Neutral
-- **Night Ink** (#181a24): headings, body text, the outline button and its filled hover.
-- **Slate Soft** (#545766): secondary copy, captions, short descriptions, breadcrumbs.
-- **Paper White** (#ffffff): page ground, header (88% with blur), picture tags.
-- **Warm Stone** (#f6f1e7): hero ground and the alternate full-width band.
-- **Sand Hairline** (#e5dfd3): every rule and border on light grounds; on stone it darkens to #ddd3c1, on navy it is white at 16%.
-- **Photo Field** (#f7f5f1): the field behind product and design photos while they load.
+- **Paper** (paper): page ground, header, drawer, search sheet, sticky buy bar, inverse buttons, picture labels (at 94% opacity).
+- **Stone** (stone): the greige band behind the workshop section and the ribbon, and the ground behind every product photo, so studio pictures with white backgrounds sit on one backdrop (photos multiply onto it).
+- **Stone Deep** (stone-deep): the curtain that lifts off a product card's picture on reveal.
+- **Mist** (mist): the round hover wash behind header icon buttons.
+- **Hairline** (hairline): every rule: header and tab borders, list and FAQ dividers, fact rows, the sticky bar's top edge.
+- **Ink** (ink): headings and body text on light grounds.
+- **Moss Soft** (moss-soft): secondary text: short descriptions, fact labels, crumbs, FAQ answers, notes.
+- **On-green Muted** (on-green-muted): body and step text inside the green band and the footer.
 
 ### Named Rules
-**The Gold-On-Navy Rule.** Zari gold appears only on royal navy. On white it fails contrast and reads as decoration; on light grounds the accent is Antique Bronze.
+**The Green Field Rule.** Forest green is laid down as a whole field or as the thing a buyer acts on. It is never a tint, a gradient wash or a decorative stripe; every price and every primary action is green, and nothing decorative is.
 
-**The One Green Rule.** WhatsApp green is the order button and the order button is WhatsApp green. No other element, state or illustration uses it.
+**The Gold-on-Green Rule.** Soft gold appears only on a green surface. On white or stone the same role goes to brass. A gold element on white is a defect.
 
 ## Typography
 
-**Display Font:** Young Serif (with Georgia, Times New Roman)
-**Body Font:** Hanken Grotesk (with system-ui, -apple-system, Segoe UI)
-**Logo Font:** Rozha One (wordmark only)
+**Display Font:** Instrument Serif (with Iowan Old Style, Georgia, serif), self-hosted, regular and italic.
+**Body Font:** Hanken Grotesk (with system-ui, -apple-system, Segoe UI, sans-serif), self-hosted variable 400-700, Latin and Latin Extended.
 
-**Character:** a soft, slightly old-shop serif for names and section heads, paired with a clear grotesk for every fact a buyer acts on: size, material, price, minimum.
+**Character:** A light, narrow, high-contrast serif that reads as a decor brand at large sizes, set against a friendly, plain grotesk that makes sizes and prices easy to read on a phone.
 
 ### Hierarchy
-- **Display** (400, clamp(38px, 9.6vw, 74px), 1.1, -0.015em): the home hero headline only, max 10.5em wide.
-- **Headline** (400, clamp(30px, 4.2vw, 46px), 1.1): section heads, split-section heads and the closing call. Product page titles use clamp(32px, 4.4vw, 48px); the bulk page title clamp(36px, 5vw, 60px).
-- **Serif title** (400, 19 to 26px, 1.1 to 1.2): photo captions on tiles (26px), slide names (21px), mobile menu links (22px), the fact ribbon (19px), step numbers (26px).
-- **Title** (600, 17px, 1.3, sans): product names under a photo.
-- **Body** (400, 17px, 1.6): running copy; leads at 18px in Slate Soft, capped near 30 to 36em.
-- **Body small** (400, 14.5 to 16px): short descriptions, facts lists, breadcrumbs.
-- **Price** (600, 16.5px on cards, 24px on the product page, tabular lining figures): the "per piece" suffix drops to 400 Slate Soft.
-- **Label** (600, 12 to 12.5px, 0.02em): picture tags. Footer column heads are the one uppercase label (600, 13px, 0.14em, Zari Gold).
+- **Display** (400, `clamp(76px, 9.4vw, 140px)` desktop, `clamp(46px, 14.4vw, 64px)` phone; line-height 0.9-0.92; -0.03em): the hero headline only, two lines that each rise out of a masked slot on load. On short desktop windows (height 800px or less) it drops to `clamp(64px, 7.4vw, 104px)`.
+- **Headline** (400, `clamp(40px, 5.6vw, 76px)`, 0.98, -0.022em): every section heading, the closing heading, and the h1 of product and bulk pages. One scale for all of them.
+- **Title** (400 serif, 25-30px, 1.05-1.15): FAQ questions (25px), drawer menu links (27px), the search field (26px), tile captions (30px), the ribbon phrases (21px), and the workshop paragraph, which is set large (`clamp(25px, 3vw, 40px)`, 1.2) and lit word by word as it scrolls into view.
+- **Wordmark** (400 serif 31px phone / 36px desktop, -0.01em) over **SAMBHAL** (Hanken 600, 11px, tracking 0.42em): the centred logo in the header. The footer repeats the name at 34px and, as its signature, edge to edge at `min(30.5vw, 470px)` in a tone barely lighter than the footer ground.
+- **Body** (400, 17px, 1.6): all running text; leads and FAQ answers capped at 32-44em.
+- **Product name** (500, 16.5px phone / 18px desktop, 1.3) with a short line under it (14-15px, moss soft).
+- **Price** (600, 17-18px on cards, 25px on product pages, tabular lining figures, forest green); the unit ("/ set of 2") in 400 moss soft.
+- **Button** (600, 16px, 1.2, 0.005em).
+- **Label** (600, 12.5px, 0.02em): picture labels and gallery captions. Footer column headings are the one uppercase label (600, 12.5px, tracking 0.16em, soft gold).
 
 ### Named Rules
-**The Facts-In-Sans Rule.** Sizes, prices, minimums and materials are always set in Hanken Grotesk with tabular figures. The serif names things; it never carries a number a buyer must act on, except the ornamental step counters.
+**The Serif Speaks, the Sans Sells Rule.** Instrument Serif carries headings, the wordmark, questions and the ribbon; anything with a number, a size, a price, a fact or a button is Hanken Grotesk. Product names are sans, because they sit with their price.
 
-**The Wordmark-Only Rule.** Rozha One is the logo. It never sets a headline.
+**The Regular Serif Rule.** The serif is only ever weight 400. Emphasis comes from size and the slot-rise, never from bold or a faux weight.
 
 ## Layout
 
-A single 1240px container with 16px gutters on phones and 32px from 760px. Phones are the main screen: grids collapse to two columns of products, tile rows and design rows become horizontal snap-scrollers that bleed to the screen edge, and the product page gallery becomes a swipe strip of 88%-wide frames.
+A centred container (max 1280px) with an 18px side gutter on phones and 36px from 760px. Sections are separated by space, not boxes: 64px on phones, 96px from 900px; the closing call sits 88px / 128px from the content above it, and the footer the same again below it. Full-bleed bands (green, stone) reuse the same 64px / 96px inner padding.
 
-Sections are separated by 72px (56px when tight); full-width stone and navy bands sit 80px from what precedes them and carry 72px inner padding. The closing call has 112px above it; the footer starts 88px below.
+- **Header:** sticky, 62px phone / 76px desktop, three-column grid with the wordmark centred; a category tab row sits under it and tucks away upward while scrolling down, returning on scroll up.
+- **Hero:** phone: a square slideshow (max 62svh) with the headline overlapping its lower edge on a gradient that melts into forest green. From 900px: a 46/54 split, green text panel left aligned to the container edge, slideshow right, height `min(100svh - 131px, 780px)`.
+- **Product grid:** 2 columns (gap 30px 12px) on phones, 3 from 760px (gap 56px 28px); a 4-column variant for the bulk page.
+- **Split blocks:** one column on phones, two equal columns with a 72px gap from 900px, picture and text alternating sides.
+- **Scrollers:** use tiles and design strips scroll sideways with mandatory snap on phones, bleeding to the screen edge with the gutter kept as scroll padding; from 760px they become 4- and 6-column grids.
+- **Product page:** gallery and buy column at 1.2fr / 1fr with a 72px gap from 960px; the buy column is sticky. On phones the gallery is a snap strip with a scroll-linked progress line, and a fixed buy bar (price and WhatsApp button) sits at the bottom.
+- **Breakpoints:** 760px (gutter, grid columns), 900px (header, hero split, section spacing), 960px (product page).
 
-The home hero is a split from 900px: text on the left (46%), aligned to the container edge, and a 54% slideshow on the right at min(100vh minus 150px, 760px) tall. Below 900px the slideshow is a square above the text.
-
-The product grid is two columns (gaps 32px by 14px) up to 760px, then three (48px by 28px); bulk page grids go to four. Product pages split 1.2fr to 1fr from 960px with the buying column sticky at 96px; below that a sticky bottom bar carries the price and the WhatsApp button.
-
-Breakpoints in use: 420px (header button drops its label), 760px, 900px, 960px.
+The direction contract described a 4:5 phone slideshow with the text over the picture, and a desktop headline up to 96px. The shipped build moved to a square picture with the headline below its edge, and a desktop headline up to 140px; the build is the record.
 
 ## Elevation & Depth
 
-Flat. Depth comes from tone (white, stone, navy) and from photography, never from lifted cards. The header is translucent white with an 8px backdrop blur over content. The only shadow in the shipped pages is the mobile menu's drop (`0 18px 30px -18px rgba(40,20,10,.35)`), which lifts the open panel off the page. Photos carry their own depth: captions on tiles and slides sit on a bottom gradient scrim (`linear-gradient(to top, rgba(18,12,8,.78), transparent)`).
+Flat. Depth comes from tonal grounds (white, stone, green, deep green), hairlines, and photos, not from shadows. Two elements cast a shadow, both because they float over content: the header once the page scrolls, and the floating WhatsApp button. Text on photos gets a soft shadow on the phone hero only.
+
+### Shadow Vocabulary
+- **Header lift** (`box-shadow: 0 1px 0 #e2dfd6, 0 10px 30px -22px rgba(20,54,41,.5)`): under the sticky header after the page scrolls.
+- **Floating button** (`box-shadow: 0 0 0 1.5px rgba(255,255,255,.5), 0 10px 26px -6px rgba(12,40,28,.5)`): the WhatsApp button, with a thin white ring so it reads on green.
+- **Hero text** (`text-shadow: 0 2px 22px rgba(10,26,19,.45)`): phone hero headline over the picture's edge.
 
 ### Named Rules
-**The No-Lift Rule.** Cards, photos and buttons never take a shadow. Hover is a change of tone or a slow image zoom, not elevation.
+**The Flat Catalogue Rule.** Cards, photos, bands and buttons have no shadow. Only what floats over the page (sticky header, floating button) is lifted.
 
 ## Shapes
 
-Gently squared: 4px corners on photos, buttons, chips and tiles; 2px on the small picture tags; 8px on the logo tile. Borders are 1px hairlines (Sand Hairline), used as row rules in steps and facts lists and as list dividers, never as boxes around content. The outline button draws its 1px edge with an inset shadow so it keeps the same size as filled buttons. The one ornamental geometry is the gold diamond (6px square rotated 45 degrees) between ribbon facts, and the 3px gold dot between bar facts.
+Nearly square. Buttons, photos, product cards, tiles and the header WhatsApp button share one small 3px radius; picture labels and the slide name chip are 2px. Circles are kept for 44px icon buttons (menu, search, close, pause) and the 56px WhatsApp button. Rules are 1px hairlines; the search field is underlined with a 1.5px ink rule; the active tab is a 2px green underline that grows from the left. Pill shapes are not used.
 
 ## Components
 
 ### Buttons
-Plain and sure-footed; one green that means "order".
-- **Shape:** gently squared (4px), 52px tall, 12px by 24px padding, 600 weight at 16.5px, an icon gap of 9px.
-- **WhatsApp (primary):** WhatsApp Green with white label and the WhatsApp mark inline as SVG; deepens on hover. In the header it shrinks to 42px and drops its label under 420px.
-- **Line (secondary):** transparent with a 1px Night Ink inset edge; fills ink with white text on hover. Inside the navy band it inverts to a white edge and fills white with navy text.
-- **Text link with rule:** 600 Night Ink with a 1px underline rule, both turning Antique Bronze on hover; used for "see all" style moves.
-- **Focus:** 2px Antique Bronze outline, 3px offset, everywhere.
+Tactile and quiet: a solid block of colour with a fill that wipes up from the bottom edge on hover.
+- **Shape:** 3px corners, minimum height 52px (48px in the sticky bar), padding 12px 26px, icon and label 10px apart.
+- **Primary:** forest green with white text. The default action, usually "Chat on WhatsApp" or "Order on WhatsApp" with the WhatsApp glyph.
+- **Line:** transparent with a 1px green inset ring and green text; the second action (email).
+- **Inverse:** white with green text, used on green grounds; hover fill is soft gold with forest-deep text.
+- **Ghost:** transparent with a 1px white ring (75%) and white text, used on green beside an inverse button; hover fill is white with green text.
+- **Hover / Focus / Press:** on mouse pointers the hover colour wipes up from the bottom in 0.45s and a trailing arrow slides 5px right. Focus is a 2px green outline at 3px offset (white on green grounds). Press scales to 0.97 in 160ms.
 
-### Chips
-- **Style:** white, 1px Sand Hairline border, 4px corners, 42px tall, 500 weight 15px. Border turns ink on hover.
-- **State:** the selected filter fills Royal Navy with white text. Chips scroll horizontally on phones.
+### Picture labels
+- **Style:** white at 94% opacity, ink text, label type (12.5px, 600), 2px corners, 5px 7px padding, bottom-left of the picture (top-right on tiles and slides).
+- **Wording:** "Design picture", "Styled picture", "Our piece, plain photo".
 
-### Cards / Containers
-- **Product card:** no box. A square photo on the Photo Field with 4px corners, then the name (Title), a short line in Slate Soft, and the price. Bulk-only items show the price line in Antique Bronze.
-- **Collection tile:** a 3:4 photo with the place name in 26px serif white on a dark bottom scrim; 72% wide in a snap row on phones, four across from 760px; the photo zooms to 1.04 over 1s on hover.
-- **Bands:** Warm Stone and Royal Navy full-width bands hold split sections (square photo beside text, 64px gap from 900px).
+### Product cards
+- **Corner Style:** 3px on the photo; the card itself has no box.
+- **Background:** square photo on stone; studio photos multiply onto the stone so white backgrounds vanish. A second, in-use picture fades in on mouse hover.
+- **Content:** name (sans 500), short line (moss soft), price (green 600, tabular).
+- **Reveal:** a stone-deep curtain lifts off the photo while it settles from 1.12 scale; the text fades in after; cards on one row stagger left to right (0, 70, 120, 150ms).
+- **Press:** photo scales to 0.98.
 
 ### Navigation
-- **Fact bar:** a slim Royal Navy strip above the header, 13px Navy Cream text, facts separated by gold dots.
-- **Header:** sticky, 64px, translucent white with blur and a hairline bottom. Logo tile and Rozha One wordmark with a tracked SAMBHAL line left; nav links 500 at 15.5px in ink, Antique Bronze on hover and for the current page; WhatsApp button right.
-- **Mobile menu:** a 44px icon toggle (burger to cross) under 900px opens a white panel below the header with 22px serif links on hairline rows and a full-width WhatsApp button.
-- **Footer:** Royal Navy with a 3px gold top rule, three columns from 760px, gold uppercase column labels, white links turning gold on hover.
+- **Header:** white, centred serif wordmark, menu (phone) and search icon buttons, "Made in Sambhal since 2008" note and a green WhatsApp button from 900px.
+- **Tabs:** 15.5px Hanken 500 in ink, active tab 600 green with a 2px green underline; on phones the row scrolls sideways.
+- **Drawer:** slides in from the left (88vw, max 400px) with serif 27px links on hairlines and a full-width primary button at its foot.
+- **Search:** a sheet that drops from the top with a 26px serif field and photo results.
 
-### Picture Tag (signature)
-A small white label (2px corners, 12.5px 600) pinned to the top-left of any photo that is not a real photograph: "Design picture" or "Styled picture". It is part of the system, not an afterthought: every non-real picture carries one.
+### Lists: steps, facts, questions
+- **Steps:** numbered rows on hairlines with a 32px serif numeral in brass (soft gold on green), bold step and moss-soft detail.
+- **Facts:** two-column rows (label 8.2em, moss soft 500) on hairlines.
+- **Questions:** serif 25px summaries on hairlines with a plus that turns to a cross (135°), answers open by height animation; only one open at a time.
 
-### Hero Slideshow (signature)
-Four photos, resin trays first, crossfading over 1.1s with a slow 7s zoom from 1.07 to 1. Each slide links to its piece, with the name in 21px serif on a bottom scrim. Under the text sit progress dots: thin 2px tracks that fill Royal Navy over 5.5s, labelled with the piece name from 900px. Hover or focus pauses it.
+### Hero slideshow
+Four square resin-tray pictures crossfade (1s) with a 7s slow zoom-out; the progress bars under the text are the clock (5.5s each), with a pause button beside them. A name chip in deep green with the price in soft gold sits on each picture. Swipe changes the picture on phones.
 
-### Fact Ribbon (signature)
-A Royal Navy band under the hero where shop facts in 19px serif drift left on a 38s loop, separated by gold diamonds; it pauses on hover and is hidden from screen readers.
+### Ribbon
+A stone strip under the hero with serif 21px phrases in green, separated by small brass rotated squares, scrolling slowly (40s) with faded ends; it pauses on mouse hover.
 
-### Numbered Steps
-A list with hairline rows, each led by a 26px serif counter in Antique Bronze (Zari Gold inside the navy band), a bold step and a Slate Soft line beneath.
+### Floating WhatsApp button
+A 56px green circle, bottom right, that steps aside (scales to 0.6 and fades) when the closing call or footer, which hold their own WhatsApp buttons, are on screen; hidden from 900px and on product pages with a buy bar.
 
-### Sticky Buy Bar
-On product pages under 960px, a fixed white bar with a hairline top holds the price (18px, tabular) and a full-width WhatsApp button, padded for the safe area.
+### Footer
+Forest-deep ground, a three-column grid of name and summary, shop links and contact, a hairline above the fine print on picture labels, and the name set edge to edge underneath in a tone barely off the ground, rising into place when it scrolls into view.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** use WhatsApp Green (#0f7a4c) for every WhatsApp action and only for those.
-- **Do** keep Zari Gold (#c9a25a) on Royal Navy (#15214a); use Antique Bronze (#7d5a1c) for links and accents on white or stone.
-- **Do** show each piece as a square photo on the Photo Field with 4px corners, and put a "Design picture" or "Styled picture" tag on every picture that is not a real photo.
-- **Do** set sizes, prices and minimums in Hanken Grotesk with tabular figures.
-- **Do** separate content with 1px hairline rules and tone bands, 72px between sections.
-- **Do** use the shared ease-out (cubic-bezier(.16,1,.3,1)) for every transition, and let reduced motion switch all motion off.
+- **Do** lay forest green down as whole fields (hero panel, bulk band) and on every price and primary action.
+- **Do** put soft gold only on green and use brass for the same roles on white and stone.
+- **Do** set headings in Instrument Serif at weight 400, and sizes, prices, facts and buttons in Hanken Grotesk.
+- **Do** keep corners at 3px (2px for picture labels) and reserve circles for icon buttons and the WhatsApp button.
+- **Do** show products as square photos on the stone ground, and label every picture that is not a plain photo of a real piece.
+- **Do** separate content with 1px hairlines and space, and keep cards, photos and bands flat.
+- **Do** give every tappable thing a 160ms press response, keep hover effects behind a fine-pointer media query, and switch all motion off under reduced motion.
+- **Do** use the one ease, `cubic-bezier(.16,1,.3,1)`, for state changes and reveals.
 
 ### Don't:
-- **Don't** put gold text or gold rules on white or stone grounds.
-- **Don't** give cards, photos or buttons a shadow, or wrap products in bordered boxes.
-- **Don't** build grids of icon cards, testimonial blocks or client-logo strips.
-- **Don't** set a headline in Rozha One, or a number a buyer acts on in the serif.
-- **Don't** put a small uppercase label above a headline; tracked uppercase is for footer column heads only.
-- **Don't** add a second moving element beside the hero slideshow and the fact ribbon; sections rise once and then stay still.
+- **Don't** bring back navy with gold, or walnut brown, as the site palette; the owner rejected both.
+- **Don't** put gold on a white or stone ground.
+- **Don't** set the serif in bold, or set prices and facts in the serif.
+- **Don't** use pill-shaped buttons; the header WhatsApp button was squared to 3px in the 15 Nov review.
+- **Don't** add drop shadows to cards, photos or bands.
+- **Don't** put a grain or noise texture on the green fields; it was removed in the 15 Nov review.

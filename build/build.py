@@ -584,8 +584,8 @@ h1,h2{letter-spacing:-.022em}
 .btn::after{content:"";position:absolute;inset:0;z-index:-1;background:var(--fill,var(--green-d));transform:translateY(101%);transition:transform .45s var(--ease)}
 .btn.line{--fill:var(--green)}.btn.inv{--fill:var(--gold)}.btn.ghost{--fill:#fff}
 .btn.pri:hover{background:var(--green)}.btn.line:hover,.btn.ghost:hover{background:transparent}.btn.inv:hover{background:#fff}
-@media(hover:hover){.btn:hover::after{transform:none}}
-@media(hover:none){.btn.line:hover{color:var(--green)}.btn.ghost:hover{color:#fff}.btn.inv:hover{color:var(--green)}}
+@media(hover:hover) and (pointer:fine){.btn:hover::after{transform:none}}
+@media(hover:none),(pointer:coarse){.btn.line:hover{color:var(--green)}.btn.ghost:hover{color:#fff}.btn.inv:hover{color:var(--green)}}
 
 @media(prefers-reduced-motion:reduce){
  .js h2.mk>span{transform:none}.js .mega span{transform:translateY(.05em)}

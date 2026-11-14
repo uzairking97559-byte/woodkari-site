@@ -1,136 +1,76 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-11-14T16:34:29+00:00",
+  "generatedAt": "2026-11-14T21:02:08+00:00",
   "title": "Design System: Woodkari Exports",
   "extensions": {
     "colorMeta": {
-      "royal-navy": {
+      "forest-green": {
         "role": "primary",
-        "displayName": "Royal Navy",
-        "canonical": "#15214a",
+        "displayName": "Forest Green",
+        "canonical": "#1d4a3a",
         "tonalRamp": [
-          "#060a16",
-          "#0a1025",
-          "#0f1734",
-          "#121d41",
-          "#15214a",
-          "#5b6480",
-          "#a1a6b7",
-          "#e3e4e9"
+          "#081510",
+          "#0e241c",
+          "#143429",
+          "#1a4133",
+          "#1d4a3a",
+          "#6c897f",
+          "#b0c0ba",
+          "#e8edeb"
         ]
       },
-      "zari-gold": {
+      "forest-deep": {
+        "role": "primary",
+        "displayName": "Forest Deep",
+        "canonical": "#143629",
+        "tonalRamp": [
+          "#060f0b",
+          "#0a1a14",
+          "#0e261d",
+          "#123024",
+          "#143629",
+          "#667c74",
+          "#adb9b4",
+          "#e8ebea"
+        ]
+      },
+      "soft-gold": {
         "role": "secondary",
-        "displayName": "Zari Gold",
-        "canonical": "#c9a25a",
+        "displayName": "Soft Gold",
+        "canonical": "#d6b877",
         "tonalRamp": [
-          "#3c311b",
-          "#64512d",
-          "#8d713f",
-          "#b18f4f",
-          "#c9a25a",
-          "#d9be8c",
-          "#e9dabd",
-          "#f9f4eb"
+          "#3c3421",
+          "#675839",
+          "#968153",
+          "#bca269",
+          "#d6b877",
+          "#e4d1a7",
+          "#f1e6cf",
+          "#fbf8f1"
         ]
       },
-      "antique-bronze": {
+      "brass": {
         "role": "secondary",
-        "displayName": "Antique Bronze",
-        "canonical": "#7d5a1c",
+        "displayName": "Brass",
+        "canonical": "#8a6a2c",
         "tonalRamp": [
-          "#261b08",
-          "#3e2d0e",
-          "#583f14",
-          "#6e4f19",
-          "#7d5a1c",
-          "#a48c60",
-          "#cbbda4",
-          "#efebe4"
+          "#271e0c",
+          "#423315",
+          "#614a1f",
+          "#795d27",
+          "#8a6a2c",
+          "#b39e76",
+          "#d6cbb5",
+          "#f3f0ea"
         ]
       },
-      "antique-bronze-deep": {
-        "role": "secondary",
-        "displayName": "Antique Bronze Deep",
-        "canonical": "#5f4413",
-        "tonalRamp": [
-          "#1d1406",
-          "#30220a",
-          "#42300d",
-          "#543c11",
-          "#5f4413",
-          "#8f7c5a",
-          "#bfb4a1",
-          "#ece9e3"
-        ]
-      },
-      "whatsapp-green": {
-        "role": "tertiary",
-        "displayName": "WhatsApp Green",
-        "canonical": "#0f7a4c",
-        "tonalRamp": [
-          "#052517",
-          "#083d26",
-          "#0a5535",
-          "#0d6b43",
-          "#0f7a4c",
-          "#57a282",
-          "#9fcab7",
-          "#e2efea"
-        ]
-      },
-      "whatsapp-green-deep": {
-        "role": "tertiary",
-        "displayName": "WhatsApp Green Deep",
-        "canonical": "#0b613c",
-        "tonalRamp": [
-          "#031d12",
-          "#06301e",
-          "#08442a",
-          "#0a5535",
-          "#0b613c",
-          "#549076",
-          "#9dc0b1",
-          "#e2ece8"
-        ]
-      },
-      "night-ink": {
+      "paper": {
         "role": "neutral",
-        "displayName": "Night Ink",
-        "canonical": "#181a24",
-        "tonalRamp": [
-          "#07080b",
-          "#0c0d12",
-          "#111219",
-          "#151720",
-          "#181a24",
-          "#5d5f66",
-          "#a3a3a7",
-          "#e3e4e5"
-        ]
-      },
-      "slate-soft": {
-        "role": "neutral",
-        "displayName": "Slate Soft",
-        "canonical": "#545766",
-        "tonalRamp": [
-          "#191a1f",
-          "#2a2c33",
-          "#3b3d47",
-          "#4a4d5a",
-          "#545766",
-          "#878994",
-          "#bbbcc2",
-          "#eaebed"
-        ]
-      },
-      "paper-white": {
-        "role": "neutral",
-        "displayName": "Paper White",
+        "displayName": "Paper",
         "canonical": "#ffffff",
         "tonalRamp": [
-          "#4d4d4d",
-          "#808080",
+          "#474747",
+          "#7a7a7a",
           "#b2b2b2",
           "#e0e0e0",
           "#ffffff",
@@ -139,316 +79,351 @@
           "#ffffff"
         ]
       },
-      "warm-stone": {
+      "stone": {
         "role": "neutral",
-        "displayName": "Warm Stone",
-        "canonical": "#f6f1e7",
+        "displayName": "Stone",
+        "canonical": "#f2efe9",
         "tonalRamp": [
-          "#4a4845",
-          "#7b7874",
-          "#aca9a2",
-          "#d8d4cb",
-          "#f6f1e7",
-          "#f9f5ee",
-          "#fbf9f5",
-          "#fefdfc"
-        ]
-      },
-      "sand-hairline": {
-        "role": "neutral",
-        "displayName": "Sand Hairline",
-        "canonical": "#e5dfd3",
-        "tonalRamp": [
-          "#45433f",
-          "#72706a",
-          "#a09c94",
-          "#cac4ba",
-          "#e5dfd3",
-          "#ede9e0",
-          "#f5f2ed",
-          "#fcfbfa"
-        ]
-      },
-      "photo-field": {
-        "role": "neutral",
-        "displayName": "Photo Field",
-        "canonical": "#f7f5f1",
-        "tonalRamp": [
-          "#4a4a48",
-          "#7c7a78",
-          "#adaca9",
-          "#d9d8d4",
+          "#444341",
+          "#747370",
+          "#a9a7a3",
+          "#d5d2cd",
+          "#f2efe9",
           "#f7f5f1",
-          "#f9f8f5",
-          "#fcfbf9",
-          "#fefefd"
+          "#faf9f7",
+          "#fefdfd"
         ]
       },
-      "navy-cream-text": {
+      "stone-deep": {
         "role": "neutral",
-        "displayName": "Navy Cream",
-        "canonical": "#efe6d2",
+        "displayName": "Stone Deep",
+        "canonical": "#e8e4da",
         "tonalRamp": [
-          "#48453f",
-          "#787369",
-          "#a7a193",
-          "#d2cab9",
-          "#efe6d2",
-          "#f4eee0",
-          "#f9f5ed",
-          "#fdfcfa"
+          "#41403d",
+          "#6f6d69",
+          "#a2a099",
+          "#ccc9c0",
+          "#e8e4da",
+          "#f0ede7",
+          "#f7f6f2",
+          "#fdfcfb"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "#eaf0ec",
+        "tonalRamp": [
+          "#424342",
+          "#707371",
+          "#a4a8a5",
+          "#ced3d0",
+          "#eaf0ec",
+          "#f1f5f3",
+          "#f8faf8",
+          "#fdfefd"
+        ]
+      },
+      "hairline": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#e2dfd6",
+        "tonalRamp": [
+          "#3f3e3c",
+          "#6c6b67",
+          "#9e9c96",
+          "#c7c4bc",
+          "#e2dfd6",
+          "#eceae4",
+          "#f5f4f1",
+          "#fcfcfb"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "#17201b",
+        "tonalRamp": [
+          "#060908",
+          "#0b0f0d",
+          "#101613",
+          "#141c18",
+          "#17201b",
+          "#686e6b",
+          "#aeb1af",
+          "#e8e9e8"
+        ]
+      },
+      "moss-soft": {
+        "role": "neutral",
+        "displayName": "Moss Soft",
+        "canonical": "#56605a",
+        "tonalRamp": [
+          "#181b19",
+          "#292e2b",
+          "#3c433f",
+          "#4c544f",
+          "#56605a",
+          "#919894",
+          "#c4c7c5",
+          "#eeefee"
+        ]
+      },
+      "on-green-muted": {
+        "role": "neutral",
+        "displayName": "On-green Muted",
+        "canonical": "#cfdcd3",
+        "tonalRamp": [
+          "#3a3e3b",
+          "#636a65",
+          "#919a94",
+          "#b6c2ba",
+          "#cfdcd3",
+          "#e0e8e2",
+          "#eef3f0",
+          "#fafcfb"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Home hero headline only."
+        "purpose": "Hero headline only; clamp(46px,14.4vw,64px)/.92 on phones, clamp(64px,7.4vw,104px) on desktops 800px tall or less."
       },
       "headline": {
         "displayName": "Headline",
-        "purpose": "Section heads, split heads, closing call; product and bulk titles scale up from it."
-      },
-      "title-serif": {
-        "displayName": "Serif title",
-        "purpose": "Tile captions, slide names, mobile menu links, fact ribbon, step counters."
+        "purpose": "Every section heading, the closing heading and product/bulk page h1; one scale."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Product names under a photo."
+        "purpose": "Serif 21-30px: FAQ questions, drawer links, search field, tile captions, ribbon; the workshop paragraph at clamp(25px,3vw,40px)/1.2."
+      },
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Centred header logo (31px phone, 36px desktop) over SAMBHAL in Hanken 600 11px, tracking .42em."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "Running copy."
+        "purpose": "All running text; leads capped at 32-44em."
       },
-      "body-small": {
-        "displayName": "Body small",
-        "purpose": "Short descriptions, facts lists, breadcrumbs."
-      },
-      "label": {
-        "displayName": "Label",
-        "purpose": "Picture tags."
+      "product-name": {
+        "displayName": "Product name",
+        "purpose": "Card titles, 16.5px on phones."
       },
       "price": {
         "displayName": "Price",
-        "purpose": "Prices with tabular lining figures."
+        "purpose": "Forest green tabular figures; 17px on phone cards, 25px on product pages."
       },
-      "logo": {
-        "displayName": "Logo",
-        "purpose": "Wordmark only."
+      "button": {
+        "displayName": "Button",
+        "purpose": "All button labels."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Picture labels and gallery captions; footer column headings use it uppercase at .16em in soft gold."
       }
     },
     "shadows": [
       {
-        "name": "menu-drop",
-        "value": "0 18px 30px -18px rgba(40,20,10,.35)",
-        "purpose": "Mobile menu panel only."
+        "name": "header-lift",
+        "value": "0 1px 0 #e2dfd6, 0 10px 30px -22px rgba(20,54,41,.5)",
+        "purpose": "Sticky header after the page scrolls."
       },
       {
-        "name": "photo-scrim",
-        "value": "linear-gradient(to top, rgba(18,12,8,.78), rgba(18,12,8,0))",
-        "purpose": "Bottom scrim under captions on tiles (slides use .66)."
+        "name": "floating-button",
+        "value": "0 0 0 1.5px rgba(255,255,255,.5), 0 10px 26px -6px rgba(12,40,28,.5)",
+        "purpose": "Floating WhatsApp button; the white ring keeps it visible on green."
       },
       {
-        "name": "header-glass",
-        "value": "rgba(255,255,255,.88) + backdrop-filter: blur(8px)",
-        "purpose": "Sticky header over content."
+        "name": "hero-text",
+        "value": "text-shadow: 0 2px 22px rgba(10,26,19,.45)",
+        "purpose": "Phone hero headline over the picture's lower edge."
       }
     ],
     "motion": [
       {
-        "name": "ease-out",
+        "name": "ease",
         "value": "cubic-bezier(.16,1,.3,1)",
-        "purpose": "Every transition and entrance."
+        "purpose": "The one ease for state changes, reveals, sheets and the tab underline."
+      },
+      {
+        "name": "press",
+        "value": "160ms; scale .97 buttons, .98 cards, .92 icon buttons; opacity .6 for text links",
+        "purpose": "Answer to every tap (tap highlight is off site-wide)."
+      },
+      {
+        "name": "button-wipe",
+        "value": "translateY(101%) to 0, 450ms",
+        "purpose": "Hover fill rising from the button's bottom edge."
+      },
+      {
+        "name": "slot-rise",
+        "value": "translateY(105-112%) to 0, 900ms",
+        "purpose": "Hero lines on load and section headings on scroll."
+      },
+      {
+        "name": "card-curtain",
+        "value": "stone-deep scaleY(1 to 0) 900ms with picture 1.12 to 1; row stagger 0/70/120/150ms",
+        "purpose": "Product card reveal."
       },
       {
         "name": "hero-crossfade",
-        "value": "opacity 1.1s ease-out",
-        "purpose": "Hero slide change."
+        "value": "opacity 1s; 7s zoom 1.08 to 1; 5.5s per picture",
+        "purpose": "Hero slideshow, paused on hover, focus, off-screen or by the pause button."
       },
       {
-        "name": "hero-zoom",
-        "value": "transform scale(1.07 to 1) 7s linear",
-        "purpose": "Slow settle on the active slide."
-      },
-      {
-        "name": "hero-interval",
-        "value": "5.5s",
-        "purpose": "Slide duration and dot fill."
-      },
-      {
-        "name": "rise",
-        "value": "opacity+translateY(16px) .9s ease-out, delays .08/.18/.3/.42s",
-        "purpose": "Hero text entrance on load."
-      },
-      {
-        "name": "reveal",
-        "value": "opacity+translateY(22px) .9s ease-out",
-        "purpose": "Sections rise once on scroll (JS-gated; visible without JS)."
-      },
-      {
-        "name": "ribbon",
-        "value": "translateX(-50%) 38s linear infinite",
-        "purpose": "Fact ribbon drift; pauses on hover."
-      },
-      {
-        "name": "card-swap",
-        "value": "opacity .6s ease-out; image scale 1.03 over .9s",
-        "purpose": "Product card shows the styled photo on hover or focus (hover devices only)."
-      },
-      {
-        "name": "tile-zoom",
-        "value": "scale 1.04 over 1s",
-        "purpose": "Collection tile hover."
-      },
-      {
-        "name": "state",
-        "value": ".2s",
-        "purpose": "Button and chip colour changes."
+        "name": "page-morph",
+        "value": "view transition 'pic', 450ms cubic-bezier(.77,0,.175,1)",
+        "purpose": "A tapped card's picture travels into the product page and back."
       },
       {
         "name": "reduced-motion",
         "value": "all transitions and animations off",
-        "purpose": "prefers-reduced-motion: reduce."
+        "purpose": "Everything shows in its final state."
       }
     ],
     "breakpoints": [
       {
-        "name": "xs",
-        "value": "420px"
-      },
-      {
-        "name": "md",
+        "name": "grid",
         "value": "760px"
       },
       {
-        "name": "lg",
+        "name": "desktop",
         "value": "900px"
       },
       {
-        "name": "xl",
+        "name": "product-page",
         "value": "960px"
       }
     ]
   },
   "components": [
     {
-      "name": "WhatsApp Button",
+      "name": "Primary Button",
       "kind": "button",
-      "refersTo": "button-whatsapp",
-      "description": "The only buying action; every WhatsApp link uses it.",
-      "html": "<a class=\"ds-btn-wa\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z\"/></svg><span>Order on WhatsApp</span></a>",
-      "css": ".ds-btn-wa{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:12px 24px;border-radius:4px;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-weight:600;font-size:16.5px;line-height:1.2;text-decoration:none;background:#0f7a4c;color:#fff;transition:background-color .2s}.ds-btn-wa:hover{background:#0b613c}.ds-btn-wa:focus-visible{outline:2px solid #7d5a1c;outline-offset:3px}"
+      "refersTo": "button-primary",
+      "description": "The default action, usually WhatsApp; deep green wipes up on hover.",
+      "html": "<a class=\"ds-btn ds-btn-pri\" href=\"#\">Chat on WhatsApp<svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a>",
+      "css": ".ds-btn{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 26px;border-radius:3px;font:600 16px/1.2 \"Hanken Grotesk\",system-ui,sans-serif;letter-spacing:.005em;text-decoration:none;border:0;cursor:pointer;transition:color .25s,transform .16s cubic-bezier(.16,1,.3,1)} .ds-btn::after{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--fill,#143629);transform:translateY(101%);transition:transform .45s cubic-bezier(.16,1,.3,1)} .ds-btn:hover::after{transform:none} .ds-btn:active{transform:scale(.97)} .ds-btn:focus-visible{outline:2px solid #1d4a3a;outline-offset:3px} .ds-btn svg{transition:transform .4s cubic-bezier(.16,1,.3,1)} .ds-btn:hover svg{transform:translateX(5px)} .ds-btn-pri{background:#1d4a3a;color:#fff;--fill:#143629}"
     },
     {
       "name": "Line Button",
       "kind": "button",
       "refersTo": "button-line",
-      "description": "Secondary move beside a WhatsApp button (mail, see the bulk page).",
-      "html": "<a class=\"ds-btn-line\" href=\"#\">Mail us</a>",
-      "css": ".ds-btn-line{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:12px 24px;border-radius:4px;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-weight:600;font-size:16.5px;line-height:1.2;text-decoration:none;background:transparent;color:#181a24;box-shadow:inset 0 0 0 1px #181a24;transition:background-color .2s,color .2s}.ds-btn-line:hover{background:#181a24;color:#fff}.ds-btn-line:focus-visible{outline:2px solid #7d5a1c;outline-offset:3px}"
+      "description": "Second action on light grounds (email); fills green on hover.",
+      "html": "<a class=\"ds-btn ds-btn-line\" href=\"#\">sales@woodkariexports.com</a>",
+      "css": ".ds-btn{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 26px;border-radius:3px;font:600 16px/1.2 \"Hanken Grotesk\",system-ui,sans-serif;letter-spacing:.005em;text-decoration:none;border:0;cursor:pointer;transition:color .25s,transform .16s cubic-bezier(.16,1,.3,1)} .ds-btn::after{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--fill,#143629);transform:translateY(101%);transition:transform .45s cubic-bezier(.16,1,.3,1)} .ds-btn:hover::after{transform:none} .ds-btn:active{transform:scale(.97)} .ds-btn:focus-visible{outline:2px solid #1d4a3a;outline-offset:3px} .ds-btn svg{transition:transform .4s cubic-bezier(.16,1,.3,1)} .ds-btn:hover svg{transform:translateX(5px)} .ds-btn-line{background:transparent;color:#1d4a3a;box-shadow:inset 0 0 0 1px #1d4a3a;--fill:#1d4a3a} .ds-btn-line:hover{color:#fff}"
     },
     {
-      "name": "Filter Chip",
-      "kind": "chip",
-      "refersTo": "chip",
-      "description": "Product filters above the shop grid; selected fills royal navy.",
-      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"true\">All</button><button class=\"ds-chip\" aria-pressed=\"false\">Acacia wood</button><button class=\"ds-chip\" aria-pressed=\"false\">Resin</button></div>",
-      "css": ".ds-chips{display:flex;gap:8px}.ds-chip{min-height:42px;padding:8px 18px;border-radius:4px;border:1px solid #e5dfd3;background:#fff;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-weight:500;font-size:15px;color:#181a24;cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}.ds-chip:hover{border-color:#181a24}.ds-chip[aria-pressed=true]{background:#15214a;border-color:#15214a;color:#fff}.ds-chip:focus-visible{outline:2px solid #7d5a1c;outline-offset:3px}"
+      "name": "Inverse and Ghost Buttons",
+      "kind": "button",
+      "refersTo": "button-inverse",
+      "description": "The pair used on green: white inverse (gold on hover) beside a white-ringed ghost.",
+      "html": "<div class=\"ds-on-green\"><a class=\"ds-btn ds-btn-inv\" href=\"#\">Explore the collection<svg viewBox=\"0 0 24 24\" width=\"18\" height=\"18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M5 12h14M13 6l6 6-6 6\"/></svg></a> <a class=\"ds-btn ds-btn-ghost\" href=\"#\">Bulk orders</a></div>",
+      "css": ".ds-btn{position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 26px;border-radius:3px;font:600 16px/1.2 \"Hanken Grotesk\",system-ui,sans-serif;letter-spacing:.005em;text-decoration:none;border:0;cursor:pointer;transition:color .25s,transform .16s cubic-bezier(.16,1,.3,1)} .ds-btn::after{content:\"\";position:absolute;inset:0;z-index:-1;background:var(--fill,#143629);transform:translateY(101%);transition:transform .45s cubic-bezier(.16,1,.3,1)} .ds-btn:hover::after{transform:none} .ds-btn:active{transform:scale(.97)} .ds-btn:focus-visible{outline:2px solid #1d4a3a;outline-offset:3px} .ds-btn svg{transition:transform .4s cubic-bezier(.16,1,.3,1)} .ds-btn:hover svg{transform:translateX(5px)} .ds-on-green{background:#1d4a3a;padding:28px;display:flex;gap:10px;flex-wrap:wrap} .ds-btn-inv{background:#fff;color:#1d4a3a;--fill:#d6b877} .ds-btn-inv:hover{color:#143629} .ds-btn-ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75);--fill:#fff} .ds-btn-ghost:hover{color:#1d4a3a} .ds-on-green .ds-btn:focus-visible{outline-color:#fff}"
+    },
+    {
+      "name": "Header with tabs",
+      "kind": "nav",
+      "refersTo": "icon-button",
+      "description": "Centred serif wordmark over SAMBHAL, round icon buttons, green WhatsApp button, category tabs with a growing green underline.",
+      "html": "<header class=\"ds-hd\"><div class=\"ds-hd-top\"><button class=\"ds-ib\" aria-label=\"Menu\"><svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><path d=\"M3 7h18M3 12h18M3 17h18\"/></svg></button><a class=\"ds-logo\" href=\"#\"><b>Woodkari</b><small>SAMBHAL</small></a><div class=\"ds-hd-r\"><button class=\"ds-ib\" aria-label=\"Search\"><svg viewBox=\"0 0 24 24\" width=\"23\" height=\"23\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"m16.5 16.5 4.5 4.5\"/></svg></button><a class=\"ds-wa\" href=\"#\">WhatsApp</a></div></div><nav class=\"ds-tabs\"><a href=\"#\" aria-current=\"true\">All pieces</a><a href=\"#\">Acacia wood</a><a href=\"#\">Resin trays</a><a href=\"#\">Bulk orders</a></nav></header>",
+      "css": ".ds-hd{background:#fff;font-family:\"Hanken Grotesk\",system-ui,sans-serif;color:#17201b} .ds-hd-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:76px;padding:0 18px} .ds-hd-r{display:flex;justify-content:flex-end;align-items:center;gap:6px} .ds-ib{display:inline-grid;place-items:center;width:44px;height:44px;border:0;background:transparent;color:#17201b;border-radius:50%;cursor:pointer;transition:background-color .2s,color .2s,transform .16s} .ds-ib:hover{background:#eaf0ec;color:#1d4a3a} .ds-ib:active{transform:scale(.92)} .ds-ib:focus-visible{outline:2px solid #1d4a3a;outline-offset:3px} .ds-logo{text-align:center;text-decoration:none;color:#17201b;line-height:1} .ds-logo b{display:block;font:400 36px/1 \"Instrument Serif\",Georgia,serif;letter-spacing:-.01em} .ds-logo small{display:block;font:600 11px/1 \"Hanken Grotesk\",sans-serif;letter-spacing:.42em;margin:5px 0 0 .42em} .ds-wa{display:inline-flex;align-items:center;min-height:44px;padding:8px 18px;border-radius:3px;background:#1d4a3a;color:#fff;font:600 14.5px/1 \"Hanken Grotesk\",sans-serif;text-decoration:none;transition:background-color .2s} .ds-wa:hover{background:#143629} .ds-tabs{display:flex;justify-content:center;gap:22px;border-top:1px solid #e2dfd6;border-bottom:1px solid #e2dfd6} .ds-tabs a{position:relative;padding:14px 12px;color:#17201b;text-decoration:none;font-size:15.5px;font-weight:500;transition:color .2s} .ds-tabs a::after{content:\"\";position:absolute;left:12px;right:12px;bottom:0;height:2px;background:#1d4a3a;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)} .ds-tabs a:hover,.ds-tabs a[aria-current]{color:#1d4a3a} .ds-tabs a[aria-current]{font-weight:600} .ds-tabs a:hover::after,.ds-tabs a[aria-current]::after{transform:scaleX(1)}"
     },
     {
       "name": "Product Card",
       "kind": "card",
       "refersTo": "product-photo",
-      "description": "Square photo on the pale field, name, one line, price; no box.",
-      "html": "<a class=\"ds-p\" href=\"#\"><div class=\"ds-ph\"><span class=\"ds-tag\">Design picture</span></div><h3>Room Tray</h3><p class=\"ds-sh\">Acacia wood, made in any size</p><p class=\"ds-pr\">Prices on WhatsApp</p></a>",
-      "css": ".ds-p{display:block;width:220px;text-decoration:none;color:#181a24;font-family:\"Hanken Grotesk\",system-ui,sans-serif;}.ds-ph{position:relative;aspect-ratio:1/1;border-radius:4px;background:#f7f5f1;transition:background-color .6s cubic-bezier(.16,1,.3,1)}.ds-p:hover .ds-ph{background:#ece4d4}.ds-p:focus-visible{outline:2px solid #7d5a1c;outline-offset:3px}.ds-tag{position:absolute;left:10px;top:10px;background:#fff;color:#181a24;font-size:12.5px;font-weight:600;letter-spacing:.02em;padding:4px 8px;border-radius:2px}.ds-p h3{font-weight:600;font-size:17px;line-height:1.3;margin:14px 0 2px}.ds-sh{color:#545766;font-size:14.5px;line-height:1.35;margin:0}.ds-pr{font-weight:600;font-size:16.5px;margin:6px 0 0;font-variant-numeric:tabular-nums lining-nums}"
+      "description": "Square photo on stone with its picture label, sans name, moss-soft short line, green tabular price.",
+      "html": "<a class=\"ds-p\" href=\"#\"><div class=\"ds-ph\"><span class=\"ds-tag\">Design picture</span></div><h3>Red Chevron Tray</h3><p class=\"ds-sh\">Resin · 16 × 10 in, red and white zigzag</p><p class=\"ds-pr\">₹2,799</p></a>",
+      "css": ".ds-p{display:block;width:260px;text-decoration:none;color:#17201b;font-family:\"Hanken Grotesk\",system-ui,sans-serif} .ds-ph{position:relative;aspect-ratio:1/1;background:#f2efe9;border-radius:3px;overflow:hidden;transition:transform .16s cubic-bezier(.16,1,.3,1)} .ds-p:active .ds-ph{transform:scale(.98)} .ds-p:focus-visible{outline:2px solid #1d4a3a;outline-offset:3px} .ds-tag{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.94);color:#17201b;font:600 12.5px/1 \"Hanken Grotesk\",sans-serif;letter-spacing:.02em;padding:5px 7px;border-radius:2px} .ds-p h3{font:500 18px/1.3 \"Hanken Grotesk\",sans-serif;margin:16px 0 1px} .ds-sh{color:#56605a;font-size:15px;line-height:1.35;margin:0} .ds-pr{font-weight:600;font-size:18px;margin:5px 0 0;color:#1d4a3a;font-variant-numeric:tabular-nums lining-nums} .ds-p:hover h3{color:#1d4a3a}"
     },
     {
-      "name": "Site Header",
-      "kind": "nav",
-      "refersTo": "fact-bar",
-      "description": "Navy fact bar over the sticky translucent header with logo, nav and WhatsApp.",
-      "html": "<div class=\"ds-bar\"><span>Made in Sambhal since 2008</span><span>Bulk from 25 pieces</span></div><header class=\"ds-hd\"><a class=\"ds-mark\" href=\"#\"><b>Woodkari</b><small>SAMBHAL</small></a><nav class=\"ds-nav\"><a href=\"#\" aria-current=\"page\">Shop</a><a href=\"#\">Bulk orders</a></nav><a class=\"ds-hbtn\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z\"/></svg>WhatsApp</a></header>",
-      "css": ".ds-bar{background:#15214a;color:#efe6d2;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-size:13px;letter-spacing:.02em;text-align:center;padding:8px 12px}.ds-bar span+span::before{content:\"\";display:inline-block;width:3px;height:3px;border-radius:50%;background:#c9a25a;vertical-align:middle;margin:0 10px}.ds-hd{display:flex;align-items:center;gap:20px;height:64px;padding:0 16px;background:rgba(255,255,255,.88);border-bottom:1px solid #e5dfd3;font-family:\"Hanken Grotesk\",system-ui,sans-serif;}.ds-mark{margin-right:auto;text-decoration:none;color:#181a24}.ds-mark b{display:block;font:400 26px/1 \"Rozha One\",Georgia,serif}.ds-mark small{display:block;font-weight:600;font-size:11px;letter-spacing:.3em;color:#7d5a1c;margin-top:4px}.ds-nav{display:flex;gap:4px}.ds-nav a{color:#181a24;text-decoration:none;font-size:15.5px;font-weight:500;padding:10px 12px}.ds-nav a:hover,.ds-nav a[aria-current]{color:#7d5a1c}.ds-hbtn{display:inline-flex;align-items:center;gap:9px;min-height:42px;padding:8px 16px;border-radius:4px;background:#0f7a4c;color:#fff;font-weight:600;font-size:15px;text-decoration:none}.ds-hbtn:hover{background:#0b613c}"
-    },
-    {
-      "name": "Fact Ribbon",
+      "name": "Steps on the green band",
       "kind": "custom",
-      "refersTo": "royal-navy",
-      "description": "Navy band of shop facts drifting left on a 38s loop, gold diamonds between; pauses on hover.",
-      "html": "<div class=\"ds-ribbon\" aria-hidden=\"true\"><div class=\"ds-track\"><span>Made in Sambhal since 2008</span><span>Bulk orders from 25 pieces</span><span>Finished by hand</span><span>Made in Sambhal since 2008</span><span>Bulk orders from 25 pieces</span><span>Finished by hand</span></div></div>",
-      "css": ".ds-ribbon{background:#15214a;color:#efe6d2;overflow:hidden;white-space:nowrap;border-top:3px solid #c9a25a}.ds-track{display:inline-flex;padding:15px 0;animation:ds-slide 38s linear infinite}.ds-ribbon:hover .ds-track{animation-play-state:paused}.ds-ribbon span{font-family:\"Young Serif\",Georgia,serif;font-size:19px;line-height:1;padding:0 26px;display:inline-flex;align-items:center;gap:26px}.ds-ribbon span::after{content:\"\";width:6px;height:6px;transform:rotate(45deg);background:#c9a25a}@keyframes ds-slide{to{transform:translateX(-50%)}}@media(prefers-reduced-motion:reduce){.ds-track{animation:none}}"
+      "refersTo": "band-green",
+      "description": "Numbered steps on hairlines; serif numerals in soft gold on green (brass on light grounds).",
+      "html": "<div class=\"ds-band\"><h2>For hotels, shops and gifting.</h2><ol class=\"ds-steps\"><li><b>Send the piece and the number</b><span>On WhatsApp or by mail, with your city.</span></li><li><b>We send the price</b><span>A 50% advance starts the order.</span></li></ol></div>",
+      "css": ".ds-band{background:#1d4a3a;color:#e3ece6;padding:40px 28px;font:400 17px/1.6 \"Hanken Grotesk\",system-ui,sans-serif} .ds-band h2{font:400 48px/.98 \"Instrument Serif\",Georgia,serif;letter-spacing:-.022em;color:#fff;margin:0} .ds-steps{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.18);counter-reset:s} .ds-steps li{counter-increment:s;display:grid;grid-template-columns:46px 1fr;gap:0 8px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.18)} .ds-steps li::before{content:counter(s);grid-row:span 2;font:400 32px/1 \"Instrument Serif\",Georgia,serif;color:#d6b877} .ds-steps b{font-weight:600} .ds-steps span{color:#cfdcd3;font-size:16px}"
     },
     {
-      "name": "Numbered Steps",
+      "name": "Question row",
       "kind": "custom",
-      "refersTo": "antique-bronze",
-      "description": "Hairline rows led by serif counters; how an order works.",
-      "html": "<ol class=\"ds-steps\"><li><b>Send the piece and quantity</b><span>On WhatsApp or by mail.</span></li><li><b>Pay 50% advance</b><span>Making starts after it.</span></li></ol>",
-      "css": ".ds-steps{list-style:none;margin:0;padding:0;border-top:1px solid #e5dfd3;counter-reset:s;font-family:\"Hanken Grotesk\",system-ui,sans-serif;color:#181a24;max-width:420px}.ds-steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:0 8px;padding:18px 0;border-bottom:1px solid #e5dfd3}.ds-steps li::before{content:counter(s);grid-row:span 2;font-family:\"Young Serif\",Georgia,serif;font-size:26px;line-height:1.1;color:#7d5a1c}.ds-steps b{font-weight:600}.ds-steps span{color:#545766;font-size:16px}"
+      "description": "Serif question on a hairline with a plus that turns to a cross; answer in moss soft.",
+      "html": "<div class=\"ds-faq\"><details open><summary>What is the minimum for a bulk order?<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><path d=\"M12 5v14M5 12h14\"/></svg></summary><p>Trays and boxes: 25 pieces of one design.</p></details><details><summary>Who pays for delivery?<svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><path d=\"M12 5v14M5 12h14\"/></svg></summary><p>Delivery is at the buyer's cost.</p></details></div>",
+      "css": ".ds-faq{border-top:1px solid #e2dfd6;color:#17201b;max-width:560px} .ds-faq details{border-bottom:1px solid #e2dfd6} .ds-faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 0;cursor:pointer;list-style:none;font:400 25px/1.15 \"Instrument Serif\",Georgia,serif;transition:color .2s} .ds-faq summary::-webkit-details-marker{display:none} .ds-faq summary:hover{color:#1d4a3a} .ds-faq summary:focus-visible{outline:2px solid #1d4a3a;outline-offset:3px} .ds-faq summary:active{opacity:.6} .ds-faq svg{flex:none;transition:transform .3s cubic-bezier(.16,1,.3,1)} .ds-faq details[open] svg{transform:rotate(135deg)} .ds-faq p{margin:0;padding:0 44px 22px 0;color:#56605a;font:400 17px/1.6 \"Hanken Grotesk\",system-ui,sans-serif}"
     },
     {
-      "name": "Picture Tag",
-      "kind": "chip",
-      "refersTo": "picture-tag",
-      "description": "Required label on every picture that is not a real photo.",
-      "html": "<span class=\"ds-ptag\">Design picture</span>",
-      "css": ".ds-ptag{display:inline-block;background:#fff;color:#181a24;font-family:\"Hanken Grotesk\",system-ui,sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.02em;padding:4px 8px;border-radius:2px;box-shadow:inset 0 0 0 1px #e5dfd3}"
+      "name": "Ribbon",
+      "kind": "custom",
+      "description": "Stone strip of serif phrases in green with brass rotated-square marks; scrolls slowly with faded ends.",
+      "html": "<div class=\"ds-rib\"><div class=\"ds-track\"><span>Made in Sambhal since 2008</span><span>Trays and boxes in bulk from 25 pieces</span><span>Finished by hand</span><span>Made in Sambhal since 2008</span><span>Trays and boxes in bulk from 25 pieces</span><span>Finished by hand</span></div></div>",
+      "css": ".ds-rib{background:#f2efe9;color:#1d4a3a;overflow:hidden;white-space:nowrap;border-bottom:1px solid #e2dfd6;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)} .ds-track{display:inline-flex;padding:14px 0;animation:ds-slide 40s linear infinite} .ds-rib:hover .ds-track{animation-play-state:paused} .ds-track span{font:400 21px/1 \"Instrument Serif\",Georgia,serif;padding:0 24px;display:inline-flex;align-items:center;gap:24px} .ds-track span::after{content:\"\";width:6px;height:6px;transform:rotate(45deg);background:#8a6a2c} @keyframes ds-slide{to{transform:translateX(-50%)}} @media(prefers-reduced-motion:reduce){.ds-track{animation:none}}"
+    },
+    {
+      "name": "Floating WhatsApp button",
+      "kind": "button",
+      "refersTo": "whatsapp-fab",
+      "description": "56px green circle, bottom right on phones; steps aside where another WhatsApp button is on screen.",
+      "html": "<a class=\"ds-fab\" href=\"#\" aria-label=\"Chat on WhatsApp\"><svg viewBox=\"0 0 24 24\" width=\"27\" height=\"27\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Z\"/></svg></a>",
+      "css": ".ds-fab{width:56px;height:56px;border-radius:50%;background:#1d4a3a;color:#fff;display:grid;place-items:center;box-shadow:0 0 0 1.5px rgba(255,255,255,.5),0 10px 26px -6px rgba(12,40,28,.5);transition:transform .45s cubic-bezier(.16,1,.3,1),background-color .2s} .ds-fab:hover{background:#143629;transform:scale(1.06)} .ds-fab:active{transform:scale(.92);transition-duration:.16s} .ds-fab:focus-visible{outline:2px solid #1d4a3a;outline-offset:3px}"
     }
   ],
   "narrative": {
-    "northStar": "The Sambhal Showroom",
-    "overview": "**Creative North Star: \"The Sambhal Showroom\"**\n\nA calm, well-lit showroom for a real workshop: white walls, square photos of each piece, and a royal-navy shopfront with a thread of gold. The pieces lead; type and colour step back so the tray, its size and its price are read first. It sits in the category standard of Indian home-decor shops at the level of Nicobar and Ellementry, played straight, with the bulk offer never more than one tap away.\n\nDensity is generous on a phone first: one idea per section, 72px between sections, hairline rules instead of boxes, photography square and edge-to-edge in its frame. Royal navy carries the brand moments (the fact bar, the fact ribbon, the bulk band, the footer) and zari gold is its ornament, used only on navy. Everything clickable to buy is WhatsApp green. Motion is slow and soft: the hero crossfades between four photos, a single ribbon of shop facts drifts across the screen, sections rise into place once.\n\nThe build refuses the craft-fair page: no cream-on-cream with a giant serif, no icon-card grids, no testimonial props. Every picture that is not a real photo says so on its face.",
+    "northStar": "The Green Showroom",
+    "overview": "A large Indian decor shop's catalogue, made by a small workshop. The page is mostly white paper with greige stone bands; forest green is the one brand field, laid down in whole panels (the desktop hero panel, the bulk band, the footer) and in the small things a buyer acts on (buttons, prices, links, the focus ring). A light, high-contrast serif carries the voice at large sizes; a plain grotesk carries every size, price, fact and button. Pictures lead: every section is built around a square photo or a full-bleed slideshow, and every picture that is not a plain photo of a real piece wears a small white label saying so.\n\nDensity is calm and catalogue-like: two product columns on a phone, three on a desktop, generous section spacing (64px phone, 96px desktop), hairline rules instead of boxes. Motion is slow and physical, on a single long-tail ease: headings rise out of a slot, card pictures are uncovered by a stone curtain, the hero crossfades with a slow zoom-out, and a tapped product picture travels into its product page.\n\nThe owner rejected two earlier looks, navy with gold and walnut brown (\"blue achha nahi lag raha\", \"AI jaisi lag rahi hai\"); this green world replaced both. A paper-grain texture on the green fields was tried and removed in the 15 Nov review.",
     "keyCharacteristics": [
-      "White ground, warm stone bands, royal navy brand bands with a 3px gold top rule.",
-      "Young Serif for headings, Hanken Grotesk for everything a buyer reads to decide, Rozha One for the wordmark only.",
-      "Square product photos on one pale field, 4px corners, no card chrome.",
-      "WhatsApp green is the only buying colour.",
-      "Slow ease-out motion; all of it stops under reduced motion."
+      "White paper ground, greige stone bands, forest green as the single brand field.",
+      "Gold appears only on green; on white or stone the metal is brass.",
+      "Instrument Serif at display sizes only, always regular weight; Hanken Grotesk for everything a buyer reads to decide.",
+      "3px corners, hairline rules, flat surfaces; circles only for icon buttons and the WhatsApp button.",
+      "Square photos on a stone ground, every non-real picture labelled.",
+      "One ease (`cubic-bezier(.16,1,.3,1)`), press feedback on every tap, hover effects for mouse pointers only."
     ],
     "rules": [
       {
-        "name": "The Gold-On-Navy Rule",
-        "body": "Zari gold appears only on royal navy. On white it fails contrast and reads as decoration; on light grounds the accent is Antique Bronze.",
+        "name": "The Green Field Rule",
+        "body": "Forest green is laid down as a whole field or as the thing a buyer acts on. It is never a tint, a gradient wash or a decorative stripe; every price and every primary action is green, and nothing decorative is.",
         "section": "colors"
       },
       {
-        "name": "The One Green Rule",
-        "body": "WhatsApp green is the order button and the order button is WhatsApp green. No other element, state or illustration uses it.",
+        "name": "The Gold-on-Green Rule",
+        "body": "Soft gold appears only on a green surface. On white or stone the same role goes to brass. A gold element on white is a defect.",
         "section": "colors"
       },
       {
-        "name": "The Facts-In-Sans Rule",
-        "body": "Sizes, prices, minimums and materials are always set in Hanken Grotesk with tabular figures. The serif names things; it never carries a number a buyer must act on, except the ornamental step counters.",
+        "name": "The Serif Speaks, the Sans Sells Rule",
+        "body": "Instrument Serif carries headings, the wordmark, questions and the ribbon; anything with a number, a size, a price, a fact or a button is Hanken Grotesk. Product names are sans, because they sit with their price.",
         "section": "typography"
       },
       {
-        "name": "The Wordmark-Only Rule",
-        "body": "Rozha One is the logo. It never sets a headline.",
+        "name": "The Regular Serif Rule",
+        "body": "The serif is only ever weight 400. Emphasis comes from size and the slot-rise, never from bold or a faux weight.",
         "section": "typography"
       },
       {
-        "name": "The No-Lift Rule",
-        "body": "Cards, photos and buttons never take a shadow. Hover is a change of tone or a slow image zoom, not elevation.",
+        "name": "The Flat Catalogue Rule",
+        "body": "Cards, photos, bands and buttons have no shadow. Only what floats over the page (sticky header, floating button) is lifted.",
         "section": "elevation"
       }
     ],
     "dos": [
-      "**Do** use WhatsApp Green (#0f7a4c) for every WhatsApp action and only for those.",
-      "**Do** keep Zari Gold (#c9a25a) on Royal Navy (#15214a); use Antique Bronze (#7d5a1c) for links and accents on white or stone.",
-      "**Do** show each piece as a square photo on the Photo Field with 4px corners, and put a \"Design picture\" or \"Styled picture\" tag on every picture that is not a real photo.",
-      "**Do** set sizes, prices and minimums in Hanken Grotesk with tabular figures.",
-      "**Do** separate content with 1px hairline rules and tone bands, 72px between sections.",
-      "**Do** use the shared ease-out (cubic-bezier(.16,1,.3,1)) for every transition, and let reduced motion switch all motion off."
+      "Do lay forest green down as whole fields (hero panel, bulk band) and on every price and primary action.",
+      "Do put soft gold only on green and use brass for the same roles on white and stone.",
+      "Do set headings in Instrument Serif at weight 400, and sizes, prices, facts and buttons in Hanken Grotesk.",
+      "Do keep corners at 3px (2px for picture labels) and reserve circles for icon buttons and the WhatsApp button.",
+      "Do show products as square photos on the stone ground, and label every picture that is not a plain photo of a real piece.",
+      "Do separate content with 1px hairlines and space, and keep cards, photos and bands flat.",
+      "Do give every tappable thing a 160ms press response, keep hover effects behind a fine-pointer media query, and switch all motion off under reduced motion.",
+      "Do use the one ease, `cubic-bezier(.16,1,.3,1)`, for state changes and reveals."
     ],
     "donts": [
-      "**Don't** put gold text or gold rules on white or stone grounds.",
-      "**Don't** give cards, photos or buttons a shadow, or wrap products in bordered boxes.",
-      "**Don't** build grids of icon cards, testimonial blocks or client-logo strips.",
-      "**Don't** set a headline in Rozha One, or a number a buyer acts on in the serif.",
-      "**Don't** put a small uppercase label above a headline; tracked uppercase is for footer column heads only.",
-      "**Don't** add a second moving element beside the hero slideshow and the fact ribbon; sections rise once and then stay still."
+      "Don't bring back navy with gold, or walnut brown, as the site palette; the owner rejected both.",
+      "Don't put gold on a white or stone ground.",
+      "Don't set the serif in bold, or set prices and facts in the serif.",
+      "Don't use pill-shaped buttons; the header WhatsApp button was squared to 3px in the 15 Nov review.",
+      "Don't add drop shadows to cards, photos or bands.",
+      "Don't put a grain or noise texture on the green fields; it was removed in the 15 Nov review."
     ]
   }
 }

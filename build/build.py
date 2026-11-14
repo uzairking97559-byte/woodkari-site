@@ -49,9 +49,9 @@ PRODUCTS = [
                ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
          short="Poured resin · gold flakes, leaf handles", card=("gold-front", "gold-top"),
-         lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone metal leaf handles. Made for bulk orders only.",
+         lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone leaf handles. Made for bulk orders only.",
          uses="Serving trays for a hotel, a wedding or a company gift.",
-         facts=[("Top", "Poured resin with gold flakes"), ("Core", "MDF wood board"), ("Handles", "Gold-tone metal leaves"),
+         facts=[("Top", "Poured resin with gold flakes"), ("Core", "MDF wood board"), ("Handles", "Gold-tone leaves"),
                 ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only. Price on WhatsApp")],
          imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Design picture, made to order"),
                ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Design picture, made to order"),
@@ -84,14 +84,14 @@ PRODUCTS = [
                ("room-top", "Room tray seen from above on a white sheet", "Styled picture"),
                ("room-real1", "Room tray, plain photo from the front", "Our piece, plain photo"),
                ("room-real2", "Room tray, plain photo from the side", "Our piece, plain photo"),
-               ("room-real3", "Room tray, plain photo of the caddy", "Our piece, plain photo")])
+               ("room-real3", "Room tray, plain photo from another side", "Our piece, plain photo")])
 ]
 
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
 
 TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays with tea and snacks", "Design picture"),
          ("navy-use-600", "Tea for two", "Navy & Ivory Floral Tray", "navy-ivory-floral-tray.html", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture"),
-         ("t-gift", "For gifting", "Bulk, from 25 pieces", "bulk.html", "Black and gold resin tray with bowls of dry fruit", "Design picture"),
+         ("fluted-life", "For gifting", "Box trays, bulk from 25", "bulk.html", "Fluted acacia box tray with keys, coins and sunglasses on a hall table", "Styled picture"),
          ("t-room", "In the guest room", "Room Tray", "room-tray.html", "Room tray on a bedside table with a kettle", "Styled picture")]
 
 SLIDES = [("navy-use", "navy-ivory-floral-tray"), ("bw-use", "black-white-floral-tray-set"),
@@ -412,9 +412,9 @@ var f=new URLSearchParams(location.search).get('f');if(f)wkFilter(f);
 ORG_LD = json.dumps([
     {"@context": "https://schema.org", "@type": "WebSite", "name": "Woodkari", "alternateName": "Woodkari Exports", "url": SITE + "/"},
     {"@context": "https://schema.org", "@type": "Organization", "name": "Woodkari Exports", "alternateName": "Woodkari",
-     "url": SITE + "/", "logo": SITE + "/icon-512.png", "email": EMAIL, "foundingDate": "2008",
+     "url": SITE + "/", "logo": SITE + "/icon-512.png", "email": EMAIL,
      "address": {"@type": "PostalAddress", "addressLocality": "Sambhal", "addressRegion": "Uttar Pradesh", "addressCountry": "IN"},
-     "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "telephone": "+" + WHATSAPP, "availableLanguage": ["en", "hi"]}}])
+     "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "telephone": "+" + WHATSAPP}}])
 
 
 def head(title, desc, path, image):
@@ -507,7 +507,7 @@ def page_home():
     dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral",""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in Sambhal since 2008", "Bulk orders from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
-    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want the bulk price of: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask the bulk price</i></a>' for k, n in DESIGNS)
+    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
     bulk_msg = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
     return head("Woodkari: wooden trays and boxes from Sambhal, in bulk and single pieces",
                 "Acacia wood and resin trays and boxes from Sambhal, Uttar Pradesh, making since 2008. Bulk orders from 25 pieces, a name or logo by laser from 50, and single pieces on WhatsApp.",
@@ -517,7 +517,7 @@ def page_home():
 <section class="hero"><div class="hgrid">
 <div class="txt">
 <h1 class="rise d1">Trays and boxes, made in Sambhal.</h1>
-<p class="rise d2">Making since 2008. Most of our orders are bulk, from 25 pieces of a design. Single pieces too, on WhatsApp.</p>
+<p class="rise d2">Making since 2008. Most of our orders are bulk; trays and boxes from 25 pieces of a design. Single pieces too, on WhatsApp.</p>
 <div class="row rise d3"><a class="btn wa" href="{e(wa(bulk_msg))}">{WA_ICON}Bulk order on WhatsApp</a><a class="btn line" href="#shop">Shop the pieces</a></div>
 <div class="dots rise d4" role="group" aria-label="Pictures">{dots}</div>
 </div>
@@ -539,14 +539,14 @@ def page_home():
 </div></section>
 
 <section class="dark" id="bulk"><div class="wrap split rv">
-<div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/room-life.webp" alt="Acacia room tray with a kettle and two cups on a bedside table" width="1200" height="1200" loading="lazy"></div>
+<div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/room-life.webp" alt="Acacia room tray on a desk by a window, with a kettle and two cups" width="1200" height="1200" loading="lazy"></div>
 <div>
 <h2>Bulk orders, from 25 pieces.</h2>
-<p class="lead">Bulk is most of our work. Hotels, gifting companies, shops and importers can order any piece from 25 of a design, and the acacia pieces in any size.</p>
+<p class="lead">Bulk is most of our work. Hotels, gifting companies, shops and importers can order our trays and boxes from 25 pieces of a design, and the acacia pieces in any size.</p>
 <ol class="steps">
 <li><b>Send the piece and the number</b><span>On WhatsApp or by mail, with your city.</span></li>
 <li><b>We send the price</b><span>A 50% advance starts the order.</span></li>
-<li><b>Made and sent</b><span>About 10 to 15 days for 100 pieces. Delivery is at your cost, quoted before it leaves.</span></li>
+<li><b>Made and sent</b><span>Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time. Delivery is at your cost, quoted before it leaves.</span></li>
 </ol>
 <div class="row"><a class="btn wa" href="{e(wa(bulk_msg))}">{WA_ICON}Ask for a bulk price</a><a class="btn line" href="bulk.html">Bulk orders in detail</a></div>
 </div>
@@ -562,14 +562,14 @@ def page_home():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are for bulk orders only; tell us the piece and the quantity on WhatsApp.</p></div></div>
+<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are for bulk orders only, in larger lots; tell us the piece and the quantity on WhatsApp.</p></div></div>
 <div class="dz">{dz}</div>
 </div></section>
 
 <section class="stone" id="workshop"><div class="wrap split rv">
 <div>
 <h2>The workshop</h2>
-<p class="lead">Woodkari is a workshop in Sambhal, Uttar Pradesh, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish every piece by hand. Our resin trays are made with other makers in Sambhal.</p>
+<p class="lead">Woodkari is a workshop in Sambhal, Uttar Pradesh, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish our wooden pieces by hand. Our resin trays are made with other makers in Sambhal.</p>
 </div>
 <ul class="facts">
 <li><b>Since</b><span>2008</span></li>
@@ -584,8 +584,7 @@ def page_home():
 <div><h2>Buying one piece</h2><p class="lead">Every piece with a price can be ordered on its own, on WhatsApp.</p></div>
 <ol class="steps" style="margin-top:0">
 <li><b>Message us on WhatsApp</b><span>Tap "Order on WhatsApp" on any piece and tell us your city and PIN code.</span></li>
-<li><b>We confirm</b><span>We tell you the delivery charge and the day it will be sent.</span></li>
-<li><b>We pack and send it</b><span>Once you agree, the piece goes out to you.</span></li>
+<li><b>We confirm on WhatsApp</b><span>The delivery charge, the time, and how to pay.</span></li>
 </ol>
 </div></section>
 
@@ -605,7 +604,7 @@ def page_home():
 def page_product(p):
     if p.get("bulk_only"):
         msg = f"Hello Woodkari, I want the bulk price of: {p['name']}.\nQuantity:\nCity: "
-        btn = "Ask the bulk price"
+        btn = "Ask on WhatsApp"
         stick_l = "Bulk only"
     else:
         msg = f"Hello Woodkari, I want to order: {p['name']} ({rupee(p['price'])}).\nMy city and PIN code: "
@@ -660,14 +659,14 @@ def page_product(p):
 def page_bulk():
     msg = "Hello Woodkari, I want a bulk price.\nCompany:\nPiece and quantity:\nCity: "
     return head("Bulk and hotel orders | Woodkari, Sambhal",
-                "Wooden trays, boxes and resin pieces made in Sambhal from 25 pieces of a design: for hotels, gifting companies, shops and importers.",
+                "Wooden trays and boxes and resin pieces made in Sambhal, in bulk: for hotels, gifting companies, shops and importers.",
                 "bulk.html", "room-front.jpg") + f"""<body>
 {header('bulk')}
 <main id="main">
 <section><div class="wrap bh">
 <div>
 <h1>Bulk orders, from 25 pieces.</h1>
-<p>Bulk is most of our work. We have made these pieces in Sambhal since 2008. For hotels, gifting companies, shops and importers: tell us the piece and the number, and we send the price on WhatsApp.</p>
+<p>Bulk is most of our work. We have done this work in Sambhal since 2008. For hotels, gifting companies, shops and importers: tell us the piece and the number, and we send the price on WhatsApp.</p>
 <div class="row"><a class="btn wa" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20order">{MAIL}Email us</a></div>
 </div>
 <div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744"></div>
@@ -687,10 +686,10 @@ def page_bulk():
 <div>
 <h2>Terms</h2>
 <ul class="facts" style="margin-top:24px">
-<li><b>Minimum</b><span>25 pieces of one design</span></li>
+<li><b>Minimum</b><span>Trays and boxes: 25 pieces of one design. Small pieces and the gold-flake tray: larger lots, ask us</span></li>
 <li><b>Size</b><span>Acacia pieces in any size</span></li>
 <li><b>Name or logo</b><span>By laser, from 50 pieces of one design</span></li>
-<li><b>Making time</b><span>About 10 to 15 days for 100 pieces</span></li>
+<li><b>Making time</b><span>Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you</span></li>
 <li><b>Payment</b><span>50% advance to start the order</span></li>
 <li><b>Delivery</b><span>At the buyer's cost, quoted before dispatch</span></li>
 </ul>
@@ -700,7 +699,7 @@ def page_bulk():
 <ol class="steps">
 <li><b>Send the piece and the number</b><span>On WhatsApp or by mail, with your city.</span></li>
 <li><b>We send the price</b><span>A 50% advance starts the order.</span></li>
-<li><b>Made and sent</b><span>About 10 to 15 days for 100 pieces.</span></li>
+<li><b>Made and sent</b><span>Wooden pieces: about 10 to 15 days for 100.</span></li>
 </ol>
 <div class="row"><a class="btn wa" href="{e(wa(msg))}">{WA_ICON}Ask for a bulk price</a></div>
 </div>

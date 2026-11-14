@@ -64,25 +64,53 @@ html{scrollbar-color:#c9bfb2 transparent;scrollbar-width:thin}
 .lnk:hover{color:var(--wood);border-color:var(--wood)}
 
 /* hero */
-.hero{position:relative;background:var(--stone)}
-@media(max-width:899px){.hero .txt{background:var(--stone)}}
-.hero picture{display:block;overflow:hidden;position:relative}
+.hero{background:var(--stone);overflow:hidden}
 .hero .tag,.split .tag,.bh .tag,.tile .tag{position:absolute;z-index:2;background:#fff;color:var(--ink);font:600 12px/1 var(--sans);padding:5px 8px;border-radius:2px}
-.hero .tag{right:12px;top:12px}
 .fig{position:relative}.fig .tag{left:10px;top:10px}
 .tile .tag{left:10px;top:10px}
-.hero img{width:100%;aspect-ratio:1/1;object-fit:cover;animation:settle 1.4s var(--ease) both}
-@keyframes settle{from{transform:scale(1.045)}to{transform:none}}
-.hero .txt{padding:26px 0 34px;background:var(--bg)}
-.hero h1{font-size:clamp(36px,9.4vw,72px);max-width:11.5em}
-.hero p{margin:14px 0 0;color:var(--soft);font-size:18px;max-width:31em}
+.hgrid{display:flex;flex-direction:column-reverse;padding:0}
+.show{position:relative;aspect-ratio:1/1;overflow:hidden;background:#d9cbb9}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s var(--ease),visibility 0s 1.1s;color:#fff;text-decoration:none}
+.slide.on{opacity:1;visibility:visible;transition:opacity 1.1s var(--ease),visibility 0s}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 7s linear}
+.slide.on img{transform:scale(1)}
+.slide .tag{right:12px;top:12px}
+.slide .nm{position:absolute;left:0;right:0;bottom:0;padding:56px 16px 16px;background:linear-gradient(to top,rgba(20,10,5,.66),rgba(20,10,5,0));font:500 15px/1.3 var(--sans);display:flex;justify-content:space-between;gap:12px;align-items:end}
+.slide .nm b{font:400 21px/1.15 var(--serif)}
+.hero .txt{padding:28px 16px 36px}
+.hero h1{font-size:clamp(38px,9.6vw,74px);max-width:10.5em;letter-spacing:-.015em}
+.hero p{margin:16px 0 0;color:var(--soft);font-size:18px;max-width:30em}
+.dots{display:flex;gap:6px;margin-top:28px}
+.dot{flex:1;max-width:120px;height:32px;padding:0;border:0;background:none;cursor:pointer;position:relative;text-align:left;font:500 12.5px/1 var(--sans);color:var(--soft)}
+.dot::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#d6c7b4}
+.dot::after{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:var(--dk)}
+.dot span{position:absolute;left:0;top:10px;white-space:nowrap}
+.dot[aria-current=true]{color:var(--ink)}
+.dot[aria-current=true]::after{animation:fill var(--dur,5.5s) linear forwards}
+.paused .dot[aria-current=true]::after{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+.rise{animation:rise .9s var(--ease) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.3s}.rise.d4{animation-delay:.42s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @media(min-width:900px){
- .hero img{aspect-ratio:auto;height:min(76vh,760px);min-height:520px}
- .hero .txt{position:absolute;left:0;right:0;bottom:0;padding:120px 0 56px;background:linear-gradient(to top,rgba(18,12,8,.74) 0%,rgba(18,12,8,.46) 46%,rgba(18,12,8,0) 100%);color:#fff}
- .hero h1{color:#fff}
- .hero p{color:#efe8de}
+ .hgrid{flex-direction:row;align-items:stretch;max-width:none;padding:0}
+ .hero .txt{flex:1 1 46%;display:flex;flex-direction:column;justify-content:center;padding:64px 56px 64px max(32px,calc((100vw - 1240px)/2 + 32px))}
+ .show{flex:0 0 54%;aspect-ratio:auto;height:min(calc(100vh - 150px),760px);min-height:540px}
+ .dot span{display:block}
 }
-@media(max-width:899px){.hero .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}}
+@media(max-width:899px){.dot span{display:none}.dots{margin-top:22px}}
+/* fact ribbon */
+.ribbon{background:var(--dk);color:#f3e6d8;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08)}
+.ribbon .track{display:inline-flex;gap:0;padding:15px 0;animation:slide 38s linear infinite}
+.ribbon:hover .track{animation-play-state:paused}
+.ribbon span{font:400 19px/1 var(--serif);padding:0 26px;display:inline-flex;align-items:center;gap:26px}
+.ribbon span::after{content:"";width:6px;height:6px;border-radius:50%;background:#c98a63}
+@keyframes slide{to{transform:translateX(-50%)}}
+/* scroll reveal: visible by default, animated only when JS marks it */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.p .ph img:first-of-type,.p .ph img{transition:opacity .6s var(--ease),transform .9s var(--ease)}
+.p:hover .ph img{transform:scale(1.03)}
 
 /* section rhythm */
 .sec{padding:72px 0 0}

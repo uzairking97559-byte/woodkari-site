@@ -20,6 +20,42 @@ EMAIL = "sales@woodkariexports.com"
 
 # imgs: (file key, alt, caption). card: (studio key, in-use key) for the shop grid.
 PRODUCTS = [
+    dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=1999, mto=True,
+         short="Resin · 14 × 8 in, cut-out handles", card=("navy-front", "navy-top"),
+         lede="An ivory tray with a navy floral pattern filled in resin, and a handle cut into each side.",
+         uses="Tea for two, or a tray for the dressing table.",
+         facts=[("Size", "14 × 8 inches (36 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
+                ("Made in", "Sambhal, Uttar Pradesh")],
+         imgs=[("navy-front", "Ivory tray with a navy floral pattern on a wooden table", "Design picture, made to order"),
+               ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture, made to order"),
+               ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Design picture, made to order")]),
+    dict(slug="black-white-floral-tray-set", name="Black & White Floral Tray Set", cat="resin", price=6999, unit="set of 2", mto=True,
+         short="Resin · one round, one rectangular", card=("bw-front", "bw-top"),
+         lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, filled in resin.",
+         uses="A pair for the dining table or the living room.",
+         facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round tray: size on request"), ("Top", "Pattern filled in resin"),
+                ("Core", "MDF wood board"), ("Made in", "Sambhal, Uttar Pradesh")],
+         imgs=[("bw-front", "Round and rectangular black and white floral trays on a wooden table", "Design picture, made to order"),
+               ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Design picture, made to order"),
+               ("bw-top", "Black and white floral trays side by side, seen from above", "Design picture, made to order")]),
+    dict(slug="red-chevron-tray", name="Red Chevron Tray", cat="resin", price=2799, mto=True,
+         short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-front", "chevron-top"),
+         lede="A white-framed rectangular tray with a red and white chevron pattern filled in resin.",
+         uses="Breakfast in bed, or a bright tray for the kitchen counter.",
+         facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
+                ("Made in", "Sambhal, Uttar Pradesh")],
+         imgs=[("chevron-front", "White-framed tray with a red and white chevron pattern on a wooden table", "Design picture, made to order"),
+               ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Design picture, made to order"),
+               ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order")]),
+    dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
+         short="Poured resin · gold flakes, leaf handles", card=("gold-front", "gold-top"),
+         lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone metal leaf handles. Made for bulk orders only.",
+         uses="Serving trays for a hotel, a wedding or a company gift.",
+         facts=[("Top", "Poured resin with gold flakes"), ("Core", "MDF wood board"), ("Handles", "Gold-tone metal leaves"),
+                ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only. Price on WhatsApp")],
+         imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Design picture, made to order"),
+               ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Design picture, made to order"),
+               ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="fluted-box-tray", name="Fluted Box Tray", cat="wood", price=1299,
          short="Acacia · 11.5 × 7 × 3 in", card=("fluted-life2", "fluted-studio"),
          lede="An open box tray in acacia wood. The sides are cut into upright flutes and the rim is scalloped, then the piece is finished by hand to a warm walnut tone.",
@@ -48,51 +84,18 @@ PRODUCTS = [
                ("room-top", "Room tray seen from above on a white sheet", "Styled picture"),
                ("room-real1", "Room tray, plain photo from the front", "Our piece, plain photo"),
                ("room-real2", "Room tray, plain photo from the side", "Our piece, plain photo"),
-               ("room-real3", "Room tray, plain photo of the caddy", "Our piece, plain photo")]),
-    dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=1999, mto=True,
-         short="Resin · 14 × 8 in, cut-out handles", card=("navy-front", "navy-top"),
-         lede="An ivory tray with a navy floral pattern filled in resin, and a handle cut into each side.",
-         uses="Tea for two, or a tray for the dressing table.",
-         facts=[("Size", "14 × 8 inches (36 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
-                ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("navy-front", "Ivory tray with a navy floral pattern on a wooden table", "Design picture, made to order"),
-               ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture, made to order"),
-               ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Design picture, made to order")]),
-    dict(slug="red-chevron-tray", name="Red Chevron Tray", cat="resin", price=2799, mto=True,
-         short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-front", "chevron-top"),
-         lede="A white-framed rectangular tray with a red and white chevron pattern filled in resin.",
-         uses="Breakfast in bed, or a bright tray for the kitchen counter.",
-         facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
-                ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("chevron-front", "White-framed tray with a red and white chevron pattern on a wooden table", "Design picture, made to order"),
-               ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Design picture, made to order"),
-               ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order")]),
-    dict(slug="black-white-floral-tray-set", name="Black & White Floral Tray Set", cat="resin", price=6999, unit="set of 2", mto=True,
-         short="Resin · one round, one rectangular", card=("bw-front", "bw-top"),
-         lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, filled in resin.",
-         uses="A pair for the dining table or the living room.",
-         facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round tray: size on request"), ("Top", "Pattern filled in resin"),
-                ("Core", "MDF wood board"), ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("bw-front", "Round and rectangular black and white floral trays on a wooden table", "Design picture, made to order"),
-               ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Design picture, made to order"),
-               ("bw-top", "Black and white floral trays side by side, seen from above", "Design picture, made to order")]),
-    dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
-         short="Poured resin · gold flakes, leaf handles", card=("gold-front", "gold-top"),
-         lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone metal leaf handles. Made for bulk orders only.",
-         uses="Serving trays for a hotel, a wedding or a company gift.",
-         facts=[("Top", "Poured resin with gold flakes"), ("Core", "MDF wood board"), ("Handles", "Gold-tone metal leaves"),
-                ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only. Price on WhatsApp")],
-         imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Design picture, made to order"),
-               ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Design picture, made to order"),
-               ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Design picture, made to order")]),
+               ("room-real3", "Room tray, plain photo of the caddy", "Our piece, plain photo")])
 ]
 
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
 
-TILES = [("t-door", "By the door", "Fluted Box Tray", "fluted-box-tray.html", "Fluted box tray on the floor by a door, holding keys and a wallet"),
-         ("t-room", "In the guest room", "Room Tray", "room-tray.html", "Room tray on a bedside table with a kettle"),
-         ("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays with tea and snacks"),
-         ("t-gift", "For gifting", "Bulk, from 25 pieces", "bulk.html", "Black and gold resin tray with bowls of dry fruit")]
+TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays with tea and snacks", "Design picture"),
+         ("navy-use-600", "Tea for two", "Navy & Ivory Floral Tray", "navy-ivory-floral-tray.html", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture"),
+         ("t-gift", "For gifting", "Bulk, from 25 pieces", "bulk.html", "Black and gold resin tray with bowls of dry fruit", "Design picture"),
+         ("t-room", "In the guest room", "Room Tray", "room-tray.html", "Room tray on a bedside table with a kettle", "Styled picture")]
+
+SLIDES = [("navy-use", "navy-ivory-floral-tray"), ("bw-use", "black-white-floral-tray-set"),
+          ("gold-use", "gold-flake-resin-tray"), ("chevron-use", "red-chevron-tray")]
 
 DESIGNS = [("d2-coaster", "Resin coaster set"), ("d2-tissue", "Resin tissue box"), ("d2-roundbox", "Round box with resin lid"),
            ("d2-board", "Serving board"), ("d2-cutlery", "Cutlery and napkin stand"), ("d2-trivet", "Resin trivets")]
@@ -190,25 +193,53 @@ html{scrollbar-color:#c9bfb2 transparent;scrollbar-width:thin}
 .lnk:hover{color:var(--wood);border-color:var(--wood)}
 
 /* hero */
-.hero{position:relative;background:var(--stone)}
-@media(max-width:899px){.hero .txt{background:var(--stone)}}
-.hero picture{display:block;overflow:hidden;position:relative}
+.hero{background:var(--stone);overflow:hidden}
 .hero .tag,.split .tag,.bh .tag,.tile .tag{position:absolute;z-index:2;background:#fff;color:var(--ink);font:600 12px/1 var(--sans);padding:5px 8px;border-radius:2px}
-.hero .tag{right:12px;top:12px}
 .fig{position:relative}.fig .tag{left:10px;top:10px}
 .tile .tag{left:10px;top:10px}
-.hero img{width:100%;aspect-ratio:1/1;object-fit:cover;animation:settle 1.4s var(--ease) both}
-@keyframes settle{from{transform:scale(1.045)}to{transform:none}}
-.hero .txt{padding:26px 0 34px;background:var(--bg)}
-.hero h1{font-size:clamp(36px,9.4vw,72px);max-width:11.5em}
-.hero p{margin:14px 0 0;color:var(--soft);font-size:18px;max-width:31em}
+.hgrid{display:flex;flex-direction:column-reverse;padding:0}
+.show{position:relative;aspect-ratio:1/1;overflow:hidden;background:#d9cbb9}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s var(--ease),visibility 0s 1.1s;color:#fff;text-decoration:none}
+.slide.on{opacity:1;visibility:visible;transition:opacity 1.1s var(--ease),visibility 0s}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 7s linear}
+.slide.on img{transform:scale(1)}
+.slide .tag{right:12px;top:12px}
+.slide .nm{position:absolute;left:0;right:0;bottom:0;padding:56px 16px 16px;background:linear-gradient(to top,rgba(20,10,5,.66),rgba(20,10,5,0));font:500 15px/1.3 var(--sans);display:flex;justify-content:space-between;gap:12px;align-items:end}
+.slide .nm b{font:400 21px/1.15 var(--serif)}
+.hero .txt{padding:28px 16px 36px}
+.hero h1{font-size:clamp(38px,9.6vw,74px);max-width:10.5em;letter-spacing:-.015em}
+.hero p{margin:16px 0 0;color:var(--soft);font-size:18px;max-width:30em}
+.dots{display:flex;gap:6px;margin-top:28px}
+.dot{flex:1;max-width:120px;height:32px;padding:0;border:0;background:none;cursor:pointer;position:relative;text-align:left;font:500 12.5px/1 var(--sans);color:var(--soft)}
+.dot::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#d6c7b4}
+.dot::after{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:var(--dk)}
+.dot span{position:absolute;left:0;top:10px;white-space:nowrap}
+.dot[aria-current=true]{color:var(--ink)}
+.dot[aria-current=true]::after{animation:fill var(--dur,5.5s) linear forwards}
+.paused .dot[aria-current=true]::after{animation-play-state:paused}
+@keyframes fill{to{width:100%}}
+.rise{animation:rise .9s var(--ease) both}
+.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.3s}.rise.d4{animation-delay:.42s}
+@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @media(min-width:900px){
- .hero img{aspect-ratio:auto;height:min(76vh,760px);min-height:520px}
- .hero .txt{position:absolute;left:0;right:0;bottom:0;padding:120px 0 56px;background:linear-gradient(to top,rgba(18,12,8,.74) 0%,rgba(18,12,8,.46) 46%,rgba(18,12,8,0) 100%);color:#fff}
- .hero h1{color:#fff}
- .hero p{color:#efe8de}
+ .hgrid{flex-direction:row;align-items:stretch;max-width:none;padding:0}
+ .hero .txt{flex:1 1 46%;display:flex;flex-direction:column;justify-content:center;padding:64px 56px 64px max(32px,calc((100vw - 1240px)/2 + 32px))}
+ .show{flex:0 0 54%;aspect-ratio:auto;height:min(calc(100vh - 150px),760px);min-height:540px}
+ .dot span{display:block}
 }
-@media(max-width:899px){.hero .btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}}
+@media(max-width:899px){.dot span{display:none}.dots{margin-top:22px}}
+/* fact ribbon */
+.ribbon{background:var(--dk);color:#f3e6d8;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08)}
+.ribbon .track{display:inline-flex;gap:0;padding:15px 0;animation:slide 38s linear infinite}
+.ribbon:hover .track{animation-play-state:paused}
+.ribbon span{font:400 19px/1 var(--serif);padding:0 26px;display:inline-flex;align-items:center;gap:26px}
+.ribbon span::after{content:"";width:6px;height:6px;border-radius:50%;background:#c98a63}
+@keyframes slide{to{transform:translateX(-50%)}}
+/* scroll reveal: visible by default, animated only when JS marks it */
+.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+.p .ph img:first-of-type,.p .ph img{transition:opacity .6s var(--ease),transform .9s var(--ease)}
+.p:hover .ph img{transform:scale(1.03)}
 
 /* section rhythm */
 .sec{padding:72px 0 0}
@@ -355,6 +386,26 @@ function wkFilter(k){
 }
 document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){wkFilter(c.dataset.cat)})});
 var f=new URLSearchParams(location.search).get('f');if(f)wkFilter(f);
+(function(){
+  var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rv=document.querySelectorAll('.rv');
+  if(rm||!('IntersectionObserver' in window)){rv.forEach(function(x){x.classList.add('in')});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var t=en.target,d=0;
+      if(t.classList.contains('p')||t.classList.contains('tile')){d=(Array.prototype.indexOf.call(t.parentNode.children,t)%3)*90}
+      setTimeout(function(){t.classList.add('in')},d);io.unobserve(t)}})},{rootMargin:'0px 0px -8% 0px'});
+    rv.forEach(function(x){io.observe(x)});}
+  var sl=document.querySelectorAll('.slide'),dt=document.querySelectorAll('.dot'),hero=document.querySelector('.hero');
+  if(!sl.length)return;var cur=0,tm=null,DUR=5500;
+  function go(n){sl[cur].classList.remove('on');dt[cur].removeAttribute('aria-current');cur=(n+sl.length)%sl.length;
+    sl[cur].classList.add('on');var d=dt[cur];d.setAttribute('aria-current','true');d.style.animation='none';d.offsetWidth;d.style.animation='';}
+  function play(){if(rm)return;clearInterval(tm);tm=setInterval(function(){go(cur+1)},DUR);hero.classList.remove('paused')}
+  function stop(){clearInterval(tm);hero.classList.add('paused')}
+  dt.forEach(function(d){d.addEventListener('click',function(){go(+d.dataset.i);play()})});
+  var show=document.querySelector('.show');show.addEventListener('mouseenter',stop);show.addEventListener('mouseleave',play);
+  show.addEventListener('focusin',stop);show.addEventListener('focusout',play);
+  document.addEventListener('visibilitychange',function(){document.hidden?stop():play()});
+  if(rm)hero.classList.add('paused');play();
+})();
 """
 
 ORG_LD = json.dumps([
@@ -389,6 +440,7 @@ def head(title, desc, path, image):
 <link rel="icon" type="image/png" sizes="96x96" href="{UP}icon-96.png">
 <link rel="apple-touch-icon" href="{UP}apple-touch-icon.png">
 <link rel="stylesheet" href="site.css">
+<script>document.documentElement.className+=" js"</script>
 </head>
 """
 
@@ -438,7 +490,7 @@ def card(p):
     a, b = p["card"]
     alt = p["imgs"][0][1]
     tag = '<span class="tag">' + ("Design picture" if p.get("mto") else "Styled picture") + '</span>'
-    return f"""<a class="p" data-cat="{p['cat']}" data-price="{p['price'] or 0}" href="{p['slug']}.html">
+    return f"""<a class="p rv" data-cat="{p['cat']}" data-price="{p['price'] or 0}" href="{p['slug']}.html">
 <div class="ph">{tag}<img src="{UP}img/{a}-600.webp" alt="{e(alt)}" width="600" height="600" loading="lazy"><img class="u" src="{UP}img/{b}-600.webp" alt="" width="600" height="600" loading="lazy"></div>
 <h3>{e(p['name'])}</h3><p class="sh">{e(p['short'])}</p>{price_html(p)}</a>"""
 
@@ -446,7 +498,14 @@ def card(p):
 def page_home():
     chips = "".join(f'<button class="chip" type="button" data-cat="{k}" aria-pressed="{"true" if k=="all" else "false"}">{e(v)}</button>' for k, v in CATS)
     cards = "\n".join(card(p) for p in PRODUCTS)
-    tiles = "".join(f'<a class="tile" href="{h}"><span class="tag">Styled picture</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt in TILES)
+    tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
+    byslug = {q["slug"]: q for q in PRODUCTS}
+    slides = "".join(
+        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html" data-i="{i}"><img src="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1] if k.endswith("-use") else byslug[sl]["imgs"][0][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " loading=lazy"}><span class="tag">Design picture</span><span class="nm"><b>{e(byslug[sl]["name"])}</b><span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+        for i, (k, sl) in enumerate(SLIDES))
+    dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral",""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
+    ribbon_items = ["Made in Sambhal since 2008", "Bulk orders from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
+    ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
     dz = "".join(f'<a href="{e(wa("Hello Woodkari, I want the bulk price of: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask the bulk price</i></a>' for k, n in DESIGNS)
     bulk_msg = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
     return head("Woodkari: wooden trays and boxes from Sambhal, in bulk and single pieces",
@@ -454,29 +513,31 @@ def page_home():
                 "", "fluted-front.jpg") + f"""<body>
 {header('home')}
 <main id="main">
-<section class="hero">
-<span class="tag">Styled picture</span><picture><source media="(min-width:900px)" srcset="{UP}img/hero-w.webp"><img src="{UP}img/fluted-life.webp" alt="A fluted acacia box tray with keys, coins and sunglasses on a hall table" width="1200" height="1200" fetchpriority="high"></picture>
-<div class="txt"><div class="wrap">
-<h1>Wooden trays and boxes, made in Sambhal.</h1>
-<p>From our workshop in Sambhal, making since 2008. Most of our orders are bulk, from 25 pieces of a design. Single pieces too.</p>
-<div class="row"><a class="btn wa" href="{e(wa(bulk_msg))}">{WA_ICON}Bulk order on WhatsApp</a><a class="btn ghost" href="#shop">Shop the pieces</a></div>
-</div></div>
-</section>
+<section class="hero"><div class="hgrid">
+<div class="txt">
+<h1 class="rise d1">Trays and boxes, made in Sambhal.</h1>
+<p class="rise d2">Making since 2008. Most of our orders are bulk, from 25 pieces of a design. Single pieces too, on WhatsApp.</p>
+<div class="row rise d3"><a class="btn wa" href="{e(wa(bulk_msg))}">{WA_ICON}Bulk order on WhatsApp</a><a class="btn line" href="#shop">Shop the pieces</a></div>
+<div class="dots rise d4" role="group" aria-label="Pictures">{dots}</div>
+</div>
+<div class="show">{slides}</div>
+</div></section>
+<div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
 <section class="sec"><div class="wrap">
-<div class="hdr"><div><h2>Where they go</h2></div></div>
+<div class="hdr rv"><div><h2>Where they go</h2></div></div>
 <div class="tiles">{tiles}</div>
 </div></section>
 
 <section class="sec" id="shop"><div class="wrap">
-<div class="hdr"><div><h2>The pieces</h2><p>Acacia wood from our workshop, and resin trays made to order in Sambhal. Prices are for one piece; delivery is extra.</p></div></div>
+<div class="hdr rv"><div><h2>The pieces</h2><p>Acacia wood from our workshop, and resin trays made to order in Sambhal. Prices are for one piece; delivery is extra.</p></div></div>
 <div class="chips" role="group" aria-label="Filter the pieces">{chips}</div>
 <div class="grid">
 {cards}
 </div>
 </div></section>
 
-<section class="dark" id="bulk"><div class="wrap split">
+<section class="dark" id="bulk"><div class="wrap split rv">
 <div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/room-life.webp" alt="Acacia room tray with a kettle and two cups on a bedside table" width="1200" height="1200" loading="lazy"></div>
 <div>
 <h2>Bulk orders, from 25 pieces.</h2>
@@ -490,7 +551,7 @@ def page_home():
 </div>
 </div></section>
 
-<section class="sec" id="engraving"><div class="wrap split rev">
+<section class="sec" id="engraving"><div class="wrap split rev rv">
 <div class="fig"><span class="tag">Design picture</span><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"></div>
 <div>
 <h2>Your name or logo, by laser.</h2>
@@ -500,11 +561,11 @@ def page_home():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are for bulk orders only; tell us the piece and the quantity on WhatsApp.</p></div></div>
+<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are for bulk orders only; tell us the piece and the quantity on WhatsApp.</p></div></div>
 <div class="dz">{dz}</div>
 </div></section>
 
-<section class="stone" id="workshop"><div class="wrap split">
+<section class="stone" id="workshop"><div class="wrap split rv">
 <div>
 <h2>The workshop</h2>
 <p class="lead">Woodkari is a workshop in Sambhal, Uttar Pradesh, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish every piece by hand. Our resin trays are made with other makers in Sambhal.</p>

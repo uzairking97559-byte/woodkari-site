@@ -154,8 +154,8 @@ def mto_page(code):
 
 
 def mto_pics(f):
-    """main picture first, then the extra angles that have been checked and converted (img/m-<f>-a.webp, -b.webp)"""
-    return [f"m-{f}"] + [f"m-{f}-{x}" for x in "ab" if os.path.exists(os.path.join(ROOT, "img", f"m-{f}-{x}.webp"))]
+    """main picture first, then the extra angles that have been checked and converted (img/m-<f>-a.webp ... -e.webp)"""
+    return [f"m-{f}"] + [f"m-{f}-{x}" for x in "abcde" if os.path.exists(os.path.join(ROOT, "img", f"m-{f}-{x}.webp"))]
 
 
 LATER = 'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src'  # hero pictures 2-4: a 1px blank until site.js loads them

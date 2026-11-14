@@ -100,6 +100,51 @@ SLIDES = [("navy-use", "navy-ivory-floral-tray"), ("bw-use", "black-white-floral
 DESIGNS = [("d-coaster", "Resin coaster set"), ("d-tissue", "Resin tissue box"), ("d-roundbox", "Round box with resin lid"),
            ("d-board", "Serving board"), ("d-cutlery", "Cutlery and napkin stand"), ("d-trivet", "Resin trivets")]
 
+# designs.html: 41 design pictures made from the owner's reference PDFs (D-204; owner 15 Nov: "A sab laga do" =
+# on the site now as "Design picture, made on order", price on WhatsApp). (group id, code prefix, heading, line, [(file, name)])
+MTO = [
+    ("painted", "PT", "Painted trays and bowls", "Wooden trays, bowls and boards with a painted (meena) design.", [
+        ("wooden-meena-tray-3", "Round tray, peacock feathers"), ("wooden-meena-tray-1", "Oval tray, teal paisley"),
+        ("wooden-meena-tray-2", "Tray and bowl, marigold on teal"), ("wooden-meena-tray-4", "Tray with handles, marigold garland"),
+        ("wooden-meena-tray-5", "Tray, bowl and servers, red hibiscus"), ("wooden-meena-tray-6", "Bowls and spoon, parrots and mangoes"),
+        ("wooden-meena-tray-7", "Round tray and bowls, pink lotus"), ("wooden-meena-tray-8", "Board, bowl and servers, small flowers"),
+        ("wooden-meena-tray-9", "Tray, Warli village scene")]),
+    ("bath", "BS", "Resin bathroom sets", "Soap dispenser, tumbler, tray and more, in resin.", [
+        ("resin-bathroom-set-1", "Bathroom set, ivory marble look"), ("resin-bathroom-set-2", "Bathroom set, green malachite look"),
+        ("resin-bathroom-set-3", "Bathroom set, rose marble look"), ("resin-bathroom-set-4", "Bathroom set, amber tortoiseshell look"),
+        ("resin-bathroom-set-5", "Bathroom set, jade green"), ("resin-bathroom-set-6", "Bathroom set, cream onyx look"),
+        ("resin-bathroom-set-7", "Bathroom set, coral marble look")]),
+    ("bowls", "RB", "Resin bowls and platters", "Bowls, platters and salad servers in resin.", [
+        ("resin-tableware-1", "Platter, bowl and servers, sky blue"), ("resin-tableware-2", "Platter, bowls and servers, emerald swirl"),
+        ("resin-tableware-3", "Bowls, divided platter and servers, amber"), ("resin-tableware-4", "Bowls, cake stand and servers, cobalt blue"),
+        ("resin-tableware-5", "Bowls and vase, teal"), ("resin-tableware-6", "Bowls, platter and servers, blue marble")]),
+    ("boards", "WB", "Wooden boards", "Chopping and serving boards, engraved by laser or with a resin pour.", [
+        ("wooden-chopping-board-1", "Board, engraved sprig"), ("wooden-chopping-board-2", "Dark board, engraved flowers"),
+        ("wooden-chopping-board-3", "Board with white resin pour and spoons"), ("wooden-chopping-board-4", "Board, engraved lotus"),
+        ("wooden-chopping-board-5", "Board, engraved leaf branch"), ("wooden-chopping-board-6", "Slim board, engraved herb"),
+        ("wooden-chopping-board-7", "Board with pink resin pour")]),
+    ("candles", "CS", "Candle stands", "Wooden tealight holders and candle stands.", [
+        ("wooden-candle-stand-1", "Hexagon tealight holder"), ("wooden-candle-stand-2", "Tapered tealight holders"),
+        ("wooden-candle-stand-3", "Ridged pillar candle stands"), ("wooden-candle-stand-4", "Tall taper candle stands"),
+        ("wooden-candle-stand-5", "Faceted candle blocks"), ("wooden-candle-stand-6", "Turned candle stands"),
+        ("wooden-candle-stand-7", "Square tealight blocks")]),
+    ("chests", "IC", "Inlay chests", "Chests of drawers and bedside chests with an inlay design.", [
+        ("bone-inlay-chest-1", "Chest of drawers, blue floral inlay design"), ("bone-inlay-chest-2", "Chest of drawers, green floral inlay design"),
+        ("bone-inlay-chest-3", "Bedside chest, blue floral inlay design"), ("bone-inlay-chest-4", "Bedside chest, blue and white inlay design"),
+        ("bone-inlay-chest-5", "Chest of drawers, white geometric inlay design")]),
+]
+MTO_N = sum(len(g[4]) for g in MTO)
+
+
+def mto_items():
+    for gid, pre, title, line, items in MTO:
+        for i, (f, n) in enumerate(items, 1):
+            yield gid, f"{pre}-{i}", f, n
+
+
+def mto_msg(code, n):
+    return f"Hello Woodkari, I am asking about design {code}: {n}\nQuantity: "
+
 
 LATER = 'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src'  # hero pictures 2-4: a 1px blank until site.js loads them
 PP = '<button class="pp" type="button" aria-label="Pause pictures" aria-pressed="false"><svg class="i-pause" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M7 5h3v14H7zM14 5h3v14h-3z"/></svg><svg class="i-play" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></button>'
@@ -617,6 +662,20 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 @media(min-width:900px){.real{gap:20px;margin-top:0}}
 .real img{aspect-ratio:1/1}
 @media(prefers-reduced-motion:reduce){.js .p.rv .ph .u{opacity:0}.js .p.rv:hover .ph .u,.js .p.rv:focus-visible .ph .u{opacity:1}}
+
+/* [12] designs.html: made-on-order designs (15 Nov) */
+.mh{padding-top:28px}
+.mh h1{font-size:clamp(44px,6vw,84px)}
+.mh>p{color:var(--soft);font-size:18px;margin:14px 0 0;max-width:34em}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:24px -18px 0;padding:0 18px 2px}
+.chips::-webkit-scrollbar{display:none}
+.chips a{flex:none;padding:9px 14px;border:1px solid var(--line);border-radius:var(--r);color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;background:#fff;transition:border-color .2s,color .2s}
+.chips a span{color:var(--soft);font-weight:400;margin-left:4px}
+.chips a:active{border-color:var(--green);color:var(--green)}
+@media(hover:hover) and (pointer:fine){.chips a:hover{border-color:var(--green);color:var(--green)}}
+@media(min-width:900px){.mh{padding-top:56px}.chips{flex-wrap:wrap;margin:28px 0 0;padding:0}}
+.mto{scroll-margin-top:110px}.mto .p{scroll-margin-top:130px}
+.mto .p:target .ph{outline:2px solid var(--green);outline-offset:3px}
 """
 
 JS = r"""
@@ -792,6 +851,8 @@ def search_data():
         items.append({"n": p["name"], "s": sub, "u": p["slug"] + ".html", "i": f"{UP}img/{p['card'][0]}-600.webp"})
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Design picture · made on order, in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
+    for gid, code, f, n in mto_items():
+        items.append({"n": n, "s": f"Design {code} · Design picture · made on order, price on WhatsApp", "u": f"designs.html#{code}", "i": f"{UP}img/m-{f}-600.webp"})
     items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
     return json.dumps(items).replace("</", "<\\/")
 
@@ -809,12 +870,12 @@ def header(cur):
 <a class="logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>SAMBHAL</small></a>
 <div class="hd-r"><button class="ib search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a></div>
 </div>
-<div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin trays','resin','resin')}{t('bulk.html','Bulk orders','bulk')}{t('./#engraving','Name &amp; logo','eng')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
+<div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin trays','resin','resin')}{t('designs.html','Made to order','mto')}{t('bulk.html','Bulk orders','bulk')}{t('./#engraving','Name &amp; logo','eng')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
 </header>
 <dialog class="drawer" id="drawer" aria-label="Menu"><div class="dr-in">
 <div class="dr-hd"><b>Woodkari</b><button class="ib" type="button" data-close aria-label="Close menu">{X_ICON}</button></div>
 <nav class="dr-nav" aria-label="Menu">
-<a href="./?f=all#shop" data-cat="all">All pieces{ARROW}</a><a href="./?f=wood#shop" data-cat="wood">Acacia wood{ARROW}</a><a href="./?f=resin#shop" data-cat="resin">Resin trays{ARROW}</a><a href="bulk.html">Bulk orders{ARROW}</a><a href="./#engraving">Name and logo{ARROW}</a><a href="./#workshop">The workshop{ARROW}</a><a href="./#questions">Questions{ARROW}</a>
+<a href="./?f=all#shop" data-cat="all">All pieces{ARROW}</a><a href="./?f=wood#shop" data-cat="wood">Acacia wood{ARROW}</a><a href="./?f=resin#shop" data-cat="resin">Resin trays{ARROW}</a><a href="designs.html">Made to order{ARROW}</a><a href="bulk.html">Bulk orders{ARROW}</a><a href="./#engraving">Name and logo{ARROW}</a><a href="./#workshop">The workshop{ARROW}</a><a href="./#questions">Questions{ARROW}</a>
 </nav>
 <div class="dr-ft"><a class="btn pri wide" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><p>{EMAIL}</p></div>
 </div></dialog>
@@ -831,7 +892,7 @@ def footer():
     return f"""<footer class="ft"><div class="wrap">
 <div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
-<div><h3>Shop</h3><a class="l" href="./#shop">All pieces</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
+<div><h3>Shop</h3><a class="l" href="./#shop">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
 <div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Styled picture" or "Design picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
@@ -927,7 +988,7 @@ def page_home():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div></div>
+<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div><a class="lnk" href="designs.html">{MTO_N} more designs{ARROW}</a></div>
 <div class="dz">{dz}</div>
 </div></section>
 
@@ -1011,6 +1072,37 @@ def page_product(p):
 """
 
 
+def page_designs():
+    chips = "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO)
+    groups = []
+    for gid, pre, title, line, items in MTO:
+        cards = "".join(
+            f'<a class="p rv" id="{pre}-{i}" href="{e(wa(mto_msg(f"{pre}-{i}", n)))}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>'
+            f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
+            for i, (f, n) in enumerate(items, 1))
+        groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
+    return head("Made on order: painted trays, resin sets, boards, candle stands | Woodkari, Sambhal",
+                f"{MTO_N} designs made on order in Sambhal: painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests. Price on WhatsApp.",
+                "designs.html", "m-og.jpg") + f"""<body>
+{header('mto')}
+<main id="main">
+<section><div class="wrap mh">
+<h1>Made on order.</h1>
+<p>{MTO_N} more designs. Every picture here is a design picture, made to show the piece. Send us the design number on WhatsApp and we tell you the price, the size and the minimum.</p>
+<nav class="chips" aria-label="Kinds of pieces">{chips}</nav>
+</div></section>
+{chr(10).join(groups)}
+<section class="end"><div class="wrap rv">
+<h2>Not the one you want?</h2>
+<p>Send us a picture of the piece, the size and how many. We reply on WhatsApp.</p>
+<div class="row"><a class="btn pri" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}">{MAIL}{EMAIL}</a></div>
+</div></section>
+</main>
+{footer()}
+</body></html>
+"""
+
+
 def page_bulk():
     msg = "Hello Woodkari, I want a bulk price.\nCompany:\nPiece and quantity:\nCity: "
     return head("Bulk and hotel orders | Woodkari, Sambhal",
@@ -1080,14 +1172,15 @@ def main():
     w("site.js", JS.strip() + "\n")
     w("index.html", page_home())
     w("bulk.html", page_bulk())
+    w("designs.html", page_designs())
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["bulk.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html", "bulk.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
-    print("built", OUT, len(PRODUCTS) + 2, "pages")
+    print("built", OUT, len(PRODUCTS) + 3, "pages")
 
 
 main()

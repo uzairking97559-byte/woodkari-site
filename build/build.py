@@ -49,10 +49,10 @@ PRODUCTS = [
                ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order")]),
     dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
          short="Poured resin · gold flakes, leaf handles", card=("gold-front", "gold-top"),
-         lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone leaf handles. Made for bulk orders only.",
+         lede="Black marbled resin with gold flakes poured over an MDF board, with two gold-tone leaf handles. Made for bulk orders only, from 25 pieces.",
          uses="Serving trays for a hotel, a wedding or a company gift.",
          facts=[("Top", "Poured resin with gold flakes"), ("Core", "MDF wood board"), ("Handles", "Gold-tone leaves"),
-                ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only. Price on WhatsApp")],
+                ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only, from 25 pieces. Price on WhatsApp")],
          imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Design picture, made to order"),
                ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Design picture, made to order"),
                ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Design picture, made to order")]),
@@ -482,7 +482,7 @@ def footer():
 
 def price_html(p, cls="pr"):
     if p.get("bulk_only"):
-        return f'<p class="{cls} bo">Bulk only · price on WhatsApp</p>'
+        return f'<p class="{cls} bo">Bulk only · from 25 pieces</p>'
     unit = f' <span>/ {e(p["unit"])}</span>' if p.get("unit") else ""
     return f'<p class="{cls}">{rupee(p["price"])}{unit}</p>'
 
@@ -686,7 +686,7 @@ def page_bulk():
 <div>
 <h2>Terms</h2>
 <ul class="facts" style="margin-top:24px">
-<li><b>Minimum</b><span>Trays and boxes: 25 pieces of one design. Small pieces and the gold-flake tray: larger lots, ask us</span></li>
+<li><b>Minimum</b><span>Trays and boxes: 25 pieces of one design. Small pieces such as coasters and tissue boxes: larger lots, ask us</span></li>
 <li><b>Size</b><span>Acacia pieces in any size</span></li>
 <li><b>Name or logo</b><span>By laser, from 50 pieces of one design</span></li>
 <li><b>Making time</b><span>Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you</span></li>

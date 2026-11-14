@@ -1,0 +1,7 @@
+# GitHub Pages: keep internal notes and the generator off the public site.
+exclude:
+  - PRODUCT.md
+  - DESIGN.md
+  - build
+  - .impeccable
+  - .gitignore

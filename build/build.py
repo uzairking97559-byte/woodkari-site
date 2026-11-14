@@ -84,7 +84,7 @@ PRODUCTS = [
                ("room-top", "Room tray seen from above on a white sheet", "Styled picture"),
                ("room-real1", "Room tray, plain photo from the front", "Our piece, plain photo"),
                ("room-real2", "Room tray, plain photo from the side", "Our piece, plain photo"),
-               ("room-real3", "Room tray, plain photo from another side", "Our piece, plain photo")])
+               ("room-real3", "Room tray, plain photo, front view", "Our piece, plain photo")])
 ]
 
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
@@ -523,7 +523,7 @@ BULK_MSG = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
 
 # Every answer repeats a line already checked on this site (ops/checks/2026-11-14-site-v2.md).
 FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of one design. Small pieces such as coasters and tissue boxes are made in larger lots; ask us."),
-       ("Can you put our name or logo on the pieces?", "Yes, by laser, on 50 pieces or more of one design: a hotel name, a company logo or a couple's names."),
+       ("Can you put our name or logo on the pieces?", "Yes, on the wooden pieces, by laser, on 50 pieces or more of one design: a hotel name, a company logo or a couple's names."),
        ("Can you change the size?", "The acacia pieces (the Room Tray and the Fluted Box Tray) can be made in any size, on order."),
        ("How long does an order take?", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time when you ask."),
        ("How does payment work?", "A bulk order starts with a 50% advance. For a single piece, we confirm how to pay on WhatsApp."),
@@ -564,11 +564,11 @@ def head(title, desc, path, image):
 def search_data():
     items = []
     for p in PRODUCTS:
-        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"]))
+        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"])) + (" · Design picture" if p.get("mto") else " · Styled picture")
         items.append({"n": p["name"], "s": sub, "u": p["slug"] + ".html", "i": f"{UP}img/{p['card'][0]}-600.webp"})
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Design picture · made on order, in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
-    items.append({"n": "Bulk and hotel orders", "s": "From 25 pieces of a design", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
+    items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
     return json.dumps(items).replace("</", "<\\/")
 
 
@@ -644,7 +644,7 @@ def page_home():
         f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img src="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " loading=lazy"}><span class="tag">Design picture</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
         for i, (k, sl) in enumerate(SLIDES))
     dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
-    ribbon_items = ["Made in Sambhal since 2008", "Bulk orders from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
+    ribbon_items = ["Made in Sambhal since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
     dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
     return head("Woodkari: wooden and resin trays and boxes, made in Sambhal",
@@ -656,7 +656,7 @@ def page_home():
 <div class="show">{slides}</div>
 <div class="hero-txt">
 <h1><span class="ln"><span>Made in</span></span><span class="ln"><span>Sambhal.</span></span></h1>
-<p class="fade">Wooden trays and resin pieces.<span class="more"> Making since 2008. Most of our orders are bulk, from 25 pieces of a design; single pieces too, on WhatsApp.</span></p>
+<p class="fade">Wooden trays and resin pieces.<span class="more"> Making since 2008. Most of our orders are bulk: trays and boxes from 25 of one design. Single pieces too, on WhatsApp.</span></p>
 <div class="row fade d2"><a class="btn pri" href="#shop">Explore the collection{ARROW}</a><a class="btn inv" href="#shop">Explore the collection{ARROW}</a><a class="btn ghost" href="bulk.html">Bulk orders</a></div>
 <div class="dots fade d3" role="group" aria-label="Pictures">{dots}</div>
 </div>
@@ -699,7 +699,7 @@ def page_home():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are for bulk orders only, in larger lots; tell us the piece and the quantity on WhatsApp.</p></div></div>
+<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div></div>
 <div class="dz">{dz}</div>
 </div></section>
 
@@ -755,7 +755,7 @@ def page_product(p):
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
     notes = ""
     if not p.get("bulk_only"):
-        notes += '<p class="note">Delivery is extra. We tell you the amount before you pay.</p>'
+        notes += '<p class="note">Delivery is extra. We tell you the amount on WhatsApp.</p>'
     if p.get("mto"):
         notes += '<p class="note">Made to order. We tell you the making time on WhatsApp.</p>'
     more = "\n".join(card(q) for q in [x for x in PRODUCTS if x["slug"] != p["slug"]][:3])

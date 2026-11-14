@@ -122,290 +122,392 @@ def wa(text):
 
 
 WA_ICON = '<svg class="i" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.5-.3Z"/></svg>'
-ARROW = '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
-MENU_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path class="h" d="M4 7h16M4 12h16M4 17h16"/><path class="x" d="M6 6l12 12M18 6 6 18"/></svg>'
-MAIL = '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>'
+ARROW = '<svg class="i ar" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+MAIL = '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>'
+MENU_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>'
+SEARCH_ICON = '<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></svg>'
+X_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>'
+PLUS = '<svg class="pl" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
 
 CSS = r"""
 @font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/hanken-grotesk-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
 @font-face{font-family:"Hanken Grotesk";font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/hanken-grotesk-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
-@font-face{font-family:"Young Serif";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/young-serif-latin.woff2) format("woff2")}
-@font-face{font-family:"Rozha One";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/rozha-one-latin.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:normal;font-weight:400;font-display:swap;src:url(fonts/instrument-serif-latin.woff2) format("woff2")}
+@font-face{font-family:"Instrument Serif";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/instrument-serif-italic-latin.woff2) format("woff2")}
 
-:root{--bg:#fff;--stone:#f6f1e7;--stone-2:#ece4d4;--ink:#181a24;--dk:#15214a;--dk-2:#1d2d5e;--gold:#c9a25a;--soft:#545766;--line:#e5dfd3;--wood:#7d5a1c;--wood-d:#5f4413;--wa:#0f7a4c;--wa-d:#0b613c;--r:4px;
- --serif:"Young Serif",Georgia,"Times New Roman",serif;--sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--ease:cubic-bezier(.16,1,.3,1)}
+:root{--bg:#fff;--stone:#f2efe9;--stone-2:#e8e4da;--ink:#17201b;--soft:#56605a;--line:#e2dfd6;--green:#1d4a3a;--green-d:#143629;--green-l:#2b6450;--mist:#eaf0ec;--gold:#d6b877;--brass:#8a6a2c;--r:3px;
+ --serif:"Instrument Serif","Iowan Old Style",Georgia,serif;--sans:"Hanken Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;--ease:cubic-bezier(.16,1,.3,1)}
+@view-transition{navigation:auto}
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);overflow-x:hidden;-webkit-tap-highlight-color:transparent;text-rendering:optimizeLegibility}
-::selection{background:var(--wood);color:#fff}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:128px;scrollbar-color:#b9c4bc transparent;scrollbar-width:thin;interpolate-size:allow-keywords}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--sans);overflow-x:hidden;-webkit-tap-highlight-color:transparent;text-rendering:optimizeLegibility;caret-color:var(--green)}
+::selection{background:var(--green);color:#fff}
 img{max-width:100%;height:auto;display:block}
-a{color:var(--wood);text-underline-offset:3px;text-decoration-thickness:1px}
-h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.1;margin:0;color:var(--ink);text-wrap:balance;letter-spacing:-.01em}
+a{color:var(--green);text-underline-offset:4px;text-decoration-thickness:1px}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.04;margin:0;color:var(--ink);text-wrap:balance;letter-spacing:-.012em}
 p{text-wrap:pretty}
+button{font:inherit;color:inherit}
 .i{flex:none}
-.wrap{max-width:1240px;margin:0 auto;padding:0 16px}
-@media(min-width:760px){.wrap{padding:0 32px}}
-.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px 12px;z-index:20}
-:focus-visible{outline:2px solid var(--wood);outline-offset:3px;border-radius:2px}
-html{scrollbar-color:#c9bfb2 transparent;scrollbar-width:thin}
-
-/* bar + header */
+.wrap{max-width:1280px;margin:0 auto;padding:0 18px}
+@media(min-width:760px){.wrap{padding:0 36px}}
+.skip{position:absolute;left:-999px}.skip:focus{left:8px;top:8px;background:#fff;padding:8px 12px;z-index:50}
+:focus-visible{outline:2px solid var(--green);outline-offset:3px;border-radius:2px}
 .pv{background:#fff3c4;color:#4a3b00;text-align:center;font-size:14px;padding:6px}
-.bar{background:var(--dk);color:#efe6d2;font-size:13px;white-space:nowrap;overflow:hidden;letter-spacing:.02em;text-align:center;padding:8px 12px}
-.bar span+span::before{content:"";display:inline-block;width:3px;height:3px;border-radius:50%;background:var(--gold);vertical-align:middle;margin:0 10px}
-.hd{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
-@supports (backdrop-filter:blur(8px)){.hd{background:rgba(255,255,255,.88);backdrop-filter:blur(8px)}}
-.hd .wrap{display:flex;align-items:center;gap:20px;height:64px}
-.mark{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);margin-right:auto}
-.mark img{border-radius:8px}
-.mark b{font:400 26px/1 "Rozha One",Georgia,serif;letter-spacing:.01em}
-.mark small{display:block;font:600 11px/1 var(--sans);letter-spacing:.3em;color:var(--wood);margin-top:4px}
-.nav{display:none;gap:4px}
-.nav a{color:var(--ink);text-decoration:none;font-size:15.5px;font-weight:500;padding:10px 12px}
-.nav a:hover{color:var(--wood)}
-.nav a[aria-current]{color:var(--wood)}
-@media(min-width:900px){.nav{display:flex}}
-.menu{display:inline-grid;place-items:center;width:44px;height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;border-radius:var(--r);margin-left:-4px}
-.menu:hover{background:var(--stone)}
-.menu .x{display:none}.menu[aria-expanded=true] .x{display:block}.menu[aria-expanded=true] .h{display:none}
-@media(min-width:900px){.menu{display:none}}
-.mnav{position:absolute;left:0;right:0;top:100%;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 18px 30px -18px rgba(10,14,32,.3);padding:8px 16px 18px}
-.mnav[hidden]{display:none}
-.mnav a{display:flex;justify-content:space-between;align-items:center;padding:15px 2px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font:400 22px/1.2 var(--serif)}
-.mnav a:hover{color:var(--wood)}
-.mnav .btn{margin-top:16px;width:100%;font:600 16.5px/1.2 var(--sans);border-bottom:0;justify-content:center;padding:12px 24px}
-.mnav small{display:block;margin-top:12px;color:var(--soft);font-size:14.5px;text-align:center}
-@media(min-width:900px){.mnav{display:none!important}}
-.hd{position:sticky}
-.hd .btn{min-height:42px;padding:8px 16px;font-size:15px}
-@media(max-width:420px){.hd .btn span{display:none}.hd .btn{padding:8px 12px}}
+
+/* header */
+.hd{position:sticky;top:0;z-index:20;background:#fff;transition:box-shadow .3s}
+.hd.sc{box-shadow:0 1px 0 var(--line),0 10px 30px -22px rgba(20,54,41,.5)}
+.hd-top{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:62px}
+.hd-l{display:flex;align-items:center;gap:6px}
+.hd-r{display:flex;align-items:center;justify-content:flex-end;gap:6px}
+.ib{display:inline-grid;place-items:center;width:44px;height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;border-radius:50%;transition:background-color .2s,color .2s}
+.ib:hover{background:var(--mist);color:var(--green)}
+.hd-l .ib{margin-left:-10px}.hd-r .ib{margin-right:-10px}
+.logo{display:block;text-align:center;text-decoration:none;color:var(--ink);line-height:1}
+.logo b{display:block;font:400 31px/1 var(--serif);letter-spacing:-.01em}
+.logo small{display:block;font:600 11px/1 var(--sans);letter-spacing:.42em;margin:5px 0 0 .42em;color:var(--ink)}
+.hd-note{display:none;font-size:14px;color:var(--soft)}
+.hd-wa{display:none}
+@media(min-width:900px){
+ .hd-top{height:76px}
+ .logo b{font-size:36px}
+ .hd-note{display:block}
+ .hd-l .menu{display:none}
+ .hd-wa{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 18px;border-radius:999px;background:var(--green);color:#fff;font:600 14.5px/1 var(--sans);text-decoration:none;margin-left:8px;transition:background-color .2s}
+ .hd-wa:hover{background:var(--green-d)}
+ .hd-r .ib{margin-right:0}
+}
+.tabs{display:grid;grid-template-rows:1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line);transition:grid-template-rows .4s var(--ease)}
+.tabs>div{overflow:hidden;min-height:0}
+.hd.min .tabs{grid-template-rows:0fr;border-bottom-color:transparent}
+.tabs nav{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:0 8px}
+.tabs nav::-webkit-scrollbar{display:none}
+.tabs a{position:relative;flex:none;padding:13px 12px;color:var(--ink);text-decoration:none;font-size:15.5px;font-weight:500;white-space:nowrap;transition:color .2s}
+.tabs a::after{content:"";position:absolute;left:12px;right:12px;bottom:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:transform .45s var(--ease)}
+.tabs a:hover{color:var(--green)}
+.tabs a[aria-current]{color:var(--green);font-weight:600}
+.tabs a[aria-current]::after,.tabs a:hover::after{transform:scaleX(1)}
+@media(min-width:900px){.tabs nav{justify-content:center;gap:22px}.tabs a{padding:14px 12px}}
+
+/* dialogs: drawer menu + search */
+dialog{border:0;padding:0;color:var(--ink);max-width:none;max-height:none}
+.drawer{position:fixed;inset:0 auto 0 0;margin:0;width:min(88vw,400px);height:100dvh;background:#fff;transform:translateX(-102%);transition:transform .5s var(--ease),overlay .5s allow-discrete,display .5s allow-discrete}
+.drawer[open]{transform:none}
+@starting-style{.drawer[open]{transform:translateX(-102%)}}
+.drawer::backdrop,.srch::backdrop{background:rgba(12,30,22,0);transition:background-color .5s,overlay .5s allow-discrete,display .5s allow-discrete}
+.drawer[open]::backdrop,.srch[open]::backdrop{background:rgba(12,30,22,.5)}
+@starting-style{.drawer[open]::backdrop,.srch[open]::backdrop{background:rgba(12,30,22,0)}}
+.dr-in{display:flex;flex-direction:column;height:100%;padding:10px 22px 26px;overflow-y:auto}
+.dr-hd{display:flex;align-items:center;justify-content:space-between;height:56px;margin-bottom:6px}
+.dr-hd b{font:400 26px/1 var(--serif)}
+.dr-in .ib{margin-right:-10px}
+.dr-nav a{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font:400 27px/1.1 var(--serif);opacity:0;transform:translateX(-14px)}
+.drawer[open] .dr-nav a{opacity:1;transform:none;transition:opacity .6s var(--ease),transform .6s var(--ease),color .2s}
+.drawer[open] .dr-nav a:nth-child(1){transition-delay:.08s}.drawer[open] .dr-nav a:nth-child(2){transition-delay:.13s}.drawer[open] .dr-nav a:nth-child(3){transition-delay:.18s}.drawer[open] .dr-nav a:nth-child(4){transition-delay:.23s}.drawer[open] .dr-nav a:nth-child(5){transition-delay:.28s}.drawer[open] .dr-nav a:nth-child(6){transition-delay:.33s}.drawer[open] .dr-nav a:nth-child(7){transition-delay:.38s}
+.dr-nav a:hover{color:var(--green)}
+.dr-nav a:hover .ar{transform:translateX(4px)}
+.dr-ft{margin-top:auto;padding-top:26px}
+.dr-ft p{margin:14px 0 0;font-size:14.5px;color:var(--soft);text-align:center}
+.srch{position:fixed;inset:0 0 auto 0;margin:0;width:100%;max-height:100dvh;background:#fff;transform:translateY(-102%);transition:transform .5s var(--ease),overlay .5s allow-discrete,display .5s allow-discrete}
+.srch[open]{transform:none}
+@starting-style{.srch[open]{transform:translateY(-102%)}}
+.sr-in{max-width:760px;margin:0 auto;padding:14px 18px 26px}
+.sr-bar{display:flex;align-items:center;gap:8px;border-bottom:1.5px solid var(--ink)}
+.sr-bar input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 26px/1.2 var(--serif);padding:14px 0;color:var(--ink)}
+.sr-bar input::placeholder{color:#7b857f}
+.sr-bar input::-webkit-search-cancel-button{display:none}
+.sr-list{margin:10px 0 0;padding:0;list-style:none;max-height:min(62dvh,520px);overflow-y:auto}
+.sr-list a{display:flex;align-items:center;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.sr-list img{width:56px;height:56px;object-fit:cover;border-radius:var(--r);background:var(--stone)}
+.sr-list b{display:block;font-weight:500;line-height:1.3}
+.sr-list small{color:var(--soft);font-size:14px}
+.sr-list a:hover b{color:var(--green)}
+.sr-none{padding:18px 0 4px;color:var(--soft)}
 
 /* buttons */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:52px;padding:12px 24px;border-radius:var(--r);font:600 16.5px/1.2 var(--sans);text-decoration:none;border:0;cursor:pointer;transition:background-color .2s,color .2s,box-shadow .2s}
-.btn.wa{background:var(--wa);color:#fff}.btn.wa:hover{background:var(--wa-d)}
-.btn.dark{background:var(--ink);color:#fff}.btn.dark:hover{background:#000}
-.btn.line{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}.btn.line:hover{background:var(--ink);color:#fff}
-.btn.ghost{background:rgba(255,255,255,.08);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.85)}.btn.ghost:hover{background:#fff;color:var(--ink)}
-.btn.wood{background:var(--wood);color:#fff}.btn.wood:hover{background:var(--wood-d)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:12px 26px;border-radius:var(--r);font:600 16px/1.2 var(--sans);letter-spacing:.005em;text-decoration:none;border:0;cursor:pointer;transition:background-color .25s,color .25s,box-shadow .25s}
+.btn .ar{transition:transform .4s var(--ease)}
+.btn:hover .ar,.lnk:hover .ar{transform:translateX(5px)}
+.btn.pri{background:var(--green);color:#fff}.btn.pri:hover{background:var(--green-d)}
+.btn.line{background:transparent;color:var(--green);box-shadow:inset 0 0 0 1px var(--green)}.btn.line:hover{background:var(--green);color:#fff}
+.btn.inv{background:#fff;color:var(--green)}.btn.inv:hover{background:var(--gold);color:var(--green-d)}
+.btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.75)}.btn.ghost:hover{background:#fff;color:var(--green)}
 .btn.wide{width:100%}
-.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.lnk{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--ink);text-decoration:none;padding:10px 0;border-bottom:1px solid var(--ink)}
-.lnk:hover{color:var(--wood);border-color:var(--wood)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.lnk{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:16px;color:var(--green);text-decoration:none;padding:6px 0;background:linear-gradient(currentColor,currentColor) left bottom/100% 1px no-repeat}
+.lnk .ar{transition:transform .4s var(--ease)}
+.tag{position:absolute;z-index:2;left:8px;bottom:8px;background:rgba(255,255,255,.94);color:var(--ink);font:600 11.5px/1 var(--sans);letter-spacing:.02em;padding:5px 7px;border-radius:2px}
 
 /* hero */
-.hero{background:var(--stone);overflow:hidden}
-.hero .tag,.split .tag,.bh .tag,.tile .tag{position:absolute;z-index:2;background:#fff;color:var(--ink);font:600 12px/1 var(--sans);padding:5px 8px;border-radius:2px}
-.fig{position:relative}.fig .tag{left:10px;top:10px}
-.tile .tag{left:10px;top:10px}
-.hgrid{display:flex;flex-direction:column-reverse;padding:0}
-.show{position:relative;aspect-ratio:1/1;overflow:hidden;background:#d8d0bf}
-.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.1s var(--ease),visibility 0s 1.1s;color:#fff;text-decoration:none}
-.slide.on{opacity:1;visibility:visible;transition:opacity 1.1s var(--ease),visibility 0s}
-.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.07);transition:transform 7s linear}
+.hero{position:relative;background:var(--green);color:#fff;overflow:hidden}
+.show{position:relative;aspect-ratio:4/5;max-height:84svh;width:100%;overflow:hidden;background:#27352d}
+.slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity 1.2s var(--ease),visibility 0s 1.2s;color:#fff;text-decoration:none}
+.slide.on{opacity:1;visibility:visible;transition:opacity 1.2s var(--ease),visibility 0s}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.09);transition:transform 7.5s linear}
 .slide.on img{transform:scale(1)}
-.slide .tag{right:12px;top:12px}
-.slide .nm{position:absolute;left:0;right:0;bottom:0;padding:56px 16px 16px;background:linear-gradient(to top,rgba(10,14,32,.66),rgba(10,14,32,0));font:500 15px/1.3 var(--sans);display:flex;justify-content:space-between;gap:12px;align-items:end}
-.slide .nm b{font:400 21px/1.15 var(--serif)}
-.hero .txt{padding:28px 16px 36px}
-.hero h1{font-size:clamp(38px,9.6vw,74px);max-width:10.5em;letter-spacing:-.015em}
-.hero p{margin:16px 0 0;color:var(--soft);font-size:18px;max-width:30em}
-.dots{display:flex;gap:6px;margin-top:28px}
-.dot{flex:1;max-width:120px;height:32px;padding:0;border:0;background:none;cursor:pointer;position:relative;text-align:left;font:500 12.5px/1 var(--sans);color:var(--soft)}
-.dot::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:#d8d0bf}
-.dot::after{content:"";position:absolute;left:0;top:0;height:2px;width:0;background:var(--dk)}
-.dot span{position:absolute;left:0;top:10px;white-space:nowrap}
-.dot[aria-current=true]{color:var(--ink)}
-.dot[aria-current=true]::after{animation:fill var(--dur,5.5s) linear forwards}
+.slide .tag{left:auto;right:10px;top:10px;bottom:auto}
+.slide .nm{position:absolute;left:10px;top:10px;background:rgba(20,54,41,.88);padding:7px 10px;border-radius:2px;font:500 13px/1.2 var(--sans);display:flex;gap:10px}
+.slide .nm span{color:var(--gold)}
+.hero-txt{position:absolute;left:0;right:0;bottom:0;z-index:3;padding:90px 18px 16px;background:linear-gradient(to top,rgba(10,26,19,.9) 0%,rgba(10,26,19,.62) 46%,rgba(10,26,19,0) 100%);pointer-events:none}
+.hero-txt>*{pointer-events:auto}
+.hero h1{color:#fff;font-size:clamp(40px,12.2vw,56px);line-height:.98;white-space:nowrap}
+.hero h1 .ln{display:inline-block;overflow:hidden;padding-bottom:.08em;vertical-align:top}
+.hero h1 .ln+.ln{margin-left:.22em}
+.hero h1 .ln>span{display:inline-block;transform:translateY(105%);animation:up 1.1s var(--ease) .15s forwards}
+.hero h1 .ln:nth-child(2)>span{animation-delay:.27s}
+@keyframes up{to{transform:none}}
+.hero p{margin:8px 0 0;color:#eef3ef;font-size:17.5px;max-width:27em}
+.hero p .more{display:none}
+.hero .row{margin-top:18px}
+.hero .btn.inv{display:none}
+.fade{opacity:0;animation:fade 1s var(--ease) .55s forwards}
+.fade.d2{animation-delay:.7s}.fade.d3{animation-delay:.85s}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.dots{display:flex;gap:6px;margin-top:20px}
+.dot{flex:1;height:26px;padding:0;border:0;background:none;cursor:pointer;position:relative;text-align:left;font:500 12.5px/1 var(--sans);color:#c9d6cd}
+.dot::before{content:"";position:absolute;left:0;right:0;top:11px;height:2px;background:rgba(255,255,255,.34)}
+.dot::after{content:"";position:absolute;left:0;top:11px;height:2px;width:0;background:#fff}
+.dot span{display:none}
+.dot[aria-current=true]::after{animation:fill 5.5s linear forwards}
 .paused .dot[aria-current=true]::after{animation-play-state:paused}
 @keyframes fill{to{width:100%}}
-.rise{animation:rise .9s var(--ease) both}
-.rise.d1{animation-delay:.08s}.rise.d2{animation-delay:.18s}.rise.d3{animation-delay:.3s}.rise.d4{animation-delay:.42s}
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @media(min-width:900px){
- .hgrid{flex-direction:row;align-items:stretch;max-width:none;padding:0}
- .hero .txt{flex:1 1 46%;display:flex;flex-direction:column;justify-content:center;padding:64px 56px 64px max(32px,calc((100vw - 1240px)/2 + 32px))}
- .show{flex:0 0 54%;aspect-ratio:auto;height:min(calc(100vh - 150px),760px);min-height:540px}
- .dot span{display:block}
+ .hero{display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);min-height:min(calc(100svh - 126px),780px)}
+ .show{order:2;aspect-ratio:auto;max-height:none;height:100%;min-height:560px}
+ .hero-txt{position:static;order:1;background:none;display:flex;flex-direction:column;justify-content:center;padding:64px 56px 56px max(36px,calc((100vw - 1280px)/2 + 36px))}
+ .hero h1{font-size:clamp(72px,7.6vw,96px);white-space:normal}
+ .hero h1 .ln{display:block}.hero h1 .ln+.ln{margin-left:0}
+ .hero p{font-size:19px;color:#dbe6de;margin-top:18px}
+ .fab{display:none}
+ .hero p .more{display:inline}
+ .hero .btn.pri{display:none}.hero .btn.inv{display:inline-flex}
+ .dots{margin-top:44px;max-width:520px}
+ .dot{height:40px}
+ .dot span{display:block;position:absolute;left:0;top:24px;white-space:nowrap}
+ .dot[aria-current=true]{color:#fff}
+ .dot::after{background:var(--gold)}
+ .slide .nm{left:auto;right:14px;top:auto;bottom:14px;font-size:14px;padding:9px 12px}
+ .slide .tag{right:14px;top:14px}
 }
-@media(max-width:899px){.dot span{display:none}.dots{margin-top:22px}}
-/* fact ribbon */
-.ribbon{background:var(--dk);color:#efe6d2;overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,.08)}
-.ribbon .track{display:inline-flex;gap:0;padding:15px 0;animation:slide 38s linear infinite}
+
+/* ribbon */
+.ribbon{background:var(--stone);color:var(--green);overflow:hidden;white-space:nowrap;border-bottom:1px solid var(--line)}
+.ribbon .track{display:inline-flex;padding:14px 0;animation:slide 40s linear infinite}
 .ribbon:hover .track{animation-play-state:paused}
-.ribbon span{font:400 19px/1 var(--serif);padding:0 26px;display:inline-flex;align-items:center;gap:26px}
-.ribbon span::after{content:"";width:6px;height:6px;transform:rotate(45deg);background:var(--gold)}
+.ribbon span{font:400 21px/1 var(--serif);padding:0 24px;display:inline-flex;align-items:center;gap:24px}
+.ribbon span::after{content:"";width:6px;height:6px;transform:rotate(45deg);background:var(--brass)}
 @keyframes slide{to{transform:translateX(-50%)}}
-/* scroll reveal: visible by default, animated only when JS marks it */
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
-.js .rv.in{opacity:1;transform:none}
-.p .ph img:first-of-type,.p .ph img{transition:opacity .6s var(--ease),transform .9s var(--ease)}
-.p:hover .ph img{transform:scale(1.03)}
 
-/* section rhythm */
-.sec{padding:72px 0 0}
-.sec.tight{padding-top:56px}
-.hdr{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 32px;margin-bottom:28px}
-.hdr h2{font-size:clamp(30px,4.2vw,46px)}
+/* sections */
+.sec{padding:64px 0 0}
+@media(min-width:900px){.sec{padding-top:96px}}
+.hdr{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:10px 32px;margin-bottom:26px}
+.hdr h2,.split h2,.end h2,.bh h1,.buy h1{font-size:clamp(38px,5vw,62px)}
 .hdr p{margin:10px 0 0;color:var(--soft);max-width:36em}
-.stone{background:var(--stone);margin-top:80px;padding:72px 0}
-.stone+.sec{padding-top:72px}
+.band{margin-top:64px;padding:64px 0}
+@media(min-width:900px){.band{margin-top:96px;padding:96px 0}}
+.band.stone{background:var(--stone)}
+.band.green{background:var(--green);color:#e3ece6}
+.band.green h2{color:#fff}
+.band.green .lead,.band.green .steps span{color:#cfdcd3}
+.band.green .steps,.band.green .steps li{border-color:rgba(255,255,255,.18)}
+.band.green .steps li::before{color:var(--gold)}
+.band.stone .steps,.band.stone .steps li,.band.stone .facts,.band.stone .facts li{border-color:#d9d4c8}
 
-/* tiles */
-.tiles{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 6px;scrollbar-width:none}
-.tiles::-webkit-scrollbar{display:none}
-.tile{flex:0 0 72%;scroll-snap-align:start;position:relative;overflow:hidden;border-radius:var(--r);text-decoration:none;color:#fff;aspect-ratio:3/4;background:#3a2a20}
-.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
-.tile:hover img{transform:scale(1.04)}
-.tile .cap{position:absolute;inset:auto 0 0 0;padding:72px 18px 18px;background:linear-gradient(to top,rgba(10,14,32,.78),rgba(10,14,32,0));font:400 26px/1.1 var(--serif)}
-.tile small{display:block;font:500 15px/1.3 var(--sans);margin-top:6px;color:#efe8de}
-@media(min-width:760px){.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin:0;padding:0;overflow:visible}.tile{flex:none}}
-
-/* shop */
-.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 24px;padding:0 16px}
-.chips::-webkit-scrollbar{display:none}
-.chip{flex:none;min-height:42px;padding:8px 18px;border-radius:var(--r);border:1px solid var(--line);background:#fff;font:500 15px var(--sans);color:var(--ink);cursor:pointer;transition:border-color .2s,background-color .2s,color .2s}
-.chip:hover{border-color:var(--ink)}
-.chip[aria-pressed=true]{background:var(--dk);border-color:var(--dk);color:#fff}
-@media(min-width:760px){.chips{margin:0 0 28px;padding:0}}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 14px}
-@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:48px 28px}}
+/* product grid */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:30px 12px}
+@media(min-width:760px){.grid{grid-template-columns:repeat(3,1fr);gap:56px 28px}}
+.grid.four{grid-template-columns:1fr 1fr}
+@media(min-width:760px){.grid.four{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:759px){.grid.more3 .p:nth-child(3){display:none}}
 .p{text-decoration:none;color:var(--ink);display:block}
 .p[hidden]{display:none}
-.p .ph{position:relative;aspect-ratio:1/1;overflow:hidden;background:#f7f5f1;border-radius:var(--r)}
-.p .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.p .ph .u{opacity:0;transition:opacity .6s var(--ease)}
+.p .ph{position:relative;aspect-ratio:1/1;overflow:hidden;background:var(--stone);border-radius:var(--r)}
+.p .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .7s var(--ease),transform 1.2s var(--ease)}
+.p .ph .u{opacity:0}
+.p:hover .ph img,.p:focus-visible .ph img{transform:scale(1.04)}
 .p:hover .ph .u,.p:focus-visible .ph .u{opacity:1}
-.p .tag{position:absolute;left:10px;top:10px;z-index:1;background:#fff;color:var(--ink);font-size:12.5px;font-weight:600;letter-spacing:.02em;padding:4px 8px;border-radius:2px}
-.p h3{font:600 17px/1.3 var(--sans);margin:14px 0 2px;letter-spacing:0}
-.p .sh{color:var(--soft);font-size:14.5px;line-height:1.35;margin:0}
-.p .pr{font-weight:600;font-size:16.5px;margin:6px 0 0;font-variant-numeric:tabular-nums lining-nums}
-.p .pr span{font-weight:400;color:var(--soft);font-size:14px}
-.p .pr.bo{color:var(--wood)}
 @media(hover:none){.p .ph .u{display:none}}
+.p h3{font:500 16.5px/1.3 var(--sans);letter-spacing:0;margin:13px 0 1px}
+.p .sh{color:var(--soft);font-size:14px;line-height:1.35;margin:0}
+.p .pr{font-weight:600;font-size:17px;margin:5px 0 0;color:var(--green);font-variant-numeric:tabular-nums lining-nums}
+.p .pr span{font-weight:400;color:var(--soft);font-size:14px}
+.p .pr.bo{font-size:15px}
+@media(min-width:760px){.p h3{font-size:18px;margin-top:16px}.p .sh{font-size:15px}.p .pr{font-size:18px}}
 
-/* bulk split */
-.split{display:grid;gap:32px}
-.split img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r)}
-@media(min-width:900px){.split{grid-template-columns:1fr 1fr;gap:64px;align-items:center}.split.rev>:first-child{order:2}}
-.split h2{font-size:clamp(30px,4.2vw,46px)}
-.split .lead{color:var(--soft);margin:12px 0 0;max-width:32em}
+/* split blocks */
+.split{display:grid;gap:30px}
+@media(min-width:900px){.split{grid-template-columns:1fr 1fr;gap:72px;align-items:center}.split.rev>:first-child{order:2}}
+.split .lead{margin:14px 0 0;max-width:32em;color:var(--soft)}
+.fig{position:relative;overflow:hidden;border-radius:var(--r)}
+.fig img{width:100%;aspect-ratio:1/1;object-fit:cover}
+.js .fig.wipe{clip-path:inset(0 0 100% 0);transition:clip-path 1.3s var(--ease)}
+.js .fig.wipe img{transform:scale(1.12);transition:transform 1.6s var(--ease)}
+.js .fig.wipe.in{clip-path:inset(0)}
+.js .fig.wipe.in img{transform:none}
 .steps{list-style:none;margin:28px 0 0;padding:0;border-top:1px solid var(--line);counter-reset:s}
-.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:0 8px;padding:18px 0;border-bottom:1px solid var(--line)}
-.steps li::before{content:counter(s);grid-row:span 2;font:400 26px/1.1 var(--serif);color:var(--wood)}
+.steps li{counter-increment:s;display:grid;grid-template-columns:46px 1fr;gap:0 8px;padding:17px 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);grid-row:span 2;font:400 32px/1 var(--serif);color:var(--brass)}
 .steps b{font-weight:600}
 .steps span{color:var(--soft);font-size:16px}
-.stone .steps,.stone .steps li{border-color:#ddd3c1}
-.dark{background:var(--dk);color:#e9e3d4;margin-top:80px;padding:72px 0}
-.dark h2{color:#fff}
-.dark,.ft{border-top:3px solid var(--gold)}
-.dark .lead,.dark .steps span{color:#d6d3cc}
-.dark .steps,.dark .steps li{border-color:rgba(255,255,255,.16)}
-.dark .steps li::before{color:var(--gold)}
-.dark .btn.line{color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.8)}.dark .btn.line:hover{background:#fff;color:var(--dk)}
-.dark+.sec{padding-top:72px}
-
-/* designs on order */
-.dz{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 6px;scrollbar-width:none}
-.dz::-webkit-scrollbar{display:none}
-.dz a{flex:0 0 44%;scroll-snap-align:start;text-decoration:none;color:var(--ink)}
-.dz .ph{position:relative}
-.dz img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:#f7f5f1}
-.dz .tag{position:absolute;left:8px;top:8px;background:#fff;font-size:12px;font-weight:600;padding:3px 7px;border-radius:2px}
-.dz b{display:block;font-weight:600;margin-top:10px;line-height:1.3;font-size:15.5px}
-.dz i{font-style:normal;font-size:14.5px;color:var(--wood)}
-@media(min-width:760px){.dz{display:grid;grid-template-columns:repeat(6,1fr);gap:20px;margin:0;padding:0;overflow:visible}.dz a{flex:none}}
-
-/* workshop facts */
 .facts{margin:0;padding:0;list-style:none;border-top:1px solid var(--line)}
-.facts li{display:grid;grid-template-columns:8.5em 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
+.facts li{display:grid;grid-template-columns:8.2em 1fr;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);font-size:16px}
 .facts b{font-weight:500;color:var(--soft)}
+
+/* tiles + designs scrollers */
+.tiles,.dz{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px 6px;scrollbar-width:none}
+.tiles::-webkit-scrollbar,.dz::-webkit-scrollbar{display:none}
+.tile{flex:0 0 72%;scroll-snap-align:start;position:relative;overflow:hidden;border-radius:var(--r);text-decoration:none;color:#fff;aspect-ratio:3/4;background:#27352d}
+.tile img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.tile:hover img{transform:scale(1.05)}
+.tile .tag{left:auto;right:8px;top:8px;bottom:auto}
+.tile .cap{position:absolute;inset:auto 0 0 0;padding:80px 18px 18px;background:linear-gradient(to top,rgba(10,26,19,.82),rgba(10,26,19,0));font:400 30px/1.05 var(--serif)}
+.tile small{display:block;font:500 14.5px/1.3 var(--sans);margin-top:7px;color:#e6ede8}
+.dz a{flex:0 0 44%;scroll-snap-align:start;text-decoration:none;color:var(--ink)}
+.dz .ph{position:relative;overflow:hidden;border-radius:var(--r);background:var(--stone)}
+.dz img{width:100%;aspect-ratio:1/1;object-fit:cover;transition:transform 1.2s var(--ease)}
+.dz a:hover img{transform:scale(1.05)}
+.dz b{display:block;font-weight:500;margin-top:11px;line-height:1.3;font-size:15.5px}
+.dz i{font-style:normal;font-size:14.5px;color:var(--green)}
+@media(min-width:760px){.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin:0;padding:0;overflow:visible}.tile{flex:none}
+ .dz{display:grid;grid-template-columns:repeat(6,1fr);gap:22px;margin:0;padding:0;overflow:visible}.dz a{flex:none}}
+
+/* questions */
+.faq{border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 0;cursor:pointer;list-style:none;font:400 25px/1.15 var(--serif);transition:color .2s}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:hover{color:var(--green)}
+.faq .pl{flex:none;transition:transform .5s var(--ease)}
+.faq details[open] .pl{transform:rotate(135deg)}
+.faq details p{margin:0;padding:0 44px 22px 0;color:var(--soft);max-width:44em}
+.faq details::details-content{block-size:0;overflow:hidden;transition:block-size .5s var(--ease),content-visibility .5s allow-discrete}
+.faq details[open]::details-content{block-size:auto}
 
 /* product page */
 .crumb{font-size:14.5px;color:var(--soft);padding:16px 0 12px}
 .crumb a{color:var(--soft);text-decoration:none;display:inline-block;padding:8px 0}
-.crumb a:hover{color:var(--wood)}
+.crumb a:hover{color:var(--green)}
 .pd{display:grid;gap:24px}
-@media(min-width:960px){.pd{grid-template-columns:1.2fr 1fr;gap:64px;align-items:start}.buy{position:sticky;top:96px}}
-.gal{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px;scrollbar-width:none}
+@media(min-width:960px){.pd{grid-template-columns:1.2fr 1fr;gap:72px;align-items:start}.buy{position:sticky;top:150px}}
+.gal{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px;scrollbar-width:none}
 .gal::-webkit-scrollbar{display:none}
 .gal figure{flex:0 0 88%;scroll-snap-align:center;margin:0;position:relative}
-.gal img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:#f7f5f1}
-.gal figcaption{position:absolute;left:10px;bottom:10px;background:#fff;font-size:12.5px;font-weight:500;padding:4px 8px;border-radius:2px}
+.gal img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:var(--stone)}
+.gal figcaption{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.94);font:600 11.5px/1 var(--sans);padding:5px 7px;border-radius:2px}
 @media(min-width:960px){.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0;padding:0;overflow:visible}.gal.odd figure:first-child{grid-column:1/-1}}
-.buy h1{font-size:clamp(32px,4.4vw,48px)}
-.buy .pr{font-size:24px;font-weight:600;margin:14px 0 0;font-variant-numeric:tabular-nums lining-nums}
+.buy .pr{font-size:25px;font-weight:600;margin:14px 0 0;color:var(--green);font-variant-numeric:tabular-nums lining-nums}
 .buy .pr span{font-size:15px;font-weight:400;color:var(--soft)}
-.buy .pr.bo{color:var(--wood);font-size:20px}
+.buy .pr.bo{font-size:20px}
 .buy .note{font-size:15px;color:var(--soft);margin:6px 0 0}
 .buy .lede{margin:22px 0 0}
 .buy .uses{margin:10px 0 0;color:var(--soft)}
 .buy .facts{margin-top:24px}
-.buy .more-l{margin-top:18px}
-.stick{position:fixed;left:0;right:0;bottom:0;z-index:9;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:14px}
-.stick b{font-size:18px;font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums}
-.stick .btn{flex:1;min-height:48px}
+.buy .more-l{margin-top:20px}
+.stick{position:fixed;left:0;right:0;bottom:0;z-index:15;background:#fff;border-top:1px solid var(--line);padding:10px 18px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:14px}
+.stick b{font-size:18px;font-weight:600;color:var(--green);white-space:nowrap;font-variant-numeric:tabular-nums}
+.stick .btn{flex:1;min-height:48px;padding:10px 14px}
 @media(min-width:960px){.stick{display:none}}
-@media(max-width:959px){body.has-stick{padding-bottom:80px}.buy .btn.wa.wide{display:none}}
+@media(max-width:959px){body.has-stick{padding-bottom:80px}.buy .btn.pri.wide{display:none}body.has-stick .fab{display:none}}
 
-/* bulk page */
-.bh{display:grid;gap:28px;padding-top:24px}
-.bh img{width:100%;aspect-ratio:1200/744;object-fit:cover;border-radius:var(--r)}
-@media(min-width:900px){.bh{grid-template-columns:1fr 1.15fr;gap:64px;align-items:center;padding-top:48px}}
-.bh h1{font-size:clamp(36px,5vw,60px)}
-.bh p{color:var(--soft);font-size:18px;margin:14px 0 0;max-width:30em}
-.grid.four{grid-template-columns:1fr 1fr}
-@media(max-width:759px){.grid.more3 .p:nth-child(3){display:none}}
-@media(min-width:760px){.grid.four{grid-template-columns:repeat(4,1fr)}}
+/* bulk page hero */
+.bh{display:grid;gap:28px;padding-top:28px}
+@media(min-width:900px){.bh{grid-template-columns:1fr 1.15fr;gap:72px;align-items:center;padding-top:56px}}
+.bh p{color:var(--soft);font-size:18px;margin:16px 0 0;max-width:30em}
+.bh .fig img{aspect-ratio:1200/744}
 
 /* close + footer */
-.end{text-align:center;padding:112px 0 8px}
-.end h2{font-size:clamp(30px,4.2vw,46px)}
-.end p{color:var(--soft);margin:12px auto 0;max-width:30em}
+.end{text-align:center;padding:88px 0 0}
+@media(min-width:900px){.end{padding-top:128px}}
+.end p{color:var(--soft);margin:14px auto 0;max-width:30em}
 .end .row{justify-content:center}
-.ft{margin-top:88px;background:var(--dk);color:#d9d6cc}
-.ft .wrap{padding:48px 16px 40px;display:grid;gap:28px}
-@media(min-width:760px){.ft .wrap{grid-template-columns:1.4fr 1fr 1fr;padding:56px 32px 44px}}
-.ft a.mark{display:flex;color:#fff;margin:0 0 14px;padding:0}
-.ft .mark small{color:var(--gold)}
-.ft .fine{max-width:none}
-.ft h3{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.ft{margin-top:88px;background:var(--green-d);color:#cfdcd3}
+@media(min-width:900px){.ft{margin-top:128px}}
+.ft .wrap{padding-top:52px;padding-bottom:40px;display:grid;gap:30px}
+@media(min-width:760px){.ft .wrap{grid-template-columns:1.5fr 1fr 1fr;padding-top:72px;padding-bottom:48px}}
+.ft .fl{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;margin-bottom:16px}
+.ft .fl img{border-radius:8px}
+.ft .fl b{font:400 34px/1 var(--serif)}
+.ft h3{font:600 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
 .ft p{margin:0;font-size:15.5px;max-width:28em}
-.ft a{display:block;color:#fff;text-decoration:none;padding:9px 0;font-size:15.5px}
-.ft a:hover{color:var(--gold)}
-.ft .fine{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.14);padding-top:18px;font-size:13.5px;color:#aeb1bf}
-.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:9;width:56px;height:56px;border-radius:50%;background:var(--wa);color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(15,60,40,.28)}
-.fab:hover{background:var(--wa-d)}.fab .i{width:28px;height:28px}
-@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+.ft a.l{display:block;color:#fff;text-decoration:none;padding:9px 0;font-size:15.5px}
+.ft a.l:hover{color:var(--gold)}
+.ft .fine{grid-column:1/-1;max-width:none;border-top:1px solid rgba(255,255,255,.16);padding-top:20px;font-size:13.5px;color:#a9bbb0}
+.fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:14;width:56px;height:56px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;box-shadow:0 10px 26px -6px rgba(12,40,28,.5);transition:transform .4s var(--ease),background-color .2s}
+.fab:hover{background:var(--green-d);transform:scale(1.06)}
+.fab .i{width:27px;height:27px}
+
+/* scroll reveal: visible unless JS is running */
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+ *,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}
+ .hero h1 .ln>span{transform:none}.fade{opacity:1}
+ .js .rv{opacity:1;transform:none}.js .fig.wipe{clip-path:none}.js .fig.wipe img{transform:none}
+ @view-transition{navigation:none}
+}
 """
 
 JS = r"""
-function wkFilter(k){
-  document.querySelectorAll('.chip').forEach(function(x){x.setAttribute('aria-pressed',x.dataset.cat===k)});
-  document.querySelectorAll('.p[data-cat]').forEach(function(p){
-    var price=+p.dataset.price;
-    p.hidden=!(k==='all'||p.dataset.cat===k||(k==='u1500'&&price>0&&price<1500));});
-}
-document.querySelectorAll('.chip').forEach(function(c){c.addEventListener('click',function(){wkFilter(c.dataset.cat)})});
-var f=new URLSearchParams(location.search).get('f');if(f)wkFilter(f);
 (function(){
-  var rm=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var rv=document.querySelectorAll('.rv');
-  if(rm||!('IntersectionObserver' in window)){rv.forEach(function(x){x.classList.add('in')});}
-  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var t=en.target,d=0;
-      if(t.classList.contains('p')||t.classList.contains('tile')){d=(Array.prototype.indexOf.call(t.parentNode.children,t)%3)*90}
-      setTimeout(function(){t.classList.add('in')},d);io.unobserve(t)}})},{rootMargin:'0px 0px -8% 0px'});
+  var d=document,rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function $(s,r){return (r||d).querySelector(s)}
+  function $$(s,r){return Array.prototype.slice.call((r||d).querySelectorAll(s))}
+
+  /* header: shadow + tabs tuck away on the way down */
+  var hd=$('.hd'),ly=0;
+  if(hd)addEventListener('scroll',function(){var y=scrollY;
+    if(y>ly+6&&y>220)hd.classList.add('min');else if(y<ly-6||y<=220)hd.classList.remove('min');
+    hd.classList.toggle('sc',y>8);ly=y},{passive:true});
+
+  /* menu and search */
+  function dlg(btn,id,onopen){var b=$(btn),g=d.getElementById(id);if(!b||!g||!g.showModal)return;
+    b.addEventListener('click',function(){g.showModal();b.setAttribute('aria-expanded','true');if(onopen)onopen(g)});
+    g.addEventListener('close',function(){b.setAttribute('aria-expanded','false')});
+    g.addEventListener('click',function(ev){if(ev.target===g||ev.target.closest('[data-close]')||ev.target.closest('a'))g.close()});}
+  dlg('.menu','drawer');
+  var sx=d.getElementById('sx'),items=sx?JSON.parse(sx.textContent):[],list=$('.sr-list'),inp=$('.sr-bar input'),none=$('.sr-none');
+  function render(q){if(!list)return;q=(q||'').trim().toLowerCase();list.textContent='';var n=0;
+    items.forEach(function(it){if(q&&(it.n+' '+it.s).toLowerCase().indexOf(q)<0)return;n++;
+      var li=d.createElement('li'),a=d.createElement('a'),im=d.createElement('img'),sp=d.createElement('span'),b=d.createElement('b'),sm=d.createElement('small');
+      a.href=it.u;im.src=it.i;im.alt='';im.width=56;im.height=56;im.loading='lazy';b.textContent=it.n;sm.textContent=it.s;
+      sp.appendChild(b);sp.appendChild(sm);a.appendChild(im);a.appendChild(sp);li.appendChild(a);list.appendChild(li)});
+    if(none)none.hidden=n>0;}
+  dlg('.search','srch',function(){render('');if(inp){inp.value='';inp.focus()}});
+  if(inp){inp.addEventListener('input',function(){render(inp.value)});inp.addEventListener('keydown',function(ev){if(ev.key==='Escape'){ev.preventDefault();d.getElementById('srch').close()}})}
+
+  /* shop filter from the category tabs */
+  var cards=$$('.p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin trays'};
+  function filter(k){if(!names[k])k='all';
+    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
+    var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)t.textContent=names[k];if(va)va.hidden=(k==='all');}
+  if(shop){
+    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();filter(a.dataset.cat||'all');
+      shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
+    var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
+  }
+
+  /* reveal on scroll */
+  var rv=$$('.rv,.wipe');
+  if(rm||!('IntersectionObserver' in window)){rv.forEach(function(x){x.classList.add('in')})}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(!en.isIntersecting)return;var t=en.target,w=0;
+      if(t.classList.contains('p')||t.classList.contains('tile')||t.parentNode.classList.contains('dz')){w=(Array.prototype.indexOf.call(t.parentNode.children,t)%3)*110}
+      setTimeout(function(){t.classList.add('in')},w);io.unobserve(t)})},{rootMargin:'0px 0px -7% 0px'});
     rv.forEach(function(x){io.observe(x)});}
-  var sl=document.querySelectorAll('.slide'),dt=document.querySelectorAll('.dot'),hero=document.querySelector('.hero');
-  if(!sl.length)return;var cur=0,tm=null,DUR=5500;
-  function go(n){sl[cur].classList.remove('on');dt[cur].removeAttribute('aria-current');cur=(n+sl.length)%sl.length;
-    sl[cur].classList.add('on');var d=dt[cur];d.setAttribute('aria-current','true');d.style.animation='none';d.offsetWidth;d.style.animation='';}
-  function play(){if(rm)return;clearInterval(tm);tm=setInterval(function(){go(cur+1)},DUR);hero.classList.remove('paused')}
-  function stop(){clearInterval(tm);hero.classList.add('paused')}
-  dt.forEach(function(d){d.addEventListener('click',function(){go(+d.dataset.i);play()})});
-  var show=document.querySelector('.show');show.addEventListener('mouseenter',stop);show.addEventListener('mouseleave',play);
-  show.addEventListener('focusin',stop);show.addEventListener('focusout',play);
-  document.addEventListener('visibilitychange',function(){document.hidden?stop():play()});
-  if(rm)hero.classList.add('paused');play();
+
+  /* hero pictures */
+  var sl=$$('.slide'),dt=$$('.dot'),hero=$('.hero');
+  if(sl.length&&hero){var cur=0,tm=null;
+    function go(n){sl[cur].classList.remove('on');dt[cur].removeAttribute('aria-current');cur=(n+sl.length)%sl.length;
+      sl[cur].classList.add('on');dt[cur].setAttribute('aria-current','true');}
+    function play(){if(rm)return;clearInterval(tm);tm=setInterval(function(){go(cur+1)},5500);hero.classList.remove('paused')}
+    function stop(){clearInterval(tm);hero.classList.add('paused')}
+    dt.forEach(function(b){b.addEventListener('click',function(){go(+b.dataset.i);play()})});
+    var show=$('.show');show.addEventListener('mouseenter',stop);show.addEventListener('mouseleave',play);
+    d.addEventListener('visibilitychange',function(){d.hidden?stop():play()});
+    if(rm)hero.classList.add('paused');play();}
 })();
 """
 
@@ -415,6 +517,18 @@ ORG_LD = json.dumps([
      "url": SITE + "/", "logo": SITE + "/icon-512.png", "email": EMAIL,
      "address": {"@type": "PostalAddress", "addressLocality": "Sambhal", "addressRegion": "Uttar Pradesh", "addressCountry": "IN"},
      "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "telephone": "+" + WHATSAPP}}])
+
+HELLO = "Hello Woodkari, I have a question."
+BULK_MSG = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
+
+# Every answer repeats a line already checked on this site (ops/checks/2026-11-14-site-v2.md).
+FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of one design. Small pieces such as coasters and tissue boxes are made in larger lots; ask us."),
+       ("Can you put our name or logo on the pieces?", "Yes, by laser, on 50 pieces or more of one design: a hotel name, a company logo or a couple's names."),
+       ("Can you change the size?", "The acacia pieces (the Room Tray and the Fluted Box Tray) can be made in any size, on order."),
+       ("How long does an order take?", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time when you ask."),
+       ("How does payment work?", "A bulk order starts with a 50% advance. For a single piece, we confirm how to pay on WhatsApp."),
+       ("Who pays for delivery?", "Delivery is at the buyer's cost. We tell you the amount before the order leaves."),
+       ("Can I buy just one piece?", "Yes. Every piece with a price can be ordered on its own. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
 
 
 def head(title, desc, path, image):
@@ -433,8 +547,8 @@ def head(title, desc, path, image):
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta property="og:image" content="{SITE}/img/{image}">
-<meta name="theme-color" content="#15214a">
-<link rel="preload" href="{UP}fonts/young-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
+<meta name="theme-color" content="#1d4a3a">
+<link rel="preload" href="{UP}fonts/instrument-serif-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="{UP}fonts/hanken-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="icon" href="{UP}favicon.ico" sizes="48x48">
 <link rel="icon" type="image/svg+xml" href="{UP}icon.svg">
@@ -442,41 +556,62 @@ def head(title, desc, path, image):
 <link rel="apple-touch-icon" href="{UP}apple-touch-icon.png">
 <link rel="stylesheet" href="site.css">
 <script>document.documentElement.className+=" js"</script>
+<script src="site.js" defer></script>
 </head>
 """
 
 
+def search_data():
+    items = []
+    for p in PRODUCTS:
+        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"]))
+        items.append({"n": p["name"], "s": sub, "u": p["slug"] + ".html", "i": f"{UP}img/{p['card'][0]}-600.webp"})
+    for k, n in DESIGNS:
+        items.append({"n": n, "s": "Design picture · made on order, in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
+    items.append({"n": "Bulk and hotel orders", "s": "From 25 pieces of a design", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
+    return json.dumps(items).replace("</", "<\\/")
+
+
 def header(cur):
-    def a(href, label, key):
-        c = ' aria-current="page"' if key == cur else ""
-        return f'<a href="{href}"{c}>{label}</a>'
+    def t(href, label, key, cat=None):
+        c = ' aria-current="true"' if key == cur else ""
+        dc = f' data-cat="{cat}"' if cat else ""
+        return f'<a href="{href}"{dc}{c}>{label}</a>'
     pv = '<div class="pv">Preview. Not the live site yet.</div>' if PREVIEW else ""
     return f"""<a class="skip" href="#main">Skip to content</a>
-{pv}<div class="bar"><span>Made in Sambhal since 2008</span><span>Bulk from 25 pieces</span></div>
-<header class="hd"><div class="wrap">
-<a class="mark" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="38" height="38" alt=""><span><b>Woodkari</b><small>SAMBHAL</small></span></a>
-<nav class="nav" aria-label="Main">{a('./#shop','Shop','shop')}{a('bulk.html','Bulk orders','bulk')}{a('./#engraving','Name &amp; logo','eng')}{a('./#workshop','Workshop','ws')}</nav>
-<a class="btn wa" href="{e(wa('Hello Woodkari, I have a question.'))}">{WA_ICON}<span>WhatsApp</span></a>
-<button class="menu" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menu">{MENU_ICON}</button>
+{pv}<header class="hd">
+<div class="wrap hd-top">
+<div class="hd-l"><button class="ib menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer">{MENU_ICON}</button><span class="hd-note">Made in Sambhal since 2008</span></div>
+<a class="logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>SAMBHAL</small></a>
+<div class="hd-r"><button class="ib search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a></div>
 </div>
-<nav class="mnav" id="mnav" aria-label="Menu" hidden>
-<a href="./#shop">Shop the pieces{ARROW}</a><a href="bulk.html">Bulk orders{ARROW}</a><a href="./#engraving">Name and logo engraving{ARROW}</a><a href="./#workshop">The workshop{ARROW}</a>
-<a class="btn wa" href="{e(wa('Hello Woodkari, I have a question.'))}">{WA_ICON}Chat on WhatsApp</a>
-<small>{EMAIL}</small>
-</nav>
+<div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin trays','resin','resin')}{t('bulk.html','Bulk orders','bulk')}{t('./#engraving','Name &amp; logo','eng')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
 </header>
-<script>(function(){{var b=document.querySelector('.menu'),n=document.getElementById('mnav');function t(o){{b.setAttribute('aria-expanded',o);n.hidden=!o}}b.addEventListener('click',function(){{t(n.hidden)}});n.addEventListener('click',function(ev){{if(ev.target.closest('a'))t(false)}});document.addEventListener('keydown',function(ev){{if(ev.key==='Escape'&&!n.hidden){{t(false);b.focus()}}}})}})();</script>
+<dialog class="drawer" id="drawer" aria-label="Menu"><div class="dr-in">
+<div class="dr-hd"><b>Woodkari</b><button class="ib" type="button" data-close aria-label="Close menu">{X_ICON}</button></div>
+<nav class="dr-nav" aria-label="Menu">
+<a href="./?f=all#shop" data-cat="all">All pieces{ARROW}</a><a href="./?f=wood#shop" data-cat="wood">Acacia wood{ARROW}</a><a href="./?f=resin#shop" data-cat="resin">Resin trays{ARROW}</a><a href="bulk.html">Bulk orders{ARROW}</a><a href="./#engraving">Name and logo{ARROW}</a><a href="./#workshop">The workshop{ARROW}</a><a href="./#questions">Questions{ARROW}</a>
+</nav>
+<div class="dr-ft"><a class="btn pri wide" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><p>{EMAIL}</p></div>
+</div></dialog>
+<dialog class="srch" id="srch" aria-label="Search"><div class="sr-in">
+<div class="sr-bar"><input type="search" placeholder="Search trays, boxes, designs" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"><button class="ib" type="button" data-close aria-label="Close search">{X_ICON}</button></div>
+<ul class="sr-list"></ul>
+<p class="sr-none" hidden>Nothing by that name. <a href="{e(wa(HELLO))}">Ask us on WhatsApp</a>.</p>
+</div></dialog>
+<script type="application/json" id="sx">{search_data()}</script>
 """
 
 
 def footer():
     return f"""<footer class="ft"><div class="wrap">
-<div><a class="mark" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="38" height="38" alt=""><span><b>Woodkari</b><small>SAMBHAL</small></span></a>
+<div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
-<div><h3>Shop</h3><a href="./#shop">All pieces</a><a href="bulk.html">Bulk and hotel orders</a><a href="./#engraving">Name and logo engraving</a></div>
-<div><h3>Talk to us</h3><a href="{e(wa('Hello Woodkari, I have a question.'))}">WhatsApp +91 91197 93282</a><a href="mailto:{EMAIL}">{EMAIL}</a></div>
+<div><h3>Shop</h3><a class="l" href="./#shop">All pieces</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
+<div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Styled picture" or "Design picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div></footer>
+<a class="fab" href="{e(wa(HELLO))}" aria-label="Chat on WhatsApp">{WA_ICON}</a>
 """
 
 
@@ -490,74 +625,76 @@ def price_html(p, cls="pr"):
 def card(p):
     a, b = p["card"]
     alt = p["imgs"][0][1]
-    tag = '<span class="tag">' + ("Design picture" if p.get("mto") else "Styled picture") + '</span>'
-    return f"""<a class="p rv" data-cat="{p['cat']}" data-price="{p['price'] or 0}" href="{p['slug']}.html">
-<div class="ph">{tag}<img src="{UP}img/{a}-600.webp" alt="{e(alt)}" width="600" height="600" loading="lazy"><img class="u" src="{UP}img/{b}-600.webp" alt="" width="600" height="600" loading="lazy"></div>
+    lab = "Design picture" if p.get("mto") else "Styled picture"
+    return f"""<a class="p rv" data-cat="{p['cat']}" href="{p['slug']}.html">
+<div class="ph"><img src="{UP}img/{a}-600.webp" alt="{e(alt)}" width="600" height="600" loading="lazy" style="view-transition-name:p-{p['slug']}"><img class="u" src="{UP}img/{b}-600.webp" alt="" width="600" height="600" loading="lazy"><span class="tag">{lab}</span></div>
 <h3>{e(p['name'])}</h3><p class="sh">{e(p['short'])}</p>{price_html(p)}</a>"""
 
 
+def faq_html():
+    rows = "".join(f'<details name="faq"><summary>{e(q)}{PLUS}</summary><p>{e(a)}</p></details>' for q, a in FAQ)
+    return f'<div class="faq rv">{rows}</div>'
+
+
 def page_home():
-    chips = "".join(f'<button class="chip" type="button" data-cat="{k}" aria-pressed="{"true" if k=="all" else "false"}">{e(v)}</button>' for k, v in CATS)
     cards = "\n".join(card(p) for p in PRODUCTS)
     tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
     slides = "".join(
-        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html" data-i="{i}"><img src="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1] if k.endswith("-use") else byslug[sl]["imgs"][0][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " loading=lazy"}><span class="tag">Design picture</span><span class="nm"><b>{e(byslug[sl]["name"])}</b><span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img src="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " loading=lazy"}><span class="tag">Design picture</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
         for i, (k, sl) in enumerate(SLIDES))
-    dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral",""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
+    dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in Sambhal since 2008", "Bulk orders from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
-    dz = "".join(f'<a href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
-    bulk_msg = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
-    return head("Woodkari: wooden trays and boxes from Sambhal, in bulk and single pieces",
+    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
+    return head("Woodkari: wooden and resin trays and boxes, made in Sambhal",
                 "Acacia wood and resin trays and boxes from Sambhal, Uttar Pradesh, making since 2008. Bulk orders from 25 pieces, a name or logo by laser from 50, and single pieces on WhatsApp.",
                 "", "fluted-front.jpg") + f"""<body>
-{header('home')}
+{header('all')}
 <main id="main">
-<section class="hero"><div class="hgrid">
-<div class="txt">
-<h1 class="rise d1">Trays and boxes, made in Sambhal.</h1>
-<p class="rise d2">Making since 2008. Most of our orders are bulk; trays and boxes from 25 pieces of a design. Single pieces too, on WhatsApp.</p>
-<div class="row rise d3"><a class="btn wa" href="{e(wa(bulk_msg))}">{WA_ICON}Bulk order on WhatsApp</a><a class="btn line" href="#shop">Shop the pieces</a></div>
-<div class="dots rise d4" role="group" aria-label="Pictures">{dots}</div>
-</div>
+<section class="hero">
 <div class="show">{slides}</div>
-</div></section>
+<div class="hero-txt">
+<h1><span class="ln"><span>Made in</span></span><span class="ln"><span>Sambhal.</span></span></h1>
+<p class="fade">Wooden trays and resin pieces.<span class="more"> Making since 2008. Most of our orders are bulk, from 25 pieces of a design; single pieces too, on WhatsApp.</span></p>
+<div class="row fade d2"><a class="btn pri" href="#shop">Explore the collection{ARROW}</a><a class="btn inv" href="#shop">Explore the collection{ARROW}</a><a class="btn ghost" href="bulk.html">Bulk orders</a></div>
+<div class="dots fade d3" role="group" aria-label="Pictures">{dots}</div>
+</div>
+</section>
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
-<section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Where they go</h2></div></div>
-<div class="tiles">{tiles}</div>
-</div></section>
-
 <section class="sec" id="shop"><div class="wrap">
-<div class="hdr rv"><div><h2>The pieces</h2><p>Acacia wood from our workshop, and resin trays made to order in Sambhal. Prices are for one piece; delivery is extra.</p></div></div>
-<div class="chips" role="group" aria-label="Filter the pieces">{chips}</div>
+<div class="hdr rv"><div><h2 id="shop-t">Trays &amp; boxes</h2><p>Acacia wood from our workshop, and resin trays made to order in Sambhal. Prices are for one piece; delivery is extra.</p></div><a class="lnk" id="viewall" href="./?f=all#shop" data-cat="all" hidden>View all{ARROW}</a></div>
 <div class="grid">
 {cards}
 </div>
 </div></section>
 
-<section class="dark" id="bulk"><div class="wrap split rv">
-<div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/room-life.webp" alt="Acacia room tray on a desk by a window, with a kettle and two cups" width="1200" height="1200" loading="lazy"></div>
-<div>
-<h2>Bulk orders, from 25 pieces.</h2>
+<section class="band green" id="bulk"><div class="wrap split">
+<div class="fig wipe"><img src="{UP}img/room-life.webp" alt="Acacia room tray on a desk by a window, with a kettle and two cups" width="1200" height="1200" loading="lazy"><span class="tag">Styled picture</span></div>
+<div class="rv">
+<h2>For hotels, shops and gifting.</h2>
 <p class="lead">Bulk is most of our work. Hotels, gifting companies, shops and importers can order our trays and boxes from 25 pieces of a design, and the acacia pieces in any size.</p>
 <ol class="steps">
 <li><b>Send the piece and the number</b><span>On WhatsApp or by mail, with your city.</span></li>
 <li><b>We send the price</b><span>A 50% advance starts the order.</span></li>
 <li><b>Made and sent</b><span>Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time. Delivery is at your cost, quoted before it leaves.</span></li>
 </ol>
-<div class="row"><a class="btn wa" href="{e(wa(bulk_msg))}">{WA_ICON}Ask for a bulk price</a><a class="btn line" href="bulk.html">Bulk orders in detail</a></div>
+<div class="row"><a class="btn inv" href="{e(wa(BULK_MSG))}">{WA_ICON}Discuss your order</a><a class="btn ghost" href="bulk.html">Bulk orders in detail{ARROW}</a></div>
 </div>
 </div></section>
 
-<section class="sec" id="engraving"><div class="wrap split rev rv">
-<div class="fig"><span class="tag">Design picture</span><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"></div>
-<div>
+<section class="sec"><div class="wrap">
+<div class="hdr rv"><div><h2>Where they go</h2></div></div>
+<div class="tiles">{tiles}</div>
+</div></section>
+
+<section class="sec" id="engraving"><div class="wrap split rev">
+<div class="fig wipe"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>
+<div class="rv">
 <h2>Your name or logo, by laser.</h2>
 <p class="lead">On 50 pieces or more of one design, we engrave a hotel name, a company logo or a couple's names: room trays for a hotel, boxes and boards for staff gifts or a wedding.</p>
-<div class="row"><a class="btn wa" href="{e(wa('Hello Woodkari, I want my name or logo engraved.' + chr(10) + 'Piece:' + chr(10) + 'Quantity: '))}">{WA_ICON}Ask about engraving</a></div>
+<div class="row"><a class="btn pri" href="{e(wa('Hello Woodkari, I want my name or logo engraved.' + chr(10) + 'Piece:' + chr(10) + 'Quantity: '))}">{WA_ICON}Ask about engraving</a></div>
 </div>
 </div></section>
 
@@ -566,12 +703,12 @@ def page_home():
 <div class="dz">{dz}</div>
 </div></section>
 
-<section class="stone" id="workshop"><div class="wrap split rv">
-<div>
+<section class="band stone" id="workshop"><div class="wrap split">
+<div class="rv">
 <h2>The workshop</h2>
 <p class="lead">Woodkari is a workshop in Sambhal, Uttar Pradesh, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish our wooden pieces by hand. Our resin trays are made with other makers in Sambhal.</p>
 </div>
-<ul class="facts">
+<ul class="facts rv">
 <li><b>Since</b><span>2008</span></li>
 <li><b>Where</b><span>Sambhal, Uttar Pradesh</span></li>
 <li><b>Karigars</b><span>Four</span></li>
@@ -580,30 +717,26 @@ def page_home():
 </ul>
 </div></section>
 
-<section class="sec"><div class="wrap split">
-<div><h2>Buying one piece</h2><p class="lead">Every piece with a price can be ordered on its own, on WhatsApp.</p></div>
-<ol class="steps" style="margin-top:0">
-<li><b>Message us on WhatsApp</b><span>Tap "Order on WhatsApp" on any piece and tell us your city and PIN code.</span></li>
-<li><b>We confirm on WhatsApp</b><span>The delivery charge, the time, and how to pay.</span></li>
-</ol>
+<section class="sec" id="questions"><div class="wrap split" style="align-items:start">
+<div class="rv"><h2>Questions buyers ask</h2><p class="lead">Not here? Ask us on WhatsApp.</p></div>
+{faq_html()}
 </div></section>
 
-<section class="end"><div class="wrap">
+<section class="end"><div class="wrap rv">
 <h2>Tell us what you need.</h2>
 <p>The piece, the size and how many. We reply on WhatsApp.</p>
-<div class="row"><a class="btn wa" href="{e(wa('Hello Woodkari, I have a question.'))}">{WA_ICON}Chat on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}">{MAIL}{EMAIL}</a></div>
+<div class="row"><a class="btn pri" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}">{MAIL}{EMAIL}</a></div>
 </div></section>
 </main>
 {footer()}
 <script type="application/ld+json">{ORG_LD}</script>
-<script>{JS}</script>
 </body></html>
 """
 
 
 def page_product(p):
     if p.get("bulk_only"):
-        msg = f"Hello Woodkari, I want the bulk price of: {p['name']}.\nQuantity:\nCity: "
+        msg = f"Hello Woodkari, I am asking about: {p['name']}.\nQuantity:\nCity: "
         btn = "Ask on WhatsApp"
         stick_l = "Bulk only"
     else:
@@ -611,7 +744,7 @@ def page_product(p):
         btn = "Order on WhatsApp"
         stick_l = rupee(p["price"])
     figs = "".join(
-        f'<figure><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200"{"" if i==0 else " loading=lazy"}><figcaption>{e(cap)}</figcaption></figure>'
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:p-" + p["slug"] + chr(34)) if i == 0 else " loading=lazy"}><figcaption>{e(cap)}</figcaption></figure>'
         for i, (k, alt, cap) in enumerate(p["imgs"]))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in p["facts"])
     offer = {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}
@@ -627,29 +760,29 @@ def page_product(p):
         notes += '<p class="note">Made to order. We tell you the making time on WhatsApp.</p>'
     more = "\n".join(card(q) for q in [x for x in PRODUCTS if x["slug"] != p["slug"]][:3])
     ogimg = p["imgs"][0][0] + (".jpg" if p["imgs"][0][0] in ("fluted-front", "room-front") else ".webp")
-    bulk_l = "" if p.get("bulk_only") else '<a class="lnk more-l" href="bulk.html">Need 25 or more? Bulk orders ' + ARROW + '</a>'
+    bulk_l = "" if p.get("bulk_only") else '<a class="lnk more-l" href="bulk.html">Need 25 or more? Bulk orders' + ARROW + '</a>'
     return head(f"{p['name']} | Woodkari, Sambhal", p["lede"], p["slug"] + ".html", ogimg) + f"""<body class="has-stick">
-{header('shop')}
+{header(p['cat'])}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="./#shop">All pieces</a> / {e(p['name'])}</p>
 <div class="pd">
-<div class="gal{" odd" if len(p["imgs"])%2 else ""}">{figs}</div>
+<div class="gal{" odd" if len(p["imgs"]) % 2 else ""}">{figs}</div>
 <div class="buy">
 <h1>{e(p['name'])}</h1>
 {price_html(p)}
 {notes}
-<div class="row"><a class="btn wa wide" href="{e(wa(msg))}">{WA_ICON}{btn}</a></div>
+<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}{btn}</a></div>
 <p class="lede">{e(p['lede'])}</p>
 <p class="uses"><b>Good for:</b> {e(p['uses'])}</p>
 <ul class="facts">{facts}</ul>
 {bulk_l}
 </div>
 </div>
-<section class="sec"><div class="hdr"><div><h2>More pieces</h2></div></div><div class="grid more3">
+<section class="sec"><div class="hdr rv"><div><h2>More pieces</h2></div></div><div class="grid more3">
 {more}
 </div></section>
 </div></main>
-<div class="stick"><b>{e(stick_l)}</b><a class="btn wa" href="{e(wa(msg))}">{WA_ICON}{btn}</a></div>
+<div class="stick"><b>{e(stick_l)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}{btn}</a></div>
 {footer()}
 <script type="application/ld+json">{ld}</script>
 </body></html>
@@ -667,25 +800,25 @@ def page_bulk():
 <div>
 <h1>Bulk orders, from 25 pieces.</h1>
 <p>Bulk is most of our work. We have done this work in Sambhal since 2008. For hotels, gifting companies, shops and importers: tell us the piece and the number, and we send the price on WhatsApp.</p>
-<div class="row"><a class="btn wa" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20order">{MAIL}Email us</a></div>
+<div class="row"><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20order">{MAIL}Email us</a></div>
 </div>
-<div class="fig"><span class="tag">Styled picture</span><img src="{UP}img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744"></div>
+<div class="fig wipe"><img src="{UP}img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744"><span class="tag">Styled picture</span></div>
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr"><div><h2>What we make in bulk</h2></div></div>
+<div class="hdr rv"><div><h2>What we make in bulk</h2></div></div>
 <div class="grid four">
-<a class="p" href="room-tray.html"><div class="ph"><img src="{UP}img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Room trays for hotels</h3><p class="sh">A hotel name by laser, from 50 pieces</p></a>
-<a class="p" href="fluted-box-tray.html"><div class="ph"><img src="{UP}img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
-<a class="p" href="navy-ivory-floral-tray.html"><div class="ph"><img src="{UP}img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Resin trays</h3><p class="sh">Made to order in Sambhal</p></a>
-<a class="p" href="{e(wa("Hello Woodkari, I want the bulk price of engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser, from 50</p></a>
+<a class="p rv" href="room-tray.html"><div class="ph"><img src="{UP}img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Room trays for hotels</h3><p class="sh">A hotel name by laser, from 50 pieces</p></a>
+<a class="p rv" href="fluted-box-tray.html"><div class="ph"><img src="{UP}img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
+<a class="p rv" href="navy-ivory-floral-tray.html"><div class="ph"><img src="{UP}img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Resin trays</h3><p class="sh">Made to order in Sambhal</p></a>
+<a class="p rv" href="{e(wa("Hello Woodkari, I am asking about engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser, from 50</p></a>
 </div>
 </div></section>
 
-<section class="stone"><div class="wrap split">
-<div>
+<section class="band stone"><div class="wrap split" style="align-items:start">
+<div class="rv">
 <h2>Terms</h2>
-<ul class="facts" style="margin-top:24px">
+<ul class="facts" style="margin-top:26px">
 <li><b>Minimum</b><span>Trays and boxes: 25 pieces of one design. Small pieces such as coasters and tissue boxes: larger lots, ask us</span></li>
 <li><b>Size</b><span>Acacia pieces in any size</span></li>
 <li><b>Name or logo</b><span>By laser, from 50 pieces of one design</span></li>
@@ -694,15 +827,20 @@ def page_bulk():
 <li><b>Delivery</b><span>At the buyer's cost, quoted before dispatch</span></li>
 </ul>
 </div>
-<div>
+<div class="rv">
 <h2>How it starts</h2>
 <ol class="steps">
 <li><b>Send the piece and the number</b><span>On WhatsApp or by mail, with your city.</span></li>
 <li><b>We send the price</b><span>A 50% advance starts the order.</span></li>
 <li><b>Made and sent</b><span>Wooden pieces: about 10 to 15 days for 100.</span></li>
 </ol>
-<div class="row"><a class="btn wa" href="{e(wa(msg))}">{WA_ICON}Ask for a bulk price</a></div>
+<div class="row"><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Discuss your order</a></div>
 </div>
+</div></section>
+
+<section class="sec" id="questions"><div class="wrap split" style="align-items:start">
+<div class="rv"><h2>Questions buyers ask</h2><p class="lead">Not here? Ask us on WhatsApp.</p></div>
+{faq_html()}
 </div></section>
 </main>
 {footer()}
@@ -717,6 +855,7 @@ def main():
     if PREVIEW:
         css = css.replace("url(fonts/", "url(../fonts/")
     w("site.css", css)
+    w("site.js", JS.strip() + "\n")
     w("index.html", page_home())
     w("bulk.html", page_bulk())
     for p in PRODUCTS:

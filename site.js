@@ -110,4 +110,15 @@
     show.addEventListener('click',function(ev){if(sw){ev.preventDefault();sw=false}},true);
     addEventListener('load',function(){setTimeout(function(){load(1)},1200)});
     sync();}
+
+  /* product gallery: arrows + small pictures (owner 16 Nov) */
+  $$('.galw.has-th').forEach(function(w){var g=$('.gal',w),th=$$('.th',w),pv=$('.gprev',w),nx=$('.gnext',w),n=th.length,cur=0,lock=0;
+    function show(i,smooth){i=Math.max(0,Math.min(n-1,i));lock=Date.now()+700;mark(i);g.scrollTo({left:i*g.clientWidth,behavior:(smooth&&!rm)?'smooth':'auto'})}
+    function mark(i){if(i===cur)return;cur=i;th.forEach(function(t,j){t.classList.toggle('on',j===i);if(j===i)t.setAttribute('aria-current','true');else t.removeAttribute('aria-current')});
+      pv.disabled=i===0;nx.disabled=i===n-1;var t=th[i];if(t&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'nearest'})}
+    th.forEach(function(t,j){t.addEventListener('click',function(){show(j,true)})});
+    pv.addEventListener('click',function(){show(cur-1,true)});nx.addEventListener('click',function(){show(cur+1,true)});
+    var tk;g.addEventListener('scroll',function(){clearTimeout(tk);tk=setTimeout(function(){if(Date.now()<lock)return;mark(Math.round(g.scrollLeft/Math.max(1,g.clientWidth)))},80)},{passive:true});
+    w.addEventListener('keydown',function(ev){if(ev.key==='ArrowRight'){show(cur+1,true)}else if(ev.key==='ArrowLeft'){show(cur-1,true)}});
+  });
 })();

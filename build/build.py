@@ -463,7 +463,7 @@ body:has(dialog[open]){overflow:hidden}
 @media(min-width:960px){.pd{grid-template-columns:1.2fr 1fr;gap:72px;align-items:start}.buy{position:sticky;top:150px}}
 .gal{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px;scrollbar-width:none}
 .gal::-webkit-scrollbar{display:none}
-.gal figure{flex:0 0 88%;scroll-snap-align:center;margin:0;position:relative}
+.gal figure{flex:0 0 100%;scroll-snap-align:center;margin:0;position:relative}
 .gal img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:var(--r);background:var(--stone)}
 .galw{min-width:0}
 .galp{display:none}
@@ -475,7 +475,19 @@ body:has(dialog[open]){overflow:hidden}
 }}
 @keyframes galp{from{transform:scaleX(calc(1/var(--n)))}to{transform:scaleX(1)}}
 .gal figcaption{position:absolute;left:8px;bottom:8px;background:rgba(255,255,255,.94);font:600 11.5px/1 var(--sans);padding:5px 7px;border-radius:2px}
-@media(min-width:960px){.gal{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0;padding:0;overflow:visible}.gal.odd figure:first-child{grid-column:1/-1}}
+.gal{margin:0;padding:0;gap:0;scroll-padding-inline:0}
+.stage{position:relative}
+.gnav{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:0;background:rgba(255,255,255,.9);color:var(--ink);font:400 26px/1 var(--sans);display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.15);z-index:2}
+.gnav:focus-visible,.th:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.gprev{left:10px}.gnext{right:10px}
+.gnav[disabled]{opacity:.35;cursor:default}
+.thumbs{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding:2px;scrollbar-width:none}
+.thumbs::-webkit-scrollbar{display:none}
+.th{flex:0 0 64px;height:64px;padding:0;border:1px solid var(--line);border-radius:6px;overflow:hidden;background:var(--stone);cursor:pointer}
+.th img{width:100%;height:100%;object-fit:cover;display:block;mix-blend-mode:multiply}
+.th.on{border:2px solid var(--green)}
+.galw.has-th .galp{display:none!important}
+@media(min-width:960px){.th{flex-basis:76px;height:76px}}
 .buy .pr{font-size:25px;font-weight:600;margin:14px 0 0;color:var(--green);font-variant-numeric:tabular-nums lining-nums}
 .buy .pr span{font-size:15px;font-weight:400;color:var(--soft)}
 .buy .pr.bo{font-size:20px}
@@ -570,7 +582,7 @@ body:has(dialog[open]){overflow:hidden}
 /* [2] small real bugs */
 @media(min-width:900px){a.fab{display:none}                        /* was meant to be hidden; the later .fab rule won the cascade */
  .hero{min-height:min(calc(100svh - 131px),780px)}}                /* header is 131px tall, not 126: the hero ran 5px past the fold */
-.tiles,.dz,.gal{scroll-padding-inline:18px}                         /* mandatory snap was eating the left gutter on phones */
+.tiles,.dz{scroll-padding-inline:18px}                         /* mandatory snap was eating the left gutter on phones */
 .hero :focus-visible,.band.green :focus-visible,.ft :focus-visible{outline-color:#fff}   /* green ring on green was invisible */
 .slide:focus-visible{outline-color:#fff;outline-offset:-5px}
 .tag,.gal figcaption{font-size:12px}
@@ -819,6 +831,17 @@ JS = r"""
     show.addEventListener('click',function(ev){if(sw){ev.preventDefault();sw=false}},true);
     addEventListener('load',function(){setTimeout(function(){load(1)},1200)});
     sync();}
+
+  /* product gallery: arrows + small pictures (owner 16 Nov) */
+  $$('.galw.has-th').forEach(function(w){var g=$('.gal',w),th=$$('.th',w),pv=$('.gprev',w),nx=$('.gnext',w),n=th.length,cur=0,lock=0;
+    function show(i,smooth){i=Math.max(0,Math.min(n-1,i));lock=Date.now()+700;mark(i);g.scrollTo({left:i*g.clientWidth,behavior:(smooth&&!rm)?'smooth':'auto'})}
+    function mark(i){if(i===cur)return;cur=i;th.forEach(function(t,j){t.classList.toggle('on',j===i);if(j===i)t.setAttribute('aria-current','true');else t.removeAttribute('aria-current')});
+      pv.disabled=i===0;nx.disabled=i===n-1;var t=th[i];if(t&&t.scrollIntoView)t.scrollIntoView({block:'nearest',inline:'nearest'})}
+    th.forEach(function(t,j){t.addEventListener('click',function(){show(j,true)})});
+    pv.addEventListener('click',function(){show(cur-1,true)});nx.addEventListener('click',function(){show(cur+1,true)});
+    var tk;g.addEventListener('scroll',function(){clearTimeout(tk);tk=setTimeout(function(){if(Date.now()<lock)return;mark(Math.round(g.scrollLeft/Math.max(1,g.clientWidth)))},80)},{passive:true});
+    w.addEventListener('keydown',function(ev){if(ev.key==='ArrowRight'){show(cur+1,true)}else if(ev.key==='ArrowLeft'){show(cur-1,true)}});
+  });
 })();
 """
 
@@ -1078,7 +1101,7 @@ def page_product(p):
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="./#shop">All pieces</a> / {e(p['name'])}</p>
 <div class="pd">
-<div class="galw" style="--n:{len(p["imgs"])}"><div class="gal{" odd" if len(p["imgs"]) % 2 else ""}">{figs}</div><div class="galp" aria-hidden="true"><i></i></div></div>
+{gallery([k for k, _a, _c in p["imgs"]], figs)}
 <div class="buy">
 <h1>{e(p['name'])}</h1>
 {price_html(p)}
@@ -1099,6 +1122,18 @@ def page_product(p):
 <script type="application/ld+json">{ld}</script>
 </body></html>
 """
+
+
+def gallery(keys, figs):
+    """One big picture, arrows, and a row of small pictures below (owner 16 Nov, like adouerwood.com)."""
+    n = len(keys)
+    if n < 2:
+        return f'<div class="galw" style="--n:{n}"><div class="gal">{figs}</div></div>'
+    th = "".join(f'<button type="button" class="th{" on" if i == 0 else ""}" data-i="{i}" aria-label="Picture {i + 1} of {n}"><img src="{UP}img/{k}-600.webp" alt="" width="600" height="600" loading="lazy"></button>' for i, k in enumerate(keys))
+    return (f'<div class="galw has-th" style="--n:{n}"><div class="stage"><div class="gal">{figs}</div>'
+            f'<button type="button" class="gnav gprev" aria-label="Previous picture" disabled>&#8249;</button>'
+            f'<button type="button" class="gnav gnext" aria-label="Next picture">&#8250;</button></div>'
+            f'<div class="thumbs">{th}</div></div>')
 
 
 def page_design(gid, pre, title, line, items, i):
@@ -1125,7 +1160,7 @@ def page_design(gid, pre, title, line, items, i):
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(title)}</a> / {code}</p>
 <div class="pd">
-<div class="galw" style="--n:{len(pics)}"><div class="gal{" odd" if len(pics) % 2 else ""}">{figs}</div><div class="galp" aria-hidden="true"><i></i></div></div>
+{gallery(pics, figs)}
 <div class="buy">
 <h1>{e(n)}</h1>
 <p class="pr bo">Price on WhatsApp</p>

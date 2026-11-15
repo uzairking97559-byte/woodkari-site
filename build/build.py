@@ -26,51 +26,51 @@ PRODUCTS = [
          uses="Tea for two, or a tray for the dressing table.",
          facts=[("Size", "14 × 8 inches (36 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
                 ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("navy-front", "Ivory tray with a navy floral pattern on a wooden table", "Design picture, made to order"),
-               ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture, made to order"),
-               ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Design picture, made to order"),
-               ("navy-white", "Navy and ivory floral tray on a plain white background", "Design picture, made to order"),
-               ("navy-side", "Navy and ivory floral tray seen from the side on a wooden table", "Design picture, made to order"),
-               ("navy-close", "Close view of the navy floral pattern and a cut-out handle", "Design picture, made to order"),
-               ("navy-hands", "Navy and ivory floral tray held in two hands", "Design picture, made to order"),
-               ("navy-stack", "Five navy and ivory floral trays stacked, for bulk orders", "Design picture, made to order")]),
+         imgs=[("navy-front", "Ivory tray with a navy floral pattern on a wooden table", "Made to order"),
+               ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Made to order"),
+               ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Made to order"),
+               ("navy-white", "Navy and ivory floral tray on a plain white background", "Made to order"),
+               ("navy-side", "Navy and ivory floral tray seen from the side on a wooden table", "Made to order"),
+               ("navy-close", "Close view of the navy floral pattern and a cut-out handle", "Made to order"),
+               ("navy-hands", "Navy and ivory floral tray held in two hands", "Made to order"),
+               ("navy-stack", "Five navy and ivory floral trays stacked, for bulk orders", "Made to order")]),
     dict(slug="black-white-floral-tray-set", name="Black & White Floral Tray Set", cat="resin", price=6999, unit="set of 2", mto=True,
          short="Resin · one round, one rectangular", card=("bw-top", "bw-front"),
          lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, filled in resin.",
          uses="A pair for the dining table or the living room.",
          facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round tray: size on request"), ("Top", "Pattern filled in resin"),
                 ("Core", "MDF wood board"), ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("bw-front", "Round and rectangular black and white floral trays on a wooden table", "Design picture, made to order"),
-               ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Design picture, made to order"),
-               ("bw-top", "Black and white floral trays side by side, seen from above", "Design picture, made to order"),
-               ("bw-white", "Black and white floral tray set on a plain white background", "Design picture, made to order"),
-               ("bw-side-round", "The round black and white floral tray seen from the side", "Design picture, made to order"),
-               ("bw-close", "Close view of the black and white floral pattern", "Design picture, made to order")]),
+         imgs=[("bw-front", "Round and rectangular black and white floral trays on a wooden table", "Made to order"),
+               ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Made to order"),
+               ("bw-top", "Black and white floral trays side by side, seen from above", "Made to order"),
+               ("bw-white", "Black and white floral tray set on a plain white background", "Made to order"),
+               ("bw-side-round", "The round black and white floral tray seen from the side", "Made to order"),
+               ("bw-close", "Close view of the black and white floral pattern", "Made to order")]),
     dict(slug="red-chevron-tray", name="Red Chevron Tray", cat="resin", price=2799, mto=True,
          short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-top", "chevron-front"),
          lede="A white-framed rectangular tray with a red and white chevron pattern filled in resin.",
          uses="Breakfast in bed, or a bright tray for the kitchen counter.",
          facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
                 ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("chevron-front", "White-framed tray with a red and white chevron pattern on a wooden table", "Design picture, made to order"),
-               ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Design picture, made to order"),
-               ("chevron-top", "Red chevron tray seen from above on a white sheet", "Design picture, made to order"),
-               ("chevron-side", "Red chevron tray seen from the side on a wooden table", "Design picture, made to order"),
-               ("chevron-hands", "Red chevron tray held in two hands", "Design picture, made to order"),
-               ("chevron-stack", "Five red chevron trays stacked, for bulk orders", "Design picture, made to order")]),
+         imgs=[("chevron-front", "White-framed tray with a red and white chevron pattern on a wooden table", "Made to order"),
+               ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Made to order"),
+               ("chevron-top", "Red chevron tray seen from above on a white sheet", "Made to order"),
+               ("chevron-side", "Red chevron tray seen from the side on a wooden table", "Made to order"),
+               ("chevron-hands", "Red chevron tray held in two hands", "Made to order"),
+               ("chevron-stack", "Five red chevron trays stacked, for bulk orders", "Made to order")]),
     dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
          short="All resin · gold flakes, leaf handles", card=("gold-top", "gold-front"),
          lede="Made all of resin, black and marbled with gold flakes, with two gold-tone leaf handles. Made for bulk orders only, from 25 pieces.",
          uses="Serving trays for a hotel, a wedding or a company gift.",
          facts=[("Material", "All resin, no board inside"), ("Colour", "Black with gold flakes"), ("Handles", "Gold-tone leaves"),
                 ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only, from 25 pieces. Price on WhatsApp")],
-         imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Design picture, made to order"),
-               ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Design picture, made to order"),
-               ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Design picture, made to order"),
-               ("gold-white", "Black and gold resin tray on a plain white background", "Design picture, made to order"),
-               ("gold-side", "Black and gold resin tray seen from the side on a wooden table", "Design picture, made to order"),
-               ("gold-close", "Close view of the gold flakes and a leaf handle", "Design picture, made to order"),
-               ("gold-stack", "Four black and gold resin trays stacked, for bulk orders", "Design picture, made to order")]),
+         imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Made to order"),
+               ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Made to order"),
+               ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Made to order"),
+               ("gold-white", "Black and gold resin tray on a plain white background", "Made to order"),
+               ("gold-side", "Black and gold resin tray seen from the side on a wooden table", "Made to order"),
+               ("gold-close", "Close view of the gold flakes and a leaf handle", "Made to order"),
+               ("gold-stack", "Four black and gold resin trays stacked, for bulk orders", "Made to order")]),
     dict(slug="fluted-box-tray", name="Fluted Box Tray", cat="wood", price=1299,
          short="Acacia · 11.5 × 7 × 3 in", card=("fluted-real1", None),
          lede="An open box tray in acacia wood. The sides are cut into upright flutes and the rim is scalloped, then the piece is finished by hand to a warm walnut tone.",
@@ -104,8 +104,8 @@ PRODUCTS = [
 
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
 
-TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays with tea and snacks", "Design picture"),
-         ("navy-use-600", "Tea for two", "Navy & Ivory Floral Tray", "navy-ivory-floral-tray.html", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Design picture"),
+TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays with tea and snacks", "Made to order"),
+         ("navy-use-600", "Tea for two", "Navy & Ivory Floral Tray", "navy-ivory-floral-tray.html", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Made to order"),
          ("fluted-life", "For gifting", "Box trays, bulk from 25", "bulk.html", "Fluted acacia box tray with keys, coins and sunglasses on a hall table", "Styled picture"),
          ("t-room", "In the guest room", "Room Tray", "room-tray.html", "Room tray on a bedside table with a kettle", "Styled picture")]
 
@@ -898,12 +898,12 @@ def head(title, desc, path, image):
 def search_data():
     items = []
     for p in PRODUCTS:
-        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"])) + " · " + ("Design picture" if p.get("mto") else "Plain photo of our piece")
+        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"])) + " · " + ("Made to order" if p.get("mto") else "Plain photo of our piece")
         items.append({"n": p["name"], "s": sub, "u": p["slug"] + ".html", "i": f"{UP}img/{p['card'][0]}-600.webp"})
     for k, n in DESIGNS:
-        items.append({"n": n, "s": "Design picture · made on order, in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
+        items.append({"n": n, "s": "Made to order · in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
     for gid, code, f, n in mto_items():
-        items.append({"n": n, "s": f"Design {code} · Design picture · made on order, price on WhatsApp", "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
+        items.append({"n": n, "s": f"Design {code} · made to order, price on WhatsApp", "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
     items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
     return json.dumps(items).replace("</", "<\\/")
 
@@ -945,7 +945,7 @@ def footer():
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
 <div><h3>Shop</h3><a class="l" href="./#shop">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
 <div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
-<p class="fine">Pictures marked "Styled picture" or "Design picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
+<p class="fine">Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
 <div class="mega" aria-hidden="true"><span>Woodkari</span></div></footer>
 <a class="fab" href="{e(wa(HELLO))}" aria-label="Chat on WhatsApp">{WA_ICON}</a>
@@ -979,12 +979,12 @@ def page_home():
     tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
     slides = "".join(
-        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Design picture</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
         for i, (k, sl) in enumerate(SLIDES))
     dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in Sambhal since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
-    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Design picture</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
+    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
     real = "".join(f'<figure class="rv"><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>'
                    for k, alt, cap in (byslug["room-tray"]["imgs"][1], byslug["fluted-box-tray"]["imgs"][1]))
     return head("Woodkari: wooden and resin trays and boxes, made in Sambhal",
@@ -1030,7 +1030,7 @@ def page_home():
 </div></section>
 
 <section class="sec" id="engraving"><div class="wrap split rev">
-<div class="fig wipe"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>
+<div class="fig wipe"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>
 <div class="rv">
 <h2>Your name or logo, by laser.</h2>
 <p class="lead">On 50 pieces or more of one design, we engrave a hotel name, a company logo or a couple's names: room trays for a hotel, boxes and boards for staff gifts or a wedding.</p>
@@ -1142,13 +1142,13 @@ def page_design(gid, pre, title, line, items, i):
     msg = mto_msg(code, n)
     pics = mto_pics(f)
     figs = "".join(
-        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture, made to order</figcaption></figure>'
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Made to order</figcaption></figure>'
         for j, k in enumerate(pics))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
                     [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", "On WhatsApp")])
     others = [(j, x) for j, x in enumerate(items, 1) if j != i][:3]
     more = "\n".join(
-        f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>'
+        f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
         f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
         for j, (ff, nn) in others)
     lede = f"Design {code}. {line}"
@@ -1187,7 +1187,7 @@ def page_designs():
     groups = []
     for gid, pre, title, line, items in MTO:
         cards = "".join(
-            f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div>'
+            f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
             f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
             for i, (f, n) in enumerate(items, 1))
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
@@ -1234,8 +1234,8 @@ def page_bulk():
 <div class="grid four">
 <a class="p rv" href="room-tray.html"><div class="ph"><img src="{UP}img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Room trays for hotels</h3><p class="sh">A hotel name by laser, from 50 pieces</p></a>
 <a class="p rv" href="fluted-box-tray.html"><div class="ph"><img src="{UP}img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
-<a class="p rv" href="navy-ivory-floral-tray.html"><div class="ph"><img src="{UP}img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Resin trays</h3><p class="sh">Made to order in Sambhal</p></a>
-<a class="p rv" href="{e(wa("Hello Woodkari, I am asking about engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Design picture</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser, from 50</p></a>
+<a class="p rv" href="navy-ivory-floral-tray.html"><div class="ph"><img src="{UP}img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div><h3>Resin trays</h3><p class="sh">Made to order in Sambhal</p></a>
+<a class="p rv" href="{e(wa("Hello Woodkari, I am asking about engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser, from 50</p></a>
 </div>
 </div></section>
 

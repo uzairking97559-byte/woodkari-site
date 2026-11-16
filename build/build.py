@@ -168,9 +168,9 @@ def mto_msg(code, n):
 # what = one plain sentence that only restates the name. views = what pictures a-f show (alt text), read off the pictures.
 # Pictures: img/m-ow-01-a.webp ... -f.webp (+ -600), made by build/mto_images.py ow OW-01 ...
 OW_GID, OW_TITLE, OW_CHIP = "acacia", "Acacia wood, made to order", "Acacia wood"
-OW_LINE = "Trays, a bowl, a serving board, a coaster set and candle stands. Acacia wood; other woods on request. Made to your size."
+OW_LINE = "Trays, a bowl, a serving board, a coaster set and candle stands. Acacia wood; other woods on request. We confirm the size on WhatsApp."
 OW_MATERIAL = "Acacia wood. Other woods on request."
-OW_SIZE = "Made to your size. Ask on WhatsApp."
+OW_SIZE = "We confirm the size on WhatsApp before you pay. A larger size costs more."
 OW_BULK_FROM = 25  # pieces: the lower price each starts here (single-piece items)
 OW_BULK_MIN = 500  # pieces: the minimum for the "bulk only" items
 OW = [
@@ -178,7 +178,7 @@ OW = [
          what="A rectangular tray with a scalloped edge.",
          views=["on a white background", "top view", "close-up of the scalloped edge", "side view",
                 "in use on a table, holding a bowl of fruit and a napkin", "two trays stacked"]),
-    dict(code="OW-03", name="Plain round wooden bowl", price=300, bulk=150,
+    dict(code="OW-03", name="Plain round wooden bowl", price=300, bulk=150, skip="f",
          what="A plain round wooden bowl.",
          views=["on a white background", "top view", "close-up of the rim", "side view",
                 "in use, filled with apples and oranges", "three bowls nested one inside another"]),
@@ -195,11 +195,11 @@ OW = [
          what="A rectangular tray with sloped walls and handle cut-outs.",
          views=["on a white background", "top view", "close-up of a handle cut-out", "side view",
                 "in use, carrying a teapot, two cups of tea and biscuits", "two trays stacked"]),
-    dict(code="OW-25", name="Turned candle stands with brass tops, set of 3", price=1200, bulk=600,
+    dict(code="OW-25", name="Turned candle stands with brass tops, set of 3", price=1200, bulk=600, unit="set",
          what="A set of three turned candle stands with brass tops.",
          views=["on a white background", "top view", "close-up of a brass top", "side view, three heights",
                 "in use, holding three taper candles", "the three stands grouped together"]),
-    dict(code="OW-32", name="Round flat tray with low rim", price=None, bulk=350,
+    dict(code="OW-32", name="Round flat tray with low rim", price=None, bulk=350, skip="b",
          what="A round, flat tray with a low rim.",
          views=["on a white background", "top view", "close-up of the low rim", "side view",
                 "in use, carrying a teapot and two cups of tea", "three trays stacked"]),
@@ -217,6 +217,8 @@ def ow_key(code, x="a"):
 
 def ow_price_lines(it):
     """the two price lines of a single-piece item, or the one line of a bulk-only item"""
+    if it["price"] and it.get("unit") == "set":
+        return f"{rupee(it['price'])} for the set of 3", f"{OW_BULK_FROM} sets or more: {rupee(it['bulk'])} a set"
     if it["price"]:
         return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: {rupee(it['bulk'])} each"
     return f"Bulk orders only ({OW_BULK_MIN} pieces or more). From {rupee(it['bulk'])} a piece.", ""
@@ -1264,17 +1266,18 @@ def page_ow(it):
         btn = stick_btn = "Order on WhatsApp"
         stick_l = top
         price = f'<p class="pr">{top}</p>\n<p class="note">{e(second)}</p>\n<p class="note">Delivery is extra. We tell you the amount on WhatsApp.</p>'
-        meta_price = f"One piece {top}; {second[0].lower() + second[1:]}."
+        meta_price = (f"{top}; {second[0].lower() + second[1:]}." if it.get("unit") == "set" else f"One piece {top}; {second[0].lower() + second[1:]}.")
     else:
         msg = f"Hello Woodkari, I am asking about design {code}: {n}\nQuantity:\nCity: "
         btn = stick_btn = "Ask on WhatsApp"
         stick_l = "Bulk only"
         price = f'<p class="pr bo">{e(top)}</p>'
         meta_price = top
-    keys = [ow_key(code, x) for x in "abcdef"]
+    shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
+    keys = [ow_key(code, x) for x, _ in shown]
     figs = "".join(
         f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, {e(v)}, design picture" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Made to order</figcaption></figure>'
-        for j, (k, v) in enumerate(zip(keys, it["views"])))
+        for j, (k, (_, v)) in enumerate(zip(keys, shown)))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
                     [("Design", code), ("Material", OW_MATERIAL), ("Size", OW_SIZE), ("Made", "On order")])
     more = "\n".join(ow_card(x) for x in [x for x in OW if x["code"] != code][:3])
@@ -1285,7 +1288,7 @@ def page_ow(it):
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL}", "material": "Acacia wood",
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
-    return head(f"{n} ({code}) | Woodkari, Sambhal", f"{lede} Acacia wood; other woods on request. Made to order, to your size. {meta_price}",
+    return head(f"{n} ({code}) | Woodkari, Sambhal", f"{lede} Acacia wood; other woods on request. Made to order; size confirmed on WhatsApp. {meta_price}",
                 mto_page(code), f"{keys[0]}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">

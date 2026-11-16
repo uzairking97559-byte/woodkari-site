@@ -930,6 +930,8 @@ FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of 
 
 def head(title, desc, path, image):
     robots = '<meta name="robots" content="noindex">' if PREVIEW else ""
+    # Google Analytics 4 (property "Woodkari Exports", stream "Woodkari Exports website", ID from Friday 17 Nov); live site only
+    ga = "" if PREVIEW else '<script async src="https://www.googletagmanager.com/gtag/js?id=G-BMRGF7V5ZR"></script>\n<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-BMRGF7V5ZR")</script>'
     return f"""<!doctype html>
 <html lang="en-IN">
 <head>
@@ -938,6 +940,7 @@ def head(title, desc, path, image):
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 {robots}
+{ga}
 <link rel="canonical" href="{SITE}/{path}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Woodkari">

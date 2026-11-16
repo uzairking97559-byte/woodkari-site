@@ -170,7 +170,7 @@ def mto_msg(code, n):
 OW_GID, OW_TITLE, OW_CHIP = "acacia", "Acacia wood, made to order", "Acacia wood"
 OW_LINE = "Trays, a bowl, a serving board, a coaster set and candle stands. Acacia wood; other woods on request. We confirm the size on WhatsApp."
 OW_MATERIAL = "Acacia wood. Other woods on request."
-OW_SIZE = "We confirm the size on WhatsApp before you pay. A larger size costs more."
+OW_SIZE = "We confirm the size on WhatsApp."
 OW_BULK_FROM = 25  # pieces: the lower price each starts here (single-piece items)
 OW_BULK_MIN = 500  # pieces: the minimum for the "bulk only" items
 OW = [
@@ -195,9 +195,9 @@ OW = [
          what="A rectangular tray with sloped walls and handle cut-outs.",
          views=["on a white background", "top view", "close-up of a handle cut-out", "side view",
                 "in use, carrying a teapot, two cups of tea and biscuits", "two trays stacked"]),
-    dict(code="OW-25", name="Turned candle stands with brass tops, set of 3", price=1200, bulk=600, unit="set",
-         what="A set of three turned candle stands with brass tops.",
-         views=["on a white background", "top view", "close-up of a brass top", "side view, three heights",
+    dict(code="OW-25", name="Turned candle stands with metal tops, set of 3", price=1200, bulk=600, unit="set",
+         what="A set of three turned candle stands with metal tops.",
+         views=["on a white background", "top view", "close-up of a metal top", "side view, three heights",
                 "in use, holding three taper candles", "the three stands grouped together"]),
     dict(code="OW-32", name="Round flat tray with low rim", price=None, bulk=350, skip="b",
          what="A round, flat tray with a low rim.",
@@ -221,7 +221,7 @@ def ow_price_lines(it):
         return f"{rupee(it['price'])} for the set of 3", f"{OW_BULK_FROM} sets or more: {rupee(it['bulk'])} a set"
     if it["price"]:
         return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: {rupee(it['bulk'])} each"
-    return f"Bulk orders only ({OW_BULK_MIN} pieces or more). From {rupee(it['bulk'])} a piece.", ""
+    return "Bulk orders only. Ask for the price on WhatsApp.", ""
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -966,7 +966,7 @@ def search_data():
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Made to order · in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
     for it in OW:
-        sub = rupee(it["price"]) if it["price"] else f"bulk only, from {OW_BULK_MIN} pieces"
+        sub = rupee(it["price"]) if it["price"] else "bulk only"
         items.append({"n": it["name"], "s": f"Design {it['code']} · acacia wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
     for gid, code, f, n in mto_items():
         items.append({"n": n, "s": f"Design {code} · made to order, price on WhatsApp", "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
@@ -1251,7 +1251,7 @@ def page_design(gid, pre, title, line, items, i):
 def ow_card(it, anchor=False):
     """a card for designs.html (anchor=True gives it the id that the chips and :target use) and for "More" rows"""
     top, _ = ow_price_lines(it)
-    pr = f'<p class="pr">{top}</p>' if it["price"] else f'<p class="pr bo">Bulk only · from {OW_BULK_MIN} pieces</p>'
+    pr = f'<p class="pr">{top}</p>' if it["price"] else f'<p class="pr bo">Bulk orders only</p>'
     aid = f' id="{it["code"]}"' if anchor else ""
     return (f'<a class="p rv"{aid} href="{mto_page(it["code"])}"><div class="ph"><img src="{UP}img/{ow_key(it["code"])}-600.webp" alt="{e(it["name"])}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
             f'<h3>{e(it["name"])}</h3><p class="sh">Design {it["code"]} · acacia wood</p>{pr}</a>')
@@ -1326,13 +1326,13 @@ def page_designs():
             for i, (f, n) in enumerate(items, 1))
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
     return head("Made on order: painted trays, resin sets, boards, candle stands | Woodkari, Sambhal",
-                f"{ALL_N} designs made on order: acacia wood trays and boards, painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests. Prices on the acacia pieces; the rest on WhatsApp.",
+                f"{ALL_N} designs made on order: acacia wood trays, a bowl and a serving board, painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests. Some acacia pieces show a price; the rest on WhatsApp.",
                 "designs.html", "m-og.jpg") + f"""<body>
 {header('mto')}
 <main id="main">
 <section><div class="wrap mh">
 <h1>Made on order.</h1>
-<p>{ALL_N} more designs. Every picture here is a design picture, made to show the piece. The acacia wood pieces show a price. For the others, open a design, then ask on WhatsApp and we reply with the price.</p>
+<p>{ALL_N} more designs. Every picture here is a design picture, made to show the piece. Some acacia wood pieces show a price. For the others, open a design, then ask on WhatsApp and we reply with the price.</p>
 <nav class="chips" aria-label="Kinds of pieces">{chips}</nav>
 </div></section>
 {chr(10).join(groups)}

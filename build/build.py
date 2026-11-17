@@ -1208,7 +1208,7 @@ def page_product(p):
     more = "\n".join(card(q) for q in [x for x in PRODUCTS if x["slug"] != p["slug"]][:3])
     ogimg = {"fluted-box-tray": "fluted-front.jpg", "room-tray": "room-front.jpg"}.get(p["slug"], p["imgs"][0][0] + ".webp")
     bulk_l = "" if p.get("bulk_only") else '<a class="lnk more-l" href="bulk.html">Need 25 or more? Bulk orders' + ARROW + '</a>'
-    pr = "" if p.get("bulk_only") else f" {rupee(p['price'])}{(' / ' + p['unit']) if p.get('unit') else ''}."
+    pr = "" if p.get("bulk_only") else (f" {rupee(p['price'])} / {p['unit']}." if p.get('unit') else f" One piece {rupee(p['price'])}.")
     desc = fit(f"{p['desc']}{pr} Order on WhatsApp.", f"{p['desc']}{pr}")
     return head(p["title"], desc, p["slug"] + ".html", ogimg) + f"""<body class="has-stick">
 {header(p['cat'])}

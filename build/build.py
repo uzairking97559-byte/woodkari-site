@@ -21,57 +21,67 @@ EMAIL = "sales@woodkariexports.com"
 # imgs: (file key, alt, caption). card: (studio key, in-use key) for the shop grid.
 PRODUCTS = [
     dict(slug="navy-ivory-floral-tray", name="Navy & Ivory Floral Tray", cat="resin", price=1999, mto=True,
+         title="Navy & Ivory Floral Resin Tray, Made to Order | Woodkari",
+         desc="Ivory tray with a navy floral pattern filled in resin and a handle cut into each side. 14 × 8 inches. Made to order in Sambhal.",
          short="Resin · 14 × 8 in, cut-out handles", card=("navy-top", "navy-front"),
          lede="An ivory tray with a navy floral pattern filled in resin, and a handle cut into each side.",
          uses="Tea for two, or a tray for the dressing table.",
          facts=[("Size", "14 × 8 inches (36 × 20 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
                 ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("navy-front", "Ivory tray with a navy floral pattern on a wooden table", "Made to order"),
+         imgs=[("navy-front", "Navy and ivory floral tray on a wooden table", "Made to order"),
                ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Made to order"),
                ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Made to order"),
                ("navy-white", "Navy and ivory floral tray on a plain white background", "Made to order"),
                ("navy-side", "Navy and ivory floral tray seen from the side on a wooden table", "Made to order"),
-               ("navy-close", "Close view of the navy floral pattern and a cut-out handle", "Made to order"),
+               ("navy-close", "Navy and ivory floral tray: close view of the floral pattern and a cut-out handle", "Made to order"),
                ("navy-hands", "Navy and ivory floral tray held in two hands", "Made to order"),
                ("navy-stack", "Five navy and ivory floral trays stacked, for bulk orders", "Made to order")]),
     dict(slug="black-white-floral-tray-set", name="Black & White Floral Tray Set", cat="resin", price=6999, unit="set of 2", mto=True,
+         title="Black & White Floral Resin Tray Set, Made to Order | Woodkari",
+         desc="A round and a rectangular tray with a black and white floral pattern in the look of bone inlay, filled in resin. Made to order in Sambhal.",
          short="Resin · one round, one rectangular", card=("bw-top", "bw-front"),
          lede="A round tray and a rectangular tray with a black and white floral pattern, in the look of bone inlay, filled in resin.",
          uses="A pair for the dining table or the living room.",
          facts=[("In the set", "1 round tray and 1 rectangular tray"), ("Size", "Rectangle 18 × 10 inches (46 × 25 cm). Round tray: size on request"), ("Top", "Pattern filled in resin"),
                 ("Core", "MDF wood board"), ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("bw-front", "Round and rectangular black and white floral trays on a wooden table", "Made to order"),
-               ("bw-use", "Black and white floral trays with tea and snacks on a dining table", "Made to order"),
-               ("bw-top", "Black and white floral trays side by side, seen from above", "Made to order"),
+         imgs=[("bw-front", "Black and white floral tray set, one round and one rectangular tray, on a wooden table", "Made to order"),
+               ("bw-use", "Black and white floral tray set with tea and snacks on a dining table", "Made to order"),
+               ("bw-top", "Black and white floral tray set, the two trays side by side, seen from above", "Made to order"),
                ("bw-white", "Black and white floral tray set on a plain white background", "Made to order"),
-               ("bw-side-round", "The round black and white floral tray seen from the side", "Made to order"),
-               ("bw-close", "Close view of the black and white floral pattern", "Made to order")]),
+               ("bw-side-round", "Round tray of the black and white floral tray set, seen from the side", "Made to order"),
+               ("bw-close", "Black and white floral tray set: close view of the floral pattern", "Made to order")]),
     dict(slug="red-chevron-tray", name="Red Chevron Tray", cat="resin", price=2799, mto=True,
+         title="Red Chevron Resin Tray, 16 × 10 in, Made to Order | Woodkari",
+         desc="White-framed tray with a red and white chevron pattern filled in resin. 16 × 10 inches, rim 2 inches high. Made to order in Sambhal.",
          short="Resin · 16 × 10 in, red and white zigzag", card=("chevron-top", "chevron-front"),
          lede="A white-framed rectangular tray with a red and white chevron pattern filled in resin.",
          uses="Breakfast in bed, or a bright tray for the kitchen counter.",
          facts=[("Size", "16 × 10 inches (41 × 25 cm), rim 2 inches high"), ("Top", "Pattern filled in resin"), ("Core", "MDF wood board"),
                 ("Made in", "Sambhal, Uttar Pradesh")],
-         imgs=[("chevron-front", "White-framed tray with a red and white chevron pattern on a wooden table", "Made to order"),
+         imgs=[("chevron-front", "Red chevron tray: white frame and a red and white chevron pattern, on a wooden table", "Made to order"),
                ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Made to order"),
                ("chevron-top", "Red chevron tray seen from above on a white sheet", "Made to order"),
                ("chevron-side", "Red chevron tray seen from the side on a wooden table", "Made to order"),
                ("chevron-hands", "Red chevron tray held in two hands", "Made to order"),
                ("chevron-stack", "Five red chevron trays stacked, for bulk orders", "Made to order")]),
     dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
+         title="Gold-flake Resin Tray, Bulk Orders from 25 | Woodkari",
+         desc="Made all of resin, black with gold flakes and two gold-tone leaf handles. Made to order in Sambhal, for bulk orders only, from 25 pieces. Price on WhatsApp.",
          short="All resin · gold flakes, leaf handles", card=("gold-top", "gold-front"),
          lede="Made all of resin, black and marbled with gold flakes, with two gold-tone leaf handles. Made for bulk orders only, from 25 pieces.",
          uses="Serving trays for a hotel, a wedding or a company gift.",
          facts=[("Material", "All resin, no board inside"), ("Colour", "Black with gold flakes"), ("Handles", "Gold-tone leaves"),
                 ("Size", "On request"), ("Made in", "Sambhal, Uttar Pradesh"), ("Orders", "Bulk only, from 25 pieces. Price on WhatsApp")],
-         imgs=[("gold-front", "Black and gold resin tray with leaf handles on a wooden table", "Made to order"),
-               ("gold-use", "Black and gold resin tray holding two bowls of pistachios and almonds", "Made to order"),
-               ("gold-top", "Black and gold resin tray seen from above on a white sheet", "Made to order"),
-               ("gold-white", "Black and gold resin tray on a plain white background", "Made to order"),
-               ("gold-side", "Black and gold resin tray seen from the side on a wooden table", "Made to order"),
-               ("gold-close", "Close view of the gold flakes and a leaf handle", "Made to order"),
-               ("gold-stack", "Four black and gold resin trays stacked, for bulk orders", "Made to order")]),
+         imgs=[("gold-front", "Gold-flake resin tray, black with gold flakes and leaf handles, on a wooden table", "Made to order"),
+               ("gold-use", "Gold-flake resin tray holding two bowls of pistachios and almonds", "Made to order"),
+               ("gold-top", "Gold-flake resin tray seen from above on a white sheet", "Made to order"),
+               ("gold-white", "Gold-flake resin tray on a plain white background", "Made to order"),
+               ("gold-side", "Gold-flake resin tray seen from the side on a wooden table", "Made to order"),
+               ("gold-close", "Gold-flake resin tray: close view of the gold flakes and a leaf handle", "Made to order"),
+               ("gold-stack", "Four gold-flake resin trays stacked, for bulk orders", "Made to order")]),
     dict(slug="fluted-box-tray", name="Fluted Box Tray", cat="wood", price=1299,
+         title="Acacia Fluted Box Tray, Bulk from 25 | Woodkari, Sambhal",
+         desc="Open box tray in acacia wood with fluted sides and a scalloped rim, finished by hand. 11.5 × 7 × 3 inches. Made in our Sambhal workshop.",
          short="Acacia · 11.5 × 7 × 3 in", card=("fluted-real1", None),
          lede="An open box tray in acacia wood. The sides are cut into upright flutes and the rim is scalloped, then the piece is finished by hand to a warm walnut tone.",
          uses="Keys and wallet by the door, a dressing table, a desk, or a gift hamper.",
@@ -87,6 +97,8 @@ PRODUCTS = [
                ("fluted-use", "Fluted box tray on the floor by a door, holding car keys and a wallet", "Styled picture"),
                ("fluted-top", "Fluted box tray seen from above on a white sheet", "Styled picture")]),
     dict(slug="room-tray", name="Room Tray", cat="wood", price=1799,
+         title="Room Tray for Hotels, Acacia Wood, Bulk from 25 | Woodkari",
+         desc="Acacia board with round dips and slots, and a four-box caddy: the tea tray of a hotel guest room. 15 × 11.5 inches. Made in our Sambhal workshop.",
          short="Acacia · 15 × 11.5 in, with caddy", card=("room-real1", None),
          lede="A solid acacia board with one large round dip, two small ones and two long slots, and a four-box caddy that stands beside it. Made as the tea tray of a hotel guest room.",
          uses="Kettle and cups in a guest room, or watch, phone and keys on a bedside table.",
@@ -104,7 +116,7 @@ PRODUCTS = [
 
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
 
-TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral trays with tea and snacks", "Made to order"),
+TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral tray set with tea and snacks", "Made to order"),
          ("navy-use-600", "Tea for two", "Navy & Ivory Floral Tray", "navy-ivory-floral-tray.html", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Made to order"),
          ("fluted-life", "For gifting", "Box trays, bulk from 25", "bulk.html", "Fluted acacia box tray with keys, coins and sunglasses on a hall table", "Styled picture"),
          ("t-room", "In the guest room", "Room Tray", "room-tray.html", "Room tray on a bedside table with a kettle", "Styled picture")]
@@ -258,6 +270,34 @@ def rupee(n):
 
 def wa(text):
     return "https://wa.me/" + WHATSAPP + "?text=" + urllib.parse.quote(text)
+
+
+# SEO (17 Nov, seo_plan_16nov.md rows 10-11): titles carry the product kind and "Made to Order", kept to about 60 characters.
+TITLE_MAX = 60
+SEO_KIND = {"painted": "Painted ", "bath": "Resin ", "bowls": "Resin ", "candles": "Wooden ", "chests": "", OW_GID: "Acacia "}
+
+
+def seo_name(gid, n):
+    """the page's own name with the kind of piece in front (the kind is the group heading on designs.html)"""
+    if gid == "boards":  # "Board, engraved sprig" -> "Wooden board, engraved sprig"; "Dark board" -> "Dark wooden board"
+        return n.replace("Board", "Wooden board", 1) if n.startswith("Board") else n.replace(" board", " wooden board", 1)
+    k = SEO_KIND.get(gid, "")
+    return k + (n[0].lower() + n[1:] if k else n)
+
+
+DESC_MAX = 160
+
+
+def fit_title(seo, code):
+    for t in (f"{seo} ({code}) | Made to Order", f"{seo} | Made to Order", f"{seo} ({code})"):
+        if len(t) <= TITLE_MAX:
+            return t
+    return seo
+
+
+def fit(*options):
+    """the first text that fits DESC_MAX (else the last, shortest one)"""
+    return next((t for t in options if len(t) <= DESC_MAX), options[-1])
 
 
 WA_ICON = '<svg class="i" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.5-.3Z"/></svg>'
@@ -908,12 +948,15 @@ JS = r"""
 })();
 """
 
+WA_PRINTED = "+91 91197 93282"  # as printed in the footer
+# Organization: only what the footer and header print (name, Sambhal, Uttar Pradesh, the mail and the WhatsApp number). Home, designs.html, bulk.html.
+ORG = {"@context": "https://schema.org", "@type": "Organization", "name": "Woodkari Exports", "alternateName": "Woodkari",
+       "url": SITE + "/", "logo": SITE + "/icon-512.png", "email": EMAIL,
+       "address": {"@type": "PostalAddress", "addressLocality": "Sambhal", "addressRegion": "Uttar Pradesh", "addressCountry": "IN"},
+       "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "telephone": WA_PRINTED, "email": EMAIL}}
 ORG_LD = json.dumps([
-    {"@context": "https://schema.org", "@type": "WebSite", "name": "Woodkari", "alternateName": "Woodkari Exports", "url": SITE + "/"},
-    {"@context": "https://schema.org", "@type": "Organization", "name": "Woodkari Exports", "alternateName": "Woodkari",
-     "url": SITE + "/", "logo": SITE + "/icon-512.png", "email": EMAIL,
-     "address": {"@type": "PostalAddress", "addressLocality": "Sambhal", "addressRegion": "Uttar Pradesh", "addressCountry": "IN"},
-     "contactPoint": {"@type": "ContactPoint", "contactType": "sales", "telephone": "+" + WHATSAPP}}])
+    {"@context": "https://schema.org", "@type": "WebSite", "name": "Woodkari", "alternateName": "Woodkari Exports", "url": SITE + "/"}, ORG])
+ORG_ONLY_LD = json.dumps(ORG)
 
 HELLO = "Hello Woodkari, I have a question."
 BULK_MSG = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
@@ -1056,8 +1099,8 @@ def page_home():
     dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
     real = "".join(f'<figure class="rv"><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>'
                    for k, alt, cap in (byslug["room-tray"]["imgs"][1], byslug["fluted-box-tray"]["imgs"][1]))
-    return head("Woodkari: wooden and resin trays and boxes, made in Sambhal",
-                "Acacia wood and resin trays and boxes from Sambhal, Uttar Pradesh, making since 2008. Bulk orders from 25 pieces, a name or logo by laser from 50, and single pieces on WhatsApp.",
+    return head("Wooden & Resin Trays, Boxes in Bulk | Woodkari Sambhal, India",
+                "Acacia wood and resin trays and boxes from Sambhal, Uttar Pradesh, making since 2008. Bulk from 25 pieces, name or logo from 50, single pieces on WhatsApp.",
                 "", "fluted-front.jpg") + f"""<body>
 {header('all')}
 <main id="main">
@@ -1165,7 +1208,9 @@ def page_product(p):
     more = "\n".join(card(q) for q in [x for x in PRODUCTS if x["slug"] != p["slug"]][:3])
     ogimg = {"fluted-box-tray": "fluted-front.jpg", "room-tray": "room-front.jpg"}.get(p["slug"], p["imgs"][0][0] + ".webp")
     bulk_l = "" if p.get("bulk_only") else '<a class="lnk more-l" href="bulk.html">Need 25 or more? Bulk orders' + ARROW + '</a>'
-    return head(f"{p['name']} | Woodkari, Sambhal", p["lede"], p["slug"] + ".html", ogimg) + f"""<body class="has-stick">
+    pr = "" if p.get("bulk_only") else f" {rupee(p['price'])}{(' / ' + p['unit']) if p.get('unit') else ''}."
+    desc = fit(f"{p['desc']}{pr} Order on WhatsApp.", f"{p['desc']}{pr}")
+    return head(p["title"], desc, p["slug"] + ".html", ogimg) + f"""<body class="has-stick">
 {header(p['cat'])}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="./#shop">All pieces</a> / {e(p['name'])}</p>
@@ -1224,7 +1269,7 @@ def page_design(gid, pre, title, line, items, i):
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/m-{f}.webp", "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"},
                      "offers": {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}})
-    return head(f"{n} ({code}) | Woodkari, Sambhal", f"{lede} Made on order. Price on WhatsApp.", mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
+    return head(fit_title(seo_name(gid, n), code), fit(f"{n} (design {code}). {line} Made to order; ask the price on WhatsApp.", f"{n}. {line} Made to order; ask the price on WhatsApp."), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(title)}</a> / {code}</p>
@@ -1291,7 +1336,7 @@ def page_ow(it):
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL}", "material": "Acacia wood",
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
-    return head(f"{n} ({code}) | Woodkari, Sambhal", f"{lede} Acacia wood; other woods on request. Made to order; size confirmed on WhatsApp. {meta_price}",
+    return head(fit_title(seo_name(OW_GID, n), code), fit(f"{it['what']} Design {code}. Acacia wood, other woods on request. Made to order. {meta_price}", f"{it['what']} Acacia wood, other woods on request. Made to order. {meta_price}"),
                 mto_page(code), f"{keys[0]}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
@@ -1328,8 +1373,8 @@ def page_designs():
             f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
             for i, (f, n) in enumerate(items, 1))
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
-    return head("Made on order: painted trays, resin sets, boards, candle stands | Woodkari, Sambhal",
-                f"{ALL_N} designs made on order: acacia wood trays, a bowl and a serving board, painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests. Some acacia pieces show a price; the rest on WhatsApp.",
+    return head("Made to Order Trays, Bowls, Boards, Candle Stands | Woodkari",
+                f"{ALL_N} designs made on order: acacia wood trays, painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests.",
                 "designs.html", "m-og.jpg") + f"""<body>
 {header('mto')}
 <main id="main">
@@ -1346,14 +1391,15 @@ def page_designs():
 </div></section>
 </main>
 {footer()}
+<script type="application/ld+json">{ORG_ONLY_LD}</script>
 </body></html>
 """
 
 
 def page_bulk():
     msg = "Hello Woodkari, I want a bulk price.\nCompany:\nPiece and quantity:\nCity: "
-    return head("Bulk and hotel orders | Woodkari, Sambhal",
-                "Wooden trays and boxes and resin pieces made in Sambhal, in bulk: for hotels, gifting companies, shops and importers.",
+    return head("Wholesale & Bulk Trays and Boxes, from 25 | Woodkari, Sambhal",
+                "Trays and boxes in bulk from 25 pieces of one design, made in Sambhal for hotels, gifting companies, shops and importers. Name or logo by laser from 50.",
                 "bulk.html", "room-front.jpg") + f"""<body>
 {header('bulk')}
 <main id="main">
@@ -1405,8 +1451,38 @@ def page_bulk():
 </div></section>
 </main>
 {footer()}
+<script type="application/ld+json">{ORG_ONLY_LD}</script>
 </body></html>
 """
+
+
+def llms_txt():
+    """/llms.txt (seo_plan_16nov.md row 24): plain facts that the site already prints, and links to the main pages. Linked from nowhere."""
+    def price(p):
+        return "bulk only, from 25 pieces, price on WhatsApp" if p.get("bulk_only") else rupee(p["price"]) + (f" / {p['unit']}" if p.get("unit") else "")
+    terms = [("Minimum", "Trays and boxes: 25 pieces of one design. Small pieces such as coasters and tissue boxes: larger lots, ask us"),
+             ("Size", "Acacia pieces in any size"), ("Name or logo", "By laser, from 50 pieces of one design"),
+             ("Making time", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you"),
+             ("Payment", "50% advance to start the order"), ("Delivery", "At the buyer's cost, quoted before dispatch")]
+    L = ["# Woodkari Exports", "",
+         "> Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.", "",
+         "Woodkari is a workshop in Sambhal, Uttar Pradesh, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish our wooden pieces by hand. Our resin trays are made with other makers in Sambhal.", "",
+         "Bulk is most of our work. Hotels, gifting companies, shops and importers can order our trays and boxes from 25 pieces of a design, and the acacia pieces in any size.", "",
+         'Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.', "",
+         "## Contact", "",
+         f"- WhatsApp: {WA_PRINTED} ({wa(HELLO).split('?')[0]})", f"- Email: {EMAIL}",
+         "- How an order starts: send the piece and the number, on WhatsApp or by mail, with your city.", "",
+         "## Main pages", "",
+         f"- [Home and shop]({SITE}/): trays and boxes, acacia wood from our workshop, and resin trays made to order in Sambhal. Prices are for one piece; delivery is extra.",
+         f"- [Bulk and hotel orders]({SITE}/bulk.html): bulk orders from 25 pieces, for hotels, gifting companies, shops and importers.",
+         f"- [Made to order designs]({SITE}/designs.html): {ALL_N} more designs. Every picture there is a design picture, made to show the piece. Some acacia wood pieces show a price; for the others, ask on WhatsApp.", "",
+         "## Pieces", ""]
+    L += [f"- [{p['name']}]({SITE}/{p['slug']}.html): {p['short']}; {price(p)}" for p in PRODUCTS]
+    L += ["", "## Made to order designs, by kind", "",
+          f"- [{OW_TITLE}]({SITE}/designs.html#g-{OW_GID}): {OW_LINE}"]
+    L += [f"- [{title}]({SITE}/designs.html#g-{gid}): {line}" for gid, pre, title, line, items in MTO]
+    L += ["", "## Bulk terms (from the bulk page)", ""] + [f"- {a}: {b}" for a, b in terms]
+    return "\n".join(L) + "\n"
 
 
 def main():
@@ -1432,6 +1508,7 @@ def main():
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
+        w("llms.txt", llms_txt())
     print("built", OUT, len(PRODUCTS) + 3 + ALL_N, "pages")
 
 

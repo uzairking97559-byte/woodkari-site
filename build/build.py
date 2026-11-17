@@ -161,6 +161,15 @@ MTO = [
         ("bone-inlay-chest-5", "Chest of drawers, grey and white geometric inlay design")]),
 ]
 MTO_N = sum(len(g[4]) for g in MTO)
+# Made-to-order designs that have an owner-set price (D-241/D-242, 18 Nov 2026: IC-2 Rs 74,900 incl. packing, delivery extra)
+MTO_PRICE = {"IC-2": (74900, "Price includes packing. Delivery extra.")}
+
+
+def mto_pr(code):
+    """(price text, note) for a priced design, else ("Price on WhatsApp", None)"""
+    if code in MTO_PRICE:
+        return rupee(MTO_PRICE[code][0]), MTO_PRICE[code][1]
+    return "Price on WhatsApp", None
 
 
 def mto_items():
@@ -1015,7 +1024,7 @@ def search_data():
         sub = rupee(it["price"]) if it["price"] else "bulk only"
         items.append({"n": it["name"], "s": f"Design {it['code']} · acacia wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
     for gid, code, f, n in mto_items():
-        items.append({"n": n, "s": f"Design {code} · made to order, price on WhatsApp", "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
+        items.append({"n": n, "s": f"Design {code} · made to order, " + (mto_pr(code)[0] if code in MTO_PRICE else "price on WhatsApp"), "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
     items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
     return json.dumps(items).replace("</", "<\\/")
 
@@ -1259,17 +1268,18 @@ def page_design(gid, pre, title, line, items, i):
         f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Made to order</figcaption></figure>'
         for j, k in enumerate(pics))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
-                    [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", "On WhatsApp")])
+                    [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")])
+    pr_txt, pr_note = mto_pr(code)
     others = [(j, x) for j, x in enumerate(items, 1) if j != i][:3]
     more = "\n".join(
         f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
-        f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
+        f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr bo">{e(mto_pr(f"{pre}-{j}")[0])}</p></a>'
         for j, (ff, nn) in others)
     lede = f"Design {code}. {line}"
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/m-{f}.webp", "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"},
-                     "offers": {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}})
-    return head(fit_title(seo_name(gid, n), code), fit(f"{n} (design {code}). {line} Made to order; ask the price on WhatsApp.", f"{n}. {line} Made to order; ask the price on WhatsApp."), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
+                     "offers": dict({"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}, **({"price": MTO_PRICE[code][0]} if code in MTO_PRICE else {}))})
+    return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {line} Made to order. One piece {pr_txt}, packing included, delivery extra.", f"{n}. Made to order. One piece {pr_txt}, packing included, delivery extra.") if pr_note else fit(f"{n} (design {code}). {line} Made to order; ask the price on WhatsApp.", f"{n}. {line} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(title)}</a> / {code}</p>
@@ -1277,9 +1287,9 @@ def page_design(gid, pre, title, line, items, i):
 {gallery(pics, figs)}
 <div class="buy">
 <h1>{e(n)}</h1>
-<p class="pr bo">Price on WhatsApp</p>
-<p class="note">Made to order. We reply with the price on WhatsApp.</p>
-<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Ask the price on WhatsApp</a></div>
+<p class="pr{"" if pr_note else " bo"}">{e(pr_txt)}</p>
+<p class="note">{"Made to order. " + e(pr_note) + " Ask on WhatsApp." if pr_note else "Made to order. We reply with the price on WhatsApp."}</p>
+<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}{"Order on WhatsApp" if pr_note else "Ask the price on WhatsApp"}</a></div>
 <p class="lede">{e(lede)}</p>
 <ul class="facts">{facts}</ul>
 <a class="lnk more-l" href="designs.html">All {ALL_N} designs{ARROW}</a>
@@ -1289,7 +1299,7 @@ def page_design(gid, pre, title, line, items, i):
 {more}
 </div></section>
 </div></main>
-<div class="stick"><b>Price on WhatsApp</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a></div>
+<div class="stick"><b>{e(pr_txt)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a></div>
 {footer()}
 <script type="application/ld+json">{ld}</script>
 </body></html>
@@ -1370,7 +1380,7 @@ def page_designs():
     for gid, pre, title, line, items in MTO:
         cards = "".join(
             f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
-            f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr bo">Price on WhatsApp</p></a>'
+            f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr{"" if f"{pre}-{i}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{i}")[0])}</p></a>'
             for i, (f, n) in enumerate(items, 1))
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
     return head("Made to Order Trays, Bowls, Boards, Candle Stands | Woodkari",

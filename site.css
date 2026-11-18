@@ -52,7 +52,7 @@ button{font:inherit;color:inherit}
  .hd-wa{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 18px;border-radius:999px;background:var(--green);color:#fff;font:600 14.5px/1 var(--sans);text-decoration:none;margin-left:8px;transition:background-color .2s}
  .hd-r .ib{margin-right:0}
  .hd-r{gap:6px}.hd-r .ib{width:44px;height:44px}
- .hd-r .ib.search{display:none}.hd-waic{display:none}
+ .hd-l .ib.search{display:none}.hd-waic{display:none}
  .hd-sb{display:flex;align-items:center;gap:6px;width:180px;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--soft);background:#fff}
  .hd-sb svg{flex:none;width:17px;height:17px}
  .hd-sb input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 14px/1 var(--sans);color:var(--ink)}

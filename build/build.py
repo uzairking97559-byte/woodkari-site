@@ -466,7 +466,7 @@ button{font:inherit;color:inherit}
  .hd-wa{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 18px;border-radius:999px;background:var(--green);color:#fff;font:600 14.5px/1 var(--sans);text-decoration:none;margin-left:8px;transition:background-color .2s}
  .hd-r .ib{margin-right:0}
  .hd-r{gap:6px}.hd-r .ib{width:44px;height:44px}
- .hd-r .ib.search{display:none}.hd-waic{display:none}
+ .hd-l .ib.search{display:none}.hd-waic{display:none}
  .hd-sb{display:flex;align-items:center;gap:6px;width:180px;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--soft);background:#fff}
  .hd-sb svg{flex:none;width:17px;height:17px}
  .hd-sb input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 14px/1 var(--sans);color:var(--ink)}
@@ -1117,11 +1117,14 @@ def head(title, desc, path, image):
 <link rel="icon" type="image/svg+xml" href="{UP}icon.svg">
 <link rel="icon" type="image/png" sizes="96x96" href="{UP}icon-96.png">
 <link rel="apple-touch-icon" href="{UP}apple-touch-icon.png">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="site.css?v={ASSET_V["css"]}">
 <script>document.documentElement.className+=" js";addEventListener("pagereveal",function(e){{var n=window.navigation&&navigation.activation;if(!e.viewTransition||!n||!n.from||document.querySelector('[style*="view-transition-name"]'))return;var im=document.querySelector('.p[href="'+n.from.url.split("/").pop().split(/[?#]/)[0]+'"] .ph img');if(im){{im.style.viewTransitionName="pic";im.closest(".p").classList.add("in","now")}}}})</script>
-<script src="site.js" defer></script>
+<script src="site.js?v={ASSET_V["js"]}" defer></script>
 </head>
 """
+
+
+ASSET_V = {"css": "0", "js": "0"}  # filled in main() from the file hashes
 
 
 def search_data():
@@ -1672,6 +1675,9 @@ def main():
     css = CSS.strip() + "\n"
     if PREVIEW:
         css = css.replace("url(fonts/", "url(../fonts/")
+    import hashlib
+    ASSET_V["css"] = hashlib.md5(css.encode("utf-8")).hexdigest()[:8]
+    ASSET_V["js"] = hashlib.md5((JS.strip() + "\n").encode("utf-8")).hexdigest()[:8]
     w("site.css", css)
     w("site.js", JS.strip() + "\n")
     w("index.html", page_home())

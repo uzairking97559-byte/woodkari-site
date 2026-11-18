@@ -402,6 +402,7 @@ body:has(dialog[open]){overflow:hidden}
 @media(min-width:900px){.dots{position:relative}.pp{position:absolute;left:100%;top:-10px;margin:0 0 0 2px}.pp:hover{background:rgba(255,255,255,.12)}}
 .slide .nm{opacity:0;transition:opacity .25s}                      /* name chips no longer print over each other mid-fade */
 .slide.on .nm{opacity:1;transition:opacity .5s .7s}
+@media(max-width:899px){.slide{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:10px}.slide img{position:absolute;inset:0}.slide .nm,.slide .tag{position:relative;left:auto;right:auto;top:auto;bottom:auto;max-width:calc(100% - 20px)}.slide .nm{order:1;flex-wrap:wrap;gap:2px 10px}.slide .tag{order:2}}   /* phone: name+price pill top-left, tag stacked under it */
 
 /* [4] press feedback (tap highlight is switched off site-wide, so every tap needs an answer) */
 .btn{transition:background-color .25s,color .25s,box-shadow .25s,transform .25s var(--ease)}

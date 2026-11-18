@@ -159,13 +159,7 @@ MTO = [
         ("bone-inlay-chest-1", "Chest of drawers, blue floral inlay design"), ("bone-inlay-chest-2", "Chest of drawers, green floral inlay design"),
         ("bone-inlay-chest-3", "Bedside chest, blue floral inlay design"), ("bone-inlay-chest-4", "Bedside chest, blue and white inlay design"),
         ("bone-inlay-chest-5", "Chest of drawers, grey and white geometric inlay design")]),
-    ("tables", "OW", "Inlay tables", "Tables with a bone inlay pattern.", [
-        ("bone-inlay-coffee-table-43", "Round coffee table, black and white bone inlay flower pattern")]),
 ]
-# groups whose codes do not start at 1 (OW-43 is the owner's own design number): group id -> number of its first item
-MTO_START = {"tables": 43}
-# approved text of a design, used as the page text instead of "Design <code>. <group line>"
-MTO_TEXT = {"OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India."}
 MTO_N = sum(len(g[4]) for g in MTO)
 # Made-to-order designs that have an owner-set price (D-241/D-242, 18 Nov 2026: IC-2 Rs 74,900 incl. packing, delivery extra)
 MTO_PRICE = {
@@ -174,7 +168,6 @@ MTO_PRICE = {
     'IC-3': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-4': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-5': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
-    'OW-43': (120900, 'Delivery extra.', 'Round, 42 in across, 18 in high'),
     'PT-1': (1299, 'Delivery extra.', 'About round tray 14 in'),
     'PT-2': (1699, 'Delivery extra.', 'About oval tray 18 × 9 in'),
     'PT-3': (2799, 'Delivery extra.', 'About tray 14 × 9 in + bowl 10 in'),
@@ -228,7 +221,7 @@ def bulk_line(key):
 
 def mto_items():
     for gid, pre, title, line, items in MTO:
-        for i, (f, n) in enumerate(items, MTO_START.get(gid, 1)):
+        for i, (f, n) in enumerate(items, 1):
             yield gid, f"{pre}-{i}", f, n
 
 
@@ -337,7 +330,7 @@ def wa(text):
 
 # SEO (17 Nov, seo_plan_16nov.md rows 10-11): titles carry the product kind and "Made to Order", kept to about 60 characters.
 TITLE_MAX = 60
-SEO_KIND = {"painted": "Painted ", "bath": "Resin ", "bowls": "Resin ", "candles": "Wooden ", "chests": "", "tables": "", OW_GID: "Acacia "}
+SEO_KIND = {"painted": "Painted ", "bath": "Resin ", "bowls": "Resin ", "candles": "Wooden ", "chests": "", OW_GID: "Acacia "}
 
 
 def seo_name(gid, n):
@@ -1321,7 +1314,7 @@ def gallery(keys, figs):
 
 
 def page_design(gid, pre, title, line, items, i):
-    f, n = items[i - MTO_START.get(gid, 1)]
+    f, n = items[i - 1]
     code = f"{pre}-{i}"
     msg = mto_msg(code, n)
     pics = mto_pics(f)
@@ -1331,17 +1324,16 @@ def page_design(gid, pre, title, line, items, i):
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
                     [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")] + ([("Size", MTO_PRICE[code][2])] if code in MTO_PRICE else []))
     pr_txt, pr_note = mto_pr(code)
-    others = [(j, x) for j, x in enumerate(items, MTO_START.get(gid, 1)) if j != i][:3]
+    others = [(j, x) for j, x in enumerate(items, 1) if j != i][:3]
     more = "\n".join(
         f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
         f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr{"" if f"{pre}-{j}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{j}")[0])}</p></a>'
         for j, (ff, nn) in others)
-    lede = MTO_TEXT.get(code) or f"Design {code}. {line}"
+    lede = f"Design {code}. {line}"
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/m-{f}.webp", "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"},
                      "offers": dict({"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}, **({"price": MTO_PRICE[code][0]} if code in MTO_PRICE else {}))})
-    dline = MTO_TEXT.get(code) or line
-    return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {dline} Made to order. {pr_txt}. {pr_note}", f"{n}. Made to order. {pr_txt}. {pr_note}") if pr_note else fit(f"{n} (design {code}). {dline} Made to order; ask the price on WhatsApp.", f"{n}. {dline} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
+    return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {line} Made to order. {pr_txt}. {pr_note}", f"{n}. Made to order. {pr_txt}. {pr_note}") if pr_note else fit(f"{n} (design {code}). {line} Made to order; ask the price on WhatsApp.", f"{n}. {line} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(title)}</a> / {code}</p>
@@ -1445,7 +1437,7 @@ def page_designs():
         cards = "".join(
             f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
             f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr{"" if f"{pre}-{i}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{i}")[0])}</p></a>'
-            for i, (f, n) in enumerate(items, MTO_START.get(gid, 1)))
+            for i, (f, n) in enumerate(items, 1))
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
     return head("Made to Order Trays, Bowls, Boards, Candle Stands | Woodkari",
                 f"{ALL_N} designs made on order: acacia wood trays, painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests.",
@@ -1611,7 +1603,7 @@ def main():
     w("terms.html", page_terms())
     w("designs.html", page_designs())
     for gid, pre, title, line, items in MTO:
-        for i in range(MTO_START.get(gid, 1), MTO_START.get(gid, 1) + len(items)):
+        for i in range(1, len(items) + 1):
             w(mto_page(f"{pre}-{i}"), page_design(gid, pre, title, line, items, i))
     for it in OW:
         w(mto_page(it["code"]), page_ow(it))

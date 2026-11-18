@@ -1444,7 +1444,7 @@ def page_home():
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
 <section class="sec" id="best"><div class="wrap">
-<div class="hdr rv"><div><h2>Bestselling designs</h2><p>Prices are for one piece; delivery is extra.</p></div><a class="lnk" href="shop.html">All pieces{ARROW}</a></div>
+<div class="hdr rv"><div><h2>Our favourites</h2><p>Prices are for one piece; delivery is extra.</p></div><a class="lnk" href="shop.html">All pieces{ARROW}</a></div>
 <div class="grid four">{best}</div>
 </div></section>
 

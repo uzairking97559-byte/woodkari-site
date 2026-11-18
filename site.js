@@ -45,7 +45,8 @@
       else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
     var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
   if(shop){
-    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();filter(a.dataset.cat||'all');
+    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
+      try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?f='+k)+'#shop')}catch(_){}
       shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
     var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
   }

@@ -878,7 +878,8 @@ JS = r"""
       else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
     var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
   if(shop){
-    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();filter(a.dataset.cat||'all');
+    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
+      try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?f='+k)+'#shop')}catch(_){}
       shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
     var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
   }
@@ -1064,7 +1065,7 @@ def footer():
     return f"""<footer class="ft"><div class="wrap">
 <div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
-<div><h3>Shop</h3><a class="l" href="./#shop">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
+<div><h3>Shop</h3><a class="l" href="./?f=all#shop" data-cat="all">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
 <div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
@@ -1265,7 +1266,7 @@ def page_design(gid, pre, title, line, items, i):
     msg = mto_msg(code, n)
     pics = mto_pics(f)
     figs = "".join(
-        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Made to order</figcaption></figure>'
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
         for j, k in enumerate(pics))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
                     [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")])
@@ -1334,7 +1335,7 @@ def page_ow(it):
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
     keys = [ow_key(code, x) for x, _ in shown]
     figs = "".join(
-        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, {e(v)}, design picture" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Made to order</figcaption></figure>'
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, {e(v)}, design picture" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
         for j, (k, (_, v)) in enumerate(zip(keys, shown)))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
                     [("Design", code), ("Material", OW_MATERIAL), ("Size", OW_SIZE), ("Made", "On order")])

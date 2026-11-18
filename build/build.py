@@ -407,6 +407,7 @@ MAIL = '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" st
 MENU_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>'
 SEARCH_ICON = '<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></svg>'
 IG_ICON = '<svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>'
+WA_OUT = '<svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.6 20.4l1.2-4.3A8.5 8.5 0 1 1 8 19.3z"/><path d="M9.2 8.6c0 3.3 2.9 6.2 6.2 6.2l1.1-1.5-2-1-1 .8c-1-.5-1.9-1.4-2.4-2.4l.8-1-1-2z"/></svg>'
 X_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>'
 PLUS = '<svg class="pl" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
 
@@ -455,8 +456,7 @@ button{font:inherit;color:inherit}
 .hd-wa{display:none}
 .hd-r{gap:0}.hd-r .ib{width:38px;height:38px}
 .hd-ig{margin-right:0!important}
-.hd-waic{display:inline-grid;place-items:center;width:30px;height:30px;margin:0 0 0 4px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none}
-.hd-waic svg{width:18px;height:18px}
+.hd-l .search{margin-left:-6px}
 .hd-sb{display:none}
 @media(min-width:900px){
  .hd-top,.hd::before{height:76px}
@@ -1148,9 +1148,9 @@ def header(cur):
     return f"""<a class="skip" href="#main">Skip to content</a>
 {pv}<header class="hd">
 <div class="wrap hd-top">
-<div class="hd-l"><button class="ib menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer">{MENU_ICON}</button><span class="hd-note">Made in India since 2008</span></div>
+<div class="hd-l"><button class="ib menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer">{MENU_ICON}</button><button class="ib search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button><span class="hd-note">Made in India since 2008</span></div>
 <a class="logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>EXPORTS</small></a>
-<div class="hd-r"><a class="ib hd-ig" href="https://www.instagram.com/woodkariexports/" target="_blank" rel="noopener" aria-label="Instagram">{IG_ICON}</a><form class="hd-sb" role="search" onsubmit="return false">{SEARCH_ICON}<input type="search" placeholder="Search" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"></form><button class="ib search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a><a class="hd-waic" href="{e(wa(HELLO))}" aria-label="WhatsApp">{WA_ICON}</a></div>
+<div class="hd-r"><a class="ib hd-ig" href="https://www.instagram.com/woodkariexports/" target="_blank" rel="noopener" aria-label="Instagram">{IG_ICON}</a><form class="hd-sb" role="search" onsubmit="return false">{SEARCH_ICON}<input type="search" placeholder="Search" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"></form><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a><a class="ib hd-waic" href="{e(wa(HELLO))}" aria-label="WhatsApp">{WA_OUT}</a></div>
 </div>
 <div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin trays','resin','resin')}{t('designs.html','Made to order','mto')}{t('bulk.html','Bulk orders','bulk')}{t('./#engraving','Name &amp; logo','eng')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
 </header>

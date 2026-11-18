@@ -103,6 +103,7 @@ body:has(dialog[open]){overflow:hidden}
 .lnk .ar{transition:transform .4s var(--ease)}
 .tag{position:absolute;z-index:2;left:8px;bottom:8px;background:rgba(255,255,255,.94);color:var(--ink);font:600 11.5px/1 var(--sans);letter-spacing:.02em;padding:5px 7px;border-radius:2px}
 
+.terms{max-width:46em}.terms h1{margin-bottom:10px}.terms h2{margin:30px 0 8px}.terms ol{padding-left:1.3em;margin:0}.terms li{margin:0 0 10px;line-height:1.55}.terms .row{margin-top:26px}
 /* hero */
 .hero{position:relative;background:var(--green);color:#fff;overflow:hidden}
 .show{position:relative;aspect-ratio:4/5;max-height:84svh;width:100%;overflow:hidden;background:#27352d}

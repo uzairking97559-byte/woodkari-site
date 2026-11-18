@@ -189,42 +189,42 @@ def mto_msg(code, n):
 # what = one plain sentence that only restates the name. views = what pictures a-f show (alt text), read off the pictures.
 # Pictures: img/m-ow-01-a.webp ... -f.webp (+ -600), made by build/mto_images.py ow OW-01 ...
 OW_GID, OW_TITLE, OW_CHIP = "acacia", "Acacia wood, made to order", "Acacia wood"
-OW_LINE = "Trays, a bowl, a serving board, a coaster set and candle stands. Acacia wood; other woods on request. We confirm the size on WhatsApp."
+OW_LINE = "Trays, a bowl, a serving board, a coaster set and candle stands. Acacia wood; other woods on request. Each design shows its size; other sizes on request."
 OW_MATERIAL = "Acacia wood. Other woods on request."
 OW_SIZE = "We confirm the size on WhatsApp."
 OW_BULK_FROM = 25  # pieces: the lower price each starts here (single-piece items)
 OW_BULK_MIN = 500  # pieces: the minimum for the "bulk only" items
 OW = [
-    dict(code="OW-01", name="Scalloped-edge rectangular tray", price=999, bulk=500,
+    dict(code="OW-01", size="14 × 10 × 1.5 in (36 × 25 × 3.8 cm)", name="Scalloped-edge rectangular tray", price=999, bulk=500,
          what="A rectangular tray with a scalloped edge.",
          views=["on a white background", "top view", "close-up of the scalloped edge", "side view",
                 "in use on a table, holding a bowl of fruit and a napkin", "two trays stacked"]),
-    dict(code="OW-03", name="Plain round wooden bowl", price=300, bulk=150, skip="f",
+    dict(code="OW-03", size="6 in across, 3 in deep (15 × 7.5 cm)", name="Plain round wooden bowl", price=300, bulk=150, skip="f",
          what="A plain round wooden bowl.",
          views=["on a white background", "top view", "close-up of the rim", "side view",
                 "in use, filled with apples and oranges", "three bowls nested one inside another"]),
-    dict(code="OW-08", name="Serving board with heart-shaped handle", price=599, bulk=300,
+    dict(code="OW-08", size="Board 14 × 9 in plus a 5 in handle (36 × 23 cm + 13 cm)", name="Serving board with heart-shaped handle", price=599, bulk=300,
          what="A serving board with a heart-shaped handle.",
          views=["on a white background", "top view", "close-up of the heart-shaped handle", "side view",
                 "in use, with sliced bread, cheese and strawberries", "three boards fanned out"]),
-    dict(code="OW-16", name="Square coaster set with slotted stand", price=None, bulk=350,
+    dict(code="OW-16", size="Coasters 4 × 4 in (10 × 10 cm), with a slotted stand", name="Square coaster set with slotted stand", price=None, bulk=350,
          what="A set of square coasters with a slotted stand.",
          views=["on a white background, coasters standing in the stand and one lying beside it", "top view",
                 "close-up of the coasters in the slots", "side view",
                 "in use on a kitchen counter, a cup of coffee on one coaster", "two sets side by side"]),
-    dict(code="OW-18", name="Rectangular tray with handle cut-outs and sloped walls", price=1399, bulk=700,
+    dict(code="OW-18", size="16 × 11 × 2 in (41 × 28 × 5 cm)", name="Rectangular tray with handle cut-outs and sloped walls", price=1399, bulk=700,
          what="A rectangular tray with sloped walls and handle cut-outs.",
          views=["on a white background", "top view", "close-up of a handle cut-out", "side view",
                 "in use, carrying a teapot, two cups of tea and biscuits", "two trays stacked"]),
-    dict(code="OW-25", name="Turned candle stands with metal tops, set of 3", price=1200, bulk=600, unit="set",
+    dict(code="OW-25", size="Set of 3, about 3, 6 and 9 in tall (8, 15, 22 cm)", name="Turned candle stands with metal tops, set of 3", price=1200, bulk=600, unit="set",
          what="A set of three turned candle stands with metal tops.",
          views=["on a white background", "top view", "close-up of a metal top", "side view, three heights",
                 "in use, holding three taper candles", "the three stands grouped together"]),
-    dict(code="OW-32", name="Round flat tray with low rim", price=None, bulk=350, skip="b",
+    dict(code="OW-32", size="12 in across, 1 in rim (30 × 2.5 cm)", name="Round flat tray with low rim", price=None, bulk=350, skip="b",
          what="A round, flat tray with a low rim.",
          views=["on a white background", "top view", "close-up of the low rim", "side view",
                 "in use, carrying a teapot and two cups of tea", "three trays stacked"]),
-    dict(code="OW-33", name="Rectangular tray with oval handle cut-outs", price=1399, bulk=700,
+    dict(code="OW-33", size="16 × 11 × 2.5 in (41 × 28 × 6.4 cm)", name="Rectangular tray with oval handle cut-outs", price=1399, bulk=700,
          what="A rectangular tray with oval handle cut-outs.",
          views=["on a white background", "top view", "close-up of an oval handle cut-out", "side view",
                 "in use, holding a loaf of bread, a jar of jam and a knife", "three trays stacked"]),
@@ -423,6 +423,7 @@ body:has(dialog[open]){overflow:hidden}
 .lnk .ar{transition:transform .4s var(--ease)}
 .tag{position:absolute;z-index:2;left:8px;bottom:8px;background:rgba(255,255,255,.94);color:var(--ink);font:600 11.5px/1 var(--sans);letter-spacing:.02em;padding:5px 7px;border-radius:2px}
 
+.terms{max-width:46em}.terms h1{margin-bottom:10px}.terms h2{margin:30px 0 8px}.terms ol{padding-left:1.3em;margin:0}.terms li{margin:0 0 10px;line-height:1.55}.terms .row{margin-top:26px}
 /* hero */
 .hero{position:relative;background:var(--green);color:#fff;overflow:hidden}
 .show{position:relative;aspect-ratio:4/5;max-height:84svh;width:100%;overflow:hidden;background:#27352d}
@@ -976,7 +977,8 @@ FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of 
        ("Can you put our name or logo on the pieces?", "Yes, on the wooden pieces, by laser, on 50 pieces or more of one design: a hotel name, a company logo or a couple's names."),
        ("Can you change the size?", "The acacia pieces (the Room Tray and the Fluted Box Tray) can be made in any size, on order."),
        ("How long does an order take?", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time when you ask."),
-       ("How does payment work?", "A bulk order starts with a 50% advance. For a single piece, we confirm how to pay on WhatsApp."),
+       ("How does payment work?", "A single piece up to ₹10,000 is paid in full when you order, by UPI or bank transfer. For a piece above ₹10,000, such as furniture, and for a bulk order, a 50% advance starts the order and the rest is paid before dispatch."),
+       ("Can I cancel or return a piece?", "You can cancel for free until we start making. Every piece is made for you, so there are no returns for a change of mind. If a piece arrives damaged, tell us on WhatsApp within 48 hours with an uncut unboxing video, and we replace it. The full terms are on the Order terms page."),
        ("Who pays for delivery?", "Delivery is at the buyer's cost. We tell you the amount before the order leaves."),
        ("Can I buy just one piece?", "Yes. Every piece with a price can be ordered on its own. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
 
@@ -1065,7 +1067,7 @@ def footer():
     return f"""<footer class="ft"><div class="wrap">
 <div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
-<div><h3>Shop</h3><a class="l" href="./?f=all#shop" data-cat="all">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
+<div><h3>Shop</h3><a class="l" href="./?f=all#shop" data-cat="all">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
 <div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
@@ -1338,7 +1340,7 @@ def page_ow(it):
         f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, {e(v)}, design picture" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
         for j, (k, (_, v)) in enumerate(zip(keys, shown)))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
-                    [("Design", code), ("Material", OW_MATERIAL), ("Size", OW_SIZE), ("Made", "On order")])
+                    [("Design", code), ("Material", OW_MATERIAL), ("Size", it.get("size", OW_SIZE)), ("Made", "On order")])
     more = "\n".join(ow_card(x) for x in [x for x in OW if x["code"] != code][:3])
     lede = f"Design {code}. {it['what']}"
     offer = {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}
@@ -1405,6 +1407,45 @@ def page_designs():
 <script type="application/ld+json">{ORG_ONLY_LD}</script>
 </body></html>
 """
+
+
+TERMS_SINGLE = [
+    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer: the full price for a piece up to ₹10,000; for a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
+    "You can cancel for free until we start making. Once making has started, the order cannot be cancelled.",
+    "Each piece is made for you, so we do not take returns for a change of mind.",
+    "If a piece arrives damaged or is not what you ordered, tell us on WhatsApp within 48 hours of delivery, with an uncut unboxing video and photos. We replace it, or return your money if we cannot replace it. We pay the shipping for this.",
+    "Handmade pieces differ a little: wood grain and colour change from piece to piece. This is not a defect.",
+    "Delivery is extra. We tell you the amount on WhatsApp.",
+]
+TERMS_BULK = [
+    "A 50% advance starts the order. The other 50% is paid before dispatch.",
+    "If you cancel before making starts, we return your advance. Once making has started, the advance is not returned, because the pieces are made for you.",
+    "If pieces arrive damaged, tell us within 48 hours of delivery, with an uncut unboxing video and photos. We replace them in your next lot, or give you a credit.",
+    "Delivery is at your cost, quoted before dispatch.",
+    "Our price is valid for 15 days from our message.",
+]
+
+
+def page_terms():
+    """Order terms (owner 18 Nov: "dekho baaki log kya karte hain"; research in agency-research businesses/woodkari/site/order_terms_research_18nov.md)."""
+    li = lambda xs: "".join(f"<li>{e(x)}</li>" for x in xs)
+    return head("Order Terms | Woodkari, India",
+                "How ordering works at Woodkari: payment, cancellation, damage and delivery, for single pieces and for bulk orders.",
+                "terms.html", "room-front.jpg") + f"""<body>
+{header('terms')}
+<main id="main">
+<section class="sec"><div class="wrap terms">
+<h1>Order terms</h1>
+<p>Short and simple. If anything is unclear, ask us on WhatsApp.</p>
+<h2>Single pieces</h2>
+<ol>{li(TERMS_SINGLE)}</ol>
+<h2>Bulk orders, 25 pieces or more of one design</h2>
+<ol>{li(TERMS_BULK)}</ol>
+<div class="row"><a class="btn pri" href="{e(wa(HELLO))}">{WA_ICON}Ask on WhatsApp</a></div>
+</div></section>
+</main>
+{footer()}
+</body></html>"""
 
 
 def page_bulk():
@@ -1506,6 +1547,7 @@ def main():
     w("site.js", JS.strip() + "\n")
     w("index.html", page_home())
     w("bulk.html", page_bulk())
+    w("terms.html", page_terms())
     w("designs.html", page_designs())
     for gid, pre, title, line, items in MTO:
         for i in range(1, len(items) + 1):
@@ -1515,7 +1557,7 @@ def main():
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")

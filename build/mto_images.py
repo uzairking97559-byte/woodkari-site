@@ -69,6 +69,22 @@ def make_inlay(code, name):
 if sys.argv[1:2] == ["inlay"]:  # python3 build/mto_images.py inlay OW-38 bone-inlay-coffee-table-38
     print(make_inlay(sys.argv[2], sys.argv[3]), "pictures")
     sys.exit()
+NB_DIRS = {"PX": "/home/user/agency-research/businesses/woodkari/photos/ai/painted", "IC": "/home/user/agency-research/businesses/woodkari/photos/ai/boxes"}
+
+
+def make_nb(code, letters):
+    """19 Nov batch: photos/ai/painted/PX-NN-x.png or photos/ai/boxes/IC-Nnn-x.png -> img/m-px-01-a.webp (1200) + -600"""
+    for x in letters:
+        im = Image.open(os.path.join(NB_DIRS[code[:2]], f"{code}-{x}.png")).convert("RGB")
+        for size, suffix in ((1200, ""), (600, "-600")):
+            im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{code.lower()}-{x}{suffix}.webp"), "WEBP", quality=78, method=6)
+
+
+if sys.argv[1:2] == ["nb"]:  # python3 build/mto_images.py nb PX-01:abe IC-N01:abe
+    for a in sys.argv[2:]:
+        c, l = a.split(":")
+        make_nb(c, l)
+    sys.exit()
 if sys.argv[1:2] == ["ow"]:
     for c in sys.argv[2:]:
         make_ow(c)

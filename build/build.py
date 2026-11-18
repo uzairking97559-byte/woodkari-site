@@ -315,7 +315,112 @@ OW = [
          views=["on a white background", "top view", "close-up of a compartment and the corner", "side view",
                 "in use, holding tea bags, sugar cubes, cardamom and biscuits", "three trays stacked"]),
 ]
-ALL_N = MTO_N + len(OW)  # every card on designs.html
+# Boxes, made to order (19 Nov batch, D-279). READ from agency-research businesses/woodkari/site/next_batch_inlay_chests.csv:
+# only rows with a price and a real size (not "andaza"), box prices checked against each other (a larger box never costs less).
+# sizes = [(size, price)]; pics = [(letter, alt text)]; the "e" size picture is used only where its labels equal a listed size.
+BX_GID, BX_TITLE, BX_CHIP = "boxes", "Boxes, made to order", "Boxes"
+BX_LINE = "Bone inlay boxes. Each design shows its sizes and prices."
+BX = [
+    dict(code="IC-N01", grp="boxes", name="Floral bone inlay jewellery box, small rectangular",
+         sizes=[("150 x 100 mm", 399), ("250 x 150 mm", 599)],
+         pics=[("a", "Floral bone inlay jewellery box, small rectangular, made to order"),
+               ("b", "Floral bone inlay jewellery box, small rectangular, made to order, open"),
+               ("e", "Floral bone inlay jewellery box, small rectangular, made to order, 250 x 150 mm")]),
+]
+# Painted pieces, hand-painted on wood (owner, D-280); same row rules; added to the painted group.
+PXL = [
+    dict(code="PX-01", grp="painted", name='Printed rectangular serving tray, painted print', sizes=[('10x10 in', 499), ('14x10 in', 499)],
+         pics=[('a', 'Printed rectangular serving tray, painted print, made to order'), ('b', 'Printed rectangular serving tray, painted print, made to order, second view'), ('e', 'Printed rectangular serving tray, painted print, made to order, 10x10 in')]),
+    dict(code="PX-02", grp="painted", name='Printed round serving tray', sizes=[('10 in', 399), ('12 in', 499), ('14x14 in', 599)],
+         pics=[('a', 'Printed round serving tray, made to order'), ('b', 'Printed round serving tray, made to order, second view')]),
+    dict(code="PX-03", grp="painted", name='Meena/pichwai round tray, set of 2', sizes=[('7x7 + 8x8 in pair', 299), ('10x10 in pair', 299)],
+         pics=[('a', 'Meena/pichwai round tray, set of 2, made to order'), ('b', 'Meena/pichwai round tray, set of 2, made to order, second view'), ('e', 'Meena/pichwai round tray, set of 2, made to order, 10x10 in pair')]),
+    dict(code="PX-04", grp="painted", name='Printed oval tray, no handle', sizes=[('250x150 mm', 499), ('12x8 in', 999)],
+         pics=[('a', 'Printed oval tray, no handle, made to order'), ('b', 'Printed oval tray, no handle, made to order, second view'), ('e', 'Printed oval tray, no handle, made to order, 12x8 in')]),
+    dict(code="PX-05", grp="painted", name='Gold-print floral painted tray, rectangular', sizes=[('10x14x2 in', 399)],
+         pics=[('a', 'Gold-print floral painted tray, rectangular, made to order'), ('b', 'Gold-print floral painted tray, rectangular, made to order, second view')]),
+    dict(code="PX-06", grp="painted", name='Meena rectangular tray', sizes=[('12x8 in', 799)],
+         pics=[('a', 'Meena rectangular tray, made to order'), ('b', 'Meena rectangular tray, made to order, second view'), ('e', 'Meena rectangular tray, made to order, 12x8 in')]),
+    dict(code="PX-08", grp="painted", name='Large printed painted tray', sizes=[('16x12 in', 1199)],
+         pics=[('a', 'Large printed painted tray, made to order'), ('b', 'Large printed painted tray, made to order, second view'), ('e', 'Large printed painted tray, made to order, 16x12 in')]),
+    dict(code="PX-09", grp="painted", name='Small printed gift tray', sizes=[('8x10 in', 299)],
+         pics=[('a', 'Small printed gift tray, made to order'), ('b', 'Small printed gift tray, made to order, second view'), ('e', 'Small printed gift tray, made to order, 8x10 in')]),
+    dict(code="PX-10", grp="painted", name='Meena round bowl, mango wood', sizes=[('5 in', 299), ('8 in', 399), ('10 in', 399)],
+         pics=[('a', 'Meena round bowl, mango wood, made to order'), ('b', 'Meena round bowl, mango wood, made to order, second view'), ('e', 'Meena round bowl, mango wood, made to order, 8 in')]),
+    dict(code="PX-11", grp="painted", name='Floral-print serving bowl', sizes=[('6 in', 299), ('8 in', 499), ('10 in', 899)],
+         pics=[('a', 'Floral-print serving bowl, made to order'), ('b', 'Floral-print serving bowl, made to order, second view')]),
+    dict(code="PX-14", grp="painted", name='Nesting printed bowl set of 3', sizes=[('3, 4, 5 in set', 799)],
+         pics=[('a', 'Nesting printed bowl set of 3, made to order'), ('b', 'Nesting printed bowl set of 3, made to order, second view'), ('e', 'Nesting printed bowl set of 3, made to order, 3, 4, 5 in set')]),
+    dict(code="PX-15", grp="painted", name='Printed plate and bowl set', sizes=[('plate 10 in + bowl 3 in', 699), ('12 in + 6 in', 999)],
+         pics=[('a', 'Printed plate and bowl set, made to order'), ('b', 'Printed plate and bowl set, made to order, second view'), ('e', 'Printed plate and bowl set, made to order, plate 10 in + bowl 3 in')]),
+    dict(code="PX-16", grp="painted", name='Printed round platter / plate', sizes=[('6 in', 399), ('12 in', 499)],
+         pics=[('a', 'Printed round platter / plate, made to order'), ('b', 'Printed round platter / plate, made to order, second view'), ('e', 'Printed round platter / plate, made to order, 12 in')]),
+]
+NB = PXL + BX
+NB_BY = {x["code"]: x for x in NB}
+PX_LINE = "Hand-painted on wood."
+ALL_N = MTO_N + len(OW) + len(NB)  # every card on designs.html
+
+
+def bx_key(code, x="a"):
+    return f"m-{code.lower()}-{x}"
+
+
+def bx_from(it):
+    lo = min(p for _, p in it["sizes"])
+    return ("From " if len(it["sizes"]) > 1 else "") + rupee(lo)
+
+
+def bx_card(it, anchor=False):
+    aid = f' id="{it["code"]}"' if anchor else ""
+    return (f'<a class="p rv"{aid} href="{mto_page(it["code"])}"><div class="ph"><img src="{UP}img/{bx_key(it["code"])}-600.webp" alt="{e(it["pics"][0][1])}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
+            f'<h3>{e(it["name"])}</h3><p class="sh">Design {it["code"]} · made on order</p><p class="pr">{bx_from(it)}</p></a>')
+
+
+def nb_grp(it):
+    return (BX_GID, BX_CHIP) if it["grp"] == "boxes" else ("painted", "Painted trays and bowls")
+
+
+def page_bx(it):
+    code, n = it["code"], it["name"]
+    lede = f"Design {code}. {n}." + (" Hand-painted on wood." if it["grp"] == "painted" else "") + " Made to order in India."
+    top = bx_from(it)
+    sizes_txt = ", ".join(f"{a} {rupee(b)}" for a, b in it["sizes"])
+    msg = f"Hello Woodkari, I want to order design {code}: {n}.\nSize ({sizes_txt}):\nQuantity:\nMy city and PIN code: "
+    keys = [bx_key(code, x) for x, _ in it["pics"]]
+    figs = "".join(
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(v)}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
+        for j, (k, (_, v)) in enumerate(zip(keys, it["pics"])))
+    rows = "".join(f'<li><b>{e(a)}</b><span>{rupee(b)}</span></li>' for a, b in it["sizes"])
+    more = "\n".join(bx_card(x) for x in [y for y in NB if y["grp"] == it["grp"] and y["code"] != code][:3])
+    offer = {"@type": "AggregateOffer", "priceCurrency": "INR", "lowPrice": min(p for _, p in it["sizes"]), "highPrice": max(p for _, p in it["sizes"]), "availability": "https://schema.org/MadeToOrder"}
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code, "image": f"{SITE}/img/{keys[0]}.webp",
+                     "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
+    return head(fit_title(n, code), fit(f"{n}. Design {code}. Made to order. Sizes and prices: {sizes_txt}.", f"{n}. Made to order. {top}."),
+                mto_page(code), f"{keys[0]}-600.webp") + f"""<body class="has-stick">
+{header('mto')}
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{nb_grp(it)[0]}">{e(nb_grp(it)[1])}</a> / {code}</p>
+<div class="pd">
+{gallery(keys, figs)}
+<div class="buy">
+<h1>{e(n)}</h1>
+<p class="pr">{top}</p>
+<ul class="facts">{rows}</ul>
+<p class="note">Prices are for one piece. Delivery is extra. We tell you the amount on WhatsApp.</p>
+<p class="note">Made to order. We tell you the making time on WhatsApp.</p>
+<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>
+<p class="lede">{e(lede)}</p>
+<a class="lnk more-l" href="designs.html">All {ALL_N} designs{ARROW}</a>
+</div>
+</div>
+{('<section class="sec"><div class="hdr rv"><div><h2>More made to order</h2></div></div><div class="grid more3">' + more + '</div></section>') if more else ''}
+</div></main>
+<div class="stick"><b>{e(top)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>
+{footer()}
+<script type="application/ld+json">{ld}</script>
+</body></html>
+"""
 
 
 def ow_wood(it):
@@ -1137,6 +1242,8 @@ def search_data():
     for it in OW:
         sub = rupee(it["price"]) if it["price"] else ow_price_lines(it)[0]
         items.append({"n": it["name"], "s": f"Design {it['code']} · {ow_wood(it)} wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
+    for it in NB:
+        items.append({"n": it["name"], "s": f"Design {it['code']} · made to order, {bx_from(it)}", "u": mto_page(it["code"]), "i": f"{UP}img/{bx_key(it["code"])}-600.webp"})
     for gid, code, f, n in mto_items():
         items.append({"n": n, "s": f"Design {code} · made to order, " + (mto_pr(code)[0] if code in MTO_PRICE else "price on WhatsApp"), "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
     items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
@@ -1508,14 +1615,18 @@ def page_ow(it):
 def page_designs():
     OW_AC = [x for x in OW if ow_wood(x) == "acacia"]
     OW_MG = [x for x in OW if ow_wood(x) == "mango"]
-    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}<span>{len(OW_AC)}</span></a><a href="#g-mango">{e(MG_CHIP)}<span>{len(OW_MG)}</span></a>' + "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO)
+    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}<span>{len(OW_AC)}</span></a><a href="#g-mango">{e(MG_CHIP)}<span>{len(OW_MG)}</span></a><a href="#g-{BX_GID}">{e(BX_CHIP)}<span>{len(BX)}</span></a>' + "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO).replace('Painted trays and bowls<span>%d</span>' % 9, 'Painted trays and bowls<span>%d</span>' % (9 + len(PXL)))
     groups = [f'<section class="sec mto" id="g-{OW_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(OW_TITLE)}</h2><p>{e(OW_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_AC)}</div>\n</div></section>',
-              f'<section class="sec mto" id="g-mango"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(MG_TITLE)}</h2><p>{e(MG_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_MG)}</div>\n</div></section>']
+              f'<section class="sec mto" id="g-mango"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(MG_TITLE)}</h2><p>{e(MG_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_MG)}</div>\n</div></section>',
+              f'<section class="sec mto" id="g-{BX_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(BX_TITLE)}</h2><p>{e(BX_LINE)}</p></div></div>\n<div class="grid four">{"".join(bx_card(it, True) for it in BX)}</div>\n</div></section>']
     for gid, pre, title, line, items in MTO:
         cards = "".join(
             f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
             f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr{"" if f"{pre}-{i}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{i}")[0])}</p></a>'
             for i, (f, n) in enumerate(items, MTO_START.get(gid, 1)) if f"{pre}-{i}" not in MTO_HOLD)
+        if gid == "painted":
+            cards += "".join(bx_card(it, True) for it in PXL)
+            line = line + " " + PX_LINE
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
     return head("Made to Order Trays, Bowls, Boards, Candle Stands | Woodkari",
                 f"{ALL_N} designs made on order: acacia wood trays, painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests.",
@@ -1663,7 +1774,8 @@ def llms_txt():
     L += [f"- [{p['name']}]({SITE}/{p['slug']}.html): {p['short']}; {price(p)}" for p in PRODUCTS]
     L += ["", "## Made to order designs, by kind", "",
           f"- [{OW_TITLE}]({SITE}/designs.html#g-{OW_GID}): {OW_LINE}",
-          f"- [{MG_TITLE}]({SITE}/designs.html#g-mango): {MG_LINE}"]
+          f"- [{MG_TITLE}]({SITE}/designs.html#g-mango): {MG_LINE}",
+          f"- [{BX_TITLE}]({SITE}/designs.html#g-{BX_GID}): {BX_LINE}"]
     L += [f"- [{title}]({SITE}/designs.html#g-{gid}): {line}" for gid, pre, title, line, items in MTO]
     L += ["", "## Bulk terms (from the bulk page)", ""] + [f"- {a}: {b}" for a, b in terms]
     return "\n".join(L) + "\n"
@@ -1690,10 +1802,12 @@ def main():
             w(mto_page(f"{pre}-{i}"), page_design(gid, pre, title, line, items, i))
     for it in OW:
         w(mto_page(it["code"]), page_ow(it))
+    for it in NB:
+        w(mto_page(it["code"]), page_bx(it))
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(it["code"]) for it in NB] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")

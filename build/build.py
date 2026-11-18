@@ -366,7 +366,7 @@ PXL = [
     dict(code="PX-16", grp="painted", name='Printed round platter / plate', sizes=[('6 in', 1199), ('12 in', 1499)],
          pics=[('a', 'Printed round platter / plate, made to order'), ('b', 'Printed round platter / plate, made to order, second view'), ('e', 'Printed round platter / plate, made to order, 12 in')]),
 ]
-NB = PXL + BX
+NB = []  # HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
 NB_BY = {x["code"]: x for x in NB}
 PX_LINE = "Hand-painted on wood."
 ALL_N = MTO_N + len(OW) + len(NB)  # every card on designs.html

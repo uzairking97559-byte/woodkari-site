@@ -66,12 +66,12 @@ PRODUCTS = [
                ("chevron-stack", "Five red chevron trays stacked, for bulk orders", "Made to order")]),
     dict(slug="gold-flake-resin-tray", name="Gold-flake Resin Tray", cat="resin", price=None, bulk_only=True, mto=True,
          title="Gold-flake Resin Tray, Bulk Orders from 25 | Woodkari",
-         desc="Made all of resin, black with gold flakes and two gold-tone leaf handles. Made to order in India, for bulk orders only, from 25 pieces. Price on WhatsApp.",
+         desc="Made all of resin, black with gold flakes and two gold-tone leaf handles. Made to order in India, for bulk orders only, from 25 pieces. ₹799 each.",
          short="All resin · gold flakes, leaf handles", card=("gold-top", "gold-front"),
          lede="Made all of resin, black and marbled with gold flakes, with two gold-tone leaf handles. Made for bulk orders only, from 25 pieces.",
          uses="Serving trays for a hotel, a wedding or a company gift.",
          facts=[("Material", "All resin, no board inside"), ("Colour", "Black with gold flakes"), ("Handles", "Gold-tone leaves"),
-                ("Size", "On request"), ("Made in", "India"), ("Orders", "Bulk only, from 25 pieces. Price on WhatsApp")],
+                ("Size", "On request"), ("Made in", "India"), ("Orders", "Bulk only, from 25 pieces. ₹799 each")],
          imgs=[("gold-front", "Gold-flake resin tray, black with gold flakes and leaf handles, on a wooden table", "Made to order"),
                ("gold-use", "Gold-flake resin tray holding two bowls of pistachios and almonds", "Made to order"),
                ("gold-top", "Gold-flake resin tray seen from above on a white sheet", "Made to order"),
@@ -162,7 +162,50 @@ MTO = [
 ]
 MTO_N = sum(len(g[4]) for g in MTO)
 # Made-to-order designs that have an owner-set price (D-241/D-242, 18 Nov 2026: IC-2 Rs 74,900 incl. packing, delivery extra)
-MTO_PRICE = {"IC-2": (74900, "Price includes packing. Delivery extra.")}
+MTO_PRICE = {
+    'IC-1': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
+    'IC-2': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
+    'IC-3': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
+    'IC-4': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
+    'IC-5': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
+    'PT-1': (1299, 'Delivery extra.', 'About round tray 14 in'),
+    'PT-2': (1699, 'Delivery extra.', 'About oval tray 18 × 9 in'),
+    'PT-3': (2799, 'Delivery extra.', 'About tray 14 × 9 in + bowl 10 in'),
+    'PT-4': (899, 'Delivery extra.', 'About rect tray with handles 14 × 10 in'),
+    'PT-5': (3499, 'Delivery extra.', 'About tray 14 × 7 in, bowl 10 in, 2 servers'),
+    'PT-6': (1799, 'Delivery extra.', 'About 2 bowls 5 in + 1 spoon'),
+    'PT-7': (2799, 'Delivery extra.', 'About tray 14 in + 2 bowls (8 and 5 in)'),
+    'PT-8': (3499, 'Delivery extra.', 'About board 16 × 10 in, bowl 9 in, 2 servers'),
+    'PT-9': (1699, 'Delivery extra.', 'About rect tray with handles 16 × 10 in, Warli'),
+    'WB-1': (499, 'Delivery extra.', 'About board 14 × 9 in, engraved'),
+    'WB-2': (499, 'Delivery extra.', 'About board 14 × 9 in, engraved'),
+    'WB-4': (499, 'Delivery extra.', 'About board 14 × 9 in, engraved'),
+    'WB-5': (499, 'Delivery extra.', 'About board 14 × 9 in, engraved'),
+    'WB-6': (499, 'Delivery extra.', 'About board 14 × 9 in, engraved'),
+    'WB-7': (1499, 'Delivery extra.', 'About board 14 × 9 in with pink resin pour'),
+    'WB-3': (1899, 'Delivery extra.', 'About board 14 × 9 in with white resin pour + 2 spatulas'),
+    'CS-2': (999, 'Delivery extra.', 'About set of 3 holders 6-10 in'),
+    'CS-3': (999, 'Delivery extra.', 'About set of 3 holders 6-10 in'),
+    'CS-1': (699, 'Delivery extra.', 'About 7 hexagon blocks 3 in'),
+    'CS-4': (699, 'Delivery extra.', 'About 5 taper holders 4-10 in'),
+    'CS-5': (699, 'Delivery extra.', 'About 5 faceted blocks 4-10 in'),
+    'CS-6': (799, 'Delivery extra.', 'About 2 stands 4-8 in'),
+    'CS-7': (799, 'Delivery extra.', 'About 2 stands 4-8 in'),
+    'RB-1': (2599, 'Delivery extra.', 'About round platter 12 in, bowl 7 in, 2 servers'),
+    'RB-2': (3199, 'Delivery extra.', 'About platter 12 in, bowl 8 in, small bowl 4 in, 2 servers'),
+    'RB-3': (2999, 'Delivery extra.', 'About bowl 10 in, bowl 5 in, 3-section dish 14 × 5 in, 2 servers'),
+    'RB-4': (4199, 'Delivery extra.', 'About salad bowl 10 in + 2 servers, 3 small bowls 4 in, cake stand 10 in'),
+    'RB-5': (2799, 'Delivery extra.', 'About 3 stacked bowls + 1 tall vase'),
+    'RB-6': (3599, 'Delivery extra.', 'About bowl 10 in, bowl 7 in, small bowl 3 in, oblong platter 14 × 6 in, 2 servers'),
+    'BS-1': (1899, 'Delivery extra.', 'About 3-piece resin set, pump 7 in tall'),
+    'BS-2': (1899, 'Delivery extra.', 'About 4-piece resin set, pump 7 in tall'),
+    'BS-3': (1899, 'Delivery extra.', 'About 4-piece resin set, pump 7 in tall'),
+    'BS-4': (1899, 'Delivery extra.', 'About 4-piece resin set, pump 7 in tall'),
+    'BS-5': (1899, 'Delivery extra.', 'About 4-piece resin set, pump 7 in tall'),
+    'BS-6': (1899, 'Delivery extra.', 'About 4-piece resin set, pump 7 in tall'),
+    'BS-7': (1899, 'Delivery extra.', 'About 4-piece resin set, pump 7 in tall'),
+}
+BULK_ONLY_PRICE = {'OW-16': 399, 'OW-32': 399, 'gold-flake-resin-tray': 799}  # each, from 25 pieces
 
 
 def mto_pr(code):
@@ -170,6 +213,10 @@ def mto_pr(code):
     if code in MTO_PRICE:
         return rupee(MTO_PRICE[code][0]), MTO_PRICE[code][1]
     return "Price on WhatsApp", None
+
+
+def bulk_line(key):
+    return f"{rupee(BULK_ONLY_PRICE[key])} each, from 25 pieces"
 
 
 def mto_items():
@@ -242,7 +289,7 @@ def ow_price_lines(it):
         return f"{rupee(it['price'])} for the set of 3", f"{OW_BULK_FROM} sets or more: {rupee(it['bulk'])} a set"
     if it["price"]:
         return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: {rupee(it['bulk'])} each"
-    return "Bulk orders only. Ask for the price on WhatsApp.", ""
+    return bulk_line(it["code"]), ""
 
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1019,12 +1066,12 @@ def head(title, desc, path, image):
 def search_data():
     items = []
     for p in PRODUCTS:
-        sub = p["short"] + (" · bulk only" if p.get("bulk_only") else " · " + rupee(p["price"])) + " · " + ("Made to order" if p.get("mto") else "Plain photo of our piece")
+        sub = p["short"] + (" · " + bulk_line(p["slug"]) if p.get("bulk_only") else " · " + rupee(p["price"])) + " · " + ("Made to order" if p.get("mto") else "Plain photo of our piece")
         items.append({"n": p["name"], "s": sub, "u": p["slug"] + ".html", "i": f"{UP}img/{p['card'][0]}-600.webp"})
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Made to order · in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
     for it in OW:
-        sub = rupee(it["price"]) if it["price"] else "bulk only"
+        sub = rupee(it["price"]) if it["price"] else bulk_line(it["code"])
         items.append({"n": it["name"], "s": f"Design {it['code']} · acacia wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
     for gid, code, f, n in mto_items():
         items.append({"n": n, "s": f"Design {code} · made to order, " + (mto_pr(code)[0] if code in MTO_PRICE else "price on WhatsApp"), "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
@@ -1078,7 +1125,7 @@ def footer():
 
 def price_html(p, cls="pr"):
     if p.get("bulk_only"):
-        return f'<p class="{cls} bo">Bulk only · from 25 pieces</p>'
+        return f'<p class="{cls}">{bulk_line(p["slug"])}</p>'
     unit = f' <span>/ {e(p["unit"])}</span>' if p.get("unit") else ""
     return f'<p class="{cls}">{rupee(p["price"])}{unit}</p>'
 
@@ -1103,7 +1150,7 @@ def page_home():
     tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
     slides = "".join(
-        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(next((a for kk, a, *_ in byslug[sl]["imgs"] if kk == k), byslug[sl]["name"]))}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(next((a for kk, a, *_ in byslug[sl]["imgs"] if kk == k), byslug[sl]["name"]))}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{bulk_line(sl) if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
         for i, (k, sl) in enumerate(SLIDES))
     dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in India since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
@@ -1195,9 +1242,9 @@ def page_home():
 
 def page_product(p):
     if p.get("bulk_only"):
-        msg = f"Hello Woodkari, I am asking about: {p['name']}.\nQuantity:\nCity: "
-        btn = "Ask on WhatsApp"
-        stick_l = "Bulk only"
+        msg = f"Hello Woodkari, I want to order: {p['name']} ({bulk_line(p['slug'])}).\nQuantity:\nMy city and PIN code: "
+        btn = "Order on WhatsApp"
+        stick_l = bulk_line(p["slug"])
     else:
         msg = f"Hello Woodkari, I want to order: {p['name']} ({rupee(p['price'])}).\nMy city and PIN code: "
         btn = "Order on WhatsApp"
@@ -1209,11 +1256,15 @@ def page_product(p):
     offer = {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}
     if p.get("price"):
         offer["price"] = p["price"]
+    elif p["slug"] in BULK_ONLY_PRICE:
+        offer["price"] = BULK_ONLY_PRICE[p["slug"]]
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": p["name"],
                      "image": f"{SITE}/img/{p['imgs'][0][0]}.webp", "description": p["lede"],
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
     notes = ""
-    if not p.get("bulk_only"):
+    if p.get("bulk_only"):
+        notes += '<p class="note">Delivery extra.</p>'
+    else:
         notes += '<p class="note">Delivery is extra. We tell you the amount on WhatsApp.</p>'
     if p.get("mto"):
         notes += '<p class="note">Made to order. We tell you the making time on WhatsApp.</p>'
@@ -1271,18 +1322,18 @@ def page_design(gid, pre, title, line, items, i):
         f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
         for j, k in enumerate(pics))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
-                    [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")])
+                    [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")] + ([("Size", MTO_PRICE[code][2])] if code in MTO_PRICE else []))
     pr_txt, pr_note = mto_pr(code)
     others = [(j, x) for j, x in enumerate(items, 1) if j != i][:3]
     more = "\n".join(
         f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
-        f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr bo">{e(mto_pr(f"{pre}-{j}")[0])}</p></a>'
+        f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr{"" if f"{pre}-{j}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{j}")[0])}</p></a>'
         for j, (ff, nn) in others)
     lede = f"Design {code}. {line}"
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/m-{f}.webp", "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"},
                      "offers": dict({"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}, **({"price": MTO_PRICE[code][0]} if code in MTO_PRICE else {}))})
-    return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {line} Made to order. One piece {pr_txt}, packing included, delivery extra.", f"{n}. Made to order. One piece {pr_txt}, packing included, delivery extra.") if pr_note else fit(f"{n} (design {code}). {line} Made to order; ask the price on WhatsApp.", f"{n}. {line} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
+    return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {line} Made to order. {pr_txt}. {pr_note}", f"{n}. Made to order. {pr_txt}. {pr_note}") if pr_note else fit(f"{n} (design {code}). {line} Made to order; ask the price on WhatsApp.", f"{n}. {line} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(title)}</a> / {code}</p>
@@ -1291,7 +1342,7 @@ def page_design(gid, pre, title, line, items, i):
 <div class="buy">
 <h1>{e(n)}</h1>
 <p class="pr{"" if pr_note else " bo"}">{e(pr_txt)}</p>
-<p class="note">{"Made to order. " + e(pr_note) + " Ask on WhatsApp." if pr_note else "Made to order. We reply with the price on WhatsApp."}</p>
+<p class="note">{"Made to order. " + e(pr_note) if pr_note else "Made to order. We reply with the price on WhatsApp."}</p>
 <div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}{"Order on WhatsApp" if pr_note else "Ask the price on WhatsApp"}</a></div>
 <p class="lede">{e(lede)}</p>
 <ul class="facts">{facts}</ul>
@@ -1302,7 +1353,7 @@ def page_design(gid, pre, title, line, items, i):
 {more}
 </div></section>
 </div></main>
-<div class="stick"><b>{e(pr_txt)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a></div>
+<div class="stick"><b>{e(pr_txt)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}{"Order on WhatsApp" if pr_note else "Ask on WhatsApp"}</a></div>
 {footer()}
 <script type="application/ld+json">{ld}</script>
 </body></html>
@@ -1312,7 +1363,7 @@ def page_design(gid, pre, title, line, items, i):
 def ow_card(it, anchor=False):
     """a card for designs.html (anchor=True gives it the id that the chips and :target use) and for "More" rows"""
     top, _ = ow_price_lines(it)
-    pr = f'<p class="pr">{top}</p>' if it["price"] else f'<p class="pr bo">Bulk orders only</p>'
+    pr = f'<p class="pr">{top}</p>'
     aid = f' id="{it["code"]}"' if anchor else ""
     return (f'<a class="p rv"{aid} href="{mto_page(it["code"])}"><div class="ph"><img src="{UP}img/{ow_key(it["code"])}-600.webp" alt="{e(it["name"])}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
             f'<h3>{e(it["name"])}</h3><p class="sh">Design {it["code"]} · acacia wood</p>{pr}</a>')
@@ -1329,11 +1380,11 @@ def page_ow(it):
         price = f'<p class="pr">{top}</p>\n<p class="note">{e(second)}</p>\n<p class="note">Delivery is extra. We tell you the amount on WhatsApp.</p>'
         meta_price = (f"{top}; {second[0].lower() + second[1:]}." if it.get("unit") == "set" else f"One piece {top}; {second[0].lower() + second[1:]}.")
     else:
-        msg = f"Hello Woodkari, I am asking about design {code}: {n}\nQuantity:\nCity: "
-        btn = stick_btn = "Ask on WhatsApp"
-        stick_l = "Bulk only"
-        price = f'<p class="pr bo">{e(top)}</p>'
-        meta_price = top
+        msg = f"Hello Woodkari, I want to order design {code}: {n} ({top}).\nQuantity:\nMy city and PIN code: "
+        btn = stick_btn = "Order on WhatsApp"
+        stick_l = top
+        price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
+        meta_price = top + "."
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
     keys = [ow_key(code, x) for x, _ in shown]
     figs = "".join(
@@ -1346,6 +1397,8 @@ def page_ow(it):
     offer = {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}
     if it["price"]:
         offer["price"] = it["price"]
+    elif code in BULK_ONLY_PRICE:
+        offer["price"] = BULK_ONLY_PRICE[code]
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL}", "material": "Acacia wood",
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
@@ -1393,7 +1446,7 @@ def page_designs():
 <main id="main">
 <section><div class="wrap mh">
 <h1>Made on order.</h1>
-<p>{ALL_N} more designs. Every picture here is a design picture, made to show the piece. Some acacia wood pieces show a price. For the others, open a design, then ask on WhatsApp and we reply with the price.</p>
+<p>{ALL_N} more designs. Every picture here is a design picture, made to show the piece. Every design shows its price; open one and order on WhatsApp.</p>
 <nav class="chips" aria-label="Kinds of pieces">{chips}</nav>
 </div></section>
 {chr(10).join(groups)}
@@ -1511,7 +1564,7 @@ def page_bulk():
 def llms_txt():
     """/llms.txt (seo_plan_16nov.md row 24): plain facts that the site already prints, and links to the main pages. Linked from nowhere."""
     def price(p):
-        return "bulk only, from 25 pieces, price on WhatsApp" if p.get("bulk_only") else rupee(p["price"]) + (f" / {p['unit']}" if p.get("unit") else "")
+        return bulk_line(p["slug"]) if p.get("bulk_only") else rupee(p["price"]) + (f" / {p['unit']}" if p.get("unit") else "")
     terms = [("Minimum", "Trays and boxes: 25 pieces of one design. Small pieces such as coasters and tissue boxes: larger lots, ask us"),
              ("Size", "Acacia pieces in any size"), ("Name or logo", "By laser, from 50 pieces of one design"),
              ("Making time", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you"),
@@ -1527,7 +1580,7 @@ def llms_txt():
          "## Main pages", "",
          f"- [Home and shop]({SITE}/): trays and boxes, acacia wood from our workshop, and resin trays made to order. Prices are for one piece; delivery is extra.",
          f"- [Bulk and hotel orders]({SITE}/bulk.html): bulk orders from 25 pieces, for hotels, gifting companies, shops and importers.",
-         f"- [Made to order designs]({SITE}/designs.html): {ALL_N} more designs. Every picture there is a design picture, made to show the piece. Some acacia wood pieces show a price; for the others, ask on WhatsApp.", "",
+         f"- [Made to order designs]({SITE}/designs.html): {ALL_N} more designs. Every picture there is a design picture, made to show the piece. Every design shows its price; order on WhatsApp.", "",
          "## Pieces", ""]
     L += [f"- [{p['name']}]({SITE}/{p['slug']}.html): {p['short']}; {price(p)}" for p in PRODUCTS]
     L += ["", "## Made to order designs, by kind", "",

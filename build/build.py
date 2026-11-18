@@ -1197,8 +1197,8 @@ def shop_menu():
 
 def page_shop():
     items, n, groups = shop_menu()
-    chips = f'<a href="shop.html" data-c="all" aria-current="true">All<span>{len(items)}</span></a>' + "".join(
-        f'<a href="shop.html?c={l}" data-c="{l}" data-p="{g}">{e(t)}<span>{n(l)}</span></a>' for g, label, ls in groups for l, t in (ls or [(g, label)]))
+    chips = f'<a href="shop.html" data-c="all" aria-current="true">All</a>' + "".join(
+        f'<a href="shop.html?c={l}" data-c="{l}" data-p="{g}">{e(t)}</a>' for g, label, ls in groups for l, t in (ls or [(g, label)]))
     return head("All Pieces: Furniture, Trays, Bowls, Boards, Candle Stands | Woodkari",
                 f"All {len(items)} pieces from Woodkari, India: bone inlay furniture, resin and painted trays, bowls, boards, acacia and mango wood, candle stands. Made to order.",
                 "shop.html", "m-og.jpg") + f"""<body>
@@ -1339,7 +1339,7 @@ def nav_html(cur):
         if ls:
             has = " ".join([g] + [l for l, _ in ls])
             out.append(f'<a class="g" href="shop.html?c={g}" data-g="{g}" data-has="{has}" aria-haspopup="true" aria-expanded="false">{e(label)}<svg class="dn" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>')
-            sets.append(f'<div class="sub-set" data-for="{g}" hidden><a href="shop.html?c={g}">All {e(label.lower())}<span>{n(g)}</span></a>' + "".join(f'<a href="shop.html?c={l}">{e(t)}<span>{n(l)}</span></a>' for l, t in ls) + "</div>")
+            sets.append(f'<div class="sub-set" data-for="{g}" hidden><a href="shop.html?c={g}">All {e(label.lower())}</a>' + "".join(f'<a href="shop.html?c={l}">{e(t)}</a>' for l, t in ls) + "</div>")
         else:
             out.append(f'<a href="shop.html?c={g}" data-c="{g}" data-has="{g}">{e(label)}</a>')
     out.append(f'<a href="bulk.html"{cc("bulk")}>Bulk orders</a><a href="name-and-logo.html"{cc("eng")}>Name &amp; logo</a>')
@@ -1423,7 +1423,7 @@ def page_home():
     byid = {x["id"]: x for x in items}
     best = "".join(shop_card(byid[i]) for i in BEST)
     new = "".join(shop_card(byid[i]) for i in NEW_ARRIVALS)
-    tiles = "".join(f'<a class="tile rv" href="shop.html?c={g}"><img src="{UP}img/{GROUP_PIC[g]}-600.webp" alt="{e(label)}" width="600" height="600" loading="lazy"><span class="cap">{e(label)}<small>{n(g)} pieces</small></span></a>' for g, label, ls in groups)
+    tiles = "".join(f'<a class="tile rv" href="shop.html?c={g}"><img src="{UP}img/{GROUP_PIC[g]}-600.webp" alt="{e(label)}" width="600" height="600" loading="lazy"><span class="cap">{e(label)}</span></a>' for g, label, ls in groups)
     ribbon_items = ["Made in India since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
     dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n_ + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n_)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n_)}</b><i>Ask on WhatsApp</i></a>' for k, n_ in DESIGNS)
@@ -1454,7 +1454,7 @@ def page_home():
 </div></section>
 
 <section class="sec" id="new"><div class="wrap">
-<div class="hdr rv"><div><h2>New arrivals</h2></div><a class="lnk" href="shop.html">All {len(items)} pieces{ARROW}</a></div>
+<div class="hdr rv"><div><h2>New arrivals</h2></div><a class="lnk" href="shop.html">All pieces{ARROW}</a></div>
 <div class="grid four" id="newarr">{new}</div>
 </div></section>
 
@@ -1484,7 +1484,7 @@ def page_home():
 <section class="sec"><div class="wrap">
 <div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div></div>
 <div class="dz">{dz}</div>
-<p class="mto-l rv"><a class="lnk" href="shop.html">See all {len(items)} pieces{ARROW}</a></p>
+<p class="mto-l rv"><a class="lnk" href="shop.html">See all pieces{ARROW}</a></p>
 </div></section>
 
 <section class="band stone" id="workshop"><div class="wrap">
@@ -1626,7 +1626,7 @@ def page_design(gid, pre, title, line, items, i):
 <div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}{"Order on WhatsApp" if pr_note else "Ask the price on WhatsApp"}</a></div>
 <p class="lede">{e(lede)}</p>
 <ul class="facts">{facts}</ul>
-<a class="lnk more-l" href="designs.html">All {ALL_N} designs{ARROW}</a>
+<a class="lnk more-l" href="designs.html">All designs{ARROW}</a>
 </div>
 </div>
 <section class="sec"><div class="hdr rv"><div><h2>More {e(title.lower())}</h2></div></div><div class="grid more3">
@@ -1697,7 +1697,7 @@ def page_ow(it):
 <div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}{btn}</a></div>
 <p class="lede">{e(lede)}</p>
 <ul class="facts">{facts}</ul>
-<a class="lnk more-l" href="designs.html">All {ALL_N} designs{ARROW}</a>
+<a class="lnk more-l" href="designs.html">All designs{ARROW}</a>
 </div>
 </div>
 <section class="sec"><div class="hdr rv"><div><h2>{"More in acacia wood" if ow_wood(it) == "acacia" else "More made to order"}</h2></div></div><div class="grid more3">
@@ -1714,7 +1714,7 @@ def page_ow(it):
 def page_designs():
     OW_AC = [x for x in OW if ow_wood(x) == "acacia"]
     OW_MG = [x for x in OW if ow_wood(x) == "mango"]
-    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}<span>{len(OW_AC)}</span></a><a href="#g-mango">{e(MG_CHIP)}<span>{len(OW_MG)}</span></a>' + "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO)
+    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}</a><a href="#g-mango">{e(MG_CHIP)}</a>' + "".join(f'<a href="#g-{gid}">{e(title)}</a>' for gid, pre, title, line, items in MTO)
     groups = [f'<section class="sec mto" id="g-{OW_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(OW_TITLE)}</h2><p>{e(OW_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_AC)}</div>\n</div></section>',
               f'<section class="sec mto" id="g-mango"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(MG_TITLE)}</h2><p>{e(MG_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_MG)}</div>\n</div></section>']
     for gid, pre, title, line, items in MTO:

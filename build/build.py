@@ -171,13 +171,14 @@ MTO = [
 MTO_START = {"tables": 38}
 # approved text of a design, used as the page text instead of "Design <code>. <group line>"
 MTO_TEXT = {
-    "OW-38": "Round drum coffee table with a sunburst pattern on top and stripes down the side. Bone inlay, black and white. 36 in across, 16 in high. Made to order in India.",
-    "OW-39": "Smaller round drum coffee table with a sunburst pattern on top and stripes down the side. Bone inlay, black and white. 30 in across, 16 in high. Made to order in India.",
+    "OW-38": "Round drum coffee table with a sunburst pattern on top and stripes down the side. Bone inlay, black and white. Two sizes: 36 in across × 16 in high, or 30 in across × 16 in high. Made to order in India.",
     "OW-40": "Eight-sided coffee table with a pattern of nested lines on the top and sides. Bone inlay, black and white. 40 in across, 17 in high. Made to order in India.",
     "OW-41": "Small round stool or side table with a honeycomb pattern all over. Bone inlay, black and white. 16 in across, 18 in high. Made to order in India.",
     "OW-42": "Cube side table with a diamond line pattern on every face. Bone inlay, black and white. 16 × 16 × 16 in. Made to order in India.",
     "OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India."}
-MTO_HOLD = {"OW-42"}  # designs kept off the site for now (picture being redone, 18 Nov)
+MTO_HOLD = {"OW-42", "OW-39"}  # designs kept off the site (OW-42 picture being redone; OW-39 merged into OW-38 as its 30 in size, 18 Nov)
+# one listing with several sizes: code -> [(size label, price)]; the card shows "From <lowest>"
+MTO_SIZES = {"OW-38": [("36 × 16 in", 90900), ("30 × 16 in", 70900)]}
 MTO_N = sum(len(g[4]) for g in MTO) - len(MTO_HOLD)
 # Made-to-order designs that have an owner-set price (D-241/D-242, 18 Nov 2026: IC-2 Rs 74,900 incl. packing, delivery extra)
 MTO_PRICE = {
@@ -234,6 +235,8 @@ BULK_ONLY_PRICE = {'OW-16': 399, 'OW-32': 399, 'gold-flake-resin-tray': 799}  # 
 
 def mto_pr(code):
     """(price text, note) for a priced design, else ("Price on WhatsApp", None)"""
+    if code in MTO_SIZES:
+        return "From " + rupee(min(p for _, p in MTO_SIZES[code])), MTO_PRICE[code][1]
     if code in MTO_PRICE:
         return rupee(MTO_PRICE[code][0]), MTO_PRICE[code][1]
     return "Price on WhatsApp", None
@@ -1363,8 +1366,11 @@ def page_design(gid, pre, title, line, items, i):
     figs = "".join(
         f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
         for j, k in enumerate(pics))
-    facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
-                    [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")] + ([("Size", MTO_PRICE[code][2])] if code in MTO_PRICE else []))
+    if code in MTO_SIZES:
+        fl = [("Design", code), ("Kind", title), ("Made", "On order")] + [(f"Size {sz}", rupee(pp)) for sz, pp in MTO_SIZES[code]]
+    else:
+        fl = [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")] + ([("Size", MTO_PRICE[code][2])] if code in MTO_PRICE else [])
+    facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in fl)
     pr_txt, pr_note = mto_pr(code)
     others = [(j, x) for j, x in enumerate(items, MTO_START.get(gid, 1)) if j != i and f"{pre}-{j}" not in MTO_HOLD][:3]
     more = "\n".join(
@@ -1375,6 +1381,10 @@ def page_design(gid, pre, title, line, items, i):
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/m-{f}.webp", "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"},
                      "offers": dict({"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}, **({"price": MTO_PRICE[code][0]} if code in MTO_PRICE else {}))})
+    if code in MTO_SIZES:
+        _d = json.loads(ld)
+        _d["offers"] = [{"@type": "Offer", "priceCurrency": "INR", "price": pp, "name": sz, "availability": "https://schema.org/MadeToOrder"} for sz, pp in MTO_SIZES[code]]
+        ld = json.dumps(_d)
     dline = MTO_TEXT.get(code) or line
     return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {dline} Made to order. {pr_txt}. {pr_note}", f"{n}. Made to order. {pr_txt}. {pr_note}") if pr_note else fit(f"{n} (design {code}). {dline} Made to order; ask the price on WhatsApp.", f"{n}. {dline} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
 {header('mto')}

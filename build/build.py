@@ -406,6 +406,7 @@ ARROW = '<svg class="i ar" viewBox="0 0 24 24" width="18" height="18" fill="none
 MAIL = '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>'
 MENU_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>'
 SEARCH_ICON = '<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></svg>'
+IG_ICON = '<svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>'
 X_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>'
 PLUS = '<svg class="pl" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
 
@@ -452,6 +453,11 @@ button{font:inherit;color:inherit}
 .logo small{display:block;font:600 11px/1 var(--sans);letter-spacing:.42em;margin:5px 0 0 .42em;color:var(--ink)}
 .hd-note{display:none;font-size:14px;color:var(--soft)}
 .hd-wa{display:none}
+.hd-r{gap:0}.hd-r .ib{width:38px;height:38px}
+.hd-ig{margin-right:0!important}
+.hd-waic{display:inline-grid;place-items:center;width:30px;height:30px;margin:0 0 0 4px;border-radius:50%;background:#25D366;color:#fff;text-decoration:none}
+.hd-waic svg{width:18px;height:18px}
+.hd-sb{display:none}
 @media(min-width:900px){
  .hd-top,.hd::before{height:76px}
  .logo b{font-size:36px}
@@ -459,6 +465,13 @@ button{font:inherit;color:inherit}
  .hd-l .menu{display:none}
  .hd-wa{display:inline-flex;align-items:center;gap:8px;min-height:42px;padding:8px 18px;border-radius:999px;background:var(--green);color:#fff;font:600 14.5px/1 var(--sans);text-decoration:none;margin-left:8px;transition:background-color .2s}
  .hd-r .ib{margin-right:0}
+ .hd-r{gap:6px}.hd-r .ib{width:44px;height:44px}
+ .hd-r .ib.search{display:none}.hd-waic{display:none}
+ .hd-sb{display:flex;align-items:center;gap:6px;width:180px;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--soft);background:#fff}
+ .hd-sb svg{flex:none;width:17px;height:17px}
+ .hd-sb input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 14px/1 var(--sans);color:var(--ink)}
+ .hd-sb input::-webkit-search-cancel-button{display:none}
+ .hd-sb:focus-within{border-color:var(--green)}
 }
 .tabs{position:relative;background:#fff;pointer-events:auto;border-top:1px solid var(--line);border-bottom:1px solid var(--line);transition:transform .3s var(--ease),visibility 0s,box-shadow .3s}
 .hd.sc .tabs{box-shadow:0 10px 30px -22px rgba(20,54,41,.5)}
@@ -952,6 +965,8 @@ JS = r"""
       sp.appendChild(b);sp.appendChild(sm);a.appendChild(im);a.appendChild(sp);li.appendChild(a);list.appendChild(li)});
     if(none)none.hidden=n>0;}
   dlg('.search','srch',function(){render('');if(inp){inp.value='';inp.focus()}});
+  var hb=$('.hd-sb input'),sg=d.getElementById('srch');
+  if(hb&&sg&&sg.showModal){var go=function(){if(sg.open)return;var v=hb.value;sg.showModal();render(v);if(inp){inp.value=v;inp.focus()}hb.value=''};hb.addEventListener('focus',go);hb.addEventListener('input',go)}
   if(inp){inp.addEventListener('input',function(){render(inp.value)});inp.addEventListener('keydown',function(ev){if(ev.key==='Escape'){ev.preventDefault();d.getElementById('srch').close()}})}
 
   /* page transition: only the tapped card's picture travels to the product page (and back) */
@@ -1135,7 +1150,7 @@ def header(cur):
 <div class="wrap hd-top">
 <div class="hd-l"><button class="ib menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer">{MENU_ICON}</button><span class="hd-note">Made in India since 2008</span></div>
 <a class="logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>EXPORTS</small></a>
-<div class="hd-r"><button class="ib search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a></div>
+<div class="hd-r"><a class="ib hd-ig" href="https://www.instagram.com/woodkariexports/" target="_blank" rel="noopener" aria-label="Instagram">{IG_ICON}</a><form class="hd-sb" role="search" onsubmit="return false">{SEARCH_ICON}<input type="search" placeholder="Search" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"></form><button class="ib search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a><a class="hd-waic" href="{e(wa(HELLO))}" aria-label="WhatsApp">{WA_ICON}</a></div>
 </div>
 <div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin trays','resin','resin')}{t('designs.html','Made to order','mto')}{t('bulk.html','Bulk orders','bulk')}{t('./#engraving','Name &amp; logo','eng')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
 </header>
@@ -1674,6 +1689,8 @@ def main():
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
         w("llms.txt", llms_txt())
+    for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html")):
+        w(src, f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Woodkari</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={dst}"><link rel="canonical" href="{SITE}/{dst}"><script>location.replace("{dst}")</script></head><body><p><a href="{dst}">Continue to Woodkari</a></p></body></html>\n')
     print("built", OUT, len(PRODUCTS) + 3 + ALL_N, "pages")
 
 

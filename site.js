@@ -26,6 +26,8 @@
       sp.appendChild(b);sp.appendChild(sm);a.appendChild(im);a.appendChild(sp);li.appendChild(a);list.appendChild(li)});
     if(none)none.hidden=n>0;}
   dlg('.search','srch',function(){render('');if(inp){inp.value='';inp.focus()}});
+  var hb=$('.hd-sb input'),sg=d.getElementById('srch');
+  if(hb&&sg&&sg.showModal){var go=function(){if(sg.open)return;var v=hb.value;sg.showModal();render(v);if(inp){inp.value=v;inp.focus()}hb.value=''};hb.addEventListener('focus',go);hb.addEventListener('input',go)}
   if(inp){inp.addEventListener('input',function(){render(inp.value)});inp.addEventListener('keydown',function(ev){if(ev.key==='Escape'){ev.preventDefault();d.getElementById('srch').close()}})}
 
   /* page transition: only the tapped card's picture travels to the product page (and back) */

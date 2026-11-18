@@ -307,7 +307,7 @@ OW = [
          what="Square box with nine compartments under a glass lid, for spices, dry fruit or small items.",
          views=["on a white background", "top view", "close-up of the corner and the glass lid", "side view",
                 "in use, holding nine different spices", "three boxes stacked"]),
-    dict(code="OW-37", wood="mango", size="4.75 × 4.75 × 1.25 in (12 × 12 × 3.2 cm)", name="4-compartment open wooden tray", price=None, bulk=None,
+    dict(code="OW-37", wood="mango", size="4.75 × 4.75 × 1.25 in (12 × 12 × 3.2 cm)", name="4-compartment open wooden tray", price=299, bulk=150,
          what="Small open tray with four compartments, for tea bags, sugar or snacks.",
          views=["on a white background", "top view", "close-up of a compartment and the corner", "side view",
                 "in use, holding tea bags, sugar cubes, cardamom and biscuits", "three trays stacked"]),

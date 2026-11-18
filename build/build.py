@@ -1209,10 +1209,12 @@ def page_home():
     cards = "\n".join(card(p) for p in PRODUCTS)
     tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
-    slides = "".join(
-        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(next((a for kk, a, *_ in byslug[sl]["imgs"] if kk == k), byslug[sl]["name"]))}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{bulk_line(sl) if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+    hero_top = mto_pr("OW-38")[0]  # owner 18 Nov: inlay drum table room shot is the first hero picture
+    slide0 = f'<a class="slide on" href="design-ow-38.html"><img src="{UP}img/m-bone-inlay-coffee-table-38-e.webp" alt="Round bone inlay drum coffee table with a black and white sunburst pattern, in a living room" width="1200" height="1200" fetchpriority=high><span class="tag">Design picture, made to order</span><span class="nm">Inlay drum coffee table<span>{hero_top}</span></span></a>'
+    slides = slide0 + "".join(
+        f'<a class="slide" href="{sl}.html"><img {LATER}="{UP}img/{k}.webp" alt="{e(next((a for kk, a, *_ in byslug[sl]["imgs"] if kk == k), byslug[sl]["name"]))}" width="1200" height="1200" decoding=async><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{bulk_line(sl) if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
         for i, (k, sl) in enumerate(SLIDES))
-    dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
+    dots = '<button class="dot" type="button" data-i="0" aria-label="Show Inlay drum coffee table" aria-current=true><span>Inlay table</span></button>' + "".join(f'<button class="dot" type="button" data-i="{i + 1}" aria-label="Show {e(byslug[sl]["name"])}"><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in India since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
     dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)

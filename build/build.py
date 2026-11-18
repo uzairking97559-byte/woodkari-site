@@ -1143,7 +1143,7 @@ SHOP_GROUPS = [("inlay", "Inlay furniture", [("inlay-chests", "Chests"), ("inlay
                ("mango", "Mango wood", []), ("candles", "Candle stands", [])]
 MTO_CAT = {"painted": "painted", "bath": "resin-bath", "bowls": "resin-bowls", "boards": "boards", "candles": "candles", "chests": "inlay-chests", "tables": "inlay-tables"}
 OW_EXTRA = {"OW-08": "boards", "OW-25": "candles"}  # acacia pieces that are also a board / candle stands
-BEST = ["OW-43", "OW-40", "OW-38", "IC-2"]  # best sellers row = highest rupee profit per piece (owner 18 Nov: "jisme hamara sabse zada profit ha")
+BEST = ["OW-38", "OW-40", "IC-1", "black-white-floral-tray-set"]  # best sellers row (owner's list, 18 Nov)
 NEW_ARRIVALS = ["OW-37", "OW-36", "OW-33", "OW-25", "OW-18", "OW-08", "OW-03", "OW-01"]  # the pieces added last (git history, 18 Nov)
 GROUP_PIC = {"inlay": "m-bone-inlay-coffee-table-40", "resin": "bw-top", "painted": "m-wooden-meena-tray-3", "boards": "m-wooden-chopping-board-2",
              "acacia": "m-ow-18-a", "mango": "m-ow-36-a", "candles": "m-wooden-candle-stand-3"}
@@ -1444,7 +1444,7 @@ def page_home():
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
 <section class="sec" id="best"><div class="wrap">
-<div class="hdr rv"><div><h2>Best sellers</h2><p>Prices are for one piece; delivery is extra.</p></div><a class="lnk" href="shop.html">All pieces{ARROW}</a></div>
+<div class="hdr rv"><div><h2>Bestselling designs</h2><p>Prices are for one piece; delivery is extra.</p></div><a class="lnk" href="shop.html">All pieces{ARROW}</a></div>
 <div class="grid four">{best}</div>
 </div></section>
 

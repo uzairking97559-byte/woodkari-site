@@ -158,7 +158,9 @@ MTO = [
     ("chests", "IC", "Inlay chests", "Chests of drawers and bedside chests with an inlay design.", [
         ("bone-inlay-chest-1", "Chest of drawers, blue floral inlay design"), ("bone-inlay-chest-2", "Chest of drawers, green floral inlay design"),
         ("bone-inlay-chest-3", "Bedside chest, blue floral inlay design"), ("bone-inlay-chest-4", "Bedside chest, blue and white inlay design"),
-        ("bone-inlay-chest-5", "Chest of drawers, grey and white geometric inlay design")]),
+        ("bone-inlay-chest-5", "Chest of drawers, grey and white geometric inlay design"),
+        ("bone-inlay-chest-6", "Stripe pattern 3-drawer bone inlay chest"),
+        ("bone-inlay-chest-7", "4-drawer dyed bone inlay chest")]),
     ("tables", "OW", "Inlay tables", "Tables with a bone inlay pattern.", [
         ("bone-inlay-coffee-table-38", "Round drum coffee table, black and white bone inlay sunburst"),
         ("bone-inlay-coffee-table-39", "Small round drum coffee table, black and white bone inlay sunburst"),
@@ -175,10 +177,16 @@ MTO_TEXT = {
     "OW-40": "Eight-sided coffee table with a pattern of nested lines on the top and sides. Bone inlay, black and white. 40 in across, 17 in high. Made to order in India.",
     "OW-41": "Small round stool or side table with a honeycomb pattern all over. Bone inlay, black and white. 16 in across, 18 in high. Made to order in India.",
     "OW-42": "Cube side table with a diamond line pattern on every face. Bone inlay, black and white. 16 × 16 × 16 in. Made to order in India.",
-    "OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India."}
+    "OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India.",
+    "IC-6": "Stripe pattern 3-drawer bone inlay chest. Bone inlay on wood. Three sizes: W39 × D16 × H34 in, W42 × D16 × H34 in, or W48 × D16 × H34 in. Made to order in India. Size confirmed on order.",
+    "IC-7": "4-drawer dyed bone inlay chest. Bone inlay on wood. Three sizes: H30 × W30 × D16 in, H32 × W40 × D16 in, or H32 × W46 × D18 in. Made to order in India. Size confirmed on order."}
+# alt text of a design picture (from next_batch_inlay_chests.csv image_alt, without the size)
+MTO_ALT = {"IC-6": "Stripe pattern 3-drawer bone inlay chest, made to order", "IC-7": "4-drawer dyed bone inlay chest, made to order"}
 MTO_HOLD = {"OW-39"}  # designs kept off the site (OW-39 merged into OW-38 as its 30 in size, 18 Nov)
 # one listing with several sizes: code -> [(size label, price)]; the card shows "From <lowest>"
-MTO_SIZES = {"OW-38": [("36 × 16 in", 90900), ("30 × 16 in", 70900)]}
+MTO_SIZES = {"OW-38": [("36 × 16 in", 90900), ("30 × 16 in", 70900)],
+             "IC-6": [("W39 × D16 × H34 in", 55900), ("W42 × D16 × H34 in", 58900), ("W48 × D16 × H34 in", 64900)],
+             "IC-7": [("H30 × W30 × D16 in", 42900), ("H32 × W40 × D16 in", 54900), ("H32 × W46 × D18 in", 63900)]}
 MTO_N = sum(len(g[4]) for g in MTO) - len(MTO_HOLD)
 # Made-to-order designs that have an owner-set price (D-241/D-242, 18 Nov 2026: IC-2 Rs 74,900 incl. packing, delivery extra)
 MTO_PRICE = {
@@ -187,6 +195,8 @@ MTO_PRICE = {
     'IC-3': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-4': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-5': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
+    'IC-6': (55900, 'Delivery extra. Size confirmed on order.', 'W39 × D16 × H34 in'),
+    'IC-7': (42900, 'Delivery extra. Size confirmed on order.', 'H30 × W30 × D16 in'),
     'OW-38': (90900, 'Delivery extra.', 'Round, 36 in across, 16 in high'),
     'OW-39': (70900, 'Delivery extra.', 'Round, 30 in across, 16 in high'),
     'OW-40': (114900, 'Delivery extra.', 'Octagon, 40 in across, 17 in high'),
@@ -1492,7 +1502,7 @@ def page_design(gid, pre, title, line, items, i):
     msg = mto_msg(code, n)
     pics = mto_pics(f)
     figs = "".join(
-        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(MTO_ALT.get(code, n + ", design picture"))}{"" if j == 0 else ", another view"}" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
         for j, k in enumerate(pics))
     if code in MTO_SIZES:
         fl = [("Design", code), ("Kind", title), ("Made", "On order")] + [(f"Size {sz}", rupee(pp)) for sz, pp in MTO_SIZES[code]]
@@ -1502,7 +1512,7 @@ def page_design(gid, pre, title, line, items, i):
     pr_txt, pr_note = mto_pr(code)
     others = [(j, x) for j, x in enumerate(items, MTO_START.get(gid, 1)) if j != i and f"{pre}-{j}" not in MTO_HOLD][:3]
     more = "\n".join(
-        f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
+        f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(MTO_ALT.get(f"{pre}-{j}", nn + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
         f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr{"" if f"{pre}-{j}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{j}")[0])}</p></a>'
         for j, (ff, nn) in others)
     lede = MTO_TEXT.get(code) or f"Design {code}. {line}"
@@ -1621,7 +1631,7 @@ def page_designs():
               f'<section class="sec mto" id="g-{BX_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(BX_TITLE)}</h2><p>{e(BX_LINE)}</p></div></div>\n<div class="grid four">{"".join(bx_card(it, True) for it in BX)}</div>\n</div></section>']
     for gid, pre, title, line, items in MTO:
         cards = "".join(
-            f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
+            f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(MTO_ALT.get(f"{pre}-{i}", n + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
             f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr{"" if f"{pre}-{i}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{i}")[0])}</p></a>'
             for i, (f, n) in enumerate(items, MTO_START.get(gid, 1)) if f"{pre}-{i}" not in MTO_HOLD)
         if gid == "painted":

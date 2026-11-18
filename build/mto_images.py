@@ -44,13 +44,18 @@ if sys.argv[1:2] == ["site"]:  # python3 build/mto_images.py site OW-43 bone-inl
     make_site(sys.argv[2], sys.argv[3])
     print(2, "pictures")
     sys.exit()
+CHESTS = "/home/user/agency-research/businesses/woodkari/photos/ai/chests"
+
+
 def make_inlay(code, name):
     """made pictures photos/ai/inlay/<code>-a..f.png: -a = main (img/m-<name>.webp), b..f = gallery (img/m-<name>-b.webp ...), each 1200 + -600"""
     n = 0
     for x in "abcdef":
         if code == "OW-42" and x == "a":  # -a shows the cube balanced on a corner: skipped; -e (flat cube) is the main picture
             continue
-        p = os.path.join(INLAY, f"{code}-{x}.png")
+        p = os.path.join(CHESTS if code.startswith("IC-N") else INLAY, f"{code}-{x}.png")
+        if code.startswith("IC-N") and x == "d":  # -d carries size labels that match only one of the listed sizes: not used
+            continue
         if not os.path.exists(p):
             continue
         im = Image.open(p).convert("RGB")

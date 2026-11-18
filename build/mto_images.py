@@ -48,12 +48,19 @@ def make_inlay(code, name):
     """made pictures photos/ai/inlay/<code>-a..f.png: -a = main (img/m-<name>.webp), b..f = gallery (img/m-<name>-b.webp ...), each 1200 + -600"""
     n = 0
     for x in "abcdef":
+        if code == "OW-42" and x == "a":  # -a shows the cube balanced on a corner: skipped; -e (flat cube) is the main picture
+            continue
         p = os.path.join(INLAY, f"{code}-{x}.png")
         if not os.path.exists(p):
             continue
         im = Image.open(p).convert("RGB")
         for size, suffix in ((1200, ""), (600, "-600")):
-            tag = "" if x == "a" else "-" + x
+            tag = "" if x == ("e" if code == "OW-42" else "a") else "-" + x
+            if code == "OW-42" and x == "e":
+                for old in ("-a", "-e"):
+                    for sfx in ("", "-600"):
+                        q = os.path.join(ROOT, "img", f"m-{name}{old}{sfx}.webp")
+                        if os.path.exists(q): os.remove(q)
             im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{name}{tag}{suffix}.webp"), "WEBP", quality=78, method=6)
         n += 1
     return n

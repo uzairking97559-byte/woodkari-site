@@ -176,7 +176,7 @@ MTO_TEXT = {
     "OW-41": "Small round stool or side table with a honeycomb pattern all over. Bone inlay, black and white. 16 in across, 18 in high. Made to order in India.",
     "OW-42": "Cube side table with a diamond line pattern on every face. Bone inlay, black and white. 16 × 16 × 16 in. Made to order in India.",
     "OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India."}
-MTO_HOLD = {"OW-42", "OW-39"}  # designs kept off the site (OW-42 picture being redone; OW-39 merged into OW-38 as its 30 in size, 18 Nov)
+MTO_HOLD = {"OW-39"}  # designs kept off the site (OW-39 merged into OW-38 as its 30 in size, 18 Nov)
 # one listing with several sizes: code -> [(size label, price)]; the card shows "From <lowest>"
 MTO_SIZES = {"OW-38": [("36 × 16 in", 90900), ("30 × 16 in", 70900)]}
 MTO_N = sum(len(g[4]) for g in MTO) - len(MTO_HOLD)

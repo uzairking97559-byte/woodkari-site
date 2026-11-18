@@ -1,7 +1,7 @@
 #!/bin/bash
 # Re-make the inlay table pictures from agency-research photos/ai/inlay (OW-xx-a..f.png) and rebuild the site.
 # Use after new letters (-b..-f) or a new picture for a design appear. -a = main picture, the rest show in order as the gallery.
-# OW-42 stays off the site while it is in MTO_HOLD in build.py; remove it from MTO_HOLD to put it back.
+# OW-42: -a (cube on a corner) is skipped; -e (flat cube) is its main picture (see make_inlay).
 set -e
 R=/home/user/woodkari-site
 git -C /home/user/agency-research pull -q --rebase origin design/warm-studio

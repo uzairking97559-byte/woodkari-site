@@ -22,7 +22,7 @@ A real workshop in Sambhal, making these pieces since 2008, where most work is b
 ## Operating Context
 - Orders start on WhatsApp (+91 91197 93282) or by mail (sales@woodkariexports.com). No cart, no online payment on the site.
 - Bulk: from 25 pieces per design; 50% advance (owner); making time about 10-15 days per 100 pieces; delivery at the buyer's cost.
-- Resin trays are made in Sambhal by market makers and a friend's workshop (owner, 14 Nov), not in our own workshop: say "made in Sambhal", never "our workshop", for them.
+- Resin trays are made in Sambhal by market makers and a friend's workshop (owner, 14 Nov), not in our own workshop: say "made to order in India" (or "with other makers near our workshop"), never "our workshop", for them.
 - Pictures: real plain photos exist for the room tray and fluted box only; every other picture is a design picture and must be labelled "Design picture, made to order".
 
 ## Capabilities and Constraints
@@ -47,3 +47,7 @@ A real workshop in Sambhal, making these pieces since 2008, where most work is b
 2. Bulk first, single pieces welcome.
 3. The phone is the main screen; WhatsApp is the main button.
 4. Show the real piece, its size and its material before anything else.
+
+
+## Owner decision 18 Nov 2026 (~06:10, option "A")
+"Sambhal" is written only where an address is needed: footer address, Organization schema address, llms.txt identity line, GST bill, Google Business, Alibaba/IndiaMART company profile, export papers. Everywhere else (product names and text, titles, headings, header note, logo line, ribbon, ads) it says "India". The header logo line reads EXPORTS.

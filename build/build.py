@@ -366,6 +366,7 @@ PXL = [
     dict(code="PX-16", grp="painted", name='Printed round platter / plate', sizes=[('6 in', 1199), ('12 in', 1499)],
          pics=[('a', 'Printed round platter / plate, made to order'), ('b', 'Printed round platter / plate, made to order, second view'), ('e', 'Printed round platter / plate, made to order, 12 in')]),
 ]
+PXL, BX = [], []  # HIDDEN 19 Nov (owner D-288)
 NB = []  # HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
 NB_BY = {x["code"]: x for x in NB}
 PX_LINE = "Hand-painted on wood."
@@ -1625,10 +1626,12 @@ def page_ow(it):
 def page_designs():
     OW_AC = [x for x in OW if ow_wood(x) == "acacia"]
     OW_MG = [x for x in OW if ow_wood(x) == "mango"]
-    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}<span>{len(OW_AC)}</span></a><a href="#g-mango">{e(MG_CHIP)}<span>{len(OW_MG)}</span></a><a href="#g-{BX_GID}">{e(BX_CHIP)}<span>{len(BX)}</span></a>' + "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO).replace('Painted trays and bowls<span>%d</span>' % 9, 'Painted trays and bowls<span>%d</span>' % (9 + len(PXL)))
+    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}<span>{len(OW_AC)}</span></a><a href="#g-mango">{e(MG_CHIP)}<span>{len(OW_MG)}</span></a>' + (f'<a href="#g-{BX_GID}">{e(BX_CHIP)}<span>{len(BX)}</span></a>' if BX else "") + "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO).replace('Painted trays and bowls<span>%d</span>' % 9, 'Painted trays and bowls<span>%d</span>' % (9 + len(PXL)))
     groups = [f'<section class="sec mto" id="g-{OW_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(OW_TITLE)}</h2><p>{e(OW_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_AC)}</div>\n</div></section>',
               f'<section class="sec mto" id="g-mango"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(MG_TITLE)}</h2><p>{e(MG_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_MG)}</div>\n</div></section>',
               f'<section class="sec mto" id="g-{BX_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(BX_TITLE)}</h2><p>{e(BX_LINE)}</p></div></div>\n<div class="grid four">{"".join(bx_card(it, True) for it in BX)}</div>\n</div></section>']
+    if not BX:
+        groups = [g for g in groups if f'id="g-{BX_GID}"' not in g]
     for gid, pre, title, line, items in MTO:
         cards = "".join(
             f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(MTO_ALT.get(f"{pre}-{i}", n + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'

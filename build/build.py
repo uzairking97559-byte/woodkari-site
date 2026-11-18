@@ -121,8 +121,8 @@ TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-flor
          ("fluted-life", "For gifting", "Box trays, bulk from 25", "bulk.html", "Fluted acacia box tray with keys, coins and sunglasses on a hall table", "Styled picture"),
          ("t-room", "In the guest room", "Room Tray", "room-tray.html", "Room tray on a bedside table with a kettle", "Styled picture")]
 
-SLIDES = [("navy-use", "navy-ivory-floral-tray"), ("bw-use", "black-white-floral-tray-set"),
-          ("gold-use", "gold-flake-resin-tray"), ("chevron-use", "red-chevron-tray")]
+SLIDES = [("navy-front", "navy-ivory-floral-tray"), ("bw-front", "black-white-floral-tray-set"),
+          ("gold-front", "gold-flake-resin-tray"), ("chevron-front", "red-chevron-tray")]  # owner 18 Nov: no food or drink in the hero
 
 DESIGNS = [("d-coaster", "Resin coaster set"), ("d-tissue", "Resin tissue box"), ("d-roundbox", "Round box with resin lid"),
            ("d-board", "Serving board"), ("d-cutlery", "Cutlery and napkin stand"), ("d-trivet", "Resin trivets")]
@@ -1101,7 +1101,7 @@ def page_home():
     tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
     slides = "".join(
-        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(byslug[sl]["imgs"][1][1])}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(next((a for kk, a, *_ in byslug[sl]["imgs"] if kk == k), byslug[sl]["name"]))}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{"Bulk only" if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
         for i, (k, sl) in enumerate(SLIDES))
     dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in India since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]

@@ -159,8 +159,26 @@ MTO = [
         ("bone-inlay-chest-1", "Chest of drawers, blue floral inlay design"), ("bone-inlay-chest-2", "Chest of drawers, green floral inlay design"),
         ("bone-inlay-chest-3", "Bedside chest, blue floral inlay design"), ("bone-inlay-chest-4", "Bedside chest, blue and white inlay design"),
         ("bone-inlay-chest-5", "Chest of drawers, grey and white geometric inlay design")]),
+    ("tables", "OW", "Inlay tables", "Tables with a bone inlay pattern.", [
+        ("bone-inlay-coffee-table-38", "Round drum coffee table, black and white bone inlay sunburst"),
+        ("bone-inlay-coffee-table-39", "Small round drum coffee table, black and white bone inlay sunburst"),
+        ("bone-inlay-coffee-table-40", "Octagon coffee table, black and white bone inlay"),
+        ("bone-inlay-stool-41", "Round stool, black and white bone inlay honeycomb"),
+        ("bone-inlay-side-table-42", "Cube side table, black and white bone inlay"),
+        ("bone-inlay-coffee-table-43", "Round coffee table, black and white bone inlay flower pattern")]),
 ]
-MTO_N = sum(len(g[4]) for g in MTO)
+# groups whose codes do not start at 1 (OW-38..43 are the owner's own design numbers): group id -> number of its first item
+MTO_START = {"tables": 38}
+# approved text of a design, used as the page text instead of "Design <code>. <group line>"
+MTO_TEXT = {
+    "OW-38": "Round drum coffee table with a sunburst pattern on top and stripes down the side. Bone inlay, black and white. 36 in across, 16 in high. Made to order in India.",
+    "OW-39": "Smaller round drum coffee table with a sunburst pattern on top and stripes down the side. Bone inlay, black and white. 30 in across, 16 in high. Made to order in India.",
+    "OW-40": "Eight-sided coffee table with a pattern of nested lines on the top and sides. Bone inlay, black and white. 40 in across, 17 in high. Made to order in India.",
+    "OW-41": "Small round stool or side table with a honeycomb pattern all over. Bone inlay, black and white. 16 in across, 18 in high. Made to order in India.",
+    "OW-42": "Cube side table with a diamond line pattern on every face. Bone inlay, black and white. 16 × 16 × 16 in. Made to order in India.",
+    "OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India."}
+MTO_HOLD = {"OW-42"}  # designs kept off the site for now (picture being redone, 18 Nov)
+MTO_N = sum(len(g[4]) for g in MTO) - len(MTO_HOLD)
 # Made-to-order designs that have an owner-set price (D-241/D-242, 18 Nov 2026: IC-2 Rs 74,900 incl. packing, delivery extra)
 MTO_PRICE = {
     'IC-1': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
@@ -168,6 +186,12 @@ MTO_PRICE = {
     'IC-3': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-4': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-5': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
+    'OW-38': (90900, 'Delivery extra.', 'Round, 36 in across, 16 in high'),
+    'OW-39': (70900, 'Delivery extra.', 'Round, 30 in across, 16 in high'),
+    'OW-40': (114900, 'Delivery extra.', 'Octagon, 40 in across, 17 in high'),
+    'OW-41': (35900, 'Delivery extra.', 'Round, 16 in across, 18 in high'),
+    'OW-42': (41900, 'Delivery extra.', 'Cube, 16 × 16 × 16 in'),
+    'OW-43': (120900, 'Delivery extra.', 'Round, 42 in across, 18 in high'),
     'PT-1': (1299, 'Delivery extra.', 'About round tray 14 in'),
     'PT-2': (1699, 'Delivery extra.', 'About oval tray 18 × 9 in'),
     'PT-3': (2799, 'Delivery extra.', 'About tray 14 × 9 in + bowl 10 in'),
@@ -221,7 +245,8 @@ def bulk_line(key):
 
 def mto_items():
     for gid, pre, title, line, items in MTO:
-        for i, (f, n) in enumerate(items, 1):
+        for i, (f, n) in enumerate(items, MTO_START.get(gid, 1)):
+            if f"{pre}-{i}" in MTO_HOLD: continue
             yield gid, f"{pre}-{i}", f, n
 
 
@@ -301,7 +326,7 @@ def mto_page(code):
 
 def mto_pics(f):
     """main picture first, then the extra angles that have been checked and converted (img/m-<f>-a.webp ... -e.webp)"""
-    return [f"m-{f}"] + [f"m-{f}-{x}" for x in "abcde" if os.path.exists(os.path.join(ROOT, "img", f"m-{f}-{x}.webp"))]
+    return [f"m-{f}"] + [f"m-{f}-{x}" for x in "abcdef" if os.path.exists(os.path.join(ROOT, "img", f"m-{f}-{x}.webp"))]
 
 
 LATER = 'src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src'  # hero pictures 2-4: a 1px blank until site.js loads them
@@ -330,7 +355,7 @@ def wa(text):
 
 # SEO (17 Nov, seo_plan_16nov.md rows 10-11): titles carry the product kind and "Made to Order", kept to about 60 characters.
 TITLE_MAX = 60
-SEO_KIND = {"painted": "Painted ", "bath": "Resin ", "bowls": "Resin ", "candles": "Wooden ", "chests": "", OW_GID: "Acacia "}
+SEO_KIND = {"painted": "Painted ", "bath": "Resin ", "bowls": "Resin ", "candles": "Wooden ", "chests": "", "tables": "", OW_GID: "Acacia "}
 
 
 def seo_name(gid, n):
@@ -1314,7 +1339,7 @@ def gallery(keys, figs):
 
 
 def page_design(gid, pre, title, line, items, i):
-    f, n = items[i - 1]
+    f, n = items[i - MTO_START.get(gid, 1)]
     code = f"{pre}-{i}"
     msg = mto_msg(code, n)
     pics = mto_pics(f)
@@ -1324,16 +1349,17 @@ def page_design(gid, pre, title, line, items, i):
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
                     [("Design", code), ("Kind", title), ("Made", "On order"), ("Price", mto_pr(code)[0] if code in MTO_PRICE else "On WhatsApp")] + ([("Size", MTO_PRICE[code][2])] if code in MTO_PRICE else []))
     pr_txt, pr_note = mto_pr(code)
-    others = [(j, x) for j, x in enumerate(items, 1) if j != i][:3]
+    others = [(j, x) for j, x in enumerate(items, MTO_START.get(gid, 1)) if j != i and f"{pre}-{j}" not in MTO_HOLD][:3]
     more = "\n".join(
         f'<a class="p rv" href="{mto_page(f"{pre}-{j}")}"><div class="ph"><img src="{UP}img/m-{ff}-600.webp" alt="{e(nn)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
         f'<h3>{e(nn)}</h3><p class="sh">Design {pre}-{j} · made on order</p><p class="pr{"" if f"{pre}-{j}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{j}")[0])}</p></a>'
         for j, (ff, nn) in others)
-    lede = f"Design {code}. {line}"
+    lede = MTO_TEXT.get(code) or f"Design {code}. {line}"
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
                      "image": f"{SITE}/img/m-{f}.webp", "description": lede, "brand": {"@type": "Brand", "name": "Woodkari"},
                      "offers": dict({"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}, **({"price": MTO_PRICE[code][0]} if code in MTO_PRICE else {}))})
-    return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {line} Made to order. {pr_txt}. {pr_note}", f"{n}. Made to order. {pr_txt}. {pr_note}") if pr_note else fit(f"{n} (design {code}). {line} Made to order; ask the price on WhatsApp.", f"{n}. {line} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
+    dline = MTO_TEXT.get(code) or line
+    return head(fit_title(seo_name(gid, n), code), (fit(f"{n} (design {code}). {dline} Made to order. {pr_txt}. {pr_note}", f"{n}. Made to order. {pr_txt}. {pr_note}") if pr_note else fit(f"{n} (design {code}). {dline} Made to order; ask the price on WhatsApp.", f"{n}. {dline} Made to order; ask the price on WhatsApp.")), mto_page(code), f"m-{f}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(title)}</a> / {code}</p>
@@ -1437,7 +1463,7 @@ def page_designs():
         cards = "".join(
             f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
             f'<h3>{e(n)}</h3><p class="sh">Design {pre}-{i} · made on order</p><p class="pr{"" if f"{pre}-{i}" in MTO_PRICE else " bo"}">{e(mto_pr(f"{pre}-{i}")[0])}</p></a>'
-            for i, (f, n) in enumerate(items, 1))
+            for i, (f, n) in enumerate(items, MTO_START.get(gid, 1)) if f"{pre}-{i}" not in MTO_HOLD)
         groups.append(f'<section class="sec mto" id="g-{gid}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(title)}</h2><p>{e(line)}</p></div></div>\n<div class="grid four">{cards}</div>\n</div></section>')
     return head("Made to Order Trays, Bowls, Boards, Candle Stands | Woodkari",
                 f"{ALL_N} designs made on order: acacia wood trays, painted trays and bowls, resin bathroom sets and tableware, wooden boards, candle stands and inlay chests.",
@@ -1603,7 +1629,8 @@ def main():
     w("terms.html", page_terms())
     w("designs.html", page_designs())
     for gid, pre, title, line, items in MTO:
-        for i in range(1, len(items) + 1):
+        for i in range(MTO_START.get(gid, 1), MTO_START.get(gid, 1) + len(items)):
+            if f"{pre}-{i}" in MTO_HOLD: continue
             w(mto_page(f"{pre}-{i}"), page_design(gid, pre, title, line, items, i))
     for it in OW:
         w(mto_page(it["code"]), page_ow(it))

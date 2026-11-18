@@ -263,6 +263,9 @@ def mto_msg(code, n):
 OW_GID, OW_TITLE, OW_CHIP = "acacia", "Acacia wood, made to order", "Acacia wood"
 OW_LINE = "Trays, a bowl, a serving board, a coaster set and candle stands. Acacia wood; other woods on request. Each design shows its size; other sizes on request."
 OW_MATERIAL = "Acacia wood. Other woods on request."
+MG_TITLE, MG_CHIP = "Mango wood, made to order", "Mango wood"
+MG_LINE = "A glass-lid box and an open tray, both with compartments. Mango wood; other woods on request. Each design shows its size."
+OW_MATERIAL_MANGO = "Mango wood. Other woods on request."
 OW_SIZE = "We confirm the size on WhatsApp."
 OW_BULK_FROM = 25  # pieces: the lower price each starts here (single-piece items)
 OW_BULK_MIN = 500  # pieces: the minimum for the "bulk only" items
@@ -300,8 +303,20 @@ OW = [
          what="A rectangular tray with oval handle cut-outs.",
          views=["on a white background", "top view", "close-up of an oval handle cut-out", "side view",
                 "in use, holding a loaf of bread, a jar of jam and a knife", "three trays stacked"]),
+    dict(code="OW-36", wood="mango", size="8 × 8 × 3 in (20 × 20 × 7.6 cm)", name="9-compartment wooden box with glass lid", price=899, bulk=450,
+         what="Square box with nine compartments under a glass lid, for spices, dry fruit or small items.",
+         views=["on a white background", "top view", "close-up of the corner and the glass lid", "side view",
+                "in use, holding nine different spices", "three boxes stacked"]),
+    dict(code="OW-37", wood="mango", size="4.75 × 4.75 × 1.25 in (12 × 12 × 3.2 cm)", name="4-compartment open wooden tray", price=None, bulk=None,
+         what="Small open tray with four compartments, for tea bags, sugar or snacks.",
+         views=["on a white background", "top view", "close-up of a compartment and the corner", "side view",
+                "in use, holding tea bags, sugar cubes, cardamom and biscuits", "three trays stacked"]),
 ]
 ALL_N = MTO_N + len(OW)  # every card on designs.html
+
+
+def ow_wood(it):
+    return it.get("wood", "acacia")
 
 
 def ow_key(code, x="a"):
@@ -314,6 +329,8 @@ def ow_price_lines(it):
         return f"{rupee(it['price'])} for the set of 3", f"{OW_BULK_FROM} sets or more: {rupee(it['bulk'])} a set"
     if it["price"]:
         return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: {rupee(it['bulk'])} each"
+    if it["code"] not in BULK_ONLY_PRICE:
+        return "Price on WhatsApp", ""
     return bulk_line(it["code"]), ""
 
 
@@ -355,7 +372,7 @@ def wa(text):
 
 # SEO (17 Nov, seo_plan_16nov.md rows 10-11): titles carry the product kind and "Made to Order", kept to about 60 characters.
 TITLE_MAX = 60
-SEO_KIND = {"painted": "Painted ", "bath": "Resin ", "bowls": "Resin ", "candles": "Wooden ", "chests": "", "tables": "", OW_GID: "Acacia "}
+SEO_KIND = {"painted": "Painted ", "bath": "Resin ", "bowls": "Resin ", "candles": "Wooden ", "chests": "", "tables": "", OW_GID: "Acacia ", "mango": "Mango wood "}
 
 
 def seo_name(gid, n):
@@ -1096,8 +1113,8 @@ def search_data():
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Made to order · in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
     for it in OW:
-        sub = rupee(it["price"]) if it["price"] else bulk_line(it["code"])
-        items.append({"n": it["name"], "s": f"Design {it['code']} · acacia wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
+        sub = rupee(it["price"]) if it["price"] else ow_price_lines(it)[0]
+        items.append({"n": it["name"], "s": f"Design {it['code']} · {ow_wood(it)} wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
     for gid, code, f, n in mto_items():
         items.append({"n": n, "s": f"Design {code} · made to order, " + (mto_pr(code)[0] if code in MTO_PRICE else "price on WhatsApp"), "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
     items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
@@ -1392,7 +1409,7 @@ def ow_card(it, anchor=False):
     pr = f'<p class="pr">{top}</p>'
     aid = f' id="{it["code"]}"' if anchor else ""
     return (f'<a class="p rv"{aid} href="{mto_page(it["code"])}"><div class="ph"><img src="{UP}img/{ow_key(it["code"])}-600.webp" alt="{e(it["name"])}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
-            f'<h3>{e(it["name"])}</h3><p class="sh">Design {it["code"]} · acacia wood</p>{pr}</a>')
+            f'<h3>{e(it["name"])}</h3><p class="sh">Design {it["code"]} · {ow_wood(it)} wood</p>{pr}</a>')
 
 
 def page_ow(it):
@@ -1411,14 +1428,15 @@ def page_ow(it):
         stick_l = top
         price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
         meta_price = top + "."
+    meta_wood = "Acacia wood, other woods on request." if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
     keys = [ow_key(code, x) for x, _ in shown]
     figs = "".join(
         f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}, {e(v)}, design picture" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
         for j, (k, (_, v)) in enumerate(zip(keys, shown)))
     facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
-                    [("Design", code), ("Material", OW_MATERIAL), ("Size", it.get("size", OW_SIZE)), ("Made", "On order")])
-    more = "\n".join(ow_card(x) for x in [x for x in OW if x["code"] != code][:3])
+                    [("Design", code), ("Material", OW_MATERIAL if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO), ("Size", it.get("size", OW_SIZE)), ("Made", "On order")])
+    more = "\n".join(ow_card(x) for x in ([x for x in OW if x["code"] != code and ow_wood(x) == ow_wood(it)] + [x for x in OW if ow_wood(x) != ow_wood(it)])[:3])
     lede = f"Design {code}. {it['what']}"
     offer = {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}
     if it["price"]:
@@ -1426,13 +1444,13 @@ def page_ow(it):
     elif code in BULK_ONLY_PRICE:
         offer["price"] = BULK_ONLY_PRICE[code]
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
-                     "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL}", "material": "Acacia wood",
+                     "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO}", "material": ow_wood(it).capitalize() + " wood",
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
-    return head(fit_title(seo_name(OW_GID, n), code), fit(f"{it['what']} Design {code}. Acacia wood, other woods on request. Made to order. {meta_price}", f"{it['what']} Acacia wood, other woods on request. Made to order. {meta_price}"),
+    return head(fit_title(seo_name(OW_GID if ow_wood(it) == "acacia" else "mango", n), code), fit(f"{it['what']} Design {code}. {meta_wood} Made to order. {meta_price}", f"{it['what']} {meta_wood} Made to order. {meta_price}"),
                 mto_page(code), f"{keys[0]}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
-<p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{OW_GID}">{e(OW_CHIP)}</a> / {code}</p>
+<p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{OW_GID if ow_wood(it) == 'acacia' else 'mango'}">{e(OW_CHIP if ow_wood(it) == 'acacia' else MG_CHIP)}</a> / {code}</p>
 <div class="pd">
 {gallery(keys, figs)}
 <div class="buy">
@@ -1445,7 +1463,7 @@ def page_ow(it):
 <a class="lnk more-l" href="designs.html">All {ALL_N} designs{ARROW}</a>
 </div>
 </div>
-<section class="sec"><div class="hdr rv"><div><h2>More in acacia wood</h2></div></div><div class="grid more3">
+<section class="sec"><div class="hdr rv"><div><h2>{"More in acacia wood" if ow_wood(it) == "acacia" else "More made to order"}</h2></div></div><div class="grid more3">
 {more}
 </div></section>
 </div></main>
@@ -1457,8 +1475,11 @@ def page_ow(it):
 
 
 def page_designs():
-    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}<span>{len(OW)}</span></a>' + "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO)
-    groups = [f'<section class="sec mto" id="g-{OW_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(OW_TITLE)}</h2><p>{e(OW_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW)}</div>\n</div></section>']
+    OW_AC = [x for x in OW if ow_wood(x) == "acacia"]
+    OW_MG = [x for x in OW if ow_wood(x) == "mango"]
+    chips = f'<a href="#g-{OW_GID}">{e(OW_CHIP)}<span>{len(OW_AC)}</span></a><a href="#g-mango">{e(MG_CHIP)}<span>{len(OW_MG)}</span></a>' + "".join(f'<a href="#g-{gid}">{e(title)}<span>{len(items)}</span></a>' for gid, pre, title, line, items in MTO)
+    groups = [f'<section class="sec mto" id="g-{OW_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(OW_TITLE)}</h2><p>{e(OW_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_AC)}</div>\n</div></section>',
+              f'<section class="sec mto" id="g-mango"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(MG_TITLE)}</h2><p>{e(MG_LINE)}</p></div></div>\n<div class="grid four">{"".join(ow_card(it, True) for it in OW_MG)}</div>\n</div></section>']
     for gid, pre, title, line, items in MTO:
         cards = "".join(
             f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(n)}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
@@ -1610,7 +1631,8 @@ def llms_txt():
          "## Pieces", ""]
     L += [f"- [{p['name']}]({SITE}/{p['slug']}.html): {p['short']}; {price(p)}" for p in PRODUCTS]
     L += ["", "## Made to order designs, by kind", "",
-          f"- [{OW_TITLE}]({SITE}/designs.html#g-{OW_GID}): {OW_LINE}"]
+          f"- [{OW_TITLE}]({SITE}/designs.html#g-{OW_GID}): {OW_LINE}",
+          f"- [{MG_TITLE}]({SITE}/designs.html#g-mango): {MG_LINE}"]
     L += [f"- [{title}]({SITE}/designs.html#g-{gid}): {line}" for gid, pre, title, line, items in MTO]
     L += ["", "## Bulk terms (from the bulk page)", ""] + [f"- {a}: {b}" for a, b in terms]
     return "\n".join(L) + "\n"

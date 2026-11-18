@@ -160,12 +160,23 @@ MTO = [
         ("bone-inlay-chest-3", "Bedside chest, blue floral inlay design"), ("bone-inlay-chest-4", "Bedside chest, blue and white inlay design"),
         ("bone-inlay-chest-5", "Chest of drawers, grey and white geometric inlay design")]),
     ("tables", "OW", "Inlay tables", "Tables with a bone inlay pattern.", [
+        ("bone-inlay-coffee-table-38", "Round drum coffee table, black and white bone inlay sunburst"),
+        ("bone-inlay-coffee-table-39", "Small round drum coffee table, black and white bone inlay sunburst"),
+        ("bone-inlay-coffee-table-40", "Octagon coffee table, black and white bone inlay"),
+        ("bone-inlay-stool-41", "Round stool, black and white bone inlay honeycomb"),
+        ("bone-inlay-side-table-42", "Cube side table, black and white bone inlay"),
         ("bone-inlay-coffee-table-43", "Round coffee table, black and white bone inlay flower pattern")]),
 ]
-# groups whose codes do not start at 1 (OW-43 is the owner's own design number): group id -> number of its first item
-MTO_START = {"tables": 43}
+# groups whose codes do not start at 1 (OW-38..43 are the owner's own design numbers): group id -> number of its first item
+MTO_START = {"tables": 38}
 # approved text of a design, used as the page text instead of "Design <code>. <group line>"
-MTO_TEXT = {"OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India."}
+MTO_TEXT = {
+    "OW-38": "Round drum coffee table with a sunburst pattern on top and stripes down the side. Bone inlay, black and white. 36 in across, 16 in high. Made to order in India.",
+    "OW-39": "Smaller round drum coffee table with a sunburst pattern on top and stripes down the side. Bone inlay, black and white. 30 in across, 16 in high. Made to order in India.",
+    "OW-40": "Eight-sided coffee table with a pattern of nested lines on the top and sides. Bone inlay, black and white. 40 in across, 17 in high. Made to order in India.",
+    "OW-41": "Small round stool or side table with a honeycomb pattern all over. Bone inlay, black and white. 16 in across, 18 in high. Made to order in India.",
+    "OW-42": "Cube side table with a diamond line pattern on every face. Bone inlay, black and white. 16 × 16 × 16 in. Made to order in India.",
+    "OW-43": "Round coffee table with a flower pattern on top and a patterned band on the side. Bone inlay, black and white. 42 in across, 18 in high. Made to order in India."}
 MTO_N = sum(len(g[4]) for g in MTO)
 # Made-to-order designs that have an owner-set price (D-241/D-242, 18 Nov 2026: IC-2 Rs 74,900 incl. packing, delivery extra)
 MTO_PRICE = {
@@ -174,6 +185,11 @@ MTO_PRICE = {
     'IC-3': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-4': (46900, 'Price includes packing. Delivery extra.', 'About 3-drawer bedside 18 L × 14 W × 26 H in'),
     'IC-5': (74900, 'Price includes packing. Delivery extra.', '4-drawer chest 30 L × 16 W × 30 H in'),
+    'OW-38': (90900, 'Delivery extra.', 'Round, 36 in across, 16 in high'),
+    'OW-39': (70900, 'Delivery extra.', 'Round, 30 in across, 16 in high'),
+    'OW-40': (114900, 'Delivery extra.', 'Octagon, 40 in across, 17 in high'),
+    'OW-41': (35900, 'Delivery extra.', 'Round, 16 in across, 18 in high'),
+    'OW-42': (41900, 'Delivery extra.', 'Cube, 16 × 16 × 16 in'),
     'OW-43': (120900, 'Delivery extra.', 'Round, 42 in across, 18 in high'),
     'PT-1': (1299, 'Delivery extra.', 'About round tray 14 in'),
     'PT-2': (1699, 'Delivery extra.', 'About oval tray 18 × 9 in'),

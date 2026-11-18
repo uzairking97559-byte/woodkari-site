@@ -17,7 +17,6 @@ UP = "" if OUT == "." else "../"  # assets live at the root; a preview folder po
 
 WHATSAPP = "919119793282"
 EMAIL = "sales@woodkariexports.com"
-INSTAGRAM = "https://www.instagram.com/woodkariexports/"  # given by the owner, 18 Nov; no tracking query
 
 # imgs: (file key, alt, caption). card: (studio key, in-use key) for the shop grid.
 PRODUCTS = [
@@ -405,7 +404,6 @@ def fit(*options):
 WA_ICON = '<svg class="i" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.5-.3Z"/></svg>'
 ARROW = '<svg class="i ar" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 MAIL = '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>'
-IG_ICON = '<svg class="i" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".9" fill="currentColor" stroke="none"/></svg>'
 MENU_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>'
 SEARCH_ICON = '<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></svg>'
 X_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>'
@@ -923,50 +921,7 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .mto-l{margin:30px 0 0}
 .mto{scroll-margin-top:110px}.mto .p{scroll-margin-top:130px}
 .mto .p:target .ph{outline:2px solid var(--green);outline-offset:3px}
-/* [13] shop-style header and menu (owner 18 Nov) */
-.sbox{display:flex;align-items:center;gap:9px;height:42px;padding:0 13px;border:1px solid var(--line);border-radius:var(--r);background:#fff;color:var(--soft);font:400 15px/1 var(--sans);cursor:text;text-align:left;min-width:0}
-.sbox svg{flex:none;width:19px;height:19px}.sbox span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.hd-r .sbox,.hd-r .ig{display:none}
-.hd-s{display:flex;gap:8px;padding-top:9px;padding-bottom:9px}
-.hd-s .sbox{flex:1}
-.wa-s{flex:none;display:inline-flex;align-items:center;gap:7px;height:42px;padding:0 12px;border-radius:var(--r);background:var(--green);color:#fff;text-decoration:none;font:600 14px/1 var(--sans);white-space:nowrap}
-.wa-s b{font-weight:600}
-.tabs .hd-s a.wa-s{padding:0 12px;color:#fff}.tabs .hd-s a::after{display:none}
-.hd-wa b{font-weight:600}
-@media(min-width:900px){
- .hd-s{display:none}
- .hd-r .sm{display:none}
- .hd-r .sbox{display:flex;width:210px;flex:none}
- .hd-r .ig{display:inline-grid}
- .hd-r{gap:8px}
- .hd-wa{margin-left:2px}
- .tabs nav{gap:2px}.tabs a{padding:14px 9px;font-size:15px}.tabs a::after{left:9px;right:9px}
-}
-.tabs a .dn{margin-left:5px;vertical-align:-1px;transition:transform .25s var(--ease)}
-.tabs a[aria-expanded=true] .dn{transform:rotate(180deg)}
-.tabs a[aria-expanded=true]{color:var(--green)}
-.tn{position:relative}
-.sub{position:absolute;top:100%;left:0;right:0;z-index:30;background:#fff;border-bottom:1px solid var(--line);box-shadow:0 18px 30px -22px rgba(20,54,41,.5)}
-.sub[hidden],.sub-set[hidden]{display:none}
-.tabs .sub a{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 18px;font-size:16px;font-weight:500;white-space:nowrap;color:var(--ink)}
-.tabs .sub a::after{display:none}
-.sub a span{color:var(--soft);font-weight:400;font-size:14px}
-@media(min-width:900px){.sub{right:auto;min-width:240px;border:1px solid var(--line);border-top:0}.tabs .sub a{padding:12px 18px}}
-@media(hover:hover) and (pointer:fine){.tabs .sub a:hover{background:var(--mist);color:var(--green)}.sbox:hover{border-color:var(--green)}.wa-s:hover{background:var(--green-d)}}
-.chips a[aria-current]{border-color:var(--green);color:var(--green);font-weight:600}
-.dr-ft p a{color:var(--soft)}
-.bulk-all{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 32px}
-.bulk-all p{margin:0;font:400 clamp(26px,3.6vw,44px)/1.15 var(--serif);max-width:22em}
-.eng-f{max-width:720px}
-.ideas{list-style:none;margin:0;padding:0;display:grid;gap:0}
-.ideas li{display:grid;gap:6px;padding:22px 0;border-top:1px solid var(--line)}
-.ideas .n{font:400 32px/1 var(--serif);color:var(--brass)}
-.ideas b{font:500 20px/1.3 var(--sans)}.ideas li>span:last-child{color:var(--soft)}
-@media(min-width:900px){.ideas{grid-template-columns:repeat(3,1fr);gap:0 48px}}
-.tile .cap small{opacity:.95}
-.hero .slide .tag{max-width:80%}
 """
-
 
 JS = r"""
 (function(){
@@ -984,9 +939,9 @@ JS = r"""
   d.addEventListener('touchstart',function(){},{passive:true}); /* lets :active work on iOS */
 
   /* menu and search */
-  function dlg(btn,id,onopen){var bs=$$(btn),g=d.getElementById(id);if(!bs.length||!g||!g.showModal)return;
-    bs.forEach(function(b){b.addEventListener('click',function(){g.showModal();bs.forEach(function(x){x.setAttribute('aria-expanded','true')});if(onopen)onopen(g)})});
-    g.addEventListener('close',function(){bs.forEach(function(x){x.setAttribute('aria-expanded','false')})});
+  function dlg(btn,id,onopen){var b=$(btn),g=d.getElementById(id);if(!b||!g||!g.showModal)return;
+    b.addEventListener('click',function(){g.showModal();b.setAttribute('aria-expanded','true');if(onopen)onopen(g)});
+    g.addEventListener('close',function(){b.setAttribute('aria-expanded','false')});
     g.addEventListener('click',function(ev){if(ev.target===g||ev.target.closest('[data-close]')||ev.target.closest('a'))g.close()});}
   dlg('.menu','drawer');
   var sx=d.getElementById('sx'),items=sx?JSON.parse(sx.textContent):[],list=$('.sr-list'),inp=$('.sr-bar input'),none=$('.sr-none');
@@ -1004,38 +959,23 @@ JS = r"""
     $$('[style*="view-transition-name"]').forEach(function(x){x.style.viewTransitionName=''});
     var im=$('.ph img',a);if(im)im.style.viewTransitionName='pic'})});
 
-  /* category menu: one shared dropdown panel under the tab row (tap to open on phones, hover or click on desktop) */
-  var tn=$('.tn'),sub=tn&&$('.sub',tn),gs=tn?$$('a.g',tn):[],openG=null,hov=matchMedia('(hover:hover) and (pointer:fine)');
-  function closeSub(){if(!sub)return;sub.hidden=true;gs.forEach(function(a){a.setAttribute('aria-expanded','false')});openG=null}
-  function openSub(a){if(!sub)return;$$('.sub-set',sub).forEach(function(x){x.hidden=x.dataset.for!==a.dataset.g});
-    gs.forEach(function(x){x.setAttribute('aria-expanded',String(x===a))});sub.hidden=false;openG=a;
-    var nr=$('nav',tn),l=a.getBoundingClientRect().left-tn.getBoundingClientRect().left,w=sub.offsetWidth,max=tn.clientWidth-w-8;
-    if(innerWidth>=900)sub.style.left=Math.max(8,Math.min(l,max))+'px';else sub.style.left='0'}
-  gs.forEach(function(a){
-    a.addEventListener('click',function(ev){ev.preventDefault();if(openG===a)closeSub();else openSub(a)});
-    a.addEventListener('mouseenter',function(){if(hov.matches&&innerWidth>=900)openSub(a)})});
-  if(tn){tn.addEventListener('mouseleave',function(){if(hov.matches&&innerWidth>=900)closeSub()});
-    d.addEventListener('click',function(ev){if(openG&&!ev.target.closest('.tn'))closeSub()});
-    d.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&openG){var g=openG;closeSub();g.focus()}});
-    addEventListener('scroll',function(){if(openG&&!hov.matches)closeSub()},{passive:true});}
-
-  /* old links (index.html?f=wood) go to the new All pieces page */
-  var old=new URLSearchParams(location.search).get('f');
-  if(old&&d.getElementById('newarr'))location.replace('shop.html'+(old==='wood'?'?c=acacia':old==='resin'?'?c=resin-trays':''));
-
-  /* All pieces: filter by kind with the chips (every card has data-cats) */
-  var grid=d.getElementById('all-grid');
-  if(grid){var pc=$$('.p',grid),chips=$$('#shop-chips a'),hh=d.getElementById('shop-h'),cn=d.getElementById('shop-n'),none=d.getElementById('shop-none'),
-      nm={all:'All pieces'};chips.forEach(function(a){nm[a.dataset.c]=a.firstChild.textContent});
-    $$('.tn a.g').forEach(function(a){nm[a.dataset.g]=a.textContent});
-    function apply(k,push){if(!nm[k])k='all';var n=0;
-      pc.forEach(function(p){var on=k==='all'||(' '+p.dataset.cats+' ').indexOf(' '+k+' ')>=0;p.hidden=!on;if(on)n++});
-      chips.forEach(function(a){if(a.dataset.c===k||a.dataset.p===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
-      $$('.tn nav a[data-has],.tn nav a[data-c]').forEach(function(a){var h=(a.dataset.has||a.dataset.c||'').split(' ');if(k!=='all'&&h.indexOf(k)>=0)a.setAttribute('aria-current','true');else if(a.dataset.c==='all'&&k==='all')a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
-      if(hh)hh.textContent=nm[k];if(cn)cn.textContent=n;if(none)none.hidden=n>0;
-      if(push){try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?c='+k))}catch(_){}}}
-    chips.forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();apply(a.dataset.c,true);closeSub()})});
-    apply(new URLSearchParams(location.search).get('c')||'all',false);}
+  /* shop filter from the category tabs */
+  var cards=$$('.p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin trays'};
+  function filter(k){if(!names[k])k='all';
+    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
+    cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
+    /* re-deal: cards already on show slide to their new place, returning ones settle in (unseen ones keep their scroll reveal) */
+    if(!rm&&shop&&shop.animate)cards.forEach(function(p){if(p.hidden||!p.classList.contains('in'))return;var i=was.indexOf(p),r=p.getBoundingClientRect();
+      if(i<0)p.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'});
+      else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
+    var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
+  if(shop){
+    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
+      try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?f='+k)+'#shop')}catch(_){}
+      shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
+    var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
+  }
 
   /* reveal on scroll: headings rise out of a slot, cards stagger by the real number of columns */
   $$('main h2').forEach(function(h){if(!h.closest('.rv'))return;var s=d.createElement('span');while(h.firstChild)s.appendChild(h.firstChild);h.appendChild(s);h.classList.add('mk')});
@@ -1135,151 +1075,6 @@ FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of 
        ("Can I buy just one piece?", "Yes. Every piece with a price can be ordered on its own. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
 
 
-# ---- Shop-style catalogue (owner 18 Nov): ONE list of every piece, used by All pieces, best sellers, new arrivals, category tiles.
-# group key, label, [(leaf key, label)]. A group with no leaves is itself the category. Empty categories are left out of the menu.
-SHOP_GROUPS = [("inlay", "Inlay furniture", [("inlay-chests", "Chests"), ("inlay-tables", "Tables")]),
-               ("resin", "Resin", [("resin-trays", "Trays"), ("resin-bath", "Bathroom sets"), ("resin-bowls", "Bowls & plates")]),
-               ("painted", "Painted trays & bowls", []), ("boards", "Wooden boards", []), ("acacia", "Acacia wood", []),
-               ("mango", "Mango wood", []), ("candles", "Candle stands", [])]
-MTO_CAT = {"painted": "painted", "bath": "resin-bath", "bowls": "resin-bowls", "boards": "boards", "candles": "candles", "chests": "inlay-chests", "tables": "inlay-tables"}
-OW_EXTRA = {"OW-08": "boards", "OW-25": "candles"}  # acacia pieces that are also a board / candle stands
-BEST = ["OW-38", "OW-40", "IC-1", "black-white-floral-tray-set"]  # best sellers row (owner's list, 18 Nov)
-NEW_ARRIVALS = ["OW-37", "OW-36", "OW-33", "OW-25", "OW-18", "OW-08", "OW-03", "OW-01"]  # the pieces added last (git history, 18 Nov)
-GROUP_PIC = {"inlay": "m-bone-inlay-coffee-table-40", "resin": "bw-top", "painted": "m-wooden-meena-tray-3", "boards": "m-wooden-chopping-board-2",
-             "acacia": "m-ow-18-a", "mango": "m-ow-36-a", "candles": "m-wooden-candle-stand-3"}
-
-
-def leaf_group(leaf):
-    return next((g for g, _, ls in SHOP_GROUPS if g == leaf or any(l == leaf for l, _ in ls)), leaf)
-
-
-def shop_items():
-    """every card on the site: [dict(id, name, href, img, alt, price, sub, tag, cats, sort)]. Order: category order, then dearest first."""
-    out = []
-    for p in PRODUCTS:
-        a = p["card"][0]
-        alt, cap = next((x[1], x[2]) for x in p["imgs"] if x[0] == a)
-        out.append(dict(id=p["slug"], name=p["name"], href=p["slug"] + ".html", img=f"{a}-600", alt=alt, sub=p["short"],
-                        price=(bulk_line(p["slug"]) if p.get("bulk_only") else rupee(p["price"]) + (f" / {p['unit']}" if p.get("unit") else "")),
-                        tag=cap, cats=["resin-trays"] if p["cat"] == "resin" else ["acacia"], sort=BULK_ONLY_PRICE["gold-flake-resin-tray"] if p.get("bulk_only") else p["price"]))
-    for it in OW:
-        top = ow_price_lines(it)[0]
-        out.append(dict(id=it["code"], name=it["name"], href=mto_page(it["code"]), img=ow_key(it["code"]) + "-600", alt=it["name"] + ", design picture",
-                        sub=f"Design {it['code']} · {ow_wood(it)} wood", price=top, tag="Made to order",
-                        cats=[ow_wood(it)] + ([OW_EXTRA[it["code"]]] if it["code"] in OW_EXTRA else []),
-                        sort=it["price"] or BULK_ONLY_PRICE.get(it["code"], 0)))
-    for gid, code, f, n in mto_items():
-        out.append(dict(id=code, name=n, href=mto_page(code), img=f"m-{f}-600", alt=n + ", design picture", sub=f"Design {code} · made on order",
-                        price=mto_pr(code)[0], tag="Made to order", cats=[MTO_CAT[gid]], sort=(MTO_PRICE[code][0] if code in MTO_PRICE else 0)))
-    order = [l for g, _, ls in SHOP_GROUPS for l in ([l for l, _ in ls] or [g])]
-    out.sort(key=lambda x: (order.index(x["cats"][0]), -x["sort"], x["id"]))
-    for x in out:
-        x["cats"] = x["cats"] + sorted({leaf_group(c) for c in x["cats"]} - set(x["cats"]))
-    return out
-
-
-def shop_card(x, rv=True):
-    return (f'<a class="p{" rv" if rv else ""}" data-cats="{" ".join(x["cats"])}" href="{x["href"]}"><div class="ph"><img src="{UP}img/{x["img"]}.webp" alt="{e(x["alt"])}" width="600" height="600" loading="lazy">'
-            f'<span class="tag">{e(x["tag"])}</span></div><h3>{e(x["name"])}</h3><p class="sh">{e(x["sub"])}</p><p class="pr">{e(x["price"])}</p></a>')
-
-
-def shop_menu():
-    """(menu items, counts): only categories that have pieces"""
-    items = shop_items()
-    n = lambda k: sum(1 for x in items if k in x["cats"])
-    groups = []
-    for g, label, ls in SHOP_GROUPS:
-        ls = [(l, t) for l, t in ls if n(l)]
-        if n(g):
-            groups.append((g, label, ls))
-    return items, n, groups
-
-
-def page_shop():
-    items, n, groups = shop_menu()
-    chips = f'<a href="shop.html" data-c="all" aria-current="true">All<span>{len(items)}</span></a>' + "".join(
-        f'<a href="shop.html?c={l}" data-c="{l}" data-p="{g}">{e(t)}<span>{n(l)}</span></a>' for g, label, ls in groups for l, t in (ls or [(g, label)]))
-    return head("All Pieces: Furniture, Trays, Bowls, Boards, Candle Stands | Woodkari",
-                f"All {len(items)} pieces from Woodkari, India: bone inlay furniture, resin and painted trays, bowls, boards, acacia and mango wood, candle stands. Made to order.",
-                "shop.html", "m-og.jpg") + f"""<body>
-{header('all')}
-<main id="main">
-<section><div class="wrap mh">
-<h1 id="shop-h">All pieces</h1>
-<p><span id="shop-n">{len(items)}</span> pieces. Every piece can be made in bulk from 25. Pictures are design pictures, made to show the piece, unless marked plain photo. Open one and order on WhatsApp.</p>
-<nav class="chips" id="shop-chips" aria-label="Kinds of pieces">{chips}</nav>
-</div></section>
-<section class="sec"><div class="wrap">
-<div class="grid four" id="all-grid">{"".join(shop_card(x, False) for x in items)}</div>
-<p class="sr-none" id="shop-none" hidden>Nothing in this kind yet. <a href="{e(wa(HELLO))}">Ask us on WhatsApp</a>.</p>
-</div></section>
-<section class="end"><div class="wrap rv">
-<h2>Not the one you want?</h2>
-<p>Send us a picture of the piece, the size and how many. We reply on WhatsApp.</p>
-<div class="row"><a class="btn pri" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}">{MAIL}{EMAIL}</a></div>
-</div></section>
-</main>
-{footer()}
-<script type="application/ld+json">{ORG_ONLY_LD}</script>
-</body></html>
-"""
-
-
-def page_engraving():
-    """Name & logo page (owner 18 Nov). Only lines that are already on the site: wooden pieces, by laser, 50 or more of one design; 50% advance."""
-    msg = "Hello Woodkari, I want my name or logo engraved.\nPiece:\nQuantity:\nCity: "
-    ideas = [("Wedding return gifts", "Boxes and boards with the couple's names, for the guests."),
-             ("Company gifts", "A company logo on boards and boxes for staff, clients and New Year hampers."),
-             ("Hotel room sets", "A hotel name on every room tray, for the guest rooms.")]
-    idea = "".join(f'<li class="rv"><span class="n">{i}</span><b>{e(t)}</b><span>{e(d)}</span></li>' for i, (t, d) in enumerate(ideas, 1))
-    return head("Name & Logo Engraving on Wooden Trays, Boxes, Boards | Woodkari",
-                "Your name or logo laser-engraved on wooden trays, boxes and boards, on 50 pieces or more of one design. For weddings, company gifts and hotels. Order on WhatsApp.",
-                "name-and-logo.html", "d-engraved-600.webp") + f"""<body>
-{header('eng')}
-<main id="main">
-<section><div class="wrap bh">
-<div>
-<h1>Your name or logo, by laser.</h1>
-<p>We engrave a name or a logo on our wooden pieces. It is made for orders of 50 pieces or more of one design.</p>
-<div class="row"><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Ask about engraving</a><a class="btn line" href="shop.html">See all pieces{ARROW}</a></div>
-</div>
-<div class="fig wipe"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600"><span class="tag">Made to order</span></div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>What we engrave</h2><p>A name or a logo, by laser, on 50 pieces or more of one design. Wooden pieces: trays, boxes and boards.</p></div></div>
-<ul class="facts eng-f rv">
-<li><b>What</b><span>A name or a logo</span></li>
-<li><b>How</b><span>By laser</span></li>
-<li><b>How many</b><span>50 pieces or more of one design</span></li>
-<li><b>On which pieces</b><span>The wooden pieces on this site</span></li>
-</ul>
-</div></section>
-
-<section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Ideas</h2></div></div>
-<ol class="ideas">{idea}</ol>
-</div></section>
-
-<section class="band stone"><div class="wrap split" style="align-items:start">
-<div class="rv"><h2>How to order</h2><p class="lead">Everything starts on WhatsApp.</p></div>
-<div class="rv">
-<ol class="steps">
-<li><b>Message us on WhatsApp</b><span>Tell us the piece, how many, your city, and the name or logo you want on it.</span></li>
-<li><b>We send the price</b><span>A 50% advance starts the order.</span></li>
-<li><b>Made and sent</b><span>Wooden pieces: about 10 to 15 days for 100. Delivery is at your cost, quoted before it leaves.</span></li>
-</ol>
-<div class="row"><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>
-</div>
-</div></section>
-</main>
-{footer()}
-<script type="application/ld+json">{ORG_ONLY_LD}</script>
-</body></html>
-"""
-
-
-
 def head(title, desc, path, image):
     robots = '<meta name="robots" content="noindex">' if PREVIEW else ""
     # Google Analytics 4 (property "Woodkari Exports", stream "Woodkari Exports website", ID from Friday 17 Nov); live site only
@@ -1329,50 +1124,27 @@ def search_data():
     return json.dumps(items).replace("</", "<\\/")
 
 
-def nav_html(cur):
-    """category menu: groups with a dropdown (JS fills one shared panel from .sub-set), leaves and pages as plain links"""
-    _, n, groups = shop_menu()
-    cc = lambda k: ' aria-current="true"' if k == cur else ""
-    out = [f'<a href="shop.html" data-c="all"{cc("all")}>All pieces</a>']
-    sets = []
-    for g, label, ls in groups:
-        if ls:
-            has = " ".join([g] + [l for l, _ in ls])
-            out.append(f'<a class="g" href="shop.html?c={g}" data-g="{g}" data-has="{has}" aria-haspopup="true" aria-expanded="false">{e(label)}<svg class="dn" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>')
-            sets.append(f'<div class="sub-set" data-for="{g}" hidden><a href="shop.html?c={g}">All {e(label.lower())}<span>{n(g)}</span></a>' + "".join(f'<a href="shop.html?c={l}">{e(t)}<span>{n(l)}</span></a>' for l, t in ls) + "</div>")
-        else:
-            out.append(f'<a href="shop.html?c={g}" data-c="{g}" data-has="{g}">{e(label)}</a>')
-    out.append(f'<a href="bulk.html"{cc("bulk")}>Bulk orders</a><a href="name-and-logo.html"{cc("eng")}>Name &amp; logo</a>')
-    return "".join(out), "".join(sets)
-
-
 def header(cur):
+    def t(href, label, key, cat=None):
+        c = ' aria-current="true"' if key == cur else ""
+        dc = f' data-cat="{cat}"' if cat else ""
+        return f'<a href="{href}"{dc}{c}>{label}</a>'
     pv = '<div class="pv">Preview. Not the live site yet.</div>' if PREVIEW else ""
-    nav, sets = nav_html(cur)
-    _, n, groups = shop_menu()
-    dr = f'<a href="shop.html">All pieces{ARROW}</a>' + "".join(f'<a href="shop.html?c={g}">{e(label)}{ARROW}</a>' for g, label, ls in groups)
-    box = f'<button class="sbox search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}<span>Search the pieces</span></button>'
-    wab = f'<a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}<span>WhatsApp</span> <b>{WA_PRINTED}</b></a>'
-    # Instagram: link given by the owner, 18 Nov (INSTAGRAM above)
-    ig = f'<a class="ib ig" href="{INSTAGRAM}" target="_blank" rel="noopener" aria-label="Woodkari on Instagram">{IG_ICON}</a>'
     return f"""<a class="skip" href="#main">Skip to content</a>
 {pv}<header class="hd">
 <div class="wrap hd-top">
 <div class="hd-l"><button class="ib menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="drawer">{MENU_ICON}</button><span class="hd-note">Made in India since 2008</span></div>
 <a class="logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>EXPORTS</small></a>
-<div class="hd-r"><button class="ib search sm" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button>{box}{ig}{wab}</div>
+<div class="hd-r"><button class="ib search" type="button" aria-label="Search" aria-expanded="false" aria-controls="srch">{SEARCH_ICON}</button><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a></div>
 </div>
-<div class="tabs">
-<div class="hd-s wrap">{box.replace('Search the pieces', 'Search')}<a class="wa-s" href="{e(wa(HELLO))}">{WA_ICON}<b>{WA_PRINTED}</b></a></div>
-<div class="tn"><nav class="wrap" aria-label="Shop">{nav}</nav><div class="sub" hidden>{sets}</div></div>
-</div>
+<div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin trays','resin','resin')}{t('designs.html','Made to order','mto')}{t('bulk.html','Bulk orders','bulk')}{t('./#engraving','Name &amp; logo','eng')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
 </header>
 <dialog class="drawer" id="drawer" aria-label="Menu"><div class="dr-in">
 <div class="dr-hd"><b>Woodkari</b><button class="ib" type="button" data-close aria-label="Close menu">{X_ICON}</button></div>
 <nav class="dr-nav" aria-label="Menu">
-{dr}<a href="bulk.html">Bulk orders{ARROW}</a><a href="name-and-logo.html">Name and logo{ARROW}</a><a href="designs.html">Made to order designs{ARROW}</a><a href="./#workshop">The workshop{ARROW}</a><a href="./#questions">Questions{ARROW}</a>
+<a href="./?f=all#shop" data-cat="all">All pieces{ARROW}</a><a href="./?f=wood#shop" data-cat="wood">Acacia wood{ARROW}</a><a href="./?f=resin#shop" data-cat="resin">Resin trays{ARROW}</a><a href="designs.html">Made to order{ARROW}</a><a href="bulk.html">Bulk orders{ARROW}</a><a href="./#engraving">Name and logo{ARROW}</a><a href="./#workshop">The workshop{ARROW}</a><a href="./#questions">Questions{ARROW}</a>
 </nav>
-<div class="dr-ft"><a class="btn pri wide" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp {WA_PRINTED}</a><p><a href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram @woodkariexports</a></p><p>{EMAIL}</p></div>
+<div class="dr-ft"><a class="btn pri wide" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><p>{EMAIL}</p></div>
 </div></dialog>
 <dialog class="srch" id="srch" aria-label="Search"><div class="sr-in">
 <div class="sr-bar"><input type="search" placeholder="Search trays, boxes, designs" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"><button class="ib" type="button" data-close aria-label="Close search">{X_ICON}</button></div>
@@ -1387,8 +1159,8 @@ def footer():
     return f"""<footer class="ft"><div class="wrap">
 <div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
-<div><h3>Shop</h3><a class="l" href="shop.html">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="name-and-logo.html">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
-<div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a><a class="l" href="{INSTAGRAM}" target="_blank" rel="noopener">Instagram @woodkariexports</a></div>
+<div><h3>Shop</h3><a class="l" href="./?f=all#shop" data-cat="all">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
+<div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
 <div class="mega" aria-hidden="true"><span>Woodkari</span></div></footer>
@@ -1419,47 +1191,43 @@ def faq_html():
 
 
 def page_home():
-    items, n, groups = shop_menu()
-    byid = {x["id"]: x for x in items}
-    best = "".join(shop_card(byid[i]) for i in BEST)
-    new = "".join(shop_card(byid[i]) for i in NEW_ARRIVALS)
-    tiles = "".join(f'<a class="tile rv" href="shop.html?c={g}"><img src="{UP}img/{GROUP_PIC[g]}-600.webp" alt="{e(label)}" width="600" height="600" loading="lazy"><span class="cap">{e(label)}<small>{n(g)} pieces</small></span></a>' for g, label, ls in groups)
+    cards = "\n".join(card(p) for p in PRODUCTS)
+    tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
+    byslug = {q["slug"]: q for q in PRODUCTS}
+    slides = "".join(
+        f'<a class="slide{" on" if i == 0 else ""}" href="{sl}.html"><img {"src" if i == 0 else LATER}="{UP}img/{k}.webp" alt="{e(next((a for kk, a, *_ in byslug[sl]["imgs"] if kk == k), byslug[sl]["name"]))}" width="1200" height="1200"{" fetchpriority=high" if i == 0 else " decoding=async"}><span class="tag">Made to order</span><span class="nm">{e(byslug[sl]["name"])}<span>{bulk_line(sl) if byslug[sl].get("bulk_only") else rupee(byslug[sl]["price"])}</span></span></a>'
+        for i, (k, sl) in enumerate(SLIDES))
+    dots = "".join(f'<button class="dot" type="button" data-i="{i}" aria-label="Show {e(byslug[sl]["name"])}"{" aria-current=true" if i == 0 else ""}><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in India since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
-    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n_ + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n_)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n_)}</b><i>Ask on WhatsApp</i></a>' for k, n_ in DESIGNS)
-    hero_top = mto_price_txt = mto_pr("OW-38")[0]
+    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
+    real = "".join(f'<figure class="rv"><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>'
+                   for k, alt, cap in (byslug["room-tray"]["imgs"][1], byslug["fluted-box-tray"]["imgs"][1]))
     return head("Wooden & Resin Trays, Boxes in Bulk | Woodkari, India",
                 "Acacia wood and resin trays and boxes from India, making since 2008. Bulk from 25 pieces, name or logo from 50, single pieces on WhatsApp.",
-                "", "m-bone-inlay-coffee-table-38-e.webp") + f"""<body>
-{header('home')}
+                "", "fluted-front.jpg") + f"""<body>
+{header('all')}
 <main id="main">
 <section class="hero">
-<div class="show"><a class="slide on" href="design-ow-38.html"><img src="{UP}img/m-bone-inlay-coffee-table-38-e.webp" alt="Round bone inlay drum coffee table with a black and white sunburst pattern, in a living room" width="1200" height="1200" fetchpriority="high"><span class="tag">Design picture, made to order</span><span class="nm">Inlay drum coffee table<span>{hero_top}</span></span></a></div>
+<div class="show">{slides}</div>
 <div class="hero-txt">
 <h1><span class="ln"><span>Made in</span></span><span class="ln"><span>India.</span></span></h1>
-<p class="fade">Inlay furniture, wooden trays and resin pieces.<span class="more"> Making since 2008. Most of our orders are bulk: trays and boxes from 25 of one design. Single pieces too, on WhatsApp.</span></p>
-<div class="row fade d2"><a class="btn pri" href="shop.html">Shop all pieces{ARROW}</a><a class="btn inv" href="shop.html">Shop all pieces{ARROW}</a><a class="btn ghost" href="bulk.html">Bulk orders</a></div>
+<p class="fade">Wooden trays and resin pieces.<span class="more"> Making since 2008. Most of our orders are bulk: trays and boxes from 25 of one design. Single pieces too, on WhatsApp.</span></p>
+<div class="row fade d2"><a class="btn pri" href="#shop">Explore the collection{ARROW}</a><a class="btn inv" href="#shop">Explore the collection{ARROW}</a><a class="btn ghost" href="bulk.html">Bulk orders</a></div>
+<div class="dots fade d3" role="group" aria-label="Pictures">{dots}{PP}</div>
 </div>
 </section>
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
-<section class="sec" id="best"><div class="wrap">
-<div class="hdr rv"><div><h2>Best sellers</h2><p>Prices are for one piece; delivery is extra.</p></div><a class="lnk" href="shop.html">All pieces{ARROW}</a></div>
-<div class="grid four">{best}</div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Shop by kind</h2></div></div>
-<div class="tiles">{tiles}</div>
-</div></section>
-
-<section class="sec" id="new"><div class="wrap">
-<div class="hdr rv"><div><h2>New arrivals</h2></div><a class="lnk" href="shop.html">All {len(items)} pieces{ARROW}</a></div>
-<div class="grid four" id="newarr">{new}</div>
+<section class="sec" id="shop"><div class="wrap">
+<div class="hdr rv"><div><h2 id="shop-t">Trays &amp; boxes</h2><p>Acacia wood from our workshop, and resin trays made to order. Prices are for one piece; delivery is extra.</p></div><a class="lnk" id="viewall" href="./?f=all#shop" data-cat="all" hidden>View all{ARROW}</a></div>
+<div class="grid">
+{cards}
+</div>
 </div></section>
 
 <section class="band green" id="bulk"><div class="wrap split">
-<div class="fig wipe"><img src="{UP}img/fluted-life.webp" alt="Fluted acacia box tray with keys, coins and sunglasses on a hall table" width="1200" height="1200" loading="lazy"><span class="tag">Styled picture</span></div>
+<div class="fig wipe"><img src="{UP}img/room-life.webp" alt="Acacia room tray on a desk by a window, with a kettle and two cups" width="1200" height="1200" loading="lazy"><span class="tag">Styled picture</span></div>
 <div class="rv">
 <h2>For hotels, shops and gifting.</h2>
 <p class="lead">Bulk is most of our work. Hotels, gifting companies, shops and importers can order our trays and boxes from 25 pieces of a design, and the acacia pieces in any size.</p>
@@ -1472,27 +1240,32 @@ def page_home():
 </div>
 </div></section>
 
+<section class="sec"><div class="wrap">
+<div class="hdr rv"><div><h2>Where they go</h2></div></div>
+<div class="tiles">{tiles}</div>
+</div></section>
+
 <section class="sec" id="engraving"><div class="wrap split rev">
 <div class="fig wipe"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>
 <div class="rv">
 <h2>Your name or logo, by laser.</h2>
 <p class="lead">On 50 pieces or more of one design, we engrave a hotel name, a company logo or a couple's names: room trays for a hotel, boxes and boards for staff gifts or a wedding.</p>
-<div class="row"><a class="btn pri" href="name-and-logo.html">How it works{ARROW}</a><a class="btn line" href="{e(wa('Hello Woodkari, I want my name or logo engraved.' + chr(10) + 'Piece:' + chr(10) + 'Quantity: '))}">{WA_ICON}Ask on WhatsApp</a></div>
+<div class="row"><a class="btn pri" href="{e(wa('Hello Woodkari, I want my name or logo engraved.' + chr(10) + 'Piece:' + chr(10) + 'Quantity: '))}">{WA_ICON}Ask about engraving</a></div>
 </div>
 </div></section>
 
 <section class="sec"><div class="wrap">
 <div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div></div>
 <div class="dz">{dz}</div>
-<p class="mto-l rv"><a class="lnk" href="shop.html">See all {len(items)} pieces{ARROW}</a></p>
+<p class="mto-l rv"><a class="lnk" href="designs.html">See {ALL_N} more designs, made on order{ARROW}</a></p>
 </div></section>
 
-<section class="band stone" id="workshop"><div class="wrap">
+<section class="band stone" id="workshop"><div class="wrap split">
 <div class="rv">
 <h2>The workshop</h2>
 <p class="lead">Woodkari is a workshop in India, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish our wooden pieces by hand. Our resin trays are made with other makers near our workshop.</p>
 </div>
-<!-- TODO(workshop photos): the owner sends real workshop photos on 19 Nov; show them here. The tray picture was removed 18 Nov. -->
+<div class="real">{real}</div>
 </div></section>
 
 <section class="sec" id="questions"><div class="wrap split" style="align-items:start">
@@ -1548,7 +1321,7 @@ def page_product(p):
     return head(p["title"], desc, p["slug"] + ".html", ogimg) + f"""<body class="has-stick">
 {header(p['cat'])}
 <main id="main"><div class="wrap">
-<p class="crumb"><a href="shop.html">All pieces</a> / {e(p['name'])}</p>
+<p class="crumb"><a href="./#shop">All pieces</a> / {e(p['name'])}</p>
 <div class="pd">
 {gallery([k for k, _a, _c in p["imgs"]], figs)}
 <div class="buy">
@@ -1798,12 +1571,17 @@ def page_bulk():
 <p>Bulk is most of our work. We have done this work since 2008. For hotels, gifting companies, shops and importers: tell us the piece and the number, and we send the price on WhatsApp.</p>
 <div class="row"><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Ask on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}?subject=Bulk%20order">{MAIL}Email us</a></div>
 </div>
-<div class="fig wipe"><img src="{UP}img/fluted-life.webp" alt="Fluted acacia box tray with keys, coins and sunglasses on a hall table" width="1200" height="1200"><span class="tag">Styled picture</span></div>
+<div class="fig wipe"><img src="{UP}img/bulk-hero.webp" alt="Acacia room tray with two cups of tea on a wooden table" width="1200" height="744"><span class="tag">Styled picture</span></div>
 </div></section>
 
-<section class="sec"><div class="wrap bulk-all rv">
-<p>Every piece on the site can be made in bulk, from 25 pieces.</p>
-<a class="lnk" href="shop.html">See all pieces{ARROW}</a>
+<section class="sec"><div class="wrap">
+<div class="hdr rv"><div><h2>What we make in bulk</h2></div></div>
+<div class="grid four">
+<a class="p rv" href="room-tray.html"><div class="ph"><img src="{UP}img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Room trays for hotels</h3><p class="sh">A hotel name by laser, from 50 pieces</p></a>
+<a class="p rv" href="fluted-box-tray.html"><div class="ph"><img src="{UP}img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
+<a class="p rv" href="navy-ivory-floral-tray.html"><div class="ph"><img src="{UP}img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div><h3>Resin trays</h3><p class="sh">Made to order in India</p></a>
+<a class="p rv" href="{e(wa("Hello Woodkari, I am asking about engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser, from 50</p></a>
+</div>
 </div></section>
 
 <section class="band stone"><div class="wrap split" style="align-items:start">
@@ -1858,8 +1636,6 @@ def llms_txt():
          "- How an order starts: send the piece and the number, on WhatsApp or by mail, with your city.", "",
          "## Main pages", "",
          f"- [Home and shop]({SITE}/): trays and boxes, acacia wood from our workshop, and resin trays made to order. Prices are for one piece; delivery is extra.",
-         f"- [All pieces]({SITE}/shop.html): every piece on the site with its picture and price, in kinds.",
-         f"- [Name and logo]({SITE}/name-and-logo.html): a name or logo by laser on 50 pieces or more of one design.",
          f"- [Bulk and hotel orders]({SITE}/bulk.html): bulk orders from 25 pieces, for hotels, gifting companies, shops and importers.",
          f"- [Made to order designs]({SITE}/designs.html): {ALL_N} more designs. Every picture there is a design picture, made to show the piece. Every design shows its price; order on WhatsApp.", "",
          "## Pieces", ""]
@@ -1884,8 +1660,6 @@ def main():
     w("bulk.html", page_bulk())
     w("terms.html", page_terms())
     w("designs.html", page_designs())
-    w("shop.html", page_shop())
-    w("name-and-logo.html", page_engraving())
     for gid, pre, title, line, items in MTO:
         for i in range(MTO_START.get(gid, 1), MTO_START.get(gid, 1) + len(items)):
             if f"{pre}-{i}" in MTO_HOLD: continue
@@ -1895,7 +1669,7 @@ def main():
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(c) for _, c, _, _ in mto_items()] + ["shop.html", "name-and-logo.html", "bulk.html", "terms.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")

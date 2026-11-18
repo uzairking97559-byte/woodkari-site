@@ -13,9 +13,9 @@
   d.addEventListener('touchstart',function(){},{passive:true}); /* lets :active work on iOS */
 
   /* menu and search */
-  function dlg(btn,id,onopen){var bs=$$(btn),g=d.getElementById(id);if(!bs.length||!g||!g.showModal)return;
-    bs.forEach(function(b){b.addEventListener('click',function(){g.showModal();bs.forEach(function(x){x.setAttribute('aria-expanded','true')});if(onopen)onopen(g)})});
-    g.addEventListener('close',function(){bs.forEach(function(x){x.setAttribute('aria-expanded','false')})});
+  function dlg(btn,id,onopen){var b=$(btn),g=d.getElementById(id);if(!b||!g||!g.showModal)return;
+    b.addEventListener('click',function(){g.showModal();b.setAttribute('aria-expanded','true');if(onopen)onopen(g)});
+    g.addEventListener('close',function(){b.setAttribute('aria-expanded','false')});
     g.addEventListener('click',function(ev){if(ev.target===g||ev.target.closest('[data-close]')||ev.target.closest('a'))g.close()});}
   dlg('.menu','drawer');
   var sx=d.getElementById('sx'),items=sx?JSON.parse(sx.textContent):[],list=$('.sr-list'),inp=$('.sr-bar input'),none=$('.sr-none');
@@ -33,38 +33,23 @@
     $$('[style*="view-transition-name"]').forEach(function(x){x.style.viewTransitionName=''});
     var im=$('.ph img',a);if(im)im.style.viewTransitionName='pic'})});
 
-  /* category menu: one shared dropdown panel under the tab row (tap to open on phones, hover or click on desktop) */
-  var tn=$('.tn'),sub=tn&&$('.sub',tn),gs=tn?$$('a.g',tn):[],openG=null,hov=matchMedia('(hover:hover) and (pointer:fine)');
-  function closeSub(){if(!sub)return;sub.hidden=true;gs.forEach(function(a){a.setAttribute('aria-expanded','false')});openG=null}
-  function openSub(a){if(!sub)return;$$('.sub-set',sub).forEach(function(x){x.hidden=x.dataset.for!==a.dataset.g});
-    gs.forEach(function(x){x.setAttribute('aria-expanded',String(x===a))});sub.hidden=false;openG=a;
-    var nr=$('nav',tn),l=a.getBoundingClientRect().left-tn.getBoundingClientRect().left,w=sub.offsetWidth,max=tn.clientWidth-w-8;
-    if(innerWidth>=900)sub.style.left=Math.max(8,Math.min(l,max))+'px';else sub.style.left='0'}
-  gs.forEach(function(a){
-    a.addEventListener('click',function(ev){ev.preventDefault();if(openG===a)closeSub();else openSub(a)});
-    a.addEventListener('mouseenter',function(){if(hov.matches&&innerWidth>=900)openSub(a)})});
-  if(tn){tn.addEventListener('mouseleave',function(){if(hov.matches&&innerWidth>=900)closeSub()});
-    d.addEventListener('click',function(ev){if(openG&&!ev.target.closest('.tn'))closeSub()});
-    d.addEventListener('keydown',function(ev){if(ev.key==='Escape'&&openG){var g=openG;closeSub();g.focus()}});
-    addEventListener('scroll',function(){if(openG&&!hov.matches)closeSub()},{passive:true});}
-
-  /* old links (index.html?f=wood) go to the new All pieces page */
-  var old=new URLSearchParams(location.search).get('f');
-  if(old&&d.getElementById('newarr'))location.replace('shop.html'+(old==='wood'?'?c=acacia':old==='resin'?'?c=resin-trays':''));
-
-  /* All pieces: filter by kind with the chips (every card has data-cats) */
-  var grid=d.getElementById('all-grid');
-  if(grid){var pc=$$('.p',grid),chips=$$('#shop-chips a'),hh=d.getElementById('shop-h'),cn=d.getElementById('shop-n'),none=d.getElementById('shop-none'),
-      nm={all:'All pieces'};chips.forEach(function(a){nm[a.dataset.c]=a.firstChild.textContent});
-    $$('.tn a.g').forEach(function(a){nm[a.dataset.g]=a.textContent});
-    function apply(k,push){if(!nm[k])k='all';var n=0;
-      pc.forEach(function(p){var on=k==='all'||(' '+p.dataset.cats+' ').indexOf(' '+k+' ')>=0;p.hidden=!on;if(on)n++});
-      chips.forEach(function(a){if(a.dataset.c===k||a.dataset.p===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
-      $$('.tn nav a[data-has],.tn nav a[data-c]').forEach(function(a){var h=(a.dataset.has||a.dataset.c||'').split(' ');if(k!=='all'&&h.indexOf(k)>=0)a.setAttribute('aria-current','true');else if(a.dataset.c==='all'&&k==='all')a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
-      if(hh)hh.textContent=nm[k];if(cn)cn.textContent=n;if(none)none.hidden=n>0;
-      if(push){try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?c='+k))}catch(_){}}}
-    chips.forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();apply(a.dataset.c,true);closeSub()})});
-    apply(new URLSearchParams(location.search).get('c')||'all',false);}
+  /* shop filter from the category tabs */
+  var cards=$$('.p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin trays'};
+  function filter(k){if(!names[k])k='all';
+    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
+    cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
+    /* re-deal: cards already on show slide to their new place, returning ones settle in (unseen ones keep their scroll reveal) */
+    if(!rm&&shop&&shop.animate)cards.forEach(function(p){if(p.hidden||!p.classList.contains('in'))return;var i=was.indexOf(p),r=p.getBoundingClientRect();
+      if(i<0)p.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'});
+      else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
+    var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
+  if(shop){
+    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
+      try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?f='+k)+'#shop')}catch(_){}
+      shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
+    var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
+  }
 
   /* reveal on scroll: headings rise out of a slot, cards stagger by the real number of columns */
   $$('main h2').forEach(function(h){if(!h.closest('.rv'))return;var s=d.createElement('span');while(h.firstChild)s.appendChild(h.firstChild);h.appendChild(s);h.classList.add('mk')});

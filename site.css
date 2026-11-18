@@ -51,9 +51,9 @@ button{font:inherit;color:inherit}
  .hd-l .menu{display:none}
  .hd-wa{display:none}
  .hd-r .ib{margin-right:0}
- .hd-r{gap:6px}.hd-r .ib{width:44px;height:44px}
- .hd-l .ib.search{display:none}.hd-waic{order:1}.hd-sb{order:2}
- .hd-sb{display:flex;align-items:center;gap:6px;width:180px;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--soft);background:#fff}
+ .hd-r{gap:14px}.hd-r .ib{width:28px;height:44px;border-radius:8px;margin:0}.hd-waic{margin-right:-5.5px!important}.hd-r .ib svg{width:22px;height:22px;stroke-width:1.6}
+ .hd-l .ib.search{display:none}.hd-sb{order:0}.hd-ig{order:1}.hd-waic{order:2}
+ .hd-sb{display:flex;align-items:center;gap:6px;width:168px;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:999px;color:var(--soft);background:#fff}
  .hd-sb svg{flex:none;width:17px;height:17px}
  .hd-sb input{flex:1;min-width:0;border:0;outline:0;background:transparent;font:400 14px/1 var(--sans);color:var(--ink)}
  .hd-sb input::-webkit-search-cancel-button{display:none}

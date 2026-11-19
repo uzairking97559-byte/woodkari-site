@@ -35,21 +35,23 @@
     $$('[style*="view-transition-name"]').forEach(function(x){x.style.viewTransitionName=''});
     var im=$('.ph img',a);if(im)im.style.viewTransitionName='pic'})});
 
-  /* shop filter from the category tabs */
-  var cards=$$('.p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin trays'};
-  function filter(k){if(!names[k])k='all';
-    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+  /* shop filter from the category tabs. The page opens on the 12 "top" pieces; All pieces and Name & logo show every piece; Acacia wood and Resin go by material */
+  var cards=$$('#shop .p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin',logo:'Name & logo'},
+    notes={top:'Every piece is made to order. Prices are for one piece; delivery is extra.',all:'Every piece is made to order. Prices are for one piece; delivery is extra.',wood:'Every acacia wood piece on the site.',resin:'Every resin piece on the site.',logo:'Any piece can carry your name or logo, on 50 pieces or more of one design.'};
+  function filter(k){if(k!=='top'&&!names[k])k='all';var tab=k==='top'?'all':k;
+    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===tab)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
     var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
-    cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
+    cards.forEach(function(p){p.hidden=!(k==='top'?p.hasAttribute('data-top'):k==='all'||k==='logo'||p.dataset.cat===k)});
     /* re-deal: cards already on show slide to their new place, returning ones settle in (unseen ones keep their scroll reveal) */
     if(!rm&&shop&&shop.animate)cards.forEach(function(p){if(p.hidden||!p.classList.contains('in'))return;var i=was.indexOf(p),r=p.getBoundingClientRect();
       if(i<0)p.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'});
       else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
-    var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
+    var t=d.getElementById('shop-t'),n=d.getElementById('shop-n'),va=d.getElementById('viewall'),mo=d.getElementById('more');
+    if(t)(t.firstElementChild||t).textContent=names[tab];if(n)n.textContent=notes[k];if(va)va.hidden=(tab==='all');if(mo)mo.parentNode.hidden=(k!=='top');}
   if(shop){
-    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
-      try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?f='+k)+'#shop')}catch(_){}
-      shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
+    $$('.tabs a[data-cat], #viewall, #more, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
+      try{history.replaceState(null,'',location.pathname+'?f='+k+'#shop')}catch(_){}
+      if(a.id!=='more')shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
     var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
   }
 

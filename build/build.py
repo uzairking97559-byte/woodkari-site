@@ -7,7 +7,7 @@
 Edit PRODUCTS, WHATSAPP and prices here, then rebuild. No other tooling.
 Every fact below must be OWNER-said or READ from a source (agency-research ops/fact_check_14nov.md).
 """
-import html, json, os, sys, urllib.parse
+import html, json, os, re, sys, urllib.parse
 
 OUT = sys.argv[1] if len(sys.argv) > 1 else "v2"
 PREVIEW = OUT != "."
@@ -117,10 +117,11 @@ PRODUCTS = [
 
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
 
-TILES = [("t-table", "On the table", "Black & White Tray Set", "black-white-floral-tray-set.html", "Black and white floral tray set with tea and snacks", "Made to order"),
-         ("navy-use-600", "Tea for two", "Navy & Ivory Floral Tray", "navy-ivory-floral-tray.html", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Made to order"),
-         ("fluted-life", "For gifting", "Box trays, bulk from 25", "bulk.html", "Fluted acacia box tray with keys, coins and sunglasses on a hall table", "Styled picture"),
-         ("t-room", "In the guest room", "Room Tray", "room-tray.html", "Room tray on a bedside table with a kettle", "Styled picture")]
+# owner list 20 Nov, point 2: product pictures, not only food and drink scenes (each picture is already on its own product page)
+TILES = [("bw-front", "On the table", "Black & White Floral Tray Set", "black-white-floral-tray-set.html", "Black and white floral tray set, one round and one rectangular tray, on a wooden table", "Made to order"),
+         ("m-bone-inlay-coffee-table-40-e", "In the living room", "Octagon coffee table, bone inlay", "design-ow-40.html", "Octagon coffee table, black and white bone inlay, in a living room", "Made to order"),
+         ("m-resin-bathroom-set-1-e", "In the bathroom", "Bathroom set, ivory marble look", "design-bs-1.html", "Resin bathroom set, ivory marble look, on a bathroom counter", "Made to order"),
+         ("gold-stack", "For hotels and gifting", "Gold-flake Resin Tray", "gold-flake-resin-tray.html", "Four gold-flake resin trays stacked, for bulk orders", "Made to order")]
 
 SLIDES = [("navy-front", "navy-ivory-floral-tray"), ("bw-front", "black-white-floral-tray-set"),
           ("gold-front", "gold-flake-resin-tray"), ("chevron-front", "red-chevron-tray")]  # owner 18 Nov: no food or drink in the hero
@@ -521,11 +522,24 @@ def fit(*options):
 WA_ICON = '<svg class="i" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.3 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.5-.3Z"/></svg>'
 ARROW = '<svg class="i ar" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
 MAIL = '<svg class="i" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>'
-MENU_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg>'
-SEARCH_ICON = '<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4.5 4.5"/></svg>'
-IG_ICON = '<svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></svg>'
-WA_OUT = '<svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.6 20.4l1.2-4.3A8.5 8.5 0 1 1 8 19.3z"/><path d="M9.2 8.6c0 3.3 2.9 6.2 6.2 6.2l1.1-1.5-2-1-1 .8c-1-.5-1.9-1.4-2.4-2.4l.8-1-1-2z"/></svg>'
-X_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M5 5l14 14M19 5 5 19"/></svg>'
+MENU_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7.5h16"/><path d="M4 12h16"/><path d="M4 16.5h16"/></svg>'
+SEARCH_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>'
+IG_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.6" cy="7.4" r=".5" fill="currentColor"/></svg>'
+WA_OUT = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.2-4.2A8 8 0 1 1 8.3 19z"/><path d="M9.4 8.9c0 3.1 2.6 5.7 5.7 5.7l1-1.4-1.8-.9-.9.7c-.9-.4-1.8-1.3-2.2-2.2l.7-.9-.9-1.8z"/></svg>'
+X_ICON = '<svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>'
+# drawer menu: one small drawn mark per row, same grid and stroke as the header icons (owner list 20 Nov, point 7)
+_DI = '<svg class="di" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>'
+DR_ICON = {
+    "all": _DI % '<rect x="4.5" y="4.5" width="6" height="6" rx="1"/><rect x="13.5" y="4.5" width="6" height="6" rx="1"/><rect x="4.5" y="13.5" width="6" height="6" rx="1"/><rect x="13.5" y="13.5" width="6" height="6" rx="1"/>',
+    "wood": _DI % '<path d="M5 19C5 10.5 10.5 5 19 5c0 8.5-5.500 14-14 14Z"/><path d="M5 19 13.500 10.500"/>',
+    "resin": _DI % '<path d="M12 3.800c3.400 3.900 5.500 7 5.500 9.900a5.500 5.500 0 0 1-11 0c0-2.900 2.100-6 5.500-9.900Z"/><path d="M9.300 14.300a2.800 2.800 0 0 0 2 2.300"/>',
+    "logo": _DI % '<rect x="4" y="4" width="16" height="16" rx="3.500"/><path d="m8 9.500 1.700 5 2.300-4.200 2.300 4.200 1.700-5"/>',
+    "bulk": _DI % '<path d="m4 8 8-4 8 4v8l-8 4-8-4Z"/><path d="m4 8 8 4 8-4M12 12v8"/>',
+    "ws": _DI % '<path d="M4 20V11l5 3v-3l5 3V5.500h6V20Z"/><path d="M8 20v-2.500M12 20v-2.500"/>',
+    "faq": _DI % '<circle cx="12" cy="12" r="8.500"/><path d="M9.700 9.700a2.300 2.300 0 1 1 3.500 2c-.8.500-1.200 1-1.200 1.800"/><circle cx="12" cy="16.200" r=".5" fill="currentColor"/>',
+}
+DR_ICON = {k: v.replace(".500", ".5").replace(".200", ".2").replace(".300", ".3").replace(".800", ".8") for k, v in DR_ICON.items()}
+CHEV = '<svg class="i ar" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>'
 PLUS = '<svg class="pl" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
 
 CSS = r"""
@@ -1052,6 +1066,37 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .mto-l{margin:30px 0 0}
 .mto{scroll-margin-top:110px}.mto .p{scroll-margin-top:130px}
 .mto .p:target .ph{outline:2px solid var(--green);outline-offset:3px}
+/* ---- home v2 (owner list 20 Nov) ---- */
+.topline{margin:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 0;padding:8px 18px;background:var(--stone);color:var(--ink);font:500 13.5px/1.35 var(--sans);text-align:center}
+.topline span+span::before{content:"";display:inline-block;width:5px;height:5px;margin:0 11px 2px;background:var(--brass);transform:rotate(45deg)}
+@media(min-width:900px){.topline{font-size:14.5px;padding:9px 36px}.hero{min-height:min(calc(100svh - 170px),780px)}}
+.more-w{margin:36px 0 0;text-align:center}.more-w[hidden]{display:none}.more-w .btn{min-width:min(100%,330px)}
+.fig.eng{background:var(--stone)}.fig.eng img{mix-blend-mode:multiply}
+/* the workshop: words only until real workshop photos arrive */
+.ws{display:grid;gap:4px}
+.ws h2{font-size:clamp(40px,5.6vw,76px);line-height:.98}
+.split .fig.eng img{animation:none}
+#workshop .lead{margin:18px 0 0;max-width:24em}
+@media(min-width:900px){.ws{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:start}#workshop .lead{margin-top:8px}}
+/* icons: one weight everywhere in the header and the drawer */
+.hd .ib svg,.drawer .ib svg{width:23px;height:23px;stroke-width:1.5}
+.menu svg path{transform-box:fill-box;transform-origin:left center;transition:transform .3s var(--ease)}
+.menu svg path:nth-child(3){transform:scaleX(.62)}
+.menu[aria-expanded=true] svg path:nth-child(3){transform:none}
+.dr-nav a{justify-content:flex-start;gap:14px}
+.dr-nav a>span{flex:1;min-width:0}
+.dr-nav .di{flex:none;color:var(--green);transition:transform .3s var(--ease)}
+.dr-nav .ar{flex:none;width:17px;height:17px;color:var(--soft);transition:transform .3s var(--ease)}
+.dr-nav a:active .di{transform:scale(.86)}
+.dr-nav a:active .ar{transform:translateX(4px)}
+@media(hover:hover) and (pointer:fine){.menu:hover svg path:nth-child(3){transform:none}.dr-nav a:hover .di{transform:translateY(-2px)}}
+/* the drawer deals its rows in behind the panel: one short wave, gaps closing; the WhatsApp button only fades */
+@media(prefers-reduced-motion:no-preference){
+ .drawer[open] .dr-nav a{animation:drin .5s var(--ease) var(--d,0ms) backwards}
+ .drawer[open] .dr-ft{animation:drfade .45s ease .2s backwards}
+}
+@keyframes drin{from{opacity:0;transform:translateX(-18px)}}
+@keyframes drfade{from{opacity:0}}
 """
 
 JS = r"""
@@ -1092,21 +1137,23 @@ JS = r"""
     $$('[style*="view-transition-name"]').forEach(function(x){x.style.viewTransitionName=''});
     var im=$('.ph img',a);if(im)im.style.viewTransitionName='pic'})});
 
-  /* shop filter from the category tabs */
-  var cards=$$('.p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin trays'};
-  function filter(k){if(!names[k])k='all';
-    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===k)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+  /* shop filter from the category tabs. The page opens on the 12 "top" pieces; All pieces and Name & logo show every piece; Acacia wood and Resin go by material */
+  var cards=$$('#shop .p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin',logo:'Name & logo'},
+    notes={top:'Every piece is made to order. Prices are for one piece; delivery is extra.',all:'Every piece is made to order. Prices are for one piece; delivery is extra.',wood:'Every acacia wood piece on the site.',resin:'Every resin piece on the site.',logo:'Any piece can carry your name or logo, on 50 pieces or more of one design.'};
+  function filter(k){if(k!=='top'&&!names[k])k='all';var tab=k==='top'?'all':k;
+    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===tab)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
     var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
-    cards.forEach(function(p){p.hidden=!(k==='all'||p.dataset.cat===k)});
+    cards.forEach(function(p){p.hidden=!(k==='top'?p.hasAttribute('data-top'):k==='all'||k==='logo'||p.dataset.cat===k)});
     /* re-deal: cards already on show slide to their new place, returning ones settle in (unseen ones keep their scroll reveal) */
     if(!rm&&shop&&shop.animate)cards.forEach(function(p){if(p.hidden||!p.classList.contains('in'))return;var i=was.indexOf(p),r=p.getBoundingClientRect();
       if(i<0)p.animate([{opacity:0,transform:'scale(.96)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.16,1,.3,1)'});
       else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
-    var t=d.getElementById('shop-t'),va=d.getElementById('viewall');if(t)(t.firstElementChild||t).textContent=names[k];if(va)va.hidden=(k==='all');}
+    var t=d.getElementById('shop-t'),n=d.getElementById('shop-n'),va=d.getElementById('viewall'),mo=d.getElementById('more');
+    if(t)(t.firstElementChild||t).textContent=names[tab];if(n)n.textContent=notes[k];if(va)va.hidden=(tab==='all');if(mo)mo.parentNode.hidden=(k!=='top');}
   if(shop){
-    $$('.tabs a[data-cat], #viewall, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
-      try{history.replaceState(null,'',location.pathname+(k==='all'?'':'?f='+k)+'#shop')}catch(_){}
-      shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
+    $$('.tabs a[data-cat], #viewall, #more, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
+      try{history.replaceState(null,'',location.pathname+'?f='+k+'#shop')}catch(_){}
+      if(a.id!=='more')shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
     var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
   }
 
@@ -1281,6 +1328,10 @@ def header(cur):
         dc = f' data-cat="{cat}"' if cat else ""
         return f'<a href="{href}"{dc}{c}>{label}</a>'
     pv = '<div class="pv">Preview. Not the live site yet.</div>' if PREVIEW else ""
+    rows = [("./?f=all#shop", "all", "All pieces", "all"), ("./?f=wood#shop", "wood", "Acacia wood", "wood"), ("./?f=resin#shop", "resin", "Resin", "resin"),
+            ("./?f=logo#shop", "logo", "Name and logo", "logo"), ("bulk.html", None, "Bulk and hotel orders", "bulk"), ("./#workshop", None, "The workshop", "ws"), ("./#questions", None, "Questions", "faq")]
+    delay = [60, 100, 134, 162, 185, 204, 220]  # ms: the rows follow the panel in, gaps closing (never a metronome)
+    dr = "".join(f'<a href="{h}"{(chr(32) + "data-cat=" + chr(34) + c + chr(34)) if c else ""} style="--d:{delay[i]}ms">{DR_ICON[ic]}<span>{lab}</span>{CHEV}</a>' for i, (h, c, lab, ic) in enumerate(rows))
     return f"""<a class="skip" href="#main">Skip to content</a>
 {pv}<header class="hd">
 <div class="wrap hd-top">
@@ -1288,12 +1339,12 @@ def header(cur):
 <a class="logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>EXPORTS</small></a>
 <div class="hd-r"><a class="ib hd-ig" href="https://www.instagram.com/woodkariexports/" target="_blank" rel="noopener" aria-label="Instagram">{IG_ICON}</a><form class="hd-sb" role="search" onsubmit="return false">{SEARCH_ICON}<input type="search" placeholder="Search" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"></form><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a><a class="ib hd-waic" href="{e(wa(HELLO))}" aria-label="WhatsApp">{WA_OUT}</a></div>
 </div>
-<div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin trays','resin','resin')}{t('designs.html','Made to order','mto')}{t('bulk.html','Bulk orders','bulk')}{t('./#engraving','Name &amp; logo','eng')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
+<div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin','resin','resin')}{t('./?f=logo#shop','Name &amp; logo','logo','logo')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
 </header>
 <dialog class="drawer" id="drawer" aria-label="Menu"><div class="dr-in">
 <div class="dr-hd"><b>Woodkari</b><button class="ib" type="button" data-close aria-label="Close menu">{X_ICON}</button></div>
 <nav class="dr-nav" aria-label="Menu">
-<a href="./?f=all#shop" data-cat="all">All pieces{ARROW}</a><a href="./?f=wood#shop" data-cat="wood">Acacia wood{ARROW}</a><a href="./?f=resin#shop" data-cat="resin">Resin trays{ARROW}</a><a href="designs.html">Made to order{ARROW}</a><a href="bulk.html">Bulk orders{ARROW}</a><a href="./#engraving">Name and logo{ARROW}</a><a href="./#workshop">The workshop{ARROW}</a><a href="./#questions">Questions{ARROW}</a>
+{dr}
 </nav>
 <div class="dr-ft"><a class="btn pri wide" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><p>{EMAIL}</p></div>
 </div></dialog>
@@ -1336,14 +1387,52 @@ def card(p):
 <h3>{e(p['name'])}</h3><p class="sh">{e(p['short'])}</p>{price_html(p)}</a>"""
 
 
+# Home grid (owner list 20 Nov, points 1 and 4). Every piece on the site is a card here; the page opens on the 12 marked "top",
+# the tabs filter by material ("wood" = acacia, "resin"), and "All pieces" / "Name & logo" show every card.
+# The Fluted Box Tray and the Room Tray are NOT on the home page (owner); their own pages stay.
+HOME_OFF = {"fluted-box-tray", "room-tray"}
+HOME_TOP = ["navy-ivory-floral-tray", "black-white-floral-tray-set", "d-coaster", "d-tissue", "red-chevron-tray", "gold-flake-resin-tray",
+            "d-roundbox", "d-trivet", "OW-16", "OW-01", "d-cutlery", "OW-36"]
+DESIGN_CAT = {"d-coaster": "resin", "d-tissue": "resin", "d-roundbox": "resin", "d-trivet": "resin", "d-cutlery": "resin"}  # the resin line (WHAT_WE_SELL); the serving board has no material on file
+MTO_CAT = {"bath": "resin", "bowls": "resin"}  # groups whose own heading says resin
+
+
+def home_cards():
+    items = []  # (key, cat, html)
+    for p in PRODUCTS:
+        if p["slug"] not in HOME_OFF:
+            items.append((p["slug"], p["cat"], card(p)))
+    for k, n in DESIGNS:
+        href = e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))
+        items.append((k, DESIGN_CAT.get(k, ""), f'<a class="p rv" href="{href}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div>'
+                      f'<h3>{e(n)}</h3><p class="sh">Made to order · in bulk</p><p class="pr bo">Ask on WhatsApp</p></a>'))
+    for it in OW:
+        items.append((it["code"], "wood" if ow_wood(it) == "acacia" else "", ow_card(it)))
+    for it in NB:
+        items.append((it["code"], "", bx_card(it)))
+    for gid, code, f, n in mto_items():
+        items.append((code, MTO_CAT.get(gid, ""), f'<a class="p rv" href="{mto_page(code)}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(MTO_ALT.get(code, n + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
+                      f'<h3>{e(n)}</h3><p class="sh">Design {code} · made on order</p><p class="pr{"" if code in MTO_PRICE else " bo"}">{e(mto_pr(code)[0])}</p></a>'))
+    by = {k: (c, h) for k, c, h in items}
+    assert all(k in by for k in HOME_TOP), "HOME_TOP names a piece that is not on the site"
+    order = HOME_TOP + [k for k, _, _ in items if k not in HOME_TOP]
+    out = []
+    for k in order:
+        c, h = by[k]
+        top = k in HOME_TOP
+        h = re.sub(r'data-cat="[^"]*" ', "", h, count=1)
+        out.append(h.replace('<a class="p rv"', f'<a class="p rv" data-cat="{c}"' + (" data-top" if top else " hidden"), 1))
+    return "\n".join(out), len(out)
+
+
 def faq_html():
     rows = "".join(f'<details name="faq"><summary>{e(q)}{PLUS}</summary><p>{e(a)}</p></details>' for q, a in FAQ)
     return f'<div class="faq rv">{rows}</div>'
 
 
 def page_home():
-    cards = "\n".join(card(p) for p in PRODUCTS)
-    tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="540" height="720" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
+    cards, N_HOME = home_cards()
+    tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
     hero_top = mto_pr("OW-38")[0]  # owner 18 Nov: inlay drum table room shot is the first hero picture
     slide0 = f'<a class="slide on" href="design-ow-38.html"><img src="{UP}img/m-bone-inlay-coffee-table-38-e.webp" alt="Round bone inlay drum coffee table with a black and white sunburst pattern, in a living room" width="1200" height="1200" fetchpriority=high><span class="tag">Design picture, made to order</span><span class="nm">Inlay drum coffee table<span>{hero_top}</span></span></a>'
@@ -1353,14 +1442,18 @@ def page_home():
     dots = '<button class="dot" type="button" data-i="0" aria-label="Show Inlay drum coffee table" aria-current=true><span>Inlay table</span></button>' + "".join(f'<button class="dot" type="button" data-i="{i + 1}" aria-label="Show {e(byslug[sl]["name"])}"><span>{e(byslug[sl]["name"].split(" Tray")[0].replace(" Floral", "").replace(" Resin", ""))}</span></button>' for i, (k, sl) in enumerate(SLIDES))
     ribbon_items = ["Made in India since 2008", "Trays and boxes in bulk from 25 pieces", "Your name or logo from 50 pieces", "Acacia pieces in any size", "Finished by hand", "Order on WhatsApp"]
     ribbon = "".join(f"<span>{e(t)}</span>" for t in ribbon_items * 2)
-    dz = "".join(f'<a class="rv" href="{e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n)}</b><i>Ask on WhatsApp</i></a>' for k, n in DESIGNS)
-    real = "".join(f'<figure class="rv"><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><figcaption>{e(cap)}</figcaption></figure>'
-                   for k, alt, cap in (byslug["room-tray"]["imgs"][1], byslug["fluted-box-tray"]["imgs"][1]))
+    # the strip under "Made on order, in bulk": the first design of each made-to-order group (the six loose design pictures moved up into the grid)
+    first = {}
+    for gid, code, f, n in mto_items():
+        first.setdefault(gid, (code, f, n))
+    dz = "".join(f'<a class="rv" href="{mto_page(code)}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(MTO_ALT.get(code, n + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div><b>{e(n)}</b><i>{e(mto_pr(code)[0])}</i></a>'
+                 for code, f, n in (first[g] for g in ("painted", "bath", "bowls", "boards", "candles", "chests")))
     return head("Wooden & Resin Trays, Boxes in Bulk | Woodkari, India",
                 "Acacia wood and resin trays and boxes from India, making since 2008. Bulk from 25 pieces, name or logo from 50, single pieces on WhatsApp.",
                 "", "fluted-front.jpg") + f"""<body>
 {header('all')}
 <main id="main">
+<p class="topline"><span>Every piece is made to order</span><span>Bulk from 25 pieces</span></p>
 <section class="hero">
 <div class="show">{slides}</div>
 <div class="hero-txt">
@@ -1373,14 +1466,15 @@ def page_home():
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
 <section class="sec" id="shop"><div class="wrap">
-<div class="hdr rv"><div><h2 id="shop-t">Trays &amp; boxes</h2><p>Acacia wood from our workshop, and resin trays made to order. Prices are for one piece; delivery is extra.</p></div><a class="lnk" id="viewall" href="./?f=all#shop" data-cat="all" hidden>View all{ARROW}</a></div>
+<div class="hdr rv"><div><h2 id="shop-t">Trays &amp; boxes</h2><p id="shop-n">Every piece is made to order. Prices are for one piece; delivery is extra.</p></div><a class="lnk" id="viewall" href="./?f=all#shop" data-cat="all" hidden>View all{ARROW}</a></div>
 <div class="grid">
 {cards}
 </div>
+<p class="more-w"><a class="btn line" id="more" href="./?f=all#shop" data-cat="all">View all {N_HOME} pieces{ARROW}</a></p>
 </div></section>
 
 <section class="band green" id="bulk"><div class="wrap split">
-<div class="fig wipe"><img src="{UP}img/room-life.webp" alt="Acacia room tray on a desk by a window, with a kettle and two cups" width="1200" height="1200" loading="lazy"><span class="tag">Styled picture</span></div>
+<div class="fig wipe"><img src="{UP}img/navy-stack.webp" alt="Five navy and ivory floral trays stacked, for bulk orders" width="1200" height="1200" loading="lazy"><span class="tag">Made to order</span></div>
 <div class="rv">
 <h2>For hotels, shops and gifting.</h2>
 <p class="lead">Bulk is most of our work. Hotels, gifting companies, shops and importers can order our trays and boxes from 25 pieces of a design, and the acacia pieces in any size.</p>
@@ -1399,7 +1493,7 @@ def page_home():
 </div></section>
 
 <section class="sec" id="engraving"><div class="wrap split rev">
-<div class="fig wipe"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a sample logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>
+<div class="fig wipe eng"><img src="{UP}img/engraved-logo.webp" alt="Wooden serving board with the Woodkari Exports logo engraved by laser, design picture" width="1200" height="1200" loading="lazy"><span class="tag">Design picture</span></div>
 <div class="rv">
 <h2>Your name or logo, by laser.</h2>
 <p class="lead">On 50 pieces or more of one design, we engrave a hotel name, a company logo or a couple's names: room trays for a hotel, boxes and boards for staff gifts or a wedding.</p>
@@ -1408,17 +1502,16 @@ def page_home():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>More designs the karigars make when you ask. These are made for bulk orders only. Tell us the piece and the quantity on WhatsApp.</p></div></div>
+<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>Nothing is kept ready in stock. Every order, and every sample, is made fresh in Sambhal. Bulk starts at 25 pieces.</p></div></div>
 <div class="dz">{dz}</div>
 <p class="mto-l rv"><a class="lnk" href="designs.html">See {ALL_N} more designs, made on order{ARROW}</a></p>
 </div></section>
 
-<section class="band stone" id="workshop"><div class="wrap split">
+<section class="band stone" id="workshop"><div class="wrap ws">
+<div class="rv"><h2>The workshop</h2></div>
 <div class="rv">
-<h2>The workshop</h2>
 <p class="lead">Woodkari is a workshop in India, at work since 2008. Four karigars cut the wood on a CNC router, engrave by laser and finish our wooden pieces by hand. Our resin trays are made with other makers near our workshop.</p>
 </div>
-<div class="real">{real}</div>
 </div></section>
 
 <section class="sec" id="questions"><div class="wrap split" style="align-items:start">

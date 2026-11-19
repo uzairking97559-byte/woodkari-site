@@ -521,3 +521,34 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .mto-l{margin:30px 0 0}
 .mto{scroll-margin-top:110px}.mto .p{scroll-margin-top:130px}
 .mto .p:target .ph{outline:2px solid var(--green);outline-offset:3px}
+/* ---- home v2 (owner list 20 Nov) ---- */
+.topline{margin:0;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 0;padding:8px 18px;background:var(--stone);color:var(--ink);font:500 13.5px/1.35 var(--sans);text-align:center}
+.topline span+span::before{content:"";display:inline-block;width:5px;height:5px;margin:0 11px 2px;background:var(--brass);transform:rotate(45deg)}
+@media(min-width:900px){.topline{font-size:14.5px;padding:9px 36px}.hero{min-height:min(calc(100svh - 170px),780px)}}
+.more-w{margin:36px 0 0;text-align:center}.more-w[hidden]{display:none}.more-w .btn{min-width:min(100%,330px)}
+.fig.eng{background:var(--stone)}.fig.eng img{mix-blend-mode:multiply}
+/* the workshop: words only until real workshop photos arrive */
+.ws{display:grid;gap:4px}
+.ws h2{font-size:clamp(40px,5.6vw,76px);line-height:.98}
+.split .fig.eng img{animation:none}
+#workshop .lead{margin:18px 0 0;max-width:24em}
+@media(min-width:900px){.ws{grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:start}#workshop .lead{margin-top:8px}}
+/* icons: one weight everywhere in the header and the drawer */
+.hd .ib svg,.drawer .ib svg{width:23px;height:23px;stroke-width:1.5}
+.menu svg path{transform-box:fill-box;transform-origin:left center;transition:transform .3s var(--ease)}
+.menu svg path:nth-child(3){transform:scaleX(.62)}
+.menu[aria-expanded=true] svg path:nth-child(3){transform:none}
+.dr-nav a{justify-content:flex-start;gap:14px}
+.dr-nav a>span{flex:1;min-width:0}
+.dr-nav .di{flex:none;color:var(--green);transition:transform .3s var(--ease)}
+.dr-nav .ar{flex:none;width:17px;height:17px;color:var(--soft);transition:transform .3s var(--ease)}
+.dr-nav a:active .di{transform:scale(.86)}
+.dr-nav a:active .ar{transform:translateX(4px)}
+@media(hover:hover) and (pointer:fine){.menu:hover svg path:nth-child(3){transform:none}.dr-nav a:hover .di{transform:translateY(-2px)}}
+/* the drawer deals its rows in behind the panel: one short wave, gaps closing; the WhatsApp button only fades */
+@media(prefers-reduced-motion:no-preference){
+ .drawer[open] .dr-nav a{animation:drin .5s var(--ease) var(--d,0ms) backwards}
+ .drawer[open] .dr-ft{animation:drfade .45s ease .2s backwards}
+}
+@keyframes drin{from{opacity:0;transform:translateX(-18px)}}
+@keyframes drfade{from{opacity:0}}

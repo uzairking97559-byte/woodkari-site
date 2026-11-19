@@ -15,7 +15,7 @@ SITE = "https://woodkariexports.com"
 BASE = SITE + ("" if OUT == "." else "/" + OUT)
 UP = "" if OUT == "." else "../"  # assets live at the root; a preview folder points one level up
 
-PIXEL_ID = ""  # Meta Pixel ID (owner approved 19 Nov); empty = no pixel code on any page
+PIXEL_ID = "1148906040829800"  # Meta Pixel ID (owner approved 19 Nov); empty = no pixel code on any page
 WHATSAPP = "919119793282"
 EMAIL = "sales@woodkariexports.com"
 

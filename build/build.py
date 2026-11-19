@@ -342,13 +342,13 @@ PXL = [
     dict(code="PX-01", grp="painted", name='Printed rectangular serving tray, painted print', sizes=[('10x10 in', 1499), ('14x10 in', 1699)],
          pics=[('a', 'Printed rectangular serving tray, painted print, made to order'), ('b', 'Printed rectangular serving tray, painted print, made to order, second view'), ('e', 'Printed rectangular serving tray, painted print, made to order, 10x10 in')]),
     dict(code="PX-02", grp="painted", name='Printed round serving tray', sizes=[('10 in', 1199), ('12 in', 1499), ('14x14 in', 1799)],
-         pics=[('a', 'Printed round serving tray, made to order'), ('b', 'Printed round serving tray, made to order, second view')]),
+         pics=[('a', 'Printed round serving tray, made to order'), ('b', 'Printed round serving tray, made to order, second view'), ('e', 'Printed round serving tray, made to order, 10 in')]),
     dict(code="PX-03", grp="painted", name='Meena/pichwai round tray, set of 2', sizes=[('7x7 + 8x8 in pair', 899), ('10x10 in pair', 1099)],
-         pics=[('a', 'Meena/pichwai round tray, set of 2, made to order'), ('b', 'Meena/pichwai round tray, set of 2, made to order, second view'), ('e', 'Meena/pichwai round tray, set of 2, made to order, 10x10 in pair')]),
+         pics=[('a', 'Meena/pichwai round tray, set of 2, made to order'), ('b', 'Meena/pichwai round tray, set of 2, made to order, second view'), ('e', 'Meena/pichwai round tray, set of 2, made to order, 7x7 + 8x8 in pair')]),
     dict(code="PX-04", grp="painted", name='Printed oval tray, no handle', sizes=[('250x150 mm', 1499), ('12x8 in', 2999)],
-         pics=[('a', 'Printed oval tray, no handle, made to order'), ('b', 'Printed oval tray, no handle, made to order, second view'), ('e', 'Printed oval tray, no handle, made to order, 12x8 in')]),
+         pics=[('a', 'Printed oval tray, no handle, made to order'), ('b', 'Printed oval tray, no handle, made to order, second view'), ('e', 'Printed oval tray, no handle, made to order, 250x150 mm')]),
     dict(code="PX-05", grp="painted", name='Gold-print floral painted tray, rectangular', sizes=[('10x14x2 in', 1199)],
-         pics=[('a', 'Gold-print floral painted tray, rectangular, made to order'), ('b', 'Gold-print floral painted tray, rectangular, made to order, second view')]),
+         pics=[('a', 'Gold-print floral painted tray, rectangular, made to order'), ('b', 'Gold-print floral painted tray, rectangular, made to order, second view'), ('e', 'Gold-print floral painted tray, rectangular, made to order, 10x14x2 in')]),
     dict(code="PX-06", grp="painted", name='Meena rectangular tray', sizes=[('12x8 in', 2399)],
          pics=[('a', 'Meena rectangular tray, made to order'), ('b', 'Meena rectangular tray, made to order, second view'), ('e', 'Meena rectangular tray, made to order, 12x8 in')]),
     dict(code="PX-08", grp="painted", name='Large printed painted tray', sizes=[('16x12 in', 3599)],
@@ -366,8 +366,8 @@ PXL = [
     dict(code="PX-16", grp="painted", name='Printed round platter / plate', sizes=[('6 in', 1199), ('12 in', 1499)],
          pics=[('a', 'Printed round platter / plate, made to order'), ('b', 'Printed round platter / plate, made to order, second view'), ('e', 'Printed round platter / plate, made to order, 12 in')]),
 ]
-PXL, BX = [], []  # HIDDEN 19 Nov (owner D-288)
-NB = []  # HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
+PXL, BX = [p for p in PXL if p["code"] in {"PX-02", "PX-03", "PX-04", "PX-05", "PX-09"}], []  # D-301 19 Nov: 5 back after Checker + owner OK; rest HIDDEN (owner D-288)
+NB = list(PXL)  # D-301: the 5 painted pages. Rest HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
 NB_BY = {x["code"]: x for x in NB}
 PX_LINE = "Hand-painted on wood."
 ALL_N = MTO_N + len(OW) + len(NB)  # every card on designs.html

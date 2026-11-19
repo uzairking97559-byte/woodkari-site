@@ -1794,9 +1794,24 @@ def llms_txt():
     return "\n".join(L) + "\n"
 
 
+def check_photos(pages):
+    """Machine lock (mistakes 65, 70): every picture a page references must have a row in build/photo_pass.csv
+    (a full-size Checker pass). Key = file name in img/ without "-600" and without the extension, e.g. m-px-02-a."""
+    import csv, re
+    with open(os.path.join(ROOT, "build", "photo_pass.csv"), newline="", encoding="utf-8") as f:
+        passed = {r["image_file"].strip() for r in csv.DictReader(f) if r["passed_by"].strip()}
+    used = set()
+    for text in pages.values():
+        used.update(m.group(1) for m in re.finditer(r"img/([A-Za-z0-9_.-]+?)(?:-600)?\.(?:webp|jpg|jpeg|png)", text))
+    missing = sorted(used - passed)
+    if missing:
+        sys.exit("PHOTO NOT PASSED: " + ", ".join(missing) + "\nAdd a Checker row to build/photo_pass.csv first (full-size check, see mistakes 65 and 70).")
+
+
 def main():
     os.makedirs(OUT, exist_ok=True)
-    w = lambda name, s: open(os.path.join(OUT, name), "w", encoding="utf-8").write(s)
+    pages = {}
+    w = lambda name, s: pages.__setitem__(name, s)  # buffered: nothing is written until the photo check below passes
     css = CSS.strip() + "\n"
     if PREVIEW:
         css = css.replace("url(fonts/", "url(../fonts/")
@@ -1827,6 +1842,9 @@ def main():
         w("llms.txt", llms_txt())
     for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html")):
         w(src, f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Woodkari</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={dst}"><link rel="canonical" href="{SITE}/{dst}"><script>location.replace("{dst}")</script></head><body><p><a href="{dst}">Continue to Woodkari</a></p></body></html>\n')
+    check_photos(pages)
+    for name, s in pages.items():
+        open(os.path.join(OUT, name), "w", encoding="utf-8").write(s)
     print("built", OUT, len(PRODUCTS) + 3 + ALL_N, "pages")
 
 

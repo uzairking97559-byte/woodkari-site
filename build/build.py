@@ -1502,7 +1502,7 @@ def page_home():
 </div></section>
 
 <section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>Nothing is kept ready in stock. Every order, and every sample, is made fresh in Sambhal. Bulk starts at 25 pieces.</p></div></div>
+<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>Nothing is kept ready in stock. Every order, and every sample, is made fresh. Bulk starts at 25 pieces.</p></div></div>
 <div class="dz">{dz}</div>
 <p class="mto-l rv"><a class="lnk" href="designs.html">See {ALL_N} more designs, made on order{ARROW}</a></p>
 </div></section>

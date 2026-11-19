@@ -1141,7 +1141,7 @@ JS = r"""
   var cards=$$('#shop .p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin',logo:'Name & logo'},
     notes={top:'Every piece is made to order. Prices are for one piece; delivery is extra.',all:'Every piece is made to order. Prices are for one piece; delivery is extra.',wood:'Every acacia wood piece on the site.',resin:'Every resin piece on the site.',logo:'Any piece can carry your name or logo, on 50 pieces or more of one design.'};
   function filter(k){if(k!=='top'&&!names[k])k='all';var tab=k==='top'?'all':k;
-    $$('.tabs a[data-cat]').forEach(function(a){if(a.dataset.cat===tab)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current')});
+    curTab=tab;if(typeof light==='function')light('');
     var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
     cards.forEach(function(p){p.hidden=!(k==='top'?p.hasAttribute('data-top'):k==='all'||k==='logo'||p.dataset.cat===k)});
     /* re-deal: cards already on show slide to their new place, returning ones settle in (unseen ones keep their scroll reveal) */
@@ -1150,11 +1150,47 @@ JS = r"""
       else if(from[i].left!==r.left||from[i].top!==r.top)p.animate([{transform:'translate('+(from[i].left-r.left)+'px,'+(from[i].top-r.top)+'px)'},{transform:'none'}],{duration:450,easing:'cubic-bezier(.16,1,.3,1)'})});
     var t=d.getElementById('shop-t'),n=d.getElementById('shop-n'),va=d.getElementById('viewall'),mo=d.getElementById('more');
     if(t)(t.firstElementChild||t).textContent=names[tab];if(n)n.textContent=notes[k];if(va)va.hidden=(tab==='all');if(mo)mo.parentNode.hidden=(k!=='top');}
+  /* one scroller for every chip, drawer row and footer link that goes to a section of this page.
+     It re-reads the target on every frame (cards hiding or showing, lazy pictures and the tucking header cannot make it miss),
+     stops when the finger or wheel takes over, and ends exactly on the target. Reduced motion jumps. */
+  var tween=0;
+  function stopTween(){if(tween){cancelAnimationFrame(tween);tween=0}}
+  ['touchstart','wheel','keydown','mousedown'].forEach(function(n){addEventListener(n,stopTween,{passive:true})});
+  function open(){var h=$('.hd-top'),t=$('.tabs');return (h?h.offsetHeight:0)+(t?t.offsetHeight:0)} /* header bar plus chip row, whether the row is tucked away or not */
+  function goal(el){return Math.max(0,Math.round(el.getBoundingClientRect().top+scrollY-open()-13))}
+  function goTo(el){stopTween();var from=scrollY,t0=performance.now(),dist=Math.abs(goal(el)-from),dur=Math.min(900,260+dist*.1);
+    if(rm||dist<2){scrollTo({top:goal(el),behavior:'instant'});return}
+    function step(now){var k=Math.min(1,(now-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
+      scrollTo({top:from+(goal(el)-from)*e,behavior:'instant'});
+      if(k<1)tween=requestAnimationFrame(step);else{tween=0;scrollTo({top:goal(el),behavior:'instant'})}}
+    tween=requestAnimationFrame(step)}
+
+  /* the lit chip follows the section on screen */
+  var curTab='all',secs=['shop','workshop','questions'].map(function(i){return d.getElementById(i)}).filter(Boolean);
+  function light(href){var hit=null;
+    $$('.tabs a').forEach(function(a){var on=href?a.getAttribute('href')===href:(a.dataset.cat?a.dataset.cat===curTab:false);
+      if(on){a.setAttribute('aria-current','true');hit=a}else a.removeAttribute('aria-current')});
+    var nav=hit&&hit.parentNode;if(nav&&nav.scrollTo&&nav.scrollWidth>nav.clientWidth)nav.scrollTo({left:Math.max(0,hit.offsetLeft-(nav.clientWidth-hit.offsetWidth)/2),behavior:rm?'auto':'smooth'})}
+  var spy=0,lit='';
+  function spyNow(){spy=0;if(!shop)return;var line=open()+40,cur=null;
+    secs.forEach(function(s){if(s.getBoundingClientRect().top<=line)cur=s});
+    var key=(cur&&cur.id!=='shop')?cur.id:'shop';if(key===lit)return;lit=key;
+    light(key==='shop'?'':'./#'+key)}
+  if(shop)addEventListener('scroll',function(){if(!spy)spy=requestAnimationFrame(spyNow)},{passive:true});
+
   if(shop){
-    $$('.tabs a[data-cat], #viewall, #more, .drawer a[data-cat], footer a[data-cat]').forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();var k=a.dataset.cat||'all';filter(k);
+    var go=[];
+    $$('.tabs a, .drawer a, footer a, #viewall, #more').forEach(function(a){var h=a.getAttribute('href')||'',m=/^\.\/#([\w-]+)$/.exec(h);
+      if(a.dataset.cat||a.id==='more'||(m&&d.getElementById(m[1])))go.push(a)});
+    go.forEach(function(a){a.addEventListener('click',function(ev){ev.preventDefault();
+      var h=a.getAttribute('href')||'',m=/^\.\/#([\w-]+)$/.exec(h),dr=a.closest('.drawer');
+      if(m&&!a.dataset.cat){var tg=d.getElementById(m[1]);try{history.replaceState(null,'',location.pathname+location.search+'#'+m[1])}catch(_){}
+        lit=m[1];light('./#'+m[1]);setTimeout(function(){goTo(tg)},dr?40:0);return}
+      var k=a.dataset.cat||'all';filter(k);lit='shop';
       try{history.replaceState(null,'',location.pathname+'?f='+k+'#shop')}catch(_){}
-      if(a.id!=='more')shop.scrollIntoView({behavior:rm?'auto':'smooth',block:'start'})})});
+      if(a.id!=='more')setTimeout(function(){goTo(shop)},dr?40:0)})});
     var f=new URLSearchParams(location.search).get('f');if(f)filter(f);
+    spyNow();
   }
 
   /* reveal on scroll: headings rise out of a slot, cards stagger by the real number of columns */

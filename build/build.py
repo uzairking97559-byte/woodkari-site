@@ -15,6 +15,7 @@ SITE = "https://woodkariexports.com"
 BASE = SITE + ("" if OUT == "." else "/" + OUT)
 UP = "" if OUT == "." else "../"  # assets live at the root; a preview folder points one level up
 
+PIXEL_ID = "1148906040829800"  # Meta Pixel ID (owner approved 19 Nov); empty = no pixel code on any page
 WHATSAPP = "919119793282"
 EMAIL = "sales@woodkariexports.com"
 
@@ -1207,6 +1208,19 @@ FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of 
        ("Can I buy just one piece?", "Yes. Every piece with a price can be ordered on its own. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
 
 
+def pixel():
+    """Meta Pixel base code + three events. No advanced matching, no personal data."""
+    if not PIXEL_ID:
+        return ""
+    return ("<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');"
+            f"fbq('init','{PIXEL_ID}');fbq('track','PageView');"
+            "document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href')||'';"
+            "if(h.indexOf('wa.me')>-1||h.indexOf('api.whatsapp.com')>-1)fbq('track','Contact');else if(h.indexOf('mailto:')===0)fbq('track','Lead')},true);"
+            "document.addEventListener('DOMContentLoaded',function(){try{var s=document.querySelectorAll('script[type=\"application/ld+json\"]');for(var i=0;i<s.length;i++){var j=JSON.parse(s[i].textContent);if(j&&j['@type']==='Product'){var o=j.offers||{};"
+            "fbq('track','ViewContent',{content_name:j.name,value:Number(o.lowPrice||o.price)||0,currency:'INR'});break}}}catch(x){}});</script>\n"
+            f'<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id={PIXEL_ID}&ev=PageView&noscript=1" alt=""></noscript>\n')
+
+
 def head(title, desc, path, image):
     robots = '<meta name="robots" content="noindex">' if PREVIEW else ""
     # Google Analytics 4 (property "Woodkari Exports", stream "Woodkari Exports website", ID from Friday 17 Nov); live site only
@@ -1220,7 +1234,7 @@ def head(title, desc, path, image):
 <meta name="description" content="{e(desc)}">
 {robots}
 {ga}
-<link rel="canonical" href="{SITE}/{path}">
+{pixel()}<link rel="canonical" href="{SITE}/{path}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Woodkari">
 <meta property="og:title" content="{e(title)}">

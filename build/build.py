@@ -1106,8 +1106,9 @@ JS = r"""
   function $$(s,r){return Array.prototype.slice.call((r||d).querySelectorAll(s))}
 
   /* header: shadow + tabs tuck away on the way down */
-  var hd=$('.hd'),ly=scrollY,run=0;
+  var hd=$('.hd'),ly=scrollY,run=0,quiet=0; /* quiet: our own jumps (chips, drawer) never tuck the chip row */
   if(hd)addEventListener('scroll',function(){var y=scrollY,dy=y-ly;ly=y;
+    if(Date.now()<quiet){run=0;hd.classList.remove('min');hd.classList.toggle('sc',y>8);return}
     run=(dy>0)===(run>0)?run+dy:dy; /* distance covered in the current direction */
     if(y<=220||run<-24)hd.classList.remove('min');else if(run>48)hd.classList.add('min');
     hd.classList.toggle('sc',y>8)},{passive:true});
@@ -1154,15 +1155,15 @@ JS = r"""
      It re-reads the target on every frame (cards hiding or showing, lazy pictures and the tucking header cannot make it miss),
      stops when the finger or wheel takes over, and ends exactly on the target. Reduced motion jumps. */
   var tween=0;
-  function stopTween(){if(tween){cancelAnimationFrame(tween);tween=0}}
+  function stopTween(){if(tween){cancelAnimationFrame(tween);tween=0;quiet=Date.now()+400}}
   ['touchstart','wheel','keydown','mousedown'].forEach(function(n){addEventListener(n,stopTween,{passive:true})});
   function open(){var h=$('.hd-top'),t=$('.tabs');return (h?h.offsetHeight:0)+(t?t.offsetHeight:0)} /* header bar plus chip row, whether the row is tucked away or not */
   function goal(el){return Math.max(0,Math.round(el.getBoundingClientRect().top+scrollY-open()-13))}
-  function goTo(el){stopTween();var from=scrollY,t0=performance.now(),dist=Math.abs(goal(el)-from),dur=Math.min(900,260+dist*.1);
-    if(rm||dist<2){scrollTo({top:goal(el),behavior:'instant'});return}
+  function goTo(el){stopTween();quiet=Infinity;if(hd)hd.classList.remove('min');var from=scrollY,t0=performance.now(),dist=Math.abs(goal(el)-from),dur=Math.min(900,260+dist*.1);
+    if(rm||dist<2){scrollTo({top:goal(el),behavior:'instant'});quiet=Date.now()+400;return}
     function step(now){var k=Math.min(1,(now-t0)/dur),e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2;
       scrollTo({top:from+(goal(el)-from)*e,behavior:'instant'});
-      if(k<1)tween=requestAnimationFrame(step);else{tween=0;scrollTo({top:goal(el),behavior:'instant'})}}
+      if(k<1)tween=requestAnimationFrame(step);else{tween=0;scrollTo({top:goal(el),behavior:'instant'});quiet=Date.now()+400}}
     tween=requestAnimationFrame(step)}
 
   /* the lit chip follows the section on screen */

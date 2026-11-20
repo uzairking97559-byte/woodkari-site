@@ -15,16 +15,34 @@ INLAY = "/home/user/agency-research/businesses/woodkari/photos/ai/inlay"
 CAT = "/home/user/agency-research/businesses/woodkari/photos/ai/catalogue"
 SITE_PHOTOS = "/home/user/agency-research/businesses/woodkari/photos/site"
 
+def sq(im):
+    """non-square source -> square canvas, whole picture kept, nothing cropped or squashed; the padded sides continue the picture's own outermost row/column colour (no visible seam); square sources unchanged"""
+    w, h = im.size
+    if w == h:
+        return im
+    n = max(w, h)
+    out = Image.new("RGB", (n, n))
+    if w > h:
+        ox, oy = 0, (n - h) // 2
+        out.paste(im.crop((0, 0, w, 1)).resize((n, oy)), (0, 0))
+        out.paste(im.crop((0, h - 1, w, h)).resize((n, n - oy - h)), (0, oy + h))
+    else:
+        ox, oy = (n - w) // 2, 0
+        out.paste(im.crop((0, 0, 1, h)).resize((ox, n)), (0, 0))
+        out.paste(im.crop((w - 1, 0, w, h)).resize((n - ox - w, n)), (ox + w, 0))
+    out.paste(im, (ox, oy))
+    return out
+
 def make(name):
     im = Image.open(os.path.join(SRC, name + ".png")).convert("RGB")
     for size, suffix in ((1200, ""), (600, "-600")):
-        im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{name}{suffix}.webp"), "WEBP", quality=78, method=6)
+        sq(im).resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{name}{suffix}.webp"), "WEBP", quality=78, method=6)
 
 def make_ow(code):
     for x in "abcdef":
         im = Image.open(os.path.join(CAT, f"{code}-{x}.png")).convert("RGB")
         for size, suffix in ((1200, ""), (600, "-600")):
-            im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{code.lower()}-{x}{suffix}.webp"), "WEBP", quality=78, method=6)
+            sq(im).resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{code.lower()}-{x}{suffix}.webp"), "WEBP", quality=78, method=6)
 
 
 def make_site(code, name):
@@ -66,7 +84,7 @@ def make_inlay(code, name):
                     for sfx in ("", "-600"):
                         q = os.path.join(ROOT, "img", f"m-{name}{old}{sfx}.webp")
                         if os.path.exists(q): os.remove(q)
-            im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{name}{tag}{suffix}.webp"), "WEBP", quality=78, method=6)
+            sq(im).resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{name}{tag}{suffix}.webp"), "WEBP", quality=78, method=6)
         n += 1
     return n
 
@@ -82,7 +100,7 @@ def make_nb(code, letters):
     for x in letters:
         im = Image.open(os.path.join(NB_DIRS[code[:2]], f"{code}-{x}.png")).convert("RGB")
         for size, suffix in ((1200, ""), (600, "-600")):
-            im.resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{code.lower()}-{x}{suffix}.webp"), "WEBP", quality=78, method=6)
+            sq(im).resize((size, size), Image.LANCZOS).save(os.path.join(ROOT, "img", f"m-{code.lower()}-{x}{suffix}.webp"), "WEBP", quality=78, method=6)
 
 
 if sys.argv[1:2] == ["nb"]:  # python3 build/mto_images.py nb PX-01:abe IC-N01:abe

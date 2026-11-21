@@ -358,7 +358,7 @@ PXL = [
     dict(code="PX-09", grp="painted", name='Small printed gift tray', sizes=[('8x10 in', 899)],
          pics=[('a', 'Small printed gift tray, made to order'), ('b', 'Small printed gift tray, made to order, second view'), ('e', 'Small printed gift tray, made to order, 8x10 in')]),
     dict(code="PX-10", grp="painted", name='Meena round bowl, mango wood', sizes=[('5 in', 899), ('8 in', 1199), ('10 in', 1399)],
-         pics=[('a', 'Meena round bowl, mango wood, made to order'), ('b', 'Meena round bowl, mango wood, made to order, second view'), ('e', 'Meena round bowl, mango wood, made to order, 8 in')]),
+         pics=[('a', 'Meena round bowl, mango wood, made to order'), ('b', 'Meena round bowl, mango wood, made to order, second view'), ('e', 'Meena round bowl, mango wood, made to order, 5 in')]),
     dict(code="PX-11", grp="painted", name='Floral-print serving bowl', sizes=[('6 in', 899), ('8 in', 1499), ('10 in', 2699)],
          pics=[('a', 'Floral-print serving bowl, made to order'), ('b', 'Floral-print serving bowl, made to order, second view')]),
     dict(code="PX-14", grp="painted", name='Nesting printed bowl set of 3', sizes=[('3, 4, 5 in set', 2399)],
@@ -366,9 +366,9 @@ PXL = [
     dict(code="PX-15", grp="painted", name='Printed plate and bowl set', sizes=[('plate 10 in + bowl 3 in', 2099), ('12 in + 6 in', 2999)],
          pics=[('a', 'Printed plate and bowl set, made to order'), ('b', 'Printed plate and bowl set, made to order, second view'), ('e', 'Printed plate and bowl set, made to order, plate 10 in + bowl 3 in')]),
     dict(code="PX-16", grp="painted", name='Printed round platter / plate', sizes=[('6 in', 1199), ('12 in', 1499)],
-         pics=[('a', 'Printed round platter / plate, made to order'), ('b', 'Printed round platter / plate, made to order, second view'), ('e', 'Printed round platter / plate, made to order, 12 in')]),
+         pics=[('a', 'Printed round platter / plate, made to order'), ('b', 'Printed round platter / plate, made to order, second view'), ('e', 'Printed round platter / plate, made to order, 6 in')]),
 ]
-PXL, BX = [p for p in PXL if p["code"] in {"PX-02", "PX-03", "PX-04", "PX-05", "PX-09", "PX-16"}], [b for b in BX if b["code"] == "IC-N01"]  # D-301 19 Nov: 5 back after Checker + owner OK; 21 Nov owner "photo laga do": PX-16 + IC-N01 (a,b only) back; rest HIDDEN (owner D-288)
+PXL, BX = [p for p in PXL if p["code"] in {"PX-02", "PX-03", "PX-04", "PX-05", "PX-06", "PX-09", "PX-16"}], [b for b in BX if b["code"] == "IC-N01"]  # D-301 19 Nov: 5 back after Checker + owner OK; 21 Nov owner "photo laga do": PX-16 + IC-N01 (a,b only) back; PX-06 back after Checker 21 Nov; rest HIDDEN (owner D-288)
 NB = PXL + BX  # D-301: the 5 painted pages. Rest HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
 NB_BY = {x["code"]: x for x in NB}
 PX_LINE = "Hand-painted on wood."

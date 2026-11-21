@@ -337,7 +337,7 @@ BX = [
          sizes=[("150 x 100 mm", 1199), ("250 x 150 mm", 1799)],
          pics=[("a", "Floral bone inlay jewellery box, small rectangular, made to order"),
                ("b", "Floral bone inlay jewellery box, small rectangular, made to order, open"),
-               ("e", "Floral bone inlay jewellery box, small rectangular, made to order, 250 x 150 mm")]),
+               ]),
 ]
 # Painted pieces, hand-painted on wood (owner, D-280); same row rules; added to the painted group.
 PXL = [
@@ -368,8 +368,8 @@ PXL = [
     dict(code="PX-16", grp="painted", name='Printed round platter / plate', sizes=[('6 in', 1199), ('12 in', 1499)],
          pics=[('a', 'Printed round platter / plate, made to order'), ('b', 'Printed round platter / plate, made to order, second view'), ('e', 'Printed round platter / plate, made to order, 12 in')]),
 ]
-PXL, BX = [p for p in PXL if p["code"] in {"PX-02", "PX-03", "PX-04", "PX-05", "PX-09"}], []  # D-301 19 Nov: 5 back after Checker + owner OK; rest HIDDEN (owner D-288)
-NB = list(PXL)  # D-301: the 5 painted pages. Rest HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
+PXL, BX = [p for p in PXL if p["code"] in {"PX-02", "PX-03", "PX-04", "PX-05", "PX-09", "PX-16"}], [b for b in BX if b["code"] == "IC-N01"]  # D-301 19 Nov: 5 back after Checker + owner OK; 21 Nov owner "photo laga do": PX-16 + IC-N01 (a,b only) back; rest HIDDEN (owner D-288)
+NB = PXL + BX  # D-301: the 5 painted pages. Rest HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
 NB_BY = {x["code"]: x for x in NB}
 PX_LINE = "Hand-painted on wood."
 ALL_N = MTO_N + len(OW) + len(NB)  # every card on designs.html

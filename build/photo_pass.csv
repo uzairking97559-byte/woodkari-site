@@ -397,3 +397,8 @@ room-use,room-tray,live before lock 2026-11-19,
 t-room,site,live before lock 2026-11-19,
 t-table,site,live before lock 2026-11-19,
 engraved-logo,site,Checker 2026-11-20 ops/checks/2026-11-20-home-v2.md,
+m-px-16-a,PX-16,Checker 2026-11-21 ops/checks/2026-11-21-px-hidden-fullsize.md,yes
+m-px-16-b,PX-16,Checker 2026-11-21 ops/checks/2026-11-21-px-hidden-fullsize.md,yes
+m-px-16-e,PX-16,Checker 2026-11-21 ops/checks/2026-11-21-px-hidden-fullsize.md,yes
+m-ic-n01-a,IC-N01,Checker 2026-11-21 ops/checks/2026-11-21-px-hidden-fullsize.md,yes
+m-ic-n01-b,IC-N01,Checker 2026-11-21 ops/checks/2026-11-21-px-hidden-fullsize.md,yes

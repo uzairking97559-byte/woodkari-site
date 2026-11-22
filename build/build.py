@@ -1165,12 +1165,39 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .dr-nav a>span{flex:1;min-width:0}
 .dr-nav .di{flex:none;color:var(--green);transition:transform .3s var(--ease)}
 .dr-nav .ar{flex:none;width:17px;height:17px;color:var(--soft);transition:transform .3s var(--ease)}
+.dr-nav summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font:400 27px/1.1 var(--serif);cursor:pointer;color:var(--ink)}
+.dr-nav summary::-webkit-details-marker{display:none}
+.dr-nav summary span{flex:1;min-width:0}
+.dr-nav summary .ar{transform:rotate(90deg);transition:transform .3s var(--ease)}
+.dr-nav details[open] summary .ar{transform:rotate(-90deg)}
+.dr-nav details[open]{border-bottom:1px solid var(--line)}
+.dr-nav details[open] summary{border-bottom:0}
+.dr-nav .dsub{padding:0 0 10px 2px}
+.dr-nav .dsub a{padding:11px 0;border-bottom:0;font:500 17px/1.2 var(--sans);color:var(--ink)}
+.dr-nav .dsub a i{font-style:normal;color:var(--soft);font-weight:400;font-size:15px}
+.dr-nav .dsub a:first-child{font-weight:600;color:var(--green)}
+.dr-nav a.dr2{font:400 20px/1.1 var(--serif);color:var(--soft)}
+.tg{display:contents}
+.tm{display:none}
+.hchips{margin-top:34px}
+.chips a[aria-current]{border-color:var(--green);color:var(--green)}
+@media(min-width:900px){.hchips{justify-content:center}}
+@media(min-width:900px) and (hover:hover){
+ .tabs nav{overflow:visible}
+ .tg{display:block;position:relative}
+ .tm{display:none;position:absolute;left:0;top:100%;z-index:30;min-width:230px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 40px -22px rgba(20,54,41,.55);padding:8px 0}
+ .tg:hover .tm,.tg:focus-within .tm{display:block}
+ .tm a{display:flex;justify-content:space-between;gap:20px;padding:10px 18px;font-size:15px}
+ .tm a::after{display:none}
+ .tm a i{font-style:normal;color:var(--soft);font-weight:400}
+ .tm a:first-child{font-weight:600;color:var(--green)}
+}
 .dr-nav a:active .di{transform:scale(.86)}
 .dr-nav a:active .ar{transform:translateX(4px)}
 @media(hover:hover) and (pointer:fine){.menu:hover svg path:nth-child(3){transform:none}.dr-nav a:hover .di{transform:translateY(-2px)}}
 /* the drawer deals its rows in behind the panel: one short wave, gaps closing; the WhatsApp button only fades */
 @media(prefers-reduced-motion:no-preference){
- .drawer[open] .dr-nav a{animation:drin .5s var(--ease) var(--d,0ms) backwards}
+ .drawer[open] .dr-nav>a,.drawer[open] .dr-nav>details{animation:drin .5s var(--ease) var(--d,0ms) backwards}
  .drawer[open] .dr-ft{animation:drfade .45s ease .2s backwards}
 }
 @keyframes drin{from{opacity:0;transform:translateX(-18px)}}
@@ -1440,15 +1467,29 @@ def search_data():
 
 
 def header(cur):
-    def t(href, label, key, cat=None):
-        c = ' aria-current="true"' if key == cur else ""
-        dc = f' data-cat="{cat}"' if cat else ""
-        return f'<a href="{href}"{dc}{c}>{label}</a>'
     pv = '<div class="pv">Preview. Not the live site yet.</div>' if PREVIEW else ""
-    rows = [("./?f=all#shop", "all", "All pieces", "all"), ("./?f=wood#shop", "wood", "Acacia wood", "wood"), ("./?f=resin#shop", "resin", "Resin", "resin"),
-            ("./?f=logo#shop", "logo", "Name and logo", "logo"), ("bulk.html", None, "Bulk and hotel orders", "bulk"), ("./#workshop", None, "The workshop", "ws"), ("./#questions", None, "Questions", "faq")]
-    delay = [60, 100, 134, 162, 185, 204, 220]  # ms: the rows follow the panel in, gaps closing (never a metronome)
-    dr = "".join(f'<a href="{h}"{(chr(32) + "data-cat=" + chr(34) + c + chr(34)) if c else ""} style="--d:{delay[i]}ms">{DR_ICON[ic]}<span>{lab}</span>{CHEV}</a>' for i, (h, c, lab, ic) in enumerate(rows))
+    tree = menu_tree()
+    tabs = ""
+    for g, gp, ss, tot in tree:
+        c = ' aria-current="true"' if cur == gp else ""
+        if len(ss) == 1:
+            tabs += f'<div class="tg"><a href="{ss[0][1]}.html"{c}>{e(g)}</a></div>'
+        else:
+            tm = f'<a href="{gp}.html">All {e(g.lower())}<i>{tot}</i></a>' + "".join(f'<a href="{p}.html">{e(n)}<i>{c2}</i></a>' for n, p, c2 in ss)
+            tabs += f'<div class="tg"><a href="{gp}.html"{c}>{e(g)}</a><div class="tm">{tm}</div></div>'
+    tabs += f'<div class="tg"><a href="bulk.html"{" aria-current=true" if cur == "bulk" else ""}>Bulk orders</a></div>'
+    dr = ""
+    for i, (g, gp, ss, tot) in enumerate(tree):
+        st = f'style="--d:{60 + i * 22}ms"'
+        if len(ss) == 1:
+            dr += f'<a href="{ss[0][1]}.html" {st}><span>{e(g)}</span>{CHEV}</a>'
+        else:
+            sub = f'<a href="{gp}.html">All {e(g.lower())}<i>{tot}</i></a>' + "".join(f'<a href="{p}.html">{e(n)}<i>{c2}</i></a>' for n, p, c2 in ss)
+            op = " open" if cur == gp and False else ""
+            dr += f'<details class="dg" name="dg" {st}><summary><span>{e(g)}</span>{CHEV}</summary><div class="dsub">{sub}</div></details>'
+    k = len(tree)
+    for j, (h, lab) in enumerate([("bulk.html", "Bulk and hotel orders"), ("./#workshop", "The workshop"), ("./#questions", "Questions")]):
+        dr += f'<a class="dr2" href="{h}" style="--d:{60 + (k + j) * 22}ms"><span>{lab}</span>{CHEV}</a>'
     return f"""<a class="skip" href="#main">Skip to content</a>
 {pv}<header class="hd">
 <div class="wrap hd-top">
@@ -1456,7 +1497,7 @@ def header(cur):
 <a class="logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>EXPORTS</small></a>
 <div class="hd-r"><a class="ib hd-ig" href="https://www.instagram.com/woodkariexports/" target="_blank" rel="noopener" aria-label="Instagram">{IG_ICON}</a><form class="hd-sb" role="search" onsubmit="return false">{SEARCH_ICON}<input type="search" placeholder="Search" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"></form><a class="hd-wa" href="{e(wa(HELLO))}">{WA_ICON}WhatsApp</a><a class="ib hd-waic" href="{e(wa(HELLO))}" aria-label="WhatsApp">{WA_OUT}</a></div>
 </div>
-<div class="tabs"><div><nav class="wrap" aria-label="Shop">{t('./?f=all#shop','All pieces','all','all')}{t('./?f=wood#shop','Acacia wood','wood','wood')}{t('./?f=resin#shop','Resin','resin','resin')}{t('./?f=logo#shop','Name &amp; logo','logo','logo')}{t('./#workshop','Workshop','ws')}{t('./#questions','Questions','faq')}</nav></div></div>
+<div class="tabs"><div><nav class="wrap" aria-label="Shop">{tabs}</nav></div></div>
 </header>
 <dialog class="drawer" id="drawer" aria-label="Menu"><div class="dr-in">
 <div class="dr-hd"><b>Woodkari</b><button class="ib" type="button" data-close aria-label="Close menu">{X_ICON}</button></div>
@@ -1474,11 +1515,15 @@ def header(cur):
 """
 
 
+def foot_cats():
+    return "".join(f'<a class="l" href="{gp}.html">{e(g)}</a>' for g, gp, ss, tot in menu_tree())
+
+
 def footer():
     return f"""<footer class="ft"><div class="wrap">
 <div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
-<div><h3>Shop</h3><a class="l" href="./?f=all#shop" data-cat="all">All pieces</a><a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
+<div><h3>Shop</h3>{foot_cats()}<a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
 <div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
@@ -1504,42 +1549,123 @@ def card(p):
 <h3>{e(p['name'])}</h3><p class="sh">{e(p['short'])}</p>{price_html(p)}</a>"""
 
 
-# Home grid (owner list 20 Nov, points 1 and 4). Every piece on the site is a card here; the page opens on the 12 marked "top",
-# the tabs filter by material ("wood" = acacia, "resin"), and "All pieces" / "Name & logo" show every card.
-# The Fluted Box Tray and the Room Tray are NOT on the home page (owner); their own pages stay.
-HOME_OFF = {"fluted-box-tray", "room-tray"}
-HOME_TOP = ["navy-ivory-floral-tray", "black-white-floral-tray-set", "d-coaster", "d-tissue", "red-chevron-tray", "gold-flake-resin-tray",
-            "d-roundbox", "d-trivet", "OW-16", "OW-01", "d-cutlery", "OW-36"]
-DESIGN_CAT = {"d-coaster": "resin", "d-tissue": "resin", "d-roundbox": "resin", "d-trivet": "resin", "d-cutlery": "resin"}  # the resin line (WHAT_WE_SELL); the serving board has no material on file
-MTO_CAT = {"bath": "resin", "bowls": "resin"}  # groups whose own heading says resin
+# Categories (owner D-332, 22 Nov): a side menu like artychoke.in. A few top groups; each opens to "All" plus one page per product type.
+# Every piece sits in exactly ONE product-type page (SUBS). A group or type with no live piece is left out of the menu and gets no page.
+# (group name, group page, [(type name, page, intro)]); a group with one type is a single page and a direct link in the menu.
+TAX = [
+    ("Trays", "trays", [("Resin trays", "resin-trays"), ("Painted trays", "painted-trays"), ("Inlay trays", "inlay-trays"), ("Wooden trays", "wooden-trays")]),
+    ("Tableware", "tableware", [("Bowls and platters", "bowls"), ("Boards", "boards"), ("Coasters", "coasters"), ("Napkin rings", "napkin-rings"),
+                                ("Cake stands", "cake-stands"), ("Jars and jugs", "jars-and-jugs"), ("Kitchen and bar", "kitchen-and-bar")]),
+    ("Home decor", "home-decor", [("Candle holders", "candle-holders"), ("Frames and mirrors", "frames-and-mirrors"), ("Clocks", "clocks"), ("Lamps", "lamps"),
+                                  ("Decor and stands", "decor-and-stands")]),
+    ("Boxes", "boxes", [("Jewellery boxes", "jewellery-boxes"), ("Tissue boxes", "tissue-boxes"), ("Gift and storage boxes", "gift-and-storage-boxes")]),
+    ("Furniture", "furniture", [("Inlay chests", "inlay-chests"), ("Tables and stools", "tables-and-stools")]),
+    ("Bathroom", "bathroom", [("Bathroom sets and vanity", "bathroom")]),
+]
+SUB_OF = {}  # page -> group page
+for _g, _gp, _subs in TAX:
+    for _n, _p in _subs:
+        SUB_OF[_p] = _gp
+LST_SUB = {"Coasters": "coasters", "Napkin rings": "napkin-rings", "Bowls": "bowls", "Boards": "boards", "Kitchen and bar": "kitchen-and-bar", "Bathroom": "bathroom",
+           "Candle holders": "candle-holders", "Lamps": "lamps", "Clocks": "clocks", "Frames and mirrors": "frames-and-mirrors"}
+LST_PAINTED = {"NP-06", "NP-08", "NP-09", "NP-10", "N100-024"}
 
 
-def home_cards():
-    items = []  # (key, cat, html)
+def sub_of(key, name="", cat=""):
+    """the one product-type page a piece belongs to"""
+    fixed = {"navy-ivory-floral-tray": "resin-trays", "black-white-floral-tray-set": "resin-trays", "red-chevron-tray": "resin-trays", "gold-flake-resin-tray": "resin-trays",
+             "fluted-box-tray": "wooden-trays", "room-tray": "wooden-trays",
+             "d-coaster": "coasters", "d-tissue": "tissue-boxes", "d-roundbox": "gift-and-storage-boxes", "d-board": "boards", "d-cutlery": "kitchen-and-bar", "d-trivet": "kitchen-and-bar",
+             "OW-01": "wooden-trays", "OW-18": "wooden-trays", "OW-32": "wooden-trays", "OW-33": "wooden-trays", "OW-37": "wooden-trays", "OW-03": "bowls", "OW-08": "boards",
+             "OW-16": "coasters", "OW-25": "candle-holders", "OW-36": "gift-and-storage-boxes", "IC-N01": "jewellery-boxes",
+             "PT-6": "bowls", "PT-8": "boards", "N100-096": "kitchen-and-bar", "N100-097": "bathroom", "NP-30": "jars-and-jugs", "N100-093": "jars-and-jugs", "N100-094": "jars-and-jugs"}
+    if key in fixed:
+        return fixed[key]
+    if key.startswith("PX-") or key.startswith("PT-"):
+        return "painted-trays"
+    if key.startswith("BS-"):
+        return "bathroom"
+    if key.startswith("RB-"):
+        return "bowls"
+    if key.startswith("WB-"):
+        return "boards"
+    if key.startswith("CS-"):
+        return "candle-holders"
+    if key.startswith("IC-"):
+        return "inlay-chests"
+    if key.startswith("OW-"):
+        return "tables-and-stools"
+    low = name.lower()
+    if cat in LST_SUB:
+        return LST_SUB[cat]
+    if cat == "Trays":
+        if key in LST_PAINTED:
+            return "painted-trays"
+        if "inlay" in low or "mother-of-pearl" in low:
+            return "inlay-trays"
+        if low.startswith("resin") or "resin" in low.split(" and ")[0] or "wood and resin" in low:
+            return "resin-trays"
+        return "wooden-trays"
+    if cat == "Decor":
+        return "cake-stands" if ("cake stand" in low or "tier" in low) else "decor-and-stands"
+    if cat == "Boxes":
+        return "tissue-boxes" if "tissue" in low else ("jewellery-boxes" if "jewellery" in low else "gift-and-storage-boxes")
+    raise SystemExit("NO CATEGORY for " + key + " " + name)
+
+
+# Home page: a small curated set (owner D-332: "Home screen pe sirf achhe achhe product"). The first 12 of HOME_PICKS that are live are shown;
+# HOME_SPARE fills any gap (while the 22 Nov listings are not live yet, the spare ones carry the page).
+HOME_PICKS = ["navy-ivory-floral-tray", "black-white-floral-tray-set", "N100-001", "N100-003", "NP-16", "N100-042", "N100-075", "N100-060", "N100-072", "N100-028", "N100-095", "OW-38"]
+HOME_SPARE = ["gold-flake-resin-tray", "red-chevron-tray", "d-coaster", "OW-01", "IC-1", "BS-1", "PT-1", "OW-36"]
+
+
+def all_cards():
+    """every piece on the site: list of (key, name, sub page, card html), in a fixed order"""
+    items = []
     for p in PRODUCTS:
-        if p["slug"] not in HOME_OFF:
-            items.append((p["slug"], p["cat"], card(p)))
+        items.append((p["slug"], p["name"], "", card(p)))
     for k, n in DESIGNS:
         href = e(wa("Hello Woodkari, I am asking about: " + n + chr(10) + "Quantity: "))
-        items.append((k, DESIGN_CAT.get(k, ""), f'<a class="p rv" href="{href}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div>'
+        items.append((k, n, "", f'<a class="p rv" href="{href}"><div class="ph"><img src="{UP}img/{k}.webp" alt="{e(n)}, design picture" width="480" height="480" loading="lazy"><span class="tag">Made to order</span></div>'
                       f'<h3>{e(n)}</h3><p class="sh">Made to order · in bulk</p><p class="pr bo">Ask on WhatsApp</p></a>'))
     for it in OW:
-        items.append((it["code"], "wood" if ow_wood(it) == "acacia" else "", ow_card(it)))
+        items.append((it["code"], it["name"], "", ow_card(it)))
     for it in NB:
-        items.append((it["code"], "", bx_card(it)))
+        items.append((it["code"], it["name"], "", bx_card(it)))
     for gid, code, f, n in mto_items():
-        items.append((code, MTO_CAT.get(gid, ""), f'<a class="p rv" href="{mto_page(code)}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(MTO_ALT.get(code, n + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
+        items.append((code, n, "", f'<a class="p rv" href="{mto_page(code)}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(MTO_ALT.get(code, n + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
                       f'<h3>{e(n)}</h3><p class="sh">Design {code} · made on order</p><p class="pr{"" if code in MTO_PRICE else " bo"}">{e(mto_pr(code)[0])}</p></a>'))
-    by = {k: (c, h) for k, c, h in items}
-    assert all(k in by for k in HOME_TOP), "HOME_TOP names a piece that is not on the site"
-    order = HOME_TOP + [k for k, _, _ in items if k not in HOME_TOP]
+    for it in LST:
+        items.append((it["code"], it["name"], it["cat"], lst_card(it)))
+    lcat = {x["code"]: x["cat"] for x in LST}
     out = []
-    for k in order:
-        c, h = by[k]
-        top = k in HOME_TOP
+    for k, n, c, h in items:
         h = re.sub(r'data-cat="[^"]*" ', "", h, count=1)
-        out.append(h.replace('<a class="p rv"', f'<a class="p rv" data-cat="{c}"' + (" data-top" if top else " hidden"), 1))
-    return "\n".join(out), len(out)
+        out.append((k, n, sub_of(k, n, lcat.get(k, "")), h))
+    return out
+
+
+CARDS, CARD_BY = [], {}  # filled in main(), once every card builder exists
+
+
+def menu_tree():
+    """[(group name, group page, [(type name, page, count)], total)], only what has pieces"""
+    cnt = {}
+    for _, _, sp, _ in CARDS:
+        cnt[sp] = cnt.get(sp, 0) + 1
+    tree = []
+    for g, gp, subs in TAX:
+        ss = [(n, p, cnt[p]) for n, p in subs if cnt.get(p)]
+        if ss:
+            tree.append((g, gp, ss, sum(c for _, _, c in ss)))
+    return tree
+
+
+def home_picks():
+    keys = [k for k in HOME_PICKS if k in CARD_BY]
+    keys += [k for k in HOME_SPARE if k in CARD_BY and k not in keys][:max(0, 12 - len(keys))]
+    keys = keys[:12]
+    return keys, "\n".join(CARD_BY[k][2] for k in keys)
 
 
 def faq_html():
@@ -1548,7 +1674,8 @@ def faq_html():
 
 
 def page_home():
-    cards, N_HOME = home_cards()
+    pick_keys, cards = home_picks()
+    chips = "".join(f'<a href="{gp}.html">{e(g)}<span>{tot}</span></a>' for g, gp, ss, tot in menu_tree())
     tiles = "".join(f'<a class="tile rv" href="{h}"><span class="tag">{lab}</span><img src="{UP}img/{k}.webp" alt="{e(alt)}" width="1200" height="1200" loading="lazy"><span class="cap">{e(t)}<small>{e(sub)}</small></span></a>' for k, t, sub, h, alt, lab in TILES)
     byslug = {q["slug"]: q for q in PRODUCTS}
     hero_top = mto_pr("OW-38")[0]  # owner 18 Nov: inlay drum table room shot is the first hero picture
@@ -1583,11 +1710,11 @@ def page_home():
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
 <section class="sec" id="shop"><div class="wrap">
-<div class="hdr rv"><div><h2 id="shop-t">Trays &amp; boxes</h2><p id="shop-n">Every piece is made to order. Prices are for one piece; delivery is extra.</p></div><a class="lnk" id="viewall" href="./?f=all#shop" data-cat="all" hidden>View all{ARROW}</a></div>
+<div class="hdr rv"><div><h2 id="shop-t">Our best pieces</h2><p id="shop-n">Every piece is made to order. Prices are for one piece; delivery is extra.</p></div></div>
 <div class="grid">
 {cards}
 </div>
-<p class="more-w"><a class="btn line" id="more" href="./?f=all#shop" data-cat="all">View all {N_HOME} pieces{ARROW}</a></p>
+<nav class="chips hchips" aria-label="Shop by kind">{chips}</nav>
 </div></section>
 
 <section class="band green" id="bulk"><div class="wrap split">
@@ -1616,12 +1743,6 @@ def page_home():
 <p class="lead">On 50 pieces or more of one design, we engrave a hotel name, a company logo or a couple's names: room trays for a hotel, boxes and boards for staff gifts or a wedding.</p>
 <div class="row"><a class="btn pri" href="{e(wa('Hello Woodkari, I want my name or logo engraved.' + chr(10) + 'Piece:' + chr(10) + 'Quantity: '))}">{WA_ICON}Ask about engraving</a></div>
 </div>
-</div></section>
-
-<section class="sec"><div class="wrap">
-<div class="hdr rv"><div><h2>Made on order, in bulk</h2><p>Nothing is kept ready in stock. Every order, and every sample, is made fresh. Bulk starts at 25 pieces.</p></div></div>
-<div class="dz">{dz}</div>
-<p class="mto-l rv"><a class="lnk" href="designs.html">See {ALL_N} more designs, made on order{ARROW}</a></p>
 </div></section>
 
 <section class="band stone" id="workshop"><div class="wrap ws">
@@ -1951,6 +2072,55 @@ def page_designs():
 """
 
 
+def cat_page(slug, title, subs, group=None):
+    """one category page. subs = the type pages whose pieces it lists. group = (group name, group page, [(type name, page, count)]) for the chips"""
+    cards = [(k, n, h) for k, n, sp, h in CARDS if sp in subs]
+    chips = ""
+    gname, gp, ss, tot = group
+    if len(ss) > 1:
+        chips = '<nav class="chips" aria-label="Kinds of ' + e(gname.lower()) + '">' + f'<a href="{gp}.html"{" aria-current=true" if slug == gp else ""}>All<span>{tot}</span></a>' + "".join(
+            f'<a href="{p}.html"{" aria-current=true" if slug == p else ""}>{e(n)}<span>{c}</span></a>' for n, p, c in ss) + "</nav>"
+    first_img = re.search(r'img/([A-Za-z0-9_.-]+?)-?6?0?0?\.webp', cards[0][2])
+    og = (first_img.group(1) if first_img else "m-og") + ".webp"
+    crumb = f'<a href="./">Home</a> / ' + (f'<a href="{gp}.html">{e(gname)}</a> / ' if slug != gp and len(ss) > 1 else "") + e(title)
+    n = len(cards)
+    return head(f"{title} | Woodkari, India", f"{n} {title.lower()} made to order in India. Prices are for one piece; delivery is extra. Order on WhatsApp.", f"{slug}.html", og) + f"""<body>
+{header(gp)}
+<main id="main">
+<section><div class="wrap mh">
+<p class="crumb" style="padding-top:0">{crumb}</p>
+<h1>{e(title)}</h1>
+<p>{n} {"piece" if n == 1 else "pieces"}. Every piece is made to order. Prices are for one piece; delivery is extra.</p>
+{chips}
+</div></section>
+<section class="sec cat"><div class="wrap">
+<div class="grid four">{"".join(h for _, _, h in cards)}</div>
+</div></section>
+<section class="end"><div class="wrap rv">
+<h2>Not the one you want?</h2>
+<p>Send us a picture of the piece, the size and how many. We reply on WhatsApp.</p>
+<div class="row"><a class="btn pri" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><a class="btn line" href="mailto:{EMAIL}">{MAIL}{EMAIL}</a></div>
+</div></section>
+</main>
+{footer()}
+<script type="application/ld+json">{ORG_ONLY_LD}</script>
+</body></html>
+"""
+
+
+def category_pages():
+    out = {}
+    for g, gp, ss, tot in menu_tree():
+        grp = (g, gp, ss, tot)
+        if len(ss) == 1:
+            out[ss[0][1] + ".html"] = cat_page(ss[0][1], g, [ss[0][1]], grp)
+            continue
+        out[gp + ".html"] = cat_page(gp, g, [p for _, p, _ in ss], grp)
+        for n, p, c in ss:
+            out[p + ".html"] = cat_page(p, n, [p], grp)
+    return out
+
+
 TERMS_SINGLE = [
     "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer: the full price for a piece up to ₹10,000; for a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
     "You can cancel for free until we start making. Once making has started, the order cannot be cancelled.",
@@ -2096,6 +2266,9 @@ def check_photos(pages):
 
 
 def main():
+    global CARDS, CARD_BY
+    CARDS = all_cards()
+    CARD_BY = {k: (n, sp, h) for k, n, sp, h in CARDS}
     os.makedirs(OUT, exist_ok=True)
     pages = {}
     w = lambda name, s: pages.__setitem__(name, s)  # buffered: nothing is written until the photo check below passes
@@ -2111,6 +2284,8 @@ def main():
     w("bulk.html", page_bulk())
     w("terms.html", page_terms())
     w("designs.html", page_designs())
+    for name, text in category_pages().items():
+        w(name, text)
     for gid, pre, title, line, items in MTO:
         for i in range(MTO_START.get(gid, 1), MTO_START.get(gid, 1) + len(items)):
             if f"{pre}-{i}" in MTO_HOLD: continue
@@ -2124,7 +2299,7 @@ def main():
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(it["code"]) for it in NB] + [mto_page(it["code"]) for it in LST] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + list(category_pages()) + [mto_page(it["code"]) for it in OW] + [mto_page(it["code"]) for it in NB] + [mto_page(it["code"]) for it in LST] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")

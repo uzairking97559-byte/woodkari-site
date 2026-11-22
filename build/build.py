@@ -1168,7 +1168,7 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .dr-nav .di{flex:none;color:var(--green);transition:transform .3s var(--ease)}
 .dr-nav .ar{flex:none;width:17px;height:17px;color:var(--soft);transition:transform .3s var(--ease)}
 .dr-in{padding:0 0 calc(20px + env(safe-area-inset-bottom))}
-.dm-hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px;padding:0 12px;border-bottom:1px solid #efece6}
+.dm-hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px;padding:0 12px;border-bottom:1px solid var(--line)}
 .dm-l{display:flex;align-items:center;gap:2px}
 .dm-hd .ib{margin:0}
 .dm-logo b{font-size:25px}.dm-logo small{font-size:9px;margin-top:3px}
@@ -1183,6 +1183,8 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .dm-back .tb{flex:none}
 .dm a:active,.dm-back:active{background:var(--stone)}
 @media(hover:hover) and (pointer:fine){.dm a:hover{color:var(--green)}}
+.dm a:focus-visible,.dm-back:focus-visible{outline:2px solid var(--green);outline-offset:-4px}
+@media(prefers-reduced-motion:reduce){.dm .pane{transition:none}}
 .tg{display:contents}
 .tm{display:none}
 .hchips{margin-top:34px}

@@ -372,7 +372,85 @@ PXL, BX = [p for p in PXL if p["code"] in {"PX-02", "PX-03", "PX-04", "PX-05", "
 NB = PXL + BX  # D-301: the 5 painted pages. Rest HIDDEN 19 Nov (owner D-288: photos faulty; PXL + BX come back only after new photos pass full-size check + owner OK)
 NB_BY = {x["code"]: x for x in NB}
 PX_LINE = "Hand-painted on wood."
-ALL_N = MTO_N + len(OW) + len(NB)  # every card on designs.html
+# ---- Listings of 22 Nov (owner: "100 listing tayyar rakho, approval karte hi live kar dena") ----
+# Product data: agency-research businesses/woodkari/site/listings_22nov.csv (path can be changed with WK_LISTINGS_CSV).
+# A code renders ONLY if (1) it is a line in build/listings_live.txt, (2) its CSV row has status READY, and (3) its main picture a has a row in
+# build/photo_pass.csv (key m-<code>-a). Of its a/b/e pictures only those with a photo_pass row (and an existing source file) are shown or copied.
+# build/listings_live.txt is empty today, so the built site is the same as before.
+LST_CSV = os.environ.get("WK_LISTINGS_CSV", "/home/user/agency-research/businesses/woodkari/site/listings_22nov.csv")
+LST_PHOTOS = os.environ.get("WK_LISTINGS_PHOTOS", "/home/user/agency-research/businesses/woodkari/photos/ai")  # np/NP-01-a.png, n100/N100-001-a.png
+LST_VIEWS = {"a": "", "b": ", close view", "e": ", with its size marked"}
+
+
+def load_listings():
+    import csv
+    base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    try:
+        with open(os.path.join(base, "build", "listings_live.txt"), encoding="utf-8") as f:
+            codes = [x.split("#")[0].strip() for x in f]
+    except FileNotFoundError:
+        return []
+    codes = [c for c in codes if c]
+    if not codes:
+        return []
+    with open(LST_CSV, newline="", encoding="utf-8") as f:
+        rows = {r["code"].strip(): r for r in csv.DictReader(f)}
+    with open(os.path.join(base, "build", "photo_pass.csv"), newline="", encoding="utf-8") as f:
+        passed = {r["image_file"].strip() for r in csv.DictReader(f) if r["passed_by"].strip()}
+    out = []
+    for c in codes:
+        r = rows.get(c)
+        if not r:
+            print("LISTING NOT LIVE (no CSV row):", c); continue
+        if r["status"].strip() != "READY":
+            print("LISTING NOT LIVE (status is not READY):", c); continue
+        files = r["photos"].split()
+        pics = [(x[:-4].rsplit("-", 1)[1], f"m-{c.lower()}-{x[:-4].rsplit('-', 1)[1]}", x) for x in files]  # (view letter, photo_pass key, source file)
+        sub = "np" if c.startswith("NP-") else "n100"
+        pics = [t for t in pics if t[1] in passed and os.path.exists(os.path.join(LST_PHOTOS, sub, t[2]))]  # per picture: only those with a photo_pass row are shown
+        if not any(t[0] == "a" for t in pics):
+            print("LISTING NOT LIVE (main picture a not in photo_pass.csv or file missing):", c); continue
+        m = re.search(r"₹\s*([\d,]+)", r["price_text"])
+        out.append(dict(code=c, name=r["title"], cat=r["category"], what=r["short_desc"], material=r["material"], size=r["size_text"], moq=r["moq"],
+                        price=int(m.group(1).replace(",", "")) if m else None, price_text=r["price_text"], sub=sub,
+                        pics=[(x, k, fn) for x, k, fn in pics]))
+    return out
+
+
+LST = load_listings()
+LST_BY = {x["code"]: x for x in LST}
+
+
+def lst_gid(cat):
+    return "l-" + re.sub(r"[^a-z0-9]+", "-", cat.lower()).strip("-")
+
+
+def lst_cats():
+    seen = []
+    for x in LST:
+        if x["cat"] not in seen:
+            seen.append(x["cat"])
+    return sorted(seen)
+
+
+def lst_images():
+    """web copies (1200 and 600 px) of the pictures of live listings only; existing files are left alone"""
+    if not LST:
+        return
+    from PIL import Image
+    imgdir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "img")
+    for it in LST:
+        for _, key, fn in it["pics"]:
+            if os.path.exists(os.path.join(imgdir, key + ".webp")) and os.path.exists(os.path.join(imgdir, key + "-600.webp")):
+                continue
+            im = Image.open(os.path.join(LST_PHOTOS, it["sub"], fn)).convert("RGB")
+            if im.width != im.height:
+                n = max(im.size); sq = Image.new("RGB", (n, n), im.getpixel((0, 0))); sq.paste(im, ((n - im.width) // 2, (n - im.height) // 2)); im = sq
+            for size, suf in ((1200, ""), (600, "-600")):
+                im.resize((size, size), Image.LANCZOS).save(os.path.join(imgdir, key + suf + ".webp"), "WEBP", quality=78, method=6)
+
+
+ALL_N = MTO_N + len(OW) + len(NB) + len(LST)  # every card on designs.html
 
 
 def bx_key(code, x="a"):
@@ -1353,6 +1431,8 @@ def search_data():
         items.append({"n": it["name"], "s": f"Design {it['code']} · {ow_wood(it)} wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
     for it in NB:
         items.append({"n": it["name"], "s": f"Design {it['code']} · made to order, {bx_from(it)}", "u": mto_page(it["code"]), "i": f"{UP}img/{bx_key(it["code"])}-600.webp"})
+    for it in LST:
+        items.append({"n": it["name"], "s": f"Design {it['code']} · made to order, {it['price_text'].lower() if not it['price'] else it['price_text']}", "u": mto_page(it["code"]), "i": f"{UP}img/{it['pics'][0][1]}-600.webp"})
     for gid, code, f, n in mto_items():
         items.append({"n": n, "s": f"Design {code} · made to order, " + (mto_pr(code)[0] if code in MTO_PRICE else "price on WhatsApp"), "u": mto_page(code), "i": f"{UP}img/m-{f}-600.webp"})
     items.append({"n": "Bulk and hotel orders", "s": "Trays and boxes from 25 of one design · Styled picture", "u": "bulk.html", "i": f"{UP}img/room-front-600.webp"})
@@ -1767,6 +1847,65 @@ def page_ow(it):
 """
 
 
+def lst_card(it, anchor=False):
+    aid = f' id="{it["code"]}"' if anchor else ""
+    pr = e(it["price_text"])
+    return (f'<a class="p rv"{aid} href="{mto_page(it["code"])}"><div class="ph"><img src="{UP}img/{it["pics"][0][1]}-600.webp" alt="{e(it["name"])}, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
+            f'<h3>{e(it["name"])}</h3><p class="sh">Design {it["code"]} · made on order</p><p class="pr">{pr}</p></a>')
+
+
+def page_lst(it):
+    """One listing from the 22 Nov CSV: same layout as page_ow."""
+    code, n = it["code"], it["name"]
+    top = it["price_text"]
+    if it["price"]:
+        msg = f"Hello Woodkari, I want to order design {code}: {n} ({top}).\nQuantity:\nMy city and PIN code: "
+        price = f'<p class="pr">{e(top)}</p>\n<p class="note">Minimum order: {e(it["moq"])}.</p>\n<p class="note">Delivery is extra. We tell you the amount on WhatsApp.</p>'
+        meta_price = f"{top}; minimum order {it['moq']}."
+    else:
+        msg = f"Hello Woodkari, I want a price for design {code}: {n}.\nQuantity:\nMy city and PIN code: "
+        price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
+        meta_price = top + "."
+    keys = [k for _, k, _ in it["pics"]]
+    figs = "".join(
+        f'<figure><img src="{UP}img/{k}.webp" alt="{e(n)}{LST_VIEWS.get(x, "")}, design picture" width="1200" height="1200"{(" style=" + chr(34) + "view-transition-name:pic" + chr(34)) if j == 0 else " loading=lazy"}><figcaption>Design picture · made to order</figcaption></figure>'
+        for j, (x, k, _) in enumerate(it["pics"]))
+    facts = "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in
+                    [("Design", code), ("Material", it["material"]), ("Size", it["size"]), ("Minimum order", it["moq"]), ("Made", "On order")])
+    more = "\n".join(lst_card(x) for x in [y for y in LST if y["cat"] == it["cat"] and y["code"] != code][:3])
+    gid = lst_gid(it["cat"])
+    offer = {"@type": "Offer", "priceCurrency": "INR", "availability": "https://schema.org/MadeToOrder"}
+    if it["price"]:
+        offer["price"] = it["price"]
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
+                     "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{it['what']} Material: {it['material']}.", "material": it["material"],
+                     "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
+    return head(fit_title(n, code), fit(f"{n}. Design {code}. {it['material']}. Made to order. {meta_price}", f"{n}. Made to order. {meta_price}", f"{n}. Made to order."),
+                mto_page(code), f"{keys[0]}-600.webp") + f"""<body class="has-stick">
+{header('mto')}
+<main id="main"><div class="wrap">
+<p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{gid}">{e(it["cat"])}</a> / {code}</p>
+<div class="pd">
+{gallery(keys, figs)}
+<div class="buy">
+<h1>{e(n)}</h1>
+{price}
+<p class="note">Made to order. We tell you the making time on WhatsApp.</p>
+<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>
+<p class="lede">{e(it["what"])}</p>
+<ul class="facts">{facts}</ul>
+<a class="lnk more-l" href="designs.html">All {ALL_N} designs{ARROW}</a>
+</div>
+</div>
+{('<section class="sec"><div class="hdr rv"><div><h2>More made to order</h2></div></div><div class="grid more3">' + more + '</div></section>') if more else ''}
+</div></main>
+<div class="stick"><b>{e(top)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>
+{footer()}
+<script type="application/ld+json">{ld}</script>
+</body></html>
+"""
+
+
 def page_designs():
     OW_AC = [x for x in OW if ow_wood(x) == "acacia"]
     OW_MG = [x for x in OW if ow_wood(x) == "mango"]
@@ -1776,6 +1915,10 @@ def page_designs():
               f'<section class="sec mto" id="g-{BX_GID}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(BX_TITLE)}</h2><p>{e(BX_LINE)}</p></div></div>\n<div class="grid four">{"".join(bx_card(it, True) for it in BX)}</div>\n</div></section>']
     if not BX:
         groups = [g for g in groups if f'id="g-{BX_GID}"' not in g]
+    for cat in lst_cats():
+        its = [x for x in LST if x["cat"] == cat]
+        chips += f'<a href="#g-{lst_gid(cat)}">{e(cat)}<span>{len(its)}</span></a>'
+        groups.append(f'<section class="sec mto" id="g-{lst_gid(cat)}"><div class="wrap">\n<div class="hdr rv"><div><h2>{e(cat)}</h2><p>Made to order in India. Price on WhatsApp unless shown.</p></div></div>\n<div class="grid four">{"".join(lst_card(x, True) for x in its)}</div>\n</div></section>')
     for gid, pre, title, line, items in MTO:
         cards = "".join(
             f'<a class="p rv" id="{pre}-{i}" href="{mto_page(f"{pre}-{i}")}"><div class="ph"><img src="{UP}img/m-{f}-600.webp" alt="{e(MTO_ALT.get(f"{pre}-{i}", n + ", design picture"))}" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div>'
@@ -1976,10 +2119,12 @@ def main():
         w(mto_page(it["code"]), page_ow(it))
     for it in NB:
         w(mto_page(it["code"]), page_bx(it))
+    for it in LST:
+        w(mto_page(it["code"]), page_lst(it))
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(it["code"]) for it in NB] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + [mto_page(it["code"]) for it in OW] + [mto_page(it["code"]) for it in NB] + [mto_page(it["code"]) for it in LST] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
@@ -1987,6 +2132,7 @@ def main():
     for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html")):
         w(src, f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Woodkari</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={dst}"><link rel="canonical" href="{SITE}/{dst}"><script>location.replace("{dst}")</script></head><body><p><a href="{dst}">Continue to Woodkari</a></p></body></html>\n')
     check_photos(pages)
+    lst_images()
     for name, s in pages.items():
         open(os.path.join(OUT, name), "w", encoding="utf-8").write(s)
     print("built", OUT, len(PRODUCTS) + 3 + ALL_N, "pages")

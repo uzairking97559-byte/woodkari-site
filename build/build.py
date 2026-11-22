@@ -115,6 +115,10 @@ PRODUCTS = [
                ("room-top", "Room tray seen from above on a white sheet", "Styled picture")])
 ]
 
+# owner D-334 (22 Nov 18:20): Fluted Box Tray and Room Tray off the site for now ("abhi unki zaroorat nahi"); their data stays here, their URLs redirect to trays.html
+PRODUCTS_OFF = {"fluted-box-tray", "room-tray"}
+PRODUCTS = [p for p in PRODUCTS if p["slug"] not in PRODUCTS_OFF]
+
 CATS = [("all", "Everything"), ("wood", "Acacia wood"), ("resin", "Resin trays"), ("u1500", "Under ₹1,500")]
 
 # owner list 20 Nov, point 2: product pictures, not only food and drink scenes (each picture is already on its own product page)
@@ -1400,7 +1404,7 @@ BULK_MSG = "Hello Woodkari, I want a bulk order.\nPiece:\nQuantity:\nCity: "
 # Every answer repeats a line already checked on this site (ops/checks/2026-11-14-site-v2.md).
 FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of one design. Small pieces such as coasters and tissue boxes are made in larger lots; ask us."),
        ("Can you put our name or logo on the pieces?", "Yes, on the wooden pieces, by laser, on 50 pieces or more of one design: a hotel name, a company logo or a couple's names."),
-       ("Can you change the size?", "The acacia pieces (the Room Tray and the Fluted Box Tray) can be made in any size, on order."),
+       ("Can you change the size?", "The acacia pieces can be made in any size, on order."),
        ("How long does an order take?", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time when you ask."),
        ("How does payment work?", "A single piece up to ₹10,000 is paid in full when you order, by UPI or bank transfer. For a piece above ₹10,000, such as furniture, and for a bulk order, a 50% advance starts the order and the rest is paid before dispatch."),
        ("Can I cancel or return a piece?", "You can cancel for free until we start making. Every piece is made for you, so there are no returns for a change of mind. If a piece arrives damaged, tell us on WhatsApp within 48 hours with an uncut unboxing video, and we replace it. The full terms are on the Order terms page."),
@@ -2185,8 +2189,6 @@ def page_bulk():
 <section class="sec"><div class="wrap">
 <div class="hdr rv"><div><h2>What we make in bulk</h2></div></div>
 <div class="grid four">
-<a class="p rv" href="room-tray.html"><div class="ph"><img src="{UP}img/room-front-600.webp" alt="Room tray on a wooden table with two cups of tea" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Room trays for hotels</h3><p class="sh">A hotel name by laser, from 50 pieces</p></a>
-<a class="p rv" href="fluted-box-tray.html"><div class="ph"><img src="{UP}img/fluted-front-600.webp" alt="Fluted acacia box tray on a wooden table" width="600" height="600" loading="lazy"><span class="tag">Styled picture</span></div><h3>Box trays for gifting</h3><p class="sh">For hampers and staff gifts</p></a>
 <a class="p rv" href="navy-ivory-floral-tray.html"><div class="ph"><img src="{UP}img/navy-front-600.webp" alt="Navy and ivory floral resin tray" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div><h3>Resin trays</h3><p class="sh">Made to order in India</p></a>
 <a class="p rv" href="{e(wa("Hello Woodkari, I am asking about engraved serving boards.\nCompany:\nQuantity: "))}"><div class="ph"><img src="{UP}img/d-engraved-600.webp" alt="Wooden serving board with a logo engraved, design picture" width="600" height="600" loading="lazy"><span class="tag">Made to order</span></div><h3>Engraved serving boards</h3><p class="sh">Your logo by laser, from 50</p></a>
 </div>
@@ -2310,7 +2312,7 @@ def main():
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
         w("llms.txt", llms_txt())
-    for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html")):
+    for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html"), ("fluted-box-tray.html", "trays.html"), ("room-tray.html", "trays.html")):
         w(src, f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Woodkari</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={dst}"><link rel="canonical" href="{SITE}/{dst}"><script>location.replace("{dst}")</script></head><body><p><a href="{dst}">Continue to Woodkari</a></p></body></html>\n')
     check_photos(pages)
     lst_images()

@@ -31,7 +31,7 @@ PRODUCTS = [
                 ("Made in", "India")],
          imgs=[("navy-front", "Navy and ivory floral tray on a wooden table", "Made to order"),
                ("navy-use", "Navy and ivory floral tray carrying two cups of tea and biscuits", "Made to order"),
-               ("navy-top", "Navy and ivory floral tray seen from above on a white sheet", "Made to order"),
+               ("navy-top", "Navy and ivory floral tray seen from above", "Made to order"),
                ("navy-white", "Navy and ivory floral tray on a plain white background", "Made to order"),
                ("navy-side", "Navy and ivory floral tray seen from the side on a wooden table", "Made to order"),
                ("navy-close", "Navy and ivory floral tray: close view of the floral pattern and a cut-out handle", "Made to order"),
@@ -61,7 +61,7 @@ PRODUCTS = [
                 ("Made in", "India")],
          imgs=[("chevron-front", "Red chevron tray: white frame and a red and white chevron pattern, on a wooden table", "Made to order"),
                ("chevron-use", "Red chevron tray carrying a glass jug and two glasses of water", "Made to order"),
-               ("chevron-top", "Red chevron tray seen from above on a white sheet", "Made to order"),
+               ("chevron-top", "Red chevron tray seen from above", "Made to order"),
                ("chevron-side", "Red chevron tray seen from the side on a wooden table", "Made to order"),
                ("chevron-hands", "Red chevron tray held in two hands", "Made to order"),
                ("chevron-stack", "Five red chevron trays stacked, for bulk orders", "Made to order")]),
@@ -75,7 +75,7 @@ PRODUCTS = [
                 ("Size", "On request"), ("Made in", "India"), ("Orders", "Bulk only, from 25 pieces. ₹799 each")],
          imgs=[("gold-front", "Gold-flake resin tray, black with gold flakes and leaf handles, on a wooden table", "Made to order"),
                ("gold-use", "Gold-flake resin tray holding two bowls of pistachios and almonds", "Made to order"),
-               ("gold-top", "Gold-flake resin tray seen from above on a white sheet", "Made to order"),
+               ("gold-top", "Gold-flake resin tray seen from above", "Made to order"),
                ("gold-white", "Gold-flake resin tray on a plain white background", "Made to order"),
                ("gold-side", "Gold-flake resin tray seen from the side on a wooden table", "Made to order"),
                ("gold-close", "Gold-flake resin tray: close view of the gold flakes and a leaf handle", "Made to order"),
@@ -846,12 +846,12 @@ body:has(dialog[open]){overflow:hidden}
 .p.cc .sh{font-size:12.5px;line-height:1.4;letter-spacing:.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .p.cc .sh{margin-bottom:10px}
 .p.cc .pr{margin:auto 0 0;min-height:32px;display:flex;align-items:center;font-size:17px}
-.p.cc .pr.ask{align-self:flex-start;gap:7px;height:32px;padding:0 11px 0 12px;border:1px solid var(--green);border-radius:var(--r);font:600 13px/1 var(--sans);letter-spacing:.01em;color:var(--green);box-sizing:border-box}
+.p.cc .pr.ask{align-self:flex-start;max-width:100%;height:32px;padding:0 10px;border:1px solid var(--green);border-radius:var(--r);font:600 12.5px/1 var(--sans);letter-spacing:0;color:var(--green);white-space:nowrap;box-sizing:border-box}
 .p.cc .pr.ask span{font:inherit;color:inherit}
 .p.cc .pr:not(.ask) span{margin-left:.3em}
 .p.cc .pr.ask svg{flex:none}
 .grid:has(> .p.cc){row-gap:22px}
-@media(min-width:760px){.p h3{font-size:18px;margin-top:16px}.p .sh{font-size:15px}.p .pr{font-size:18px}.p.cc h3{font-size:17px;margin-top:12px}.p.cc .sh{font-size:13px}.p.cc .pr{font-size:18px}.p.cc .pr.ask{font-size:13px}.grid:has(> .p.cc){row-gap:24px}}
+@media(min-width:760px){.p h3{font-size:18px;margin-top:16px}.p .sh{font-size:15px}.p .pr{font-size:18px}.p.cc h3{font-size:17px;margin-top:12px}.p.cc .sh{font-size:13px}.p.cc .pr{font-size:18px}.p.cc .pr.ask{font-size:13px;padding:0 12px}.grid:has(> .p.cc){row-gap:24px}}
 
 /* split blocks */
 .split{display:grid;gap:30px}
@@ -1681,7 +1681,8 @@ def clean_card(h):
         h = h.replace(sh.group(0), f'<p class="sh">{sh.group(1)} · {tag[0].lower() + tag[1:]}</p>', 1)
     pr = re.search(r'<p class="pr( bo)?">([^<]*WhatsApp[^<]*)</p>', h)
     if pr:
-        h = h.replace(pr.group(0), f'<p class="pr ask"><span>{pr.group(2)}</span>{ASK_ARR}</p>', 1)
+        label = "Get price on WhatsApp" if pr.group(2) == "Price on WhatsApp" else pr.group(2)  # owner D-335
+        h = h.replace(pr.group(0), f'<p class="pr ask"><span>{label}</span></p>', 1)
     return h.replace('<a class="p rv"', '<a class="p cc rv"', 1)
 
 

@@ -20,7 +20,7 @@ Woodkari Exports is a small Sambhal (Uttar Pradesh) maker of wooden and resin tr
 A real workshop in Sambhal, making these pieces since 2008, where most work is bulk orders. Four karigars; CNC router, laser engraving, resin. Finished by hand (owner, 14 Nov: sanding and polish by hand). A name or logo can be laser-engraved on orders of 50 pieces or more of one design. Acacia pieces (room tray, fluted box) can be made in any size.
 
 ## Operating Context
-- Orders start on WhatsApp (+91 91197 93282) or by mail (sales@woodkariexports.com). No cart, no online payment on the site.
+- Orders start on WhatsApp (+91 63971 21223) or by mail (sales@woodkariexports.com). No cart, no online payment on the site.
 - Bulk: from 25 pieces per design; 50% advance (owner); making time about 10-15 days per 100 pieces; delivery at the buyer's cost.
 - Resin trays are made in Sambhal by market makers and a friend's workshop (owner, 14 Nov), not in our own workshop: say "made to order in India" (or "with other makers near our workshop"), never "our workshop", for them.
 - Pictures: real plain photos exist for the room tray and fluted box only; every other picture is a design picture and must be labelled "Design picture, made to order".

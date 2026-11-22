@@ -16,7 +16,7 @@ BASE = SITE + ("" if OUT == "." else "/" + OUT)
 UP = "" if OUT == "." else "../"  # assets live at the root; a preview folder points one level up
 
 PIXEL_ID = "1148906040829800"  # Meta Pixel ID (owner approved 19 Nov); empty = no pixel code on any page
-WHATSAPP = "919119793282"
+WHATSAPP = "916397121223"
 EMAIL = "sales@woodkariexports.com"
 
 # imgs: (file key, alt, caption). card: (studio key, in-use key) for the shop grid.
@@ -1398,7 +1398,7 @@ JS = r"""
 })();
 """
 
-WA_PRINTED = "+91 91197 93282"  # as printed in the footer
+WA_PRINTED = "+91 63971 21223"  # as printed in the footer
 # Organization: only what the footer and header print (name, Sambhal, Uttar Pradesh, the mail and the WhatsApp number). Home, designs.html, bulk.html.
 ORG = {"@context": "https://schema.org", "@type": "Organization", "name": "Woodkari Exports", "alternateName": "Woodkari",
        "url": SITE + "/", "logo": SITE + "/icon-512.png", "email": EMAIL,
@@ -1544,7 +1544,7 @@ def footer():
 <div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
 <div><h3>Shop</h3>{foot_cats()}<a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
-<div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 91197 93282</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
+<div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 63971 21223</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
 <div class="mega" aria-hidden="true"><span>Woodkari</span></div></footer>

@@ -618,6 +618,8 @@ DR_ICON = {
 }
 DR_ICON = {k: v.replace(".500", ".5").replace(".200", ".2").replace(".300", ".3").replace(".800", ".8") for k, v in DR_ICON.items()}
 CHEV = '<svg class="i ar" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9.5 6 6 6-6 6"/></svg>'
+TARR = '<svg class="ta" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M14 6l6 6-6 6"/></svg>'
+TBACK = '<svg class="tb" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12H4M10 6l-6 6 6 6"/></svg>'
 PLUS = '<svg class="pl" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>'
 
 CSS = r"""
@@ -1165,18 +1167,22 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 .dr-nav a>span{flex:1;min-width:0}
 .dr-nav .di{flex:none;color:var(--green);transition:transform .3s var(--ease)}
 .dr-nav .ar{flex:none;width:17px;height:17px;color:var(--soft);transition:transform .3s var(--ease)}
-.dr-nav summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:15px 0;border-bottom:1px solid var(--line);font:400 27px/1.1 var(--serif);cursor:pointer;color:var(--ink)}
-.dr-nav summary::-webkit-details-marker{display:none}
-.dr-nav summary span{flex:1;min-width:0}
-.dr-nav summary .ar{transform:rotate(90deg);transition:transform .3s var(--ease)}
-.dr-nav details[open] summary .ar{transform:rotate(-90deg)}
-.dr-nav details[open]{border-bottom:1px solid var(--line)}
-.dr-nav details[open] summary{border-bottom:0}
-.dr-nav .dsub{padding:0 0 10px 2px}
-.dr-nav .dsub a{padding:11px 0;border-bottom:0;font:500 17px/1.2 var(--sans);color:var(--ink)}
-.dr-nav .dsub a i{font-style:normal;color:var(--soft);font-weight:400;font-size:15px}
-.dr-nav .dsub a:first-child{font-weight:600;color:var(--green)}
-.dr-nav a.dr2{font:400 20px/1.1 var(--serif);color:var(--soft)}
+.dr-in{padding:0 0 calc(20px + env(safe-area-inset-bottom))}
+.dm-hd{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:64px;padding:0 12px;border-bottom:1px solid #efece6}
+.dm-l{display:flex;align-items:center;gap:2px}
+.dm-hd .ib{margin:0}
+.dm-logo b{font-size:25px}.dm-logo small{font-size:9px;margin-top:3px}
+.dm{position:relative;flex:1;overflow:hidden}
+.dm .pane{position:absolute;inset:0;overflow-y:auto;overscroll-behavior:contain;padding:10px 0;background:#fff;transition:transform .32s var(--ease),opacity .32s var(--ease)}
+.dm .sub{transform:translateX(100%);padding-top:0}
+.dm.on .p0{transform:translateX(-28%);opacity:0}
+.dm .sub.on{transform:none}
+.dm a,.dm-back{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:58px;padding:0 24px;border:0;background:none;color:var(--ink);text-decoration:none;font:400 18.5px/1.3 var(--sans);letter-spacing:.015em;text-align:left;cursor:pointer}
+.dm .ta{flex:none;width:20px;height:20px;color:var(--ink);opacity:.75}
+.dm-back{justify-content:flex-start;gap:12px;min-height:52px;margin-bottom:6px;background:var(--stone);color:var(--soft);font-size:16.5px}
+.dm-back .tb{flex:none}
+.dm a:active,.dm-back:active{background:var(--stone)}
+@media(hover:hover) and (pointer:fine){.dm a:hover{color:var(--green)}}
 .tg{display:contents}
 .tm{display:none}
 .hchips{margin-top:34px}
@@ -1197,8 +1203,7 @@ button,.btn,.fab{-webkit-user-select:none;user-select:none}
 @media(hover:hover) and (pointer:fine){.menu:hover svg path:nth-child(3){transform:none}.dr-nav a:hover .di{transform:translateY(-2px)}}
 /* the drawer deals its rows in behind the panel: one short wave, gaps closing; the WhatsApp button only fades */
 @media(prefers-reduced-motion:no-preference){
- .drawer[open] .dr-nav>a,.drawer[open] .dr-nav>details{animation:drin .5s var(--ease) var(--d,0ms) backwards}
- .drawer[open] .dr-ft{animation:drfade .45s ease .2s backwards}
+ .drawer[open] .dm .p0>a{animation:drin .5s var(--ease) var(--d,0ms) backwards}
 }
 @keyframes drin{from{opacity:0;transform:translateX(-18px)}}
 @keyframes drfade{from{opacity:0}}
@@ -1225,7 +1230,11 @@ JS = r"""
     b.addEventListener('click',function(){g.showModal();b.setAttribute('aria-expanded','true');if(onopen)onopen(g)});
     g.addEventListener('close',function(){b.setAttribute('aria-expanded','false')});
     g.addEventListener('click',function(ev){if(ev.target===g||ev.target.closest('[data-close]')||ev.target.closest('a'))g.close()});}
-  dlg('.menu','drawer');
+  dlg('.menu','drawer',function(g){var m=$('.dm',g);if(!m)return;m.classList.remove('on');$$('.dm .sub',g).forEach(function(p){p.classList.remove('on');p.inert=true});$('.p0',g).inert=false});
+  $$('.dm [data-pane]').forEach(function(a){a.addEventListener('click',function(ev){var p=d.getElementById(a.dataset.pane),m=a.closest('.dm');if(!p)return;
+    ev.preventDefault();ev.stopPropagation();m.classList.add('on');p.classList.add('on');p.inert=false;$('.p0',m).inert=true;p.scrollTop=0;var f=$('.dm-back',p);if(f)f.focus({preventScroll:true})})});
+  $$('.dm-back').forEach(function(bk){bk.addEventListener('click',function(ev){ev.stopPropagation();var p=bk.closest('.pane'),m=bk.closest('.dm');
+    m.classList.remove('on');p.classList.remove('on');p.inert=true;var t=$('.p0',m);t.inert=false;var a=$('[data-pane="'+p.id+'"]',t);if(a)a.focus({preventScroll:true})})});
   var sx=d.getElementById('sx'),items=sx?JSON.parse(sx.textContent):[],list=$('.sr-list'),inp=$('.sr-bar input'),none=$('.sr-none');
   function render(q){if(!list)return;q=(q||'').trim().toLowerCase();list.textContent='';var n=0;
     items.forEach(function(it){if(q&&(it.n+' '+it.s).toLowerCase().indexOf(q)<0)return;n++;
@@ -1475,21 +1484,19 @@ def header(cur):
         if len(ss) == 1:
             tabs += f'<div class="tg"><a href="{ss[0][1]}.html"{c}>{e(g)}</a></div>'
         else:
-            tm = f'<a href="{gp}.html">All {e(g.lower())}<i>{tot}</i></a>' + "".join(f'<a href="{p}.html">{e(n)}<i>{c2}</i></a>' for n, p, c2 in ss)
+            tm = f'<a href="{gp}.html">All {e(g.lower())}</a>' + "".join(f'<a href="{p}.html">{e(n)}</a>' for n, p, c2 in ss)
             tabs += f'<div class="tg"><a href="{gp}.html"{c}>{e(g)}</a><div class="tm">{tm}</div></div>'
     tabs += f'<div class="tg"><a href="bulk.html"{" aria-current=true" if cur == "bulk" else ""}>Bulk orders</a></div>'
-    dr = ""
+    top, panes = "", ""
     for i, (g, gp, ss, tot) in enumerate(tree):
-        st = f'style="--d:{60 + i * 22}ms"'
+        st = f'style="--d:{50 + i * 18}ms"'
         if len(ss) == 1:
-            dr += f'<a href="{ss[0][1]}.html" {st}><span>{e(g)}</span>{CHEV}</a>'
+            top += f'<a href="{ss[0][1]}.html" {st}>{e(g)}{TARR}</a>'
         else:
-            sub = f'<a href="{gp}.html">All {e(g.lower())}<i>{tot}</i></a>' + "".join(f'<a href="{p}.html">{e(n)}<i>{c2}</i></a>' for n, p, c2 in ss)
-            op = " open" if cur == gp and False else ""
-            dr += f'<details class="dg" name="dg" {st}><summary><span>{e(g)}</span>{CHEV}</summary><div class="dsub">{sub}</div></details>'
-    k = len(tree)
-    for j, (h, lab) in enumerate([("bulk.html", "Bulk and hotel orders"), ("./#workshop", "The workshop"), ("./#questions", "Questions")]):
-        dr += f'<a class="dr2" href="{h}" style="--d:{60 + (k + j) * 22}ms"><span>{lab}</span>{CHEV}</a>'
+            top += f'<a href="{gp}.html" data-pane="pn-{gp}" {st}>{e(g)}{TARR}</a>'
+            panes += (f'<div class="pane sub" id="pn-{gp}" inert><button class="dm-back" type="button">{TBACK}{e(g)}</button>'
+                      f'<a href="{gp}.html">All</a>' + "".join(f'<a href="{p}.html">{e(n)}</a>' for n, p, c2 in ss) + "</div>")
+    top += f'<a href="bulk.html" style="--d:{50 + len(tree) * 18}ms">Bulk and hotel orders{TARR}</a>'
     return f"""<a class="skip" href="#main">Skip to content</a>
 {pv}<header class="hd">
 <div class="wrap hd-top">
@@ -1500,11 +1507,8 @@ def header(cur):
 <div class="tabs"><div><nav class="wrap" aria-label="Shop">{tabs}</nav></div></div>
 </header>
 <dialog class="drawer" id="drawer" aria-label="Menu"><div class="dr-in">
-<div class="dr-hd"><b>Woodkari</b><button class="ib" type="button" data-close aria-label="Close menu">{X_ICON}</button></div>
-<nav class="dr-nav" aria-label="Menu">
-{dr}
-</nav>
-<div class="dr-ft"><a class="btn pri wide" href="{e(wa(HELLO))}">{WA_ICON}Chat on WhatsApp</a><p>{EMAIL}</p></div>
+<div class="dm-hd"><div class="dm-l"><button class="ib" type="button" data-close aria-label="Close menu">{X_ICON}</button><a class="ib" href="{e(wa(HELLO))}" aria-label="WhatsApp">{WA_OUT}</a></div><a class="logo dm-logo" href="./" aria-label="Woodkari home"><b>Woodkari</b><small>EXPORTS</small></a><span></span></div>
+<nav class="dm" aria-label="Menu"><div class="pane p0">{top}</div>{panes}</nav>
 </div></dialog>
 <dialog class="srch" id="srch" aria-label="Search"><div class="sr-in">
 <div class="sr-bar"><input type="search" placeholder="Search trays, boxes, designs" aria-label="Search the pieces" autocomplete="off" enterkeyhint="search"><button class="ib" type="button" data-close aria-label="Close search">{X_ICON}</button></div>

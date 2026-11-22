@@ -841,7 +841,17 @@ body:has(dialog[open]){overflow:hidden}
 .p .pr{font-weight:600;font-size:17px;margin:5px 0 0;color:var(--green);font-variant-numeric:tabular-nums lining-nums}
 .p .pr span{font-weight:400;color:var(--soft);font-size:14px}
 .p .pr.bo{font-size:15px}
-@media(min-width:760px){.p h3{font-size:18px;margin-top:16px}.p .sh{font-size:15px}.p .pr{font-size:18px}}
+.p.cc{display:flex;flex-direction:column}
+.p.cc h3{font:500 16px/1.3 var(--sans);margin:10px 0 3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.p.cc .sh{font-size:12.5px;line-height:1.4;letter-spacing:.01em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.p.cc .sh{margin-bottom:10px}
+.p.cc .pr{margin:auto 0 0;min-height:32px;display:flex;align-items:center;font-size:17px}
+.p.cc .pr.ask{align-self:flex-start;gap:7px;height:32px;padding:0 11px 0 12px;border:1px solid var(--green);border-radius:var(--r);font:600 13px/1 var(--sans);letter-spacing:.01em;color:var(--green);box-sizing:border-box}
+.p.cc .pr.ask span{font:inherit;color:inherit}
+.p.cc .pr:not(.ask) span{margin-left:.3em}
+.p.cc .pr.ask svg{flex:none}
+.grid:has(> .p.cc){row-gap:22px}
+@media(min-width:760px){.p h3{font-size:18px;margin-top:16px}.p .sh{font-size:15px}.p .pr{font-size:18px}.p.cc h3{font-size:17px;margin-top:12px}.p.cc .sh{font-size:13px}.p.cc .pr{font-size:18px}.p.cc .pr.ask{font-size:13px}.grid:has(> .p.cc){row-gap:24px}}
 
 /* split blocks */
 .split{display:grid;gap:30px}
@@ -1651,8 +1661,28 @@ def all_cards():
     out = []
     for k, n, c, h in items:
         h = re.sub(r'data-cat="[^"]*" ', "", h, count=1)
-        out.append((k, n, sub_of(k, n, lcat.get(k, "")), h))
+        out.append((k, n, sub_of(k, n, lcat.get(k, "")), clean_card(h)))
     return out
+
+
+ASK_ARR = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>'
+
+
+def clean_card(h):
+    """owner 22 Nov 18:20: lighter cards on home and category pages. The picture badge goes; its words stay as small grey text in the
+    line under the title (the footer note explains what "Made to order" / "Styled picture" / "plain photo" mean), unless that line already says made to order.
+    "... on WhatsApp" becomes a small outlined button; a real price stays, smaller."""
+    m = re.search(r'<span class="tag">([^<]*)</span>', h)
+    tag = m.group(1) if m else ""
+    if m:
+        h = h.replace(m.group(0), "", 1)
+    sh = re.search(r'<p class="sh">(.*?)</p>', h)
+    if tag and sh and not (tag.lower() == "made to order" and re.search(r"made (on|to) order", sh.group(1), re.I)):
+        h = h.replace(sh.group(0), f'<p class="sh">{sh.group(1)} · {tag[0].lower() + tag[1:]}</p>', 1)
+    pr = re.search(r'<p class="pr( bo)?">([^<]*WhatsApp[^<]*)</p>', h)
+    if pr:
+        h = h.replace(pr.group(0), f'<p class="pr ask"><span>{pr.group(2)}</span>{ASK_ARR}</p>', 1)
+    return h.replace('<a class="p rv"', '<a class="p cc rv"', 1)
 
 
 CARDS, CARD_BY = [], {}  # filled in main(), once every card builder exists

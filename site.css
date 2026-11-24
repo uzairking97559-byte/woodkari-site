@@ -306,6 +306,7 @@ body:has(dialog[open]){overflow:hidden}
 .buy .pr span{font-size:15px;font-weight:400;color:var(--soft)}
 .buy .pr.bo{font-size:20px}
 .buy .note{font-size:15px;color:var(--soft);margin:6px 0 0}
+.buy .ob .pr span{font-size:15px;font-weight:400;color:var(--soft)}.obp{list-style:none;margin:10px 0 4px;padding:0}.obp li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;padding:8px 0;border-top:1px solid var(--line);font-size:16px}.obp li:last-child{border-bottom:1px solid var(--line)}.obp span{color:var(--soft)}.buy .ob .row{margin-top:16px}
 .buy .lede{margin:22px 0 0}
 .buy .uses{margin:10px 0 0;color:var(--soft)}
 .buy .facts{margin-top:24px}

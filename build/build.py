@@ -322,7 +322,7 @@ OW = [
          what="A rectangular tray with oval handle cut-outs.",
          views=["on a white background", "top view", "close-up of an oval handle cut-out", "side view",
                 "in use, holding a loaf of bread, a jar of jam and a knife", "three trays stacked"]),
-    dict(code="OW-36", wood="mango", size="8 × 8 × 3 in (20 × 20 × 7.6 cm)", name="9-compartment wooden box with glass lid", price=899, bulk=450,
+    dict(code="OW-36", wood="mango", size="8 × 8 × 3 in (20 × 20 × 7.6 cm)", name="9-compartment wooden box with glass lid", price=1899, bulk=699,
          what="Square box with nine compartments under a glass lid, for spices, dry fruit or small items.",
          views=["on a white background", "top view", "close-up of the corner and the glass lid", "side view",
                 "in use, holding nine different spices", "three boxes stacked"]),
@@ -530,6 +530,8 @@ def ow_price_lines(it):
     """the two price lines of a single-piece item, or the one line of a bulk-only item"""
     if it["price"] and it.get("unit") == "set":
         return f"{rupee(it['price'])} for the set of 3", f"{OW_BULK_FROM} sets or more: {rupee(it['bulk'])} a set"
+    if it["price"] and it["code"] == "OW-36":
+        return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: Rs {it['bulk']} per piece"  # D-366, D-378
     if it["price"]:
         return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: {rupee(it['bulk'])} each"
     if it["code"] not in BULK_ONLY_PRICE:
@@ -935,6 +937,7 @@ body:has(dialog[open]){overflow:hidden}
 .buy .pr span{font-size:15px;font-weight:400;color:var(--soft)}
 .buy .pr.bo{font-size:20px}
 .buy .note{font-size:15px;color:var(--soft);margin:6px 0 0}
+.buy .ob .pr span{font-size:15px;font-weight:400;color:var(--soft)}.obp{list-style:none;margin:10px 0 4px;padding:0}.obp li{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 12px;padding:8px 0;border-top:1px solid var(--line);font-size:16px}.obp li:last-child{border-bottom:1px solid var(--line)}.obp span{color:var(--soft)}.buy .ob .row{margin-top:16px}
 .buy .lede{margin:22px 0 0}
 .buy .uses{margin:10px 0 0;color:var(--soft)}
 .buy .facts{margin-top:24px}
@@ -1543,7 +1546,7 @@ def footer():
     return f"""<footer class="ft"><div class="wrap">
 <div><a class="fl" href="./" aria-label="Woodkari home"><img src="{UP}icon-96.png" width="40" height="40" alt=""><b>Woodkari</b></a>
 <p>Woodkari Exports, Sambhal, Uttar Pradesh. Wooden and resin trays and boxes, making since 2008. Bulk orders from 25 pieces; single pieces on WhatsApp.</p></div>
-<div><h3>Shop</h3>{foot_cats()}<a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
+<div><h3>Shop</h3>{foot_cats()}<a class="l" href="designs.html">Made to order designs</a><a class="l" href="bulk.html">Bulk and hotel orders</a><a class="l" href="terms.html">Order terms</a><a class="l" href="refund-cancellation.html">Refund and cancellation</a><a class="l" href="shipping.html">Shipping and delivery</a><a class="l" href="privacy.html">Privacy policy</a><a class="l" href="about.html">About us</a><a class="l" href="contact.html">Contact us</a><a class="l" href="./#engraving">Name and logo engraving</a><a class="l" href="./#questions">Questions</a></div>
 <div><h3>Talk to us</h3><a class="l" href="{e(wa(HELLO))}">WhatsApp +91 63971 21223</a><a class="l" href="mailto:{EMAIL}">{EMAIL}</a></div>
 <p class="fine">Pictures marked "Made to order" or "Styled picture" are made to show the look of a piece; wood grain and resin differ a little on every piece. Only pictures marked "plain photo" are photos of our own pieces.</p>
 </div>
@@ -1963,6 +1966,23 @@ def page_ow(it):
         stick_l = top
         price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
         meta_price = top + "."
+    order_block = ""
+    if code == "OW-36":
+        # direct sale (25 Nov): prices from agency-research businesses/woodkari/direct_sale_price_decision.md (PROPOSED, owner haan before live)
+        msg = "Namaste, mujhe 9 khaane wala mango wood gift box order karna hai. Piece: 1"
+        btn = stick_btn = "Order now"
+        stick_l = "Rs 1,899"
+        price = ""
+        order_block = f"""<div class="ob">
+<p class="pr">Rs 1,899 <span>1 box</span></p>
+<ul class="obp"><li><b>Pack of 2</b><span>Rs 2,799 · about Rs 1,400 per box</span></li><li><b>Pack of 4</b><span>Rs 4,699 · about Rs 1,175 per box</span></li></ul>
+<p class="note">Price includes delivery in India.</p>
+<p class="note">Rs 200 advance confirms your order. Balance before dispatch.</p>
+<p class="note">Made to order. We confirm the making time on WhatsApp before you pay.</p>
+<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order now</a></div>
+<p class="note">25 pieces or more: Rs 699 per piece. Bulk: delivery extra, 50% advance.</p>
+</div>"""
+        meta_price = "One box Rs 1,899, delivery in India included."
     meta_wood = "Acacia wood, other woods on request." if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
     keys = [ow_key(code, x) for x, _ in shown]
@@ -1990,9 +2010,7 @@ def page_ow(it):
 {gallery(keys, figs)}
 <div class="buy">
 <h1>{e(n)}</h1>
-{price}
-<p class="note">Made to order. We tell you the making time on WhatsApp.</p>
-<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}{btn}</a></div>
+{order_block if order_block else price + chr(10) + '<p class="note">Made to order. We tell you the making time on WhatsApp.</p>' + chr(10) + '<div class="row"><a class="btn pri wide" href="' + e(wa(msg)) + '">' + WA_ICON + btn + '</a></div>'}
 <p class="lede">{e(lede)}</p>
 <ul class="facts">{facts}</ul>
 <a class="lnk more-l" href="designs.html">All {ALL_N} designs{ARROW}</a>
@@ -2201,6 +2219,57 @@ def page_terms():
 </body></html>"""
 
 
+def policy_page(title, desc, path, h1, intro, sections, extra=""):
+    body = "".join(f"<h2>{e(h)}</h2>" + (f"<ol>{''.join('<li>' + e(x) + '</li>' for x in xs)}</ol>" if isinstance(xs, list) else f"<p>{e(xs)}</p>") for h, xs in sections)
+    return head(title, desc, path, "room-front.jpg") + f"""<body>
+{header('terms')}
+<main id="main">
+<section class="sec"><div class="wrap terms">
+<h1>{e(h1)}</h1>
+<p>{e(intro)}</p>
+{body}{extra}
+<div class="row"><a class="btn pri" href="{e(wa(HELLO))}">{WA_ICON}Ask on WhatsApp</a></div>
+</div></section>
+</main>
+{footer()}
+</body></html>"""
+
+
+def page_privacy():
+    return policy_page("Privacy Policy | Woodkari, India", "What Woodkari collects when you order, why, and how to ask us to delete it.", "privacy.html",
+        "Privacy policy", "This page says what we collect when you contact or order from Woodkari Exports, and what we do with it.",
+        [("What we collect", ["Your name, phone number and delivery address.", "The messages you send us on WhatsApp or by email, including pictures and videos you send for a damage claim."]),
+         ("How we use it", ["We use it only to make your order, deliver it and support you after.", "We do not sell your details to anyone."]),
+         ("Delete your details", "To have your details deleted, message us on WhatsApp +91 63971 21223 or write to " + EMAIL + ".")])
+
+
+def page_refund():
+    return policy_page("Refund and Cancellation | Woodkari, India", "How cancellation, returns and damage claims work at Woodkari, for single pieces and bulk orders.", "refund-cancellation.html",
+        "Refund and cancellation", "Short and simple. The full order terms are on the Order terms page.",
+        [("Single pieces", [TERMS_SINGLE[1], TERMS_SINGLE[2], TERMS_SINGLE[3]]),
+         ("Bulk orders, 25 pieces or more of one design", [TERMS_BULK[1], TERMS_BULK[2]])])
+
+
+def page_shipping():
+    return policy_page("Shipping and Delivery | Woodkari, India", "How delivery works at Woodkari: single pieces and bulk orders.", "shipping.html",
+        "Shipping and delivery", "Every piece is made to order. We tell you the making time on WhatsApp.",
+        [("Single pieces", ["For single pieces sold with a price that includes delivery, the price shown includes delivery in India.", "For other pieces, delivery is extra. We tell you the amount on WhatsApp.", TERMS_SINGLE[3]]),
+         ("Bulk orders, 25 pieces or more of one design", [TERMS_BULK[0], TERMS_BULK[3], TERMS_BULK[2]])])
+
+
+def page_contact():
+    return policy_page("Contact Us | Woodkari, India", "How to reach Woodkari Exports: WhatsApp and email.", "contact.html",
+        "Contact us", "Woodkari Exports, Sambhal, Uttar Pradesh, India.",
+        [("WhatsApp", "+91 63971 21223"), ("Email", EMAIL)])
+
+
+def page_about():
+    return policy_page("About Woodkari | India", "Woodkari Exports makes wooden and resin trays and boxes in India.", "about.html",
+        "About Woodkari", "Woodkari Exports is a small maker of wooden and resin trays and boxes in India.",
+        [("What we make", "We make wooden trays and boxes. We cut the wood on a CNC router, engrave by laser and finish the wooden pieces by hand. Our resin trays are made with other makers near our workshop."),
+         ("Who we make for", "Most of our work is bulk orders for hotels, gifting companies and shops. Single pieces are welcome too. Orders start on WhatsApp or by email.")])
+
+
 def page_bulk():
     msg = "Hello Woodkari, I want a bulk price.\nCompany:\nPiece and quantity:\nCity: "
     return head("Wholesale & Bulk Trays and Boxes, from 25 | Woodkari, India",
@@ -2322,6 +2391,8 @@ def main():
     w("index.html", page_home())
     w("bulk.html", page_bulk())
     w("terms.html", page_terms())
+    for _n, _f in (("privacy.html", page_privacy), ("refund-cancellation.html", page_refund), ("shipping.html", page_shipping), ("contact.html", page_contact), ("about.html", page_about)):
+        w(_n, _f())
     w("designs.html", page_designs())
     for name, text in category_pages().items():
         w(name, text)
@@ -2338,7 +2409,7 @@ def main():
     for p in PRODUCTS:
         w(p["slug"] + ".html", page_product(p))
     if not PREVIEW:
-        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + list(category_pages()) + [mto_page(it["code"]) for it in OW] + [mto_page(it["code"]) for it in NB] + [mto_page(it["code"]) for it in LST] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html"]
+        urls = [""] + [p["slug"] + ".html" for p in PRODUCTS] + ["designs.html"] + list(category_pages()) + [mto_page(it["code"]) for it in OW] + [mto_page(it["code"]) for it in NB] + [mto_page(it["code"]) for it in LST] + [mto_page(c) for _, c, _, _ in mto_items()] + ["bulk.html", "terms.html", "privacy.html", "refund-cancellation.html", "shipping.html", "contact.html", "about.html"]
         w("sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")

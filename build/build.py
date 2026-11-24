@@ -2181,12 +2181,12 @@ def category_pages():
 
 
 TERMS_SINGLE = [
-    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer: the full price for a piece up to ₹10,000; for a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
+    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer. Orders of 1 or 2 pieces: Rs 200 advance confirms the order. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
     "You can cancel for free until we start making. Once making has started, the order cannot be cancelled.",
     "Each piece is made for you, so we do not take returns for a change of mind.",
     "If a piece arrives damaged or is not what you ordered, tell us on WhatsApp within 48 hours of delivery, with an uncut unboxing video and photos. We replace it, or return your money if we cannot replace it. We pay the shipping for this.",
     "Handmade pieces differ a little: wood grain and colour change from piece to piece. This is not a defect.",
-    "Delivery is extra. We tell you the amount on WhatsApp.",
+    "Delivery is extra. We tell you the amount on WhatsApp, unless the product page says the price includes delivery.",
 ]
 TERMS_BULK = [
     "A 50% advance starts the order. The other 50% is paid before dispatch.",
@@ -2239,7 +2239,7 @@ def page_privacy():
     return policy_page("Privacy Policy | Woodkari, India", "What Woodkari collects when you order, why, and how to ask us to delete it.", "privacy.html",
         "Privacy policy", "This page says what we collect when you contact or order from Woodkari Exports, and what we do with it.",
         [("What we collect", ["Your name, phone number and delivery address.", "The messages you send us on WhatsApp or by email, including pictures and videos you send for a damage claim."]),
-         ("How we use it", ["We use it only to make your order, deliver it and support you after.", "We do not sell your details to anyone."]),
+         ("How we use it", ["We use your details to make, deliver and support your order.", "This site also uses Google Analytics and the Meta pixel to count visits and to measure our ads.", "We do not sell your details to anyone."]),
          ("Delete your details", "To have your details deleted, message us on WhatsApp +91 63971 21223 or write to " + EMAIL + ".")])
 
 
@@ -2253,7 +2253,7 @@ def page_refund():
 def page_shipping():
     return policy_page("Shipping and Delivery | Woodkari, India", "How delivery works at Woodkari: single pieces and bulk orders.", "shipping.html",
         "Shipping and delivery", "Every piece is made to order. We tell you the making time on WhatsApp.",
-        [("Single pieces", ["For single pieces sold with a price that includes delivery, the price shown includes delivery in India.", "For other pieces, delivery is extra. We tell you the amount on WhatsApp.", TERMS_SINGLE[3]]),
+        [("Single pieces", ["For single pieces sold with a price that includes delivery, the price shown includes delivery in India.", TERMS_SINGLE[5], TERMS_SINGLE[3]]),
          ("Bulk orders, 25 pieces or more of one design", [TERMS_BULK[0], TERMS_BULK[3], TERMS_BULK[2]])])
 
 
@@ -2265,7 +2265,7 @@ def page_contact():
 
 def page_about():
     return policy_page("About Woodkari | India", "Woodkari Exports makes wooden and resin trays and boxes in India.", "about.html",
-        "About Woodkari", "Woodkari Exports is a small maker of wooden and resin trays and boxes in India.",
+        "About Woodkari", "Woodkari Exports is a maker of wooden and resin trays and boxes in India.",
         [("What we make", "We make wooden trays and boxes. We cut the wood on a CNC router, engrave by laser and finish the wooden pieces by hand. Our resin trays are made with other makers near our workshop."),
          ("Who we make for", "Most of our work is bulk orders for hotels, gifting companies and shops. Single pieces are welcome too. Orders start on WhatsApp or by email.")])
 

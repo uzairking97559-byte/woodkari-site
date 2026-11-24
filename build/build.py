@@ -326,7 +326,7 @@ OW = [
          what="Square box with nine compartments under a glass lid, for spices, dry fruit or small items.",
          views=["on a white background", "top view", "close-up of the corner and the glass lid", "side view",
                 "in use, holding nine different spices", "three boxes stacked"]),
-    dict(code="OW-37", wood="mango", size="4.75 × 4.75 × 1.25 in (12 × 12 × 3.2 cm)", name="4-compartment open wooden tray", price=299, bulk=150,
+    dict(code="OW-37", wood="mango", size="4.75 × 4.75 × 1.25 in (12 × 12 × 3.2 cm)", name="4-compartment open wooden tray", price=3399, bulk=None, pack=10,
          what="Small open tray with four compartments, for tea bags, sugar or snacks.",
          views=["on a white background", "top view", "close-up of a compartment and the corner", "side view",
                 "in use, holding tea bags, sugar cubes, cardamom and biscuits", "three trays stacked"]),
@@ -530,6 +530,8 @@ def ow_price_lines(it):
     """the two price lines of a single-piece item, or the one line of a bulk-only item"""
     if it["price"] and it.get("unit") == "set":
         return f"{rupee(it['price'])} for the set of 3", f"{OW_BULK_FROM} sets or more: {rupee(it['bulk'])} a set"
+    if it.get("pack"):  # sold only in packs (D-430): the price is the pack price, never a single-piece price
+        return f"Pack of {it['pack']} Rs {it['price']:,}", f"{OW_BULK_FROM} pieces or more: ask on WhatsApp."
     if it["price"] and it["code"] == "OW-36":
         return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: Rs {it['bulk']} per piece"  # D-366, D-378
     if it["price"]:
@@ -1482,7 +1484,7 @@ def search_data():
     for k, n in DESIGNS:
         items.append({"n": n, "s": "Made to order · in bulk", "u": wa("Hello Woodkari, I am asking about: " + n + "\nQuantity: "), "i": f"{UP}img/{k}.webp"})
     for it in OW:
-        sub = rupee(it["price"]) if it["price"] else ow_price_lines(it)[0]
+        sub = rupee(it["price"]) if it["price"] and not it.get("pack") else ow_price_lines(it)[0]
         items.append({"n": it["name"], "s": f"Design {it['code']} · {ow_wood(it)} wood, made to order · {sub}", "u": mto_page(it["code"]), "i": f"{UP}img/{ow_key(it['code'])}-600.webp"})
     for it in NB:
         items.append({"n": it["name"], "s": f"Design {it['code']} · made to order, {bx_from(it)}", "u": mto_page(it["code"]), "i": f"{UP}img/{bx_key(it["code"])}-600.webp"})
@@ -1941,6 +1943,15 @@ def page_design(gid, pre, title, line, items, i):
 """
 
 
+DIRECT_SALE = {
+    "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai. Piece: 1", top="Rs 1,899", unit="1 box", stick="Rs 1,899",
+                  packs=[("Pack of 2", "Rs 2,799 · about Rs 1,400 per box"), ("Pack of 4", "Rs 4,699 · about Rs 1,175 per box"), ("Pack of 10", "Rs 11,199 · about Rs 1,120 per box")],
+                  bulk="25 pieces or more: Rs 699 per piece. Bulk: delivery extra, 50% advance.", meta="One box Rs 1,899, delivery in India included."),
+    "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.", top="Rs 3,399", unit="Pack of 10 · about Rs 340 per box", stick="Pack of 10 Rs 3,399",
+                  packs=[], bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 Rs 3,399, delivery in India included."),
+}
+
+
 def ow_card(it, anchor=False):
     """a card for designs.html (anchor=True gives it the id that the chips and :target use) and for "More" rows"""
     top, _ = ow_price_lines(it)
@@ -1967,23 +1978,23 @@ def page_ow(it):
         price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
         meta_price = top + "."
     order_block = ""
-    if code == "OW-36":
-        # direct sale (25 Nov): prices from agency-research businesses/woodkari/direct_sale_price_decision.md (PROPOSED, owner haan before live)
-        msg = "Namaste, mujhe 9 khaane wala mango wood gift box order karna hai. Piece: 1"
+    if code in DIRECT_SALE:
+        # direct sale (25 Nov): prices and lines from agency-research businesses/woodkari/direct_sale_price_decision.md, version 2 (PROPOSED, owner haan before live)
+        ds = DIRECT_SALE[code]
+        msg = ds["msg"]
         btn = stick_btn = "Order now"
-        stick_l = "Rs 1,899"
+        stick_l = ds["stick"]
         price = ""
+        packs = ('<ul class="obp">' + "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in ds["packs"]) + "</ul>\n") if ds["packs"] else ""
         order_block = f"""<div class="ob">
-<p class="pr">Rs 1,899 <span>1 box</span></p>
-<ul class="obp"><li><b>Pack of 2</b><span>Rs 2,799 · about Rs 1,400 per box</span></li><li><b>Pack of 4</b><span>Rs 4,699 · about Rs 1,175 per box</span></li></ul>
-<p class="note">Price includes delivery in India.</p>
-<p class="note">1 box or a pack of 2: Rs 200 advance confirms your order. Balance before dispatch.</p>
-<p class="note">Pack of 4: 50% advance. Balance before dispatch.</p>
-<p class="note">Made to order. We confirm the making time on WhatsApp before you pay.</p>
+<p class="pr">{e(ds["top"])} <span>{e(ds["unit"])}</span></p>
+{packs}<p class="note">Price includes delivery in India.</p>
+<p class="note">Rs 200 advance starts the making. The balance is paid before dispatch. Or pay the full amount now.</p>
+<p class="note">Made to order. After you pay, we message you on WhatsApp to confirm your order and the making time. You can cancel for free until we start making.</p>
 <div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order now</a></div>
-<p class="note">25 pieces or more: Rs 699 per piece. Bulk: delivery extra, 50% advance.</p>
+<p class="note">{e(ds["bulk"])}</p>
 </div>"""
-        meta_price = "One box Rs 1,899, delivery in India included."
+        meta_price = ds["meta"]
     meta_wood = "Acacia wood, other woods on request." if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
     keys = [ow_key(code, x) for x, _ in shown]
@@ -1999,7 +2010,11 @@ def page_ow(it):
         offer["price"] = it["price"]
     elif code in BULK_ONLY_PRICE:
         offer["price"] = BULK_ONLY_PRICE[code]
-    ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n, "sku": code,
+    if it.get("pack"):  # the price is for the whole pack: say so in the offer and in the schema name, so it is never read as a single-piece price
+        offer["name"] = f"Pack of {it['pack']}"
+        offer["description"] = f"Price is for a pack of {it['pack']} pieces, delivery in India included."
+        offer["eligibleQuantity"] = {"@type": "QuantitativeValue", "value": it["pack"], "unitText": "pieces"}
+    ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n + (f", pack of {it['pack']}" if it.get("pack") else ""), "sku": code,
                      "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO}", "material": ow_wood(it).capitalize() + " wood",
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
     return head(fit_title(seo_name(OW_GID if ow_wood(it) == "acacia" else "mango", n), code), fit(f"{it['what']} Design {code}. {meta_wood} Made to order. {meta_price}", f"{it['what']} {meta_wood} Made to order. {meta_price}"),
@@ -2182,7 +2197,7 @@ def category_pages():
 
 
 TERMS_SINGLE = [
-    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer. Orders of 1 or 2 pieces: Rs 200 advance confirms the order. Orders of 3 or more pieces: 50% advance. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
+    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer. Orders placed from a product page with a price: Rs 200 advance starts the making, or you can pay the full amount. Other orders of 3 or more pieces: 50% advance. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
     "You can cancel for free until we start making. Once making has started, the order cannot be cancelled.",
     "Each piece is made for you, so we do not take returns for a change of mind.",
     "If a piece arrives damaged or is not what you ordered, tell us on WhatsApp within 48 hours of delivery, with an uncut unboxing video and photos. We replace it, or return your money if we cannot replace it. We pay the shipping for this.",

@@ -1977,7 +1977,8 @@ def page_ow(it):
 <p class="pr">Rs 1,899 <span>1 box</span></p>
 <ul class="obp"><li><b>Pack of 2</b><span>Rs 2,799 · about Rs 1,400 per box</span></li><li><b>Pack of 4</b><span>Rs 4,699 · about Rs 1,175 per box</span></li></ul>
 <p class="note">Price includes delivery in India.</p>
-<p class="note">Rs 200 advance confirms your order. Balance before dispatch.</p>
+<p class="note">1 box or a pack of 2: Rs 200 advance confirms your order. Balance before dispatch.</p>
+<p class="note">Pack of 4: 50% advance. Balance before dispatch.</p>
 <p class="note">Made to order. We confirm the making time on WhatsApp before you pay.</p>
 <div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order now</a></div>
 <p class="note">25 pieces or more: Rs 699 per piece. Bulk: delivery extra, 50% advance.</p>
@@ -2181,7 +2182,7 @@ def category_pages():
 
 
 TERMS_SINGLE = [
-    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer. Orders of 1 or 2 pieces: Rs 200 advance confirms the order. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
+    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer. Orders of 1 or 2 pieces: Rs 200 advance confirms the order. Orders of 3 or more pieces: 50% advance. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
     "You can cancel for free until we start making. Once making has started, the order cannot be cancelled.",
     "Each piece is made for you, so we do not take returns for a change of mind.",
     "If a piece arrives damaged or is not what you ordered, tell us on WhatsApp within 48 hours of delivery, with an uncut unboxing video and photos. We replace it, or return your money if we cannot replace it. We pay the shipping for this.",

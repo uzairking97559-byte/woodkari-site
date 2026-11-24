@@ -1943,6 +1943,26 @@ def page_design(gid, pre, title, line, items, i):
 """
 
 
+# Razorpay Payment Page links of the two direct-sale boxes (made in the owner's Razorpay account).
+# Empty = no pay button: the page keeps its single "Order now" WhatsApp button.
+# Set = the price block and the sticky bar show "Pay online" (this link, same tab) and "Order on WhatsApp".
+PAY_LINK_OW37 = ""
+PAY_LINK_OW36 = ""
+PAY_LINKS = {"OW-37": PAY_LINK_OW37, "OW-36": PAY_LINK_OW36}
+# Only on a page with a pay link: layout of the two buttons (sticky bar: price on the first line, both buttons on the second).
+PAY_CSS = ("<style>.stick.two{flex-wrap:wrap;gap:8px 10px}.stick.two b{flex:0 0 100%;font-size:16px}"
+           ".stick.two .btn{flex:1 1 auto;padding:10px 9px;font-size:15px;white-space:nowrap;gap:8px}"
+           "@media(max-width:959px){body.has-stick{padding-bottom:calc(112px + env(safe-area-inset-bottom))}.buy .ob .btn.line.wide{display:none}}"
+           "@media(max-width:350px){.stick.two{gap:8px}.stick.two .btn{font-size:14px;padding:10px 6px;gap:6px}}</style>\n")
+# Only on a page with a pay link: Meta pixel InitiateCheckout, once, on a tap on "Pay online". The existing pixel events are not touched.
+# No fbq (blocked or not loaded): nothing happens here and the link works as a plain link.
+PAY_JS = ("<script>(function(){var done=0;document.addEventListener('click',function(e){"
+          "var a=e.target.closest&&e.target.closest('a[data-pay]');if(!a||done)return;done=1;"
+          "try{if(typeof window.fbq!=='function')return;"
+          "window.fbq('track','InitiateCheckout',{content_ids:[a.getAttribute('data-pay')],content_type:'product'});"
+          "if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.target)return;"
+          "e.preventDefault();var h=a.href;setTimeout(function(){location.href=h},300)}catch(x){}},true)})();</script>\n")
+
 DIRECT_SALE = {
     "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai.", top="₹1,899", unit="1 box", stick="₹1,899",
                   packs=[("Pack of 2", "₹2,799 · about ₹1,400 per box"), ("Pack of 4", "₹4,699 · about ₹1,175 per box"), ("Pack of 10", "₹11,199 · about ₹1,120 per box")],
@@ -1977,7 +1997,7 @@ def page_ow(it):
         stick_l = top
         price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
         meta_price = top + "."
-    order_block = ""
+    order_block = pay = ""
     if code in DIRECT_SALE:
         # direct sale (25 Nov): prices and lines from agency-research businesses/woodkari/direct_sale_price_decision.md, version 2 (PROPOSED, owner haan before live)
         ds = DIRECT_SALE[code]
@@ -1985,13 +2005,17 @@ def page_ow(it):
         btn = stick_btn = "Order now"
         stick_l = ds["stick"]
         price = ""
+        pay = PAY_LINKS.get(code, "").strip()
+        ob_btns = (f'<a class="btn pri wide" href="{e(pay)}" data-pay="{code}">Pay online</a><a class="btn line wide" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a>'
+                   if pay else f'<a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order now</a>')
         packs = ('<ul class="obp">' + "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in ds["packs"]) + "</ul>\n") if ds["packs"] else ""
         order_block = f"""<div class="ob">
 <p class="pr">{e(ds["top"])} <span>{e(ds["unit"])}</span></p>
 {packs}<p class="note">Price includes delivery in India.</p>
 <p class="note">Rs 200 advance starts the making. The balance is paid before dispatch. Or pay the full amount now.</p>
 <p class="note">Made to order. After you pay, we message you on WhatsApp to confirm your order and the making time. You can cancel for free until we start making.</p>
-<div class="row"><a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order now</a></div>
+<p class="note">The box comes empty. Dry fruit or sweets in pictures are not included. Wood colour and grain vary from piece to piece.</p>
+<div class="row">{ob_btns}</div>
 <p class="note">{e(ds["bulk"])}</p>
 </div>"""
         meta_price = ds["meta"]
@@ -2017,7 +2041,9 @@ def page_ow(it):
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n + (f", pack of {it['pack']}" if it.get("pack") else ""), "sku": code,
                      "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO}", "material": ow_wood(it).capitalize() + " wood",
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
-    return head(fit_title(seo_name(OW_GID if ow_wood(it) == "acacia" else "mango", n), code), fit(f"{it['what']} Design {code}. {meta_wood} Made to order. {meta_price}", f"{it['what']} {meta_wood} Made to order. {meta_price}"),
+    stick = (f'<div class="stick two"><b>{e(stick_l)}</b><a class="btn pri" href="{e(pay)}" data-pay="{code}">Pay online</a><a class="btn line" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>'
+             if pay else f'<div class="stick"><b>{e(stick_l)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}{stick_btn}</a></div>')
+    out = head(fit_title(seo_name(OW_GID if ow_wood(it) == "acacia" else "mango", n), code), fit(f"{it['what']} Design {code}. {meta_wood} Made to order. {meta_price}", f"{it['what']} {meta_wood} Made to order. {meta_price}"),
                 mto_page(code), f"{keys[0]}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
 <main id="main"><div class="wrap">
@@ -2036,11 +2062,12 @@ def page_ow(it):
 {more}
 </div></section>
 </div></main>
-<div class="stick"><b>{e(stick_l)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}{stick_btn}</a></div>
+{stick}
 {footer()}
 <script type="application/ld+json">{ld}</script>
-</body></html>
+{PAY_JS if pay else ""}</body></html>
 """
+    return out.replace("</head>", PAY_CSS + "</head>", 1) if pay else out
 
 
 def lst_card(it, anchor=False):

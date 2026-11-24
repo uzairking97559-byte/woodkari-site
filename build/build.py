@@ -326,10 +326,10 @@ OW = [
          what="Square box with nine compartments under a glass lid, for spices, dry fruit or small items.",
          views=["on a white background", "top view", "close-up of the corner and the glass lid", "side view",
                 "in use, holding nine different spices", "three boxes stacked"]),
-    dict(code="OW-37", wood="mango", size="4.75 × 4.75 × 1.25 in (12 × 12 × 3.2 cm)", name="4-compartment open wooden tray", price=3399, bulk=None, pack=10,
+    dict(code="OW-37", wood="mango", size="4.75 × 4.75 × 1.25 in (12 × 12 × 3.2 cm)", name="4-compartment open wooden box", price=3399, bulk=None, pack=10,
          what="Small open tray with four compartments, for tea bags, sugar or snacks.",
          views=["on a white background", "top view", "close-up of a compartment and the corner", "side view",
-                "in use, holding tea bags, sugar cubes, cardamom and biscuits", "three trays stacked"]),
+                "in use, holding tea bags, sugar cubes, cardamom and biscuits", "three boxes stacked"]),
 ]
 # Boxes, made to order (19 Nov batch, D-279). READ from agency-research businesses/woodkari/site/next_batch_inlay_chests.csv:
 # only rows with a price and a real size (not "andaza"), box prices checked against each other (a larger box never costs less).
@@ -531,9 +531,9 @@ def ow_price_lines(it):
     if it["price"] and it.get("unit") == "set":
         return f"{rupee(it['price'])} for the set of 3", f"{OW_BULK_FROM} sets or more: {rupee(it['bulk'])} a set"
     if it.get("pack"):  # sold only in packs (D-430): the price is the pack price, never a single-piece price
-        return f"Pack of {it['pack']} Rs {it['price']:,}", f"{OW_BULK_FROM} pieces or more: ask on WhatsApp."
+        return f"Pack of {it['pack']} {rupee(it['price'])}", f"{OW_BULK_FROM} pieces or more: ask on WhatsApp."
     if it["price"] and it["code"] == "OW-36":
-        return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: Rs {it['bulk']} per piece"  # D-366, D-378
+        return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: {rupee(it['bulk'])} per piece"  # D-366, D-378
     if it["price"]:
         return rupee(it["price"]), f"{OW_BULK_FROM} pieces or more: {rupee(it['bulk'])} each"
     if it["code"] not in BULK_ONLY_PRICE:
@@ -1944,11 +1944,11 @@ def page_design(gid, pre, title, line, items, i):
 
 
 DIRECT_SALE = {
-    "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai. Piece: 1", top="Rs 1,899", unit="1 box", stick="Rs 1,899",
-                  packs=[("Pack of 2", "Rs 2,799 · about Rs 1,400 per box"), ("Pack of 4", "Rs 4,699 · about Rs 1,175 per box"), ("Pack of 10", "Rs 11,199 · about Rs 1,120 per box")],
-                  bulk="25 pieces or more: Rs 699 per piece. Bulk: delivery extra, 50% advance.", meta="One box Rs 1,899, delivery in India included."),
-    "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.", top="Rs 3,399", unit="Pack of 10 · about Rs 340 per box", stick="Pack of 10 Rs 3,399",
-                  packs=[], bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 Rs 3,399, delivery in India included."),
+    "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai.", top="₹1,899", unit="1 box", stick="₹1,899",
+                  packs=[("Pack of 2", "₹2,799 · about ₹1,400 per box"), ("Pack of 4", "₹4,699 · about ₹1,175 per box"), ("Pack of 10", "₹11,199 · about ₹1,120 per box")],
+                  bulk="25 pieces or more: ₹699 per piece. Bulk: delivery extra, 50% advance.", meta="One box ₹1,899, delivery in India included."),
+    "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.", top="₹3,399", unit="Pack of 10 · about ₹340 per box", stick="Pack of 10 ₹3,399",
+                  packs=[], bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 ₹3,399, delivery in India included."),
 }
 
 
@@ -2269,7 +2269,7 @@ def page_refund():
 def page_shipping():
     return policy_page("Shipping and Delivery | Woodkari, India", "How delivery works at Woodkari: single pieces and bulk orders.", "shipping.html",
         "Shipping and delivery", "Every piece is made to order. We tell you the making time on WhatsApp.",
-        [("Single pieces", ["For single pieces sold with a price that includes delivery, the price shown includes delivery in India.", TERMS_SINGLE[5], TERMS_SINGLE[3]]),
+        [("Single pieces", ["For products sold with a price that includes delivery (a single box or a pack), the price shown includes delivery in India.", TERMS_SINGLE[5], TERMS_SINGLE[3]]),
          ("Bulk orders, 25 pieces or more of one design", [TERMS_BULK[0], TERMS_BULK[3], TERMS_BULK[2]])])
 
 

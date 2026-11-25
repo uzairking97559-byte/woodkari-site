@@ -18,6 +18,8 @@ UP = "" if OUT == "." else "../"  # assets live at the root; a preview folder po
 PIXEL_ID = "1148906040829800"  # Meta Pixel ID (owner approved 19 Nov); empty = no pixel code on any page
 WHATSAPP = "916397121223"
 EMAIL = "sales@woodkariexports.com"
+# Advance rule (owner D-448, 25 Nov): under ₹2,000 -> ₹200; ₹2,000 or more -> 50% (rounded up); or the full amount.
+ADV_RULE = "Advance: an order under ₹2,000 starts with ₹200; an order of ₹2,000 or more with 50%. Or pay the full amount now. The balance is paid before dispatch."
 
 # imgs: (file key, alt, caption). card: (studio key, in-use key) for the shop grid.
 PRODUCTS = [
@@ -1421,7 +1423,7 @@ FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of 
        ("Can you put our name or logo on the pieces?", "Yes, on the wooden pieces, by laser, on 50 pieces or more of one design: a hotel name, a company logo or a couple's names."),
        ("Can you change the size?", "The acacia pieces can be made in any size, on order."),
        ("How long does an order take?", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time when you ask."),
-       ("How does payment work?", "Orders from the 9-compartment gift box page and the 4-compartment open box page: Rs 200 advance starts the making, or you can pay the full amount. Other orders of 1 or 2 pieces: Rs 200 advance starts the making. Other orders of 3 or more pieces: 50% advance. For a piece above ₹10,000, such as furniture, a 50% advance. The balance is paid before dispatch, by UPI, card or bank transfer."),
+       ("How does payment work?", ADV_RULE + " For a piece above ₹10,000, such as furniture, a 50% advance. Payment is by UPI, card or bank transfer."),
        ("Can I cancel or return a piece?", "You can cancel for free until we start making. Every piece is made for you, so there are no returns for a change of mind. If a piece arrives damaged, tell us on WhatsApp within 48 hours with an uncut unboxing video, and we replace it. The full terms are on the Order terms page."),
        ("Who pays for delivery?", "Delivery is extra. We tell you the amount on WhatsApp, unless the product page says the price includes delivery."),
        ("Can I buy just one piece?", "Yes, where the product page shows a price for one piece; some boxes are sold in packs, and the product page says so. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
@@ -1944,34 +1946,115 @@ def page_design(gid, pre, title, line, items, i):
 """
 
 
-# Razorpay Payment Page links of the two direct-sale boxes (made in the owner's Razorpay account).
-# Empty = no pay button: the page keeps its single "Order now" WhatsApp button.
-# Set = the price block and the sticky bar show "Pay online" (this link, same tab) and "Order on WhatsApp".
-PAY_LINK_OW37 = "https://rzp.io/rzp/Mn4AHQV"  # Razorpay page "Woodkari small gift box: pack of 10" (Friday, ops/laptop_questions.md 25 Nov 05:32)
-PAY_LINK_OW36 = "https://rzp.io/rzp/G5NKapX1"  # Razorpay page "Woodkari 9-compartment gift box" (same source)
-PAY_LINKS = {"OW-37": PAY_LINK_OW37, "OW-36": PAY_LINK_OW36}
-# Only on a page with a pay link: layout of the two buttons (sticky bar: price on the first line, both buttons on the second).
-PAY_CSS = ("<style>.stick.two{flex-wrap:wrap;gap:8px 10px}.stick.two b{flex:0 0 100%;font-size:16px}"
-           ".stick.two .btn{flex:1 1 auto;padding:10px 9px;font-size:15px;white-space:nowrap;gap:8px}"
-           "@media(max-width:959px){body.has-stick{padding-bottom:calc(112px + env(safe-area-inset-bottom))}.buy .ob .btn.line.wide{display:none}}"
-           "@media(max-width:350px){.stick.two{gap:8px}.stick.two .btn{font-size:14px;padding:10px 6px;gap:6px}}</style>\n")
-# Only on a page with a pay link: Meta pixel InitiateCheckout, once, on a tap on "Pay online". The existing pixel events are not touched.
-# No fbq (blocked or not loaded): nothing happens here and the link works as a plain link.
-PAY_JS = ("<script>(function(){var done=0;document.addEventListener('click',function(e){"
-          "var a=e.target.closest&&e.target.closest('a[data-pay]');if(!a||done)return;done=1;"
-          "try{if(typeof window.fbq!=='function')return;"
-          "window.fbq('track','InitiateCheckout',{content_ids:[a.getAttribute('data-pay')],content_type:'product'});"
-          "if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.target)return;"
-          "e.preventDefault();var h=a.href;setTimeout(function(){location.href=h},300)}catch(x){}},true)})();</script>\n")
-
-DIRECT_SALE = {
-    "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai.", top="₹1,899", unit="1 box", stick="1 box ₹1,899",
-                  packs=[("Pack of 2", "₹2,799 · about ₹1,400 per box"), ("Pack of 4", "₹4,699 · about ₹1,175 per box"), ("Pack of 10", "₹11,199 · about ₹1,120 per box")],
-                  bulk="25 pieces or more: ₹699 per piece. Bulk: delivery extra, 50% advance.", meta="One box ₹1,899, delivery in India included."),
-    "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.", top="₹3,399", unit="Pack of 10 · about ₹340 per box", stick="Pack of 10 ₹3,399",
-                  packs=[], bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 ₹3,399, delivery in India included."),
+# Direct-sale checkout like a shop's "Buy now" (D-449): one Razorpay Payment Page per (design, pack, "advance" | "full"),
+# each with ONE fixed amount. Fill the links in here only; the page never reads a link from the URL or from storage.
+# Empty link = that button is hidden. A pack with no link at all falls back to the WhatsApp button as the main button,
+# and a design with no link at all shows the page as before (pack list and one "Order now" WhatsApp button).
+PAY_LINKS = {
+    ("OW-37", 10, "advance"): "",  # ₹1,700
+    ("OW-37", 10, "full"): "",     # ₹3,399
+    ("OW-36", 1, "advance"): "",   # ₹200
+    ("OW-36", 1, "full"): "",      # ₹1,899
+    ("OW-36", 2, "advance"): "",   # ₹1,400
+    ("OW-36", 2, "full"): "",      # ₹2,799
+    ("OW-36", 4, "advance"): "",   # ₹2,350
+    ("OW-36", 4, "full"): "",      # ₹4,699
+    ("OW-36", 10, "advance"): "",  # ₹5,600
+    ("OW-36", 10, "full"): "",     # ₹11,199
+}
+# (pieces, price, advance, name, per-box line). Prices: agency-research businesses/woodkari/direct_sale_price_decision.md v2;
+# advances: D-448, Checker ops/checks/2026-11-25-advance-amounts.md (ARITHMETIC OK). The first pack is the default.
+DS_PACKS = {
+    "OW-37": [(10, 3399, 1700, "Pack of 10", "about ₹340 per box")],
+    "OW-36": [(1, 1899, 200, "1 box", ""), (2, 2799, 1400, "Pack of 2", "about ₹1,400 per box"),
+              (4, 4699, 2350, "Pack of 4", "about ₹1,175 per box"), (10, 11199, 5600, "Pack of 10", "about ₹1,120 per box")],
 }
 
+
+def ds_advance(price):
+    """D-448: under ₹2,000 -> ₹200; ₹2,000 or more -> 50%, rounded up to a whole rupee"""
+    return 200 if price < 2000 else -(-price // 2)
+
+
+def ds_link(code, n, kind):
+    return PAY_LINKS.get((code, n, kind), "").strip()
+
+
+# machine locks: every advance follows the rule; every link is empty or a plain https link; no stray keys
+for _c, _ps in DS_PACKS.items():
+    for _n, _p, _a, _nm, _pb in _ps:
+        assert _a == ds_advance(_p), f"advance for {_c} {_nm} is {_a}, the rule gives {ds_advance(_p)}"
+for _k, _v in PAY_LINKS.items():
+    assert _k[0] in DS_PACKS and _k[1] in [x[0] for x in DS_PACKS[_k[0]]] and _k[2] in ("advance", "full"), f"unknown pay link key {_k}"
+    assert _v == "" or re.fullmatch(r"https://[^\s\"'<>]+", _v.strip()), f"pay link {_k} must be empty or an https link"
+
+# Only on a page with at least one pay link: pack chips, pay buttons, sticky bar with the pay buttons.
+DS_CSS = ("<style>.ob [hidden],.stick [hidden]{display:none!important}"
+          ".ob[data-ds] .pr{line-height:1.3}.ob[data-ds] .pr span{display:inline-block}"
+          ".pk-ch{border:0;margin:16px 0 4px;padding:0;min-width:0;display:none}.js .pk-ch{display:block}"
+          ".pk-ch legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}"
+          ".pk-g{display:grid;grid-template-columns:1fr 1fr;gap:8px}"
+          ".chip{position:relative;display:flex;flex-direction:column;gap:2px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--r);background:#fff;cursor:pointer;-webkit-tap-highlight-color:transparent}"
+          ".chip input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}"
+          ".chip .cn{font-size:15px;font-weight:600;color:var(--ink)}.chip .cp{font-size:16px;font-weight:600;color:var(--green);font-variant-numeric:tabular-nums lining-nums}.chip .cb{font-size:13px;color:var(--soft)}"
+          ".chip.on,.chip:has(input:checked){border-color:var(--green);box-shadow:inset 0 0 0 1px var(--green);background:var(--mist)}"
+          ".chip:has(input:focus-visible){outline:2px solid var(--green);outline-offset:2px}"
+          ".payb{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px}.payb .btn{min-height:52px;padding:12px 10px;white-space:nowrap}"
+          ".ob .payb.sel{display:none}.js .ob .payb.sel{display:grid}"
+          ".pk-rows{list-style:none;margin:14px 0 0;padding:0}.js .pk-rows{display:none}"
+          ".pk-rows li{padding:12px 0;border-top:1px solid var(--line)}.pk-rows li:last-child{border-bottom:1px solid var(--line)}"
+          ".pk-rows .pkr{margin:0;font-size:16px}.pk-rows .pkr span{color:var(--soft);font-size:14px}.pk-rows .payb{margin-top:10px}"
+          ".buy .ob .wa-l{margin-top:12px}.wa-l a{color:var(--green);font-weight:600;text-decoration:underline;text-underline-offset:3px}"
+          "@media(max-width:520px){.payb{grid-template-columns:1fr}}"
+          ".stick.ds{flex-wrap:wrap;gap:8px 10px}.stick.ds b{flex:0 0 100%;font-size:16px}"
+          ".stick.ds .btn{flex:1 1 0;min-width:0;padding:10px 8px;font-size:15px;white-space:nowrap;gap:8px}"
+          "@media(max-width:350px){.stick.ds .btn{font-size:14px;padding:10px 5px}}"
+          "@media(max-width:959px){body.has-stick{padding-bottom:calc(112px + env(safe-area-inset-bottom))}}</style>\n")
+# Only on a page with at least one pay link.
+# (1) Meta pixel: a tap on "Pay advance" / "Pay full" sends InitiateCheckout once per page view, with the amount; then the link opens.
+#     No fbq (blocked or not loaded) or an error: nothing happens here and the link works as a plain link. Existing events untouched.
+# (2) Pack chips: the chosen pack sets the price line, the sticky label and both pay buttons from the radio's data attributes,
+#     which the build writes from PAY_LINKS (nothing from the URL or storage). A pack with no link shows the WhatsApp button instead.
+DS_JS = ("<script>(function(){var done=0;document.addEventListener('click',function(e){"
+         "var a=e.target.closest&&e.target.closest('a[data-pay]');if(!a||done||!a.getAttribute('href'))return;done=1;"
+         "try{if(typeof window.fbq!=='function')return;"
+         "window.fbq('track','InitiateCheckout',{content_ids:[a.getAttribute('data-pay')],content_type:'product',value:Number(a.getAttribute('data-value'))||0,currency:'INR'});"
+         "if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||a.target)return;"
+         "e.preventDefault();var h=a.href;setTimeout(function(){location.href=h},300)}catch(x){}},true)})();\n"
+         "(function(){var d=document,ob=d.querySelector('.ob[data-ds]');if(!ob||!ob.querySelector('input[name=pk]'))return;"
+         "function setBox(box,s,pk){if(!box)return 0;var any=0;"
+         "[['adv','Pay advance '],['full','Pay full ']].forEach(function(k){var a=box.querySelector('.pay-'+k[0]);if(!a)return;var h=s[k[0]+'Href']||'';"
+         "if(/^https:\\/\\//.test(h)){a.setAttribute('href',h);a.hidden=false;any=1}else{a.removeAttribute('href');a.hidden=true}"
+         "a.textContent=k[1]+s[k[0]+'Txt'];a.setAttribute('data-value',s[k[0]+'Amt']);a.setAttribute('data-pack',pk)});"
+         "var w=box.querySelector('.wa-main');if(w)w.hidden=!!any;return any}"
+         "function apply(){var r=ob.querySelector('input[name=pk]:checked');if(!r)return;var s=r.dataset;"
+         "var pr=ob.querySelector('.pr');if(pr&&pr.firstChild)pr.firstChild.nodeValue=s.price+' ';var u=pr&&pr.querySelector('span');if(u)u.textContent=s.unit;"
+         "var sl=d.querySelector('.stick .sl');if(sl)sl.textContent=s.stick;"
+         "var any=setBox(ob.querySelector('.payb.sel'),s,r.value);setBox(d.querySelector('.stick'),s,r.value);"
+         "var wl=ob.querySelector('.wa-l');if(wl)wl.hidden=!any;"
+         "[].forEach.call(ob.querySelectorAll('.chip'),function(c){c.classList.toggle('on',!!c.querySelector('input:checked'))})}"
+         "ob.addEventListener('change',function(e){if(e.target&&e.target.name==='pk')apply()});"
+         "addEventListener('pageshow',apply);apply()})();</script>\n")
+
+# Direct-sale pages: text that is not a price (prices and advances are in DS_PACKS).
+DIRECT_SALE = {
+    "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai.",
+                  adv=ADV_RULE,
+                  bulk="25 pieces or more: ₹699 per piece. Bulk: delivery extra, 50% advance.", meta="One box ₹1,899, delivery in India included."),
+    "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.",
+                  adv="Advance ₹1,700 starts the making. The balance ₹1,699 is paid before dispatch. Or pay the full amount now.",
+                  bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 ₹3,399, delivery in India included."),
+}
+# lock: the OW-37 concrete line says the same numbers as DS_PACKS
+assert DIRECT_SALE["OW-37"]["adv"] == f"Advance {rupee(DS_PACKS['OW-37'][0][2])} starts the making. The balance {rupee(DS_PACKS['OW-37'][0][1] - DS_PACKS['OW-37'][0][2])} is paid before dispatch. Or pay the full amount now."
+
+
+def ds_btns(code, n, adv, price, sel=False):
+    """the two pay buttons of one pack (a hidden button where the link is empty); sel=True: the block that the chips drive"""
+    la, lf = ds_link(code, n, "advance"), ds_link(code, n, "full")
+    out = (f'<a class="btn pri pay-adv"{(" href=" + chr(34) + e(la) + chr(34)) if la else " hidden"} data-pay="{code}" data-pack="{n}" data-value="{adv}">Pay advance {rupee(adv)}</a>'
+           f'<a class="btn line pay-full"{(" href=" + chr(34) + e(lf) + chr(34)) if lf else " hidden"} data-pay="{code}" data-pack="{n}" data-value="{price}">Pay full {rupee(price)}</a>')
+    return out
 
 def ow_card(it, anchor=False):
     """a card for designs.html (anchor=True gives it the id that the chips and :target use) and for "More" rows"""
@@ -1998,27 +2081,60 @@ def page_ow(it):
         stick_l = top
         price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
         meta_price = top + "."
-    order_block = pay = ""
+    order_block = stick_ds = ""
+    live = False
     if code in DIRECT_SALE:
-        # direct sale (25 Nov): prices and lines from agency-research businesses/woodkari/direct_sale_price_decision.md, version 2 (PROPOSED, owner haan before live)
+        # direct sale: prices and advances from DS_PACKS, links from PAY_LINKS (D-448, D-449)
         ds = DIRECT_SALE[code]
+        packs = DS_PACKS[code]
         msg = ds["msg"]
         btn = stick_btn = "Order now"
-        stick_l = ds["stick"]
+        n0, p0, a0, nm0, pb0 = packs[0]
+        unit0 = nm0 + (" · " + pb0 if pb0 else "")
+        stick_l = f"{nm0} {rupee(p0)}"
         price = ""
-        pay = PAY_LINKS.get(code, "").strip()
-        ob_btns = (f'<a class="btn pri wide" href="{e(pay)}" data-pay="{code}">Pay online</a><a class="btn line wide" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a>'
-                   if pay else f'<a class="btn pri wide" href="{e(wa(msg))}">{WA_ICON}Order now</a>')
-        packs = ('<ul class="obp">' + "".join(f"<li><b>{e(a)}</b><span>{e(b)}</span></li>" for a, b in ds["packs"]) + "</ul>\n") if ds["packs"] else ""
-        order_block = f"""<div class="ob">
-<p class="pr">{e(ds["top"])} <span>{e(ds["unit"])}</span></p>
-{packs}<p class="note">Price includes delivery in India.</p>
-<p class="note">Rs 200 advance starts the making. The balance is paid before dispatch. Or pay the full amount now.</p>
-<p class="note">Made to order. After you pay, we message you on WhatsApp to confirm your order and the making time. You can cancel for free until we start making.</p>
-<p class="note">The box comes empty. Dry fruit or sweets in pictures are not included. Wood colour and grain vary from piece to piece.</p>
-<div class="row">{ob_btns}</div>
+        wa_u = e(wa(msg))
+        live = any(ds_link(code, x[0], k) for x in packs for k in ("advance", "full"))
+        notes = (f'<p class="note">Price includes delivery in India.</p>\n<p class="note">{e(ds["adv"])}</p>\n'
+                 '<p class="note">Made to order. After you pay, we message you on WhatsApp to confirm your order and the making time. You can cancel for free until we start making.</p>\n'
+                 '<p class="note">The box comes empty. Dry fruit or sweets in pictures are not included. Wood colour and grain vary from piece to piece.</p>\n')
+        if not live:
+            # no link yet: the page as before (pack list and one "Order now" WhatsApp button)
+            lst = ('<ul class="obp">' + "".join(f"<li><b>{e(nm)}</b><span>{e(rupee(pr) + ' · ' + pb)}</span></li>" for _, pr, _, nm, pb in packs[1:]) + "</ul>\n") if len(packs) > 1 else ""
+            order_block = f"""<div class="ob">
+<p class="pr">{e(rupee(p0))} <span>{e(unit0)}</span></p>
+{lst}{notes}<div class="row"><a class="btn pri wide" href="{wa_u}">{WA_ICON}Order now</a></div>
 <p class="note">{e(ds["bulk"])}</p>
 </div>"""
+        else:
+            multi = len(packs) > 1
+            any0 = bool(ds_link(code, n0, "advance") or ds_link(code, n0, "full"))
+            wa_main = f'<a class="btn pri wide wa-main" href="{wa_u}"{"" if not any0 else " hidden"}>{WA_ICON}Order now</a>'
+            chips = rows = ""
+            if multi:
+                def chip(x, first):
+                    n, pr, ad, nm, pb = x
+                    la, lf = ds_link(code, n, "advance"), ds_link(code, n, "full")
+                    data = (f' data-price="{e(rupee(pr))}" data-unit="{e(nm + (" · " + pb if pb else ""))}" data-stick="{e(nm + " " + rupee(pr))}"'
+                            f' data-adv-href="{e(la)}" data-adv-amt="{ad}" data-adv-txt="{e(rupee(ad))}" data-full-href="{e(lf)}" data-full-amt="{pr}" data-full-txt="{e(rupee(pr))}"')
+                    return (f'<label class="chip{" on" if first else ""}"><input type="radio" name="pk" value="{n}" autocomplete="off"{" checked" if first else ""}{data}>'
+                            f'<span class="cn">{e(nm)}</span><span class="cp">{e(rupee(pr))}</span>{("<span class=" + chr(34) + "cb" + chr(34) + ">" + e(pb) + "</span>") if pb else ""}</label>')
+                chips = ('<fieldset class="pk-ch"><legend>Choose a pack</legend><div class="pk-g">' + "".join(chip(x, i == 0) for i, x in enumerate(packs)) + "</div></fieldset>\n")
+                def row(x):
+                    n, pr, ad, nm, pb = x
+                    has = ds_link(code, n, "advance") or ds_link(code, n, "full")
+                    b2 = ds_btns(code, n, ad, pr) if has else f'<a class="btn line" href="{wa_u}">{WA_ICON}Order on WhatsApp</a>'
+                    return f'<li><p class="pkr"><b>{e(nm)} {e(rupee(pr))}</b>{(" <span>" + e(pb) + "</span>") if pb else ""}</p><div class="payb">{b2}</div></li>'
+                rows = '<ul class="pk-rows">' + "".join(row(x) for x in packs) + "</ul>\n"
+            order_block = f"""<div class="ob" data-ds="{code}">
+<p class="pr" aria-live="polite">{e(rupee(p0))} <span>{e(unit0)}</span></p>
+{chips}{rows}{notes}<div class="payb{" sel" if multi else ""}">{ds_btns(code, n0, a0, p0)}</div>
+<div class="row">{wa_main}</div>
+<p class="note wa-l"{"" if any0 else " hidden"}>Questions or 25+ pieces? <a href="{wa_u}">Order on WhatsApp</a></p>
+<p class="note">{e(ds["bulk"])}</p>
+</div>"""
+            stick_ds = (f'<div class="stick ds"><b class="sl">{e(stick_l)}</b>{ds_btns(code, n0, a0, p0)}'
+                        f'<a class="btn pri wa-main" href="{wa_u}"{"" if not any0 else " hidden"}>{WA_ICON}Order now</a></div>')
         meta_price = ds["meta"]
     meta_wood = "Acacia wood, other woods on request." if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
@@ -2042,8 +2158,7 @@ def page_ow(it):
     ld = json.dumps({"@context": "https://schema.org", "@type": "Product", "name": n + (f", pack of {it['pack']}" if it.get("pack") else ""), "sku": code,
                      "image": f"{SITE}/img/{keys[0]}.webp", "description": f"{lede} {OW_MATERIAL if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO}", "material": ow_wood(it).capitalize() + " wood",
                      "brand": {"@type": "Brand", "name": "Woodkari"}, "offers": offer})
-    stick = (f'<div class="stick two"><b>{e(stick_l)}</b><a class="btn pri" href="{e(pay)}" data-pay="{code}">Pay online</a><a class="btn line" href="{e(wa(msg))}">{WA_ICON}Order on WhatsApp</a></div>'
-             if pay else f'<div class="stick"><b>{e(stick_l)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}{stick_btn}</a></div>')
+    stick = stick_ds if live else f'<div class="stick"><b>{e(stick_l)}</b><a class="btn pri" href="{e(wa(msg))}">{WA_ICON}{stick_btn}</a></div>'
     out = head(fit_title(seo_name(OW_GID if ow_wood(it) == "acacia" else "mango", n), code), fit(f"{it['what']} Design {code}. {meta_wood} Made to order. {meta_price}", f"{it['what']} {meta_wood} Made to order. {meta_price}"),
                 mto_page(code), f"{keys[0]}-600.webp") + f"""<body class="has-stick">
 {header('mto')}
@@ -2066,9 +2181,9 @@ def page_ow(it):
 {stick}
 {footer()}
 <script type="application/ld+json">{ld}</script>
-{PAY_JS if pay else ""}</body></html>
+{DS_JS if live else ""}</body></html>
 """
-    return out.replace("</head>", PAY_CSS + "</head>", 1) if pay else out
+    return out.replace("</head>", DS_CSS + "</head>", 1) if live else out
 
 
 def lst_card(it, anchor=False):
@@ -2225,7 +2340,7 @@ def category_pages():
 
 
 TERMS_SINGLE = [
-    "Every piece is made to order. We start making it once you have ordered and paid, by UPI, card or bank transfer. Orders from the 9-compartment gift box page and the 4-compartment open box page: Rs 200 advance starts the making, or you can pay the full amount. Other orders of 1 or 2 pieces: Rs 200 advance starts the making. Other orders of 3 or more pieces: 50% advance. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
+    "Every piece is made to order. We start making it once you have ordered and paid, by UPI, card or bank transfer. " + ADV_RULE + " For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
     "You can cancel for free until we start making. Once making has started, the order cannot be cancelled.",
     "Each piece is made for you, so we do not take returns for a change of mind.",
     "If a piece arrives damaged or is not what you ordered, tell us on WhatsApp within 48 hours of delivery, with an uncut unboxing video and photos. We replace it, or return your money if we cannot replace it. We pay the shipping for this.",

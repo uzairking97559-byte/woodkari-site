@@ -1449,6 +1449,7 @@ def head(title, desc, path, image):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>{e(title)}</title>
 <meta name="description" content="{e(desc)}">
 {robots}
@@ -1946,8 +1947,8 @@ def page_design(gid, pre, title, line, items, i):
 # Razorpay Payment Page links of the two direct-sale boxes (made in the owner's Razorpay account).
 # Empty = no pay button: the page keeps its single "Order now" WhatsApp button.
 # Set = the price block and the sticky bar show "Pay online" (this link, same tab) and "Order on WhatsApp".
-PAY_LINK_OW37 = ""
-PAY_LINK_OW36 = ""
+PAY_LINK_OW37 = "https://rzp.io/rzp/Mn4AHQV"  # Razorpay page "Woodkari small gift box: pack of 10" (Friday, ops/laptop_questions.md 25 Nov 05:32)
+PAY_LINK_OW36 = "https://rzp.io/rzp/G5NKapX1"  # Razorpay page "Woodkari 9-compartment gift box" (same source)
 PAY_LINKS = {"OW-37": PAY_LINK_OW37, "OW-36": PAY_LINK_OW36}
 # Only on a page with a pay link: layout of the two buttons (sticky bar: price on the first line, both buttons on the second).
 PAY_CSS = ("<style>.stick.two{flex-wrap:wrap;gap:8px 10px}.stick.two b{flex:0 0 100%;font-size:16px}"
@@ -2458,7 +2459,7 @@ def main():
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
         w("llms.txt", llms_txt())
     for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html"), ("fluted-box-tray.html", "trays.html"), ("room-tray.html", "trays.html")):
-        w(src, f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Woodkari</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={dst}"><link rel="canonical" href="{SITE}/{dst}"><script>location.replace("{dst}")</script></head><body><p><a href="{dst}">Continue to Woodkari</a></p></body></html>\n')
+        w(src, f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Woodkari</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={dst}"><link rel="canonical" href="{SITE}/{dst}"><script>location.replace("{dst}")</script></head><body><p><a href="{dst}">Continue to Woodkari</a></p></body></html>\n')
     check_photos(pages)
     lst_images()
     for name, s in pages.items():

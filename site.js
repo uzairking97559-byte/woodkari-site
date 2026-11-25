@@ -42,7 +42,7 @@
 
   /* shop filter from the category tabs. The page opens on the 12 "top" pieces; All pieces and Name & logo show every piece; Acacia wood and Resin go by material */
   var cards=$$('#shop .p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin',logo:'Name & logo'},
-    notes={top:'Every piece is made to order. Prices are for one piece; delivery is extra.',all:'Every piece is made to order. Prices are for one piece; delivery is extra.',wood:'Every acacia wood piece on the site.',resin:'Every resin piece on the site.',logo:'Any piece can carry your name or logo, on 50 pieces or more of one design.'};
+    notes={top:'Every piece is made to order. Prices are for one piece and delivery is extra, unless the product page says otherwise.',all:'Every piece is made to order. Prices are for one piece and delivery is extra, unless the product page says otherwise.',wood:'Every acacia wood piece on the site.',resin:'Every resin piece on the site.',logo:'Any piece can carry your name or logo, on 50 pieces or more of one design.'};
   function filter(k){if(k!=='top'&&!names[k])k='all';var tab=k==='top'?'all':k;
     curTab=tab;if(typeof light==='function')light('');
     var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});

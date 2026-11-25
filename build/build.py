@@ -1275,7 +1275,7 @@ JS = r"""
 
   /* shop filter from the category tabs. The page opens on the 12 "top" pieces; All pieces and Name & logo show every piece; Acacia wood and Resin go by material */
   var cards=$$('#shop .p[data-cat]'),shop=d.getElementById('shop'),names={all:'Trays & boxes',wood:'Acacia wood',resin:'Resin',logo:'Name & logo'},
-    notes={top:'Every piece is made to order. Prices are for one piece; delivery is extra.',all:'Every piece is made to order. Prices are for one piece; delivery is extra.',wood:'Every acacia wood piece on the site.',resin:'Every resin piece on the site.',logo:'Any piece can carry your name or logo, on 50 pieces or more of one design.'};
+    notes={top:'Every piece is made to order. Prices are for one piece and delivery is extra, unless the product page says otherwise.',all:'Every piece is made to order. Prices are for one piece and delivery is extra, unless the product page says otherwise.',wood:'Every acacia wood piece on the site.',resin:'Every resin piece on the site.',logo:'Any piece can carry your name or logo, on 50 pieces or more of one design.'};
   function filter(k){if(k!=='top'&&!names[k])k='all';var tab=k==='top'?'all':k;
     curTab=tab;if(typeof light==='function')light('');
     var was=cards.filter(function(p){return !p.hidden}),from=was.map(function(p){return p.getBoundingClientRect()});
@@ -1424,7 +1424,7 @@ FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of 
        ("How does payment work?", "Orders from the 9-compartment gift box page and the 4-compartment open box page: Rs 200 advance starts the making, or you can pay the full amount. Other orders of 1 or 2 pieces: Rs 200 advance starts the making. Other orders of 3 or more pieces: 50% advance. For a piece above ₹10,000, such as furniture, a 50% advance. The balance is paid before dispatch, by UPI, card or bank transfer."),
        ("Can I cancel or return a piece?", "You can cancel for free until we start making. Every piece is made for you, so there are no returns for a change of mind. If a piece arrives damaged, tell us on WhatsApp within 48 hours with an uncut unboxing video, and we replace it. The full terms are on the Order terms page."),
        ("Who pays for delivery?", "Delivery is extra. We tell you the amount on WhatsApp, unless the product page says the price includes delivery."),
-       ("Can I buy just one piece?", "Yes. Every piece with a price can be ordered on its own. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
+       ("Can I buy just one piece?", "Yes, where the product page shows a price for one piece; some boxes are sold in packs, and the product page says so. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
 
 
 def pixel():
@@ -1757,7 +1757,7 @@ def page_home():
 <div class="ribbon" aria-hidden="true"><div class="track">{ribbon}</div></div>
 
 <section class="sec" id="shop"><div class="wrap">
-<div class="hdr rv"><div><h2 id="shop-t">Our best pieces</h2><p id="shop-n">Every piece is made to order. Prices are for one piece; delivery is extra.</p></div></div>
+<div class="hdr rv"><div><h2 id="shop-t">Our best pieces</h2><p id="shop-n">Every piece is made to order. Prices are for one piece and delivery is extra, unless the product page says otherwise.</p></div></div>
 <div class="grid">
 {cards}
 </div>
@@ -1772,7 +1772,7 @@ def page_home():
 <ol class="steps">
 <li><b>Send the piece and the number</b><span>On WhatsApp or by mail, with your city.</span></li>
 <li><b>We send the price</b><span>A 50% advance starts the order.</span></li>
-<li><b>Made and sent</b><span>Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time. Delivery is at your cost, quoted before it leaves.</span></li>
+<li><b>Made and sent</b><span>Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time. Delivery is at your cost, quoted before it leaves, unless the product page says the price includes delivery.</span></li>
 </ol>
 <div class="row"><a class="btn inv" href="{e(wa(BULK_MSG))}">{WA_ICON}Discuss your order</a><a class="btn ghost" href="bulk.html">Bulk orders in detail{ARROW}</a></div>
 </div>
@@ -2187,13 +2187,13 @@ def cat_page(slug, title, subs, group=None):
     og = (first_img.group(1) if first_img else "m-og") + ".webp"
     crumb = f'<a href="./">Home</a> / ' + (f'<a href="{gp}.html">{e(gname)}</a> / ' if slug != gp and len(ss) > 1 else "") + e(title)
     n = len(cards)
-    return head(f"{title} | Woodkari, India", f"{n} {title.lower()} made to order in India. Prices are for one piece; delivery is extra. Order on WhatsApp.", f"{slug}.html", og) + f"""<body>
+    return head(f"{title} | Woodkari, India", f"{n} {title.lower()} made to order in India. Prices are for one piece and delivery is extra, unless the product page says otherwise. Order on WhatsApp.", f"{slug}.html", og) + f"""<body>
 {header(gp)}
 <main id="main">
 <section><div class="wrap mh">
 <p class="crumb" style="padding-top:0">{crumb}</p>
 <h1>{e(title)}</h1>
-<p>{n} {"piece" if n == 1 else "pieces"}. Every piece is made to order. Prices are for one piece; delivery is extra.</p>
+<p>{n} {"piece" if n == 1 else "pieces"}. Every piece is made to order. Prices are for one piece and delivery is extra, unless the product page says otherwise.</p>
 {chips}
 </div></section>
 <section class="sec cat"><div class="wrap">
@@ -2389,7 +2389,7 @@ def llms_txt():
          f"- WhatsApp: {WA_PRINTED} ({wa(HELLO).split('?')[0]})", f"- Email: {EMAIL}",
          "- How an order starts: send the piece and the number, on WhatsApp or by mail, with your city.", "",
          "## Main pages", "",
-         f"- [Home and shop]({SITE}/): trays and boxes, acacia wood from our workshop, and resin trays made to order. Prices are for one piece; delivery is extra.",
+         f"- [Home and shop]({SITE}/): trays and boxes, acacia wood from our workshop, and resin trays made to order. Prices are for one piece and delivery is extra, unless the product page says otherwise.",
          f"- [Bulk and hotel orders]({SITE}/bulk.html): bulk orders from 25 pieces, for hotels, gifting companies, shops and importers.",
          f"- [Made to order designs]({SITE}/designs.html): {ALL_N} more designs. Every picture there is a design picture, made to show the piece. Every design shows its price; order on WhatsApp.", "",
          "## Pieces", ""]

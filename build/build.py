@@ -2043,7 +2043,8 @@ DIRECT_SALE = {
                   bulk="25 pieces or more: ₹699 per piece. Bulk: delivery extra, 50% advance.", meta="One box ₹1,899, delivery in India included."),
     "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.",
                   adv="Advance ₹1,700 starts the making. The balance ₹1,699 is paid before dispatch. Or pay the full amount now.",
-                  bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 ₹3,399, delivery in India included."),
+                  bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 ₹3,399, delivery in India included.",
+                  wa_covers_bulk=True),  # with pay buttons, "Questions or 25+ pieces? Order on WhatsApp" replaces the bulk line
 }
 # lock: the OW-37 concrete line says the same numbers as DS_PACKS
 assert DIRECT_SALE["OW-37"]["adv"] == f"Advance {rupee(DS_PACKS['OW-37'][0][2])} starts the making. The balance {rupee(DS_PACKS['OW-37'][0][1] - DS_PACKS['OW-37'][0][2])} is paid before dispatch. Or pay the full amount now."
@@ -2131,8 +2132,7 @@ def page_ow(it):
 {chips}{rows}{notes}<div class="payb{" sel" if multi else ""}">{ds_btns(code, n0, a0, p0)}</div>
 <div class="row">{wa_main}</div>
 <p class="note wa-l"{"" if any0 else " hidden"}>Questions or 25+ pieces? <a href="{wa_u}">Order on WhatsApp</a></p>
-<p class="note">{e(ds["bulk"])}</p>
-</div>"""
+{"" if ds.get("wa_covers_bulk") else '<p class="note">' + e(ds["bulk"]) + '</p>' + chr(10)}</div>"""
             stick_ds = (f'<div class="stick ds"><b class="sl">{e(stick_l)}</b>{ds_btns(code, n0, a0, p0)}'
                         f'<a class="btn pri wa-main" href="{wa_u}"{"" if not any0 else " hidden"}>{WA_ICON}Order now</a></div>')
         meta_price = ds["meta"]

@@ -2008,6 +2008,8 @@ DS_CSS = ("<style>.ob [hidden],.stick [hidden]{display:none!important}"
           "@media(max-width:520px){.payb{grid-template-columns:1fr}}"
           ".stick.ds{flex-wrap:wrap;gap:8px 10px}.stick.ds b{flex:0 0 100%;font-size:16px}"
           ".stick.ds .btn{flex:1 1 0;min-width:0;padding:10px 8px;font-size:15px;white-space:nowrap;gap:8px}"
+          ".stick.ds .wa-ask{flex-grow:1.2}"
+          "@media(max-width:380px){.stick.ds .btn{font-size:14px;padding:10px 4px}.stick.ds .wa-ask{flex-grow:1.45}}"
           "@media(max-width:350px){.stick.ds .btn{font-size:14px;padding:10px 5px}}"
           "@media(max-width:959px){body.has-stick{padding-bottom:calc(112px + env(safe-area-inset-bottom))}}</style>\n")
 # Only on a page with at least one pay link.
@@ -2040,21 +2042,28 @@ DS_JS = ("<script>(function(){var done=0;document.addEventListener('click',funct
 DIRECT_SALE = {
     "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai.",
                   adv=ADV_RULE,
-                  bulk="25 pieces or more: ₹699 per piece. Bulk: delivery extra, 50% advance.", meta="One box ₹1,899, delivery in India included."),
+                  bulk="25 pieces or more: ₹699 per piece. Bulk: delivery extra, 50% advance.", meta="One box ₹1,899, delivery in India included.",
+                  first="Order par banate hain. India mein delivery included. ₹200 advance, baaki dispatch se pehle.",
+                  ask="Namaste, mujhe 9 khaane wala box ke baare mein poochna hai"),
     "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.",
                   adv="Advance ₹1,700 starts the making. The balance ₹1,699 is paid before dispatch. Or pay the full amount now.",
                   bulk="25 pieces or more: ask on WhatsApp.", meta="Pack of 10 ₹3,399, delivery in India included.",
-                  wa_covers_bulk=True),  # with pay buttons, "Questions or 25+ pieces? Order on WhatsApp" replaces the bulk line
+                  wa_covers_bulk=True,
+                  first="Order par banate hain. India mein delivery included. ₹1,700 advance, baaki dispatch se pehle.",
+                  ask="Namaste, mujhe 4 khaane wala box, 10 ka pack, ke baare mein poochna hai"),  # with pay buttons, "Questions or 25+ pieces? Order on WhatsApp" replaces the bulk line
 }
 # lock: the OW-37 concrete line says the same numbers as DS_PACKS
 assert DIRECT_SALE["OW-37"]["adv"] == f"Advance {rupee(DS_PACKS['OW-37'][0][2])} starts the making. The balance {rupee(DS_PACKS['OW-37'][0][1] - DS_PACKS['OW-37'][0][2])} is paid before dispatch. Or pay the full amount now."
 
 
 
+for _c, _d in DIRECT_SALE.items():
+    assert rupee(DS_PACKS[_c][0][2]) + " advance" in _d["first"], f"first-screen line of {_c} must state the advance of the first pack"
+
 # "Who you buy from" block under the order block of the direct-sale pages (D-450: trust fixes that need nothing from the owner).
 # Only lines that are already public on the site; sources in agency-research businesses/woodkari/site/direct_sale_25nov/CHANGES.md (v12).
 # The Razorpay line shows only when the page has at least one pay link. No photo: build/photo_pass.csv has no real workshop or maker photo.
-TB_CSS = ("<style>.whofrom{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}"
+TB_CSS = ("<style>.mto-line{margin:0 0 14px;font-size:15px;line-height:1.45;color:var(--ink)}.whofrom{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}"
           ".whofrom h2{margin:0 0 8px;font:600 15px/1.3 var(--sans);letter-spacing:.01em;color:var(--ink)}"
           ".whofrom ul{list-style:none;margin:0;padding:0}.whofrom li{margin:0 0 6px;font-size:15px;line-height:1.5;color:var(--soft)}"
           ".whofrom a{color:var(--green);text-decoration:underline;text-underline-offset:3px}</style>\n")
@@ -2071,9 +2080,12 @@ def trust_block(live):
             + "".join(f"<li>{x}</li>" for x in lines) + "</ul></section>")
 
 
-def ds_btns(code, n, adv, price, sel=False):
+def ds_btns(code, n, adv, price, sel=False, stick=False):
     """the two pay buttons of one pack (a hidden button where the link is empty); sel=True: the block that the chips drive"""
     la, lf = ds_link(code, n, "advance"), ds_link(code, n, "full")
+    if stick:  # sticky bar: "Pay advance" stays, "Pay full" is replaced by a WhatsApp question (full payment stays in the buy box)
+        return (f'<a class="btn pri pay-adv"{(" href=" + chr(34) + e(la) + chr(34)) if la else " hidden"} data-pay="{code}" data-pack="{n}" data-value="{adv}">Pay advance {rupee(adv)}</a>'
+                f'<a class="btn line wa-ask" href="{e(wa(DIRECT_SALE[code]["ask"]))}">WhatsApp par poochein</a>')
     out = (f'<a class="btn pri pay-adv"{(" href=" + chr(34) + e(la) + chr(34)) if la else " hidden"} data-pay="{code}" data-pack="{n}" data-value="{adv}">Pay advance {rupee(adv)}</a>'
            f'<a class="btn line pay-full"{(" href=" + chr(34) + e(lf) + chr(34)) if lf else " hidden"} data-pay="{code}" data-pack="{n}" data-value="{price}">Pay full {rupee(price)}</a>')
     return out
@@ -2103,7 +2115,7 @@ def page_ow(it):
         stick_l = top
         price = f'<p class="pr">{e(top)}</p>\n<p class="note">Delivery extra.</p>'
         meta_price = top + "."
-    order_block = stick_ds = ""
+    order_block = stick_ds = first_line = ""
     live = False
     if code in DIRECT_SALE:
         # direct sale: prices and advances from DS_PACKS, links from PAY_LINKS (D-448, D-449)
@@ -2154,9 +2166,10 @@ def page_ow(it):
 <div class="row">{wa_main}</div>
 <p class="note wa-l"{"" if any0 else " hidden"}>Questions or 25+ pieces? <a href="{wa_u}">Order on WhatsApp</a></p>
 {"" if ds.get("wa_covers_bulk") else '<p class="note">' + e(ds["bulk"]) + '</p>' + chr(10)}</div>"""
-            stick_ds = (f'<div class="stick ds"><b class="sl">{e(stick_l)}</b>{ds_btns(code, n0, a0, p0)}'
+            stick_ds = (f'<div class="stick ds"><b class="sl">{e(stick_l)}</b>{ds_btns(code, n0, a0, p0, stick=True)}'
                         f'<a class="btn pri wa-main" href="{wa_u}"{"" if not any0 else " hidden"}>{WA_ICON}Order now</a></div>')
         meta_price = ds["meta"]
+        first_line = f'<p class="mto-line">{e(ds["first"])}</p>\n'
         order_block += "\n" + trust_block(live)
     meta_wood = "Acacia wood, other woods on request." if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
@@ -2186,7 +2199,7 @@ def page_ow(it):
 {header('mto')}
 <main id="main"><div class="wrap">
 <p class="crumb"><a href="designs.html">Made to order</a> / <a href="designs.html#g-{OW_GID if ow_wood(it) == 'acacia' else 'mango'}">{e(OW_CHIP if ow_wood(it) == 'acacia' else MG_CHIP)}</a> / {code}</p>
-<div class="pd">
+{first_line}<div class="pd">
 {gallery(keys, figs)}
 <div class="buy">
 <h1>{e(n)}</h1>

@@ -1951,16 +1951,16 @@ def page_design(gid, pre, title, line, items, i):
 # Empty link = that button is hidden. A pack with no link at all falls back to the WhatsApp button as the main button,
 # and a design with no link at all shows the page as before (pack list and one "Order now" WhatsApp button).
 PAY_LINKS = {
-    ("OW-37", 10, "advance"): "",  # ₹1,700
-    ("OW-37", 10, "full"): "",     # ₹3,399
-    ("OW-36", 1, "advance"): "",   # ₹200
-    ("OW-36", 1, "full"): "",      # ₹1,899
-    ("OW-36", 2, "advance"): "",   # ₹1,400
-    ("OW-36", 2, "full"): "",      # ₹2,799
-    ("OW-36", 4, "advance"): "",   # ₹2,350
-    ("OW-36", 4, "full"): "",      # ₹4,699
-    ("OW-36", 10, "advance"): "",  # ₹5,600
-    ("OW-36", 10, "full"): "",     # ₹11,199
+    ("OW-37", 10, "advance"): "https://rzp.io/rzp/bYG54X9",  # ₹1,700
+    ("OW-37", 10, "full"): "https://rzp.io/rzp/XVfrkW5h",     # ₹3,399
+    ("OW-36", 1, "advance"): "https://rzp.io/rzp/3rqlwpHJ",   # ₹200
+    ("OW-36", 1, "full"): "https://rzp.io/rzp/voBuglT",      # ₹1,899
+    ("OW-36", 2, "advance"): "https://rzp.io/rzp/lytLmIo",   # ₹1,400
+    ("OW-36", 2, "full"): "https://rzp.io/rzp/zLOHrQ3",      # ₹2,799
+    ("OW-36", 4, "advance"): "https://rzp.io/rzp/8DKqjBJ",   # ₹2,350
+    ("OW-36", 4, "full"): "https://rzp.io/rzp/TK2cMCkq",      # ₹4,699
+    ("OW-36", 10, "advance"): "https://rzp.io/rzp/X2nTfor",  # ₹5,600
+    ("OW-36", 10, "full"): "https://rzp.io/rzp/CXZ05olt",     # ₹11,199
 }
 # (pieces, price, advance, name, per-box line). Prices: agency-research businesses/woodkari/direct_sale_price_decision.md v2;
 # advances: D-448, Checker ops/checks/2026-11-25-advance-amounts.md (ARITHMETIC OK). The first pack is the default.

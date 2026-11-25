@@ -2050,6 +2050,27 @@ DIRECT_SALE = {
 assert DIRECT_SALE["OW-37"]["adv"] == f"Advance {rupee(DS_PACKS['OW-37'][0][2])} starts the making. The balance {rupee(DS_PACKS['OW-37'][0][1] - DS_PACKS['OW-37'][0][2])} is paid before dispatch. Or pay the full amount now."
 
 
+
+# "Who you buy from" block under the order block of the direct-sale pages (D-450: trust fixes that need nothing from the owner).
+# Only lines that are already public on the site; sources in agency-research businesses/woodkari/site/direct_sale_25nov/CHANGES.md (v12).
+# The Razorpay line shows only when the page has at least one pay link. No photo: build/photo_pass.csv has no real workshop or maker photo.
+TB_CSS = ("<style>.whofrom{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}"
+          ".whofrom h2{margin:0 0 8px;font:600 15px/1.3 var(--sans);letter-spacing:.01em;color:var(--ink)}"
+          ".whofrom ul{list-style:none;margin:0;padding:0}.whofrom li{margin:0 0 6px;font-size:15px;line-height:1.5;color:var(--soft)}"
+          ".whofrom a{color:var(--green);text-decoration:underline;text-underline-offset:3px}</style>\n")
+
+
+def trust_block(live):
+    lines = ['Woodkari Exports is a maker of wooden and resin trays and boxes in India.',
+             'Woodkari Exports, Sambhal, Uttar Pradesh, India.',
+             f'WhatsApp <a href="{e(wa(HELLO))}">+91 63971 21223</a> · <a href="mailto:{EMAIL}">{EMAIL}</a>',
+             'Made to order: we message you on WhatsApp after you pay.']
+    if live:
+        lines.append('Pay securely with Razorpay: UPI, cards, netbanking, wallets.')
+    return ('<section class="whofrom" aria-labelledby="whofrom-h"><h2 id="whofrom-h">Who you buy from</h2><ul>'
+            + "".join(f"<li>{x}</li>" for x in lines) + "</ul></section>")
+
+
 def ds_btns(code, n, adv, price, sel=False):
     """the two pay buttons of one pack (a hidden button where the link is empty); sel=True: the block that the chips drive"""
     la, lf = ds_link(code, n, "advance"), ds_link(code, n, "full")
@@ -2136,6 +2157,7 @@ def page_ow(it):
             stick_ds = (f'<div class="stick ds"><b class="sl">{e(stick_l)}</b>{ds_btns(code, n0, a0, p0)}'
                         f'<a class="btn pri wa-main" href="{wa_u}"{"" if not any0 else " hidden"}>{WA_ICON}Order now</a></div>')
         meta_price = ds["meta"]
+        order_block += "\n" + trust_block(live)
     meta_wood = "Acacia wood, other woods on request." if ow_wood(it) == "acacia" else OW_MATERIAL_MANGO
     shown = [(x, v) for x, v in zip("abcdef", it["views"]) if x not in it.get("skip", "")]
     keys = [ow_key(code, x) for x, _ in shown]
@@ -2183,7 +2205,9 @@ def page_ow(it):
 <script type="application/ld+json">{ld}</script>
 {DS_JS if live else ""}</body></html>
 """
-    return out.replace("</head>", DS_CSS + "</head>", 1) if live else out
+    if code in DIRECT_SALE:
+        out = out.replace("</head>", TB_CSS + (DS_CSS if live else "") + "</head>", 1)
+    return out
 
 
 def lst_card(it, anchor=False):

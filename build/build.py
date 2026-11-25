@@ -1965,7 +1965,7 @@ PAY_JS = ("<script>(function(){var done=0;document.addEventListener('click',func
           "e.preventDefault();var h=a.href;setTimeout(function(){location.href=h},300)}catch(x){}},true)})();</script>\n")
 
 DIRECT_SALE = {
-    "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai.", top="₹1,899", unit="1 box", stick="₹1,899",
+    "OW-36": dict(msg="Namaste, mujhe 9 khaane wala mango wood gift box order karna hai.", top="₹1,899", unit="1 box", stick="1 box ₹1,899",
                   packs=[("Pack of 2", "₹2,799 · about ₹1,400 per box"), ("Pack of 4", "₹4,699 · about ₹1,175 per box"), ("Pack of 10", "₹11,199 · about ₹1,120 per box")],
                   bulk="25 pieces or more: ₹699 per piece. Bulk: delivery extra, 50% advance.", meta="One box ₹1,899, delivery in India included."),
     "OW-37": dict(msg="Namaste, mujhe 4 khaane wala mango wood box ka 10 ka pack order karna hai.", top="₹3,399", unit="Pack of 10 · about ₹340 per box", stick="Pack of 10 ₹3,399",
@@ -2225,7 +2225,7 @@ def category_pages():
 
 
 TERMS_SINGLE = [
-    "Every piece is made to order. We start making it once you have ordered and paid, by UPI or bank transfer. Orders placed from a product page with a price: Rs 200 advance starts the making, or you can pay the full amount. Other orders of 3 or more pieces: 50% advance. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
+    "Every piece is made to order. We start making it once you have ordered and paid, by UPI, card or bank transfer. Orders from the 9-compartment gift box page and the 4-compartment open box page: Rs 200 advance starts the making, or you can pay the full amount. Other orders of 1 or 2 pieces: Rs 200 advance starts the making. Other orders of 3 or more pieces: 50% advance. The balance is paid before dispatch. For a piece above ₹10,000, such as furniture, a 50% advance, and the rest before dispatch. We tell you the making time on WhatsApp.",
     "You can cancel for free until we start making. Once making has started, the order cannot be cancelled.",
     "Each piece is made for you, so we do not take returns for a change of mind.",
     "If a piece arrives damaged or is not what you ordered, tell us on WhatsApp within 48 hours of delivery, with an uncut unboxing video and photos. We replace it, or return your money if we cannot replace it. We pay the shipping for this.",
@@ -2282,7 +2282,7 @@ def policy_page(title, desc, path, h1, intro, sections, extra=""):
 def page_privacy():
     return policy_page("Privacy Policy | Woodkari, India", "What Woodkari collects when you order, why, and how to ask us to delete it.", "privacy.html",
         "Privacy policy", "This page says what we collect when you contact or order from Woodkari Exports, and what we do with it.",
-        [("What we collect", ["Your name, phone number and delivery address.", "The messages you send us on WhatsApp or by email, including pictures and videos you send for a damage claim."]),
+        [("What we collect", ["Your name, phone number and delivery address.", "The messages you send us on WhatsApp or by email, including pictures and videos you send for a damage claim.", "Online payments are processed by Razorpay; we receive your name, phone, email and delivery address from the payment page, never your card or bank details."]),
          ("How we use it", ["We use your details to make, deliver and support your order.", "This site also uses Google Analytics and the Meta pixel to count visits and to measure our ads.", "We do not sell your details to anyone."]),
          ("Delete your details", "To have your details deleted, message us on WhatsApp +91 63971 21223 or write to " + EMAIL + ".")])
 

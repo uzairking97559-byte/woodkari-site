@@ -1421,9 +1421,9 @@ FAQ = [("What is the minimum for a bulk order?", "Trays and boxes: 25 pieces of 
        ("Can you put our name or logo on the pieces?", "Yes, on the wooden pieces, by laser, on 50 pieces or more of one design: a hotel name, a company logo or a couple's names."),
        ("Can you change the size?", "The acacia pieces can be made in any size, on order."),
        ("How long does an order take?", "Wooden pieces: about 10 to 15 days for 100. Resin pieces: we tell you the time when you ask."),
-       ("How does payment work?", "A single piece up to ₹10,000 is paid in full when you order, by UPI or bank transfer. For a piece above ₹10,000, such as furniture, and for a bulk order, a 50% advance starts the order and the rest is paid before dispatch."),
+       ("How does payment work?", "Orders from the 9-compartment gift box page and the 4-compartment open box page: Rs 200 advance starts the making, or you can pay the full amount. Other orders of 1 or 2 pieces: Rs 200 advance starts the making. Other orders of 3 or more pieces: 50% advance. For a piece above ₹10,000, such as furniture, a 50% advance. The balance is paid before dispatch, by UPI, card or bank transfer."),
        ("Can I cancel or return a piece?", "You can cancel for free until we start making. Every piece is made for you, so there are no returns for a change of mind. If a piece arrives damaged, tell us on WhatsApp within 48 hours with an uncut unboxing video, and we replace it. The full terms are on the Order terms page."),
-       ("Who pays for delivery?", "Delivery is at the buyer's cost. We tell you the amount before the order leaves."),
+       ("Who pays for delivery?", "Delivery is extra. We tell you the amount on WhatsApp, unless the product page says the price includes delivery."),
        ("Can I buy just one piece?", "Yes. Every piece with a price can be ordered on its own. Tap \"Order on WhatsApp\" on the piece and tell us your city and PIN code; we confirm the delivery charge, the time and how to pay.")]
 
 

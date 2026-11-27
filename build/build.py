@@ -2610,7 +2610,7 @@ def main():
           + "".join(f"<url><loc>{SITE}/{u}</loc></url>\n" for u in urls) + "</urlset>\n")
         w("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
         w("llms.txt", llms_txt())
-    for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html"), ("fluted-box-tray.html", "trays.html"), ("room-tray.html", "trays.html")):
+    for src, dst in (("shop.html", "designs.html"), ("name-and-logo.html", "index.html"), ("fluted-box-tray.html", "trays.html"), ("room-tray.html", "trays.html"), ("design-n100-020.html", "trays.html")):
         w(src, f'<!doctype html>\n<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Woodkari</title><meta name="robots" content="noindex"><meta http-equiv="refresh" content="0;url={dst}"><link rel="canonical" href="{SITE}/{dst}"><script>location.replace("{dst}")</script></head><body><p><a href="{dst}">Continue to Woodkari</a></p></body></html>\n')
     check_photos(pages)
     lst_images()

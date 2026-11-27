@@ -1,3 +1,4 @@
+# 27 Nov 2026: N100-020 (cot-shaped platter set) taken off, owner: charpai chhod dena
 # owner HAAN on the tick page, 22 Nov 12:10 UTC (121 codes, tick_ready_22nov.txt)
 NP-01
 NP-02
@@ -33,7 +34,6 @@ N100-016
 N100-017
 N100-018
 N100-019
-N100-020
 N100-021
 N100-022
 N100-023
